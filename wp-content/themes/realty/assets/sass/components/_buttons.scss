@@ -1,0 +1,133 @@
+.btn,
+.btn:focus,
+input[type="submit"],
+input.dsidx-contact-form-submit,
+.more-link,
+.acf-button {
+	display: inline-block;
+	outline: none !important;
+	padding: 0 1em;
+	font-size: 1em;
+	line-height: 40px;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	background-color: lighten( $color-background-dark, 10% );
+	transition: all 0.2s;
+	&:hover {
+		background-color: lighten( $color-background-dark, 10% );
+		a {
+			color: #fff;
+		}
+	}
+	a {
+		color: #fff;
+	}
+}
+
+.btn-light {
+	color: $color-muted;
+	background-color: $color-background-light;
+	&:hover {
+		color: $color-muted;
+		background-color: darken($color-background-light, 5%);
+	}
+}
+
+.btn-dark {
+	color: #fff;
+	background-color: lighten($color-background-dark, 5%);
+	&:hover {
+		color: #fff;
+		background-color: darken($color-background-dark, 5%);
+	}
+}
+
+
+.btn-primary,
+.btn-primary:focus,
+input[type="submit"],
+input.dsidx-contact-form-submit,
+.more-link,
+.acf-button.blue {
+	color: #fff;
+	background-color: $color-primary;
+	&:hover {
+		color: #fff;
+		background-color: lighten($color-background-dark, 5%);
+	}
+}
+
+button.btn-primary,
+button.btn-primary:focus,
+button.more-link,
+button.acf-button.blue {
+	&:hover {
+		background-color: $color-primary;
+	}
+}
+
+.btn-ghost,
+.btn-ghost:focus,
+.btn-ghost-light,
+.btn-ghost-light:focus {
+	color: $color-muted;
+	border: 2px solid $color-border;
+	background-color: transparent !important;
+	&:hover {
+		color: darken($color-muted, 5%);
+		border-color: darken($color-border, 5%);
+	}
+}
+
+.btn-ghost-dark,
+.btn-ghost-dark:focus, {
+	color: $color-heading;
+	border: 2px solid $color-background-dark;
+	background-color: transparent !important;
+	&:hover {
+		color: darken($color-heading, 5%);
+		border-color: darken($color-background-dark, 5%);
+	}
+}
+
+.btn-ghost-primary,
+.btn-ghost-primary:focus {
+	color: $color-primary;
+	border: 2px solid $color-primary;
+	background-color: transparent !important;
+	&:hover {
+		color: lighten($color-background-dark, 5%);
+		border-color: lighten($color-background-dark, 5%);
+	}
+}
+
+
+.btn-xs,
+.btn-xs:focus {
+	padding: 0 .5em;
+	font-size: 0.8em;
+}
+
+.btn-sm,
+.btn-sm:focus {
+	padding: 0 .8em;
+	font-size: 0.9em;
+}
+
+.btn-lg,
+.btn-lg:focus {
+	padding: 0 2.5em;
+	font-size: 1.1em;
+}
+
+.btn-block {
+	display: block;
+	width: 100%;
+}
+
+.more-link {
+	display: inline-block;
+	margin-bottom: 0;
+	font-size: .9em;
+}

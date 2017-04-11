@@ -1,0 +1,66 @@
+/*------------------------------
+	JP Carousel Gallery Plugin
+------------------------------*/
+
+#jp-carousel-comment-form-container, div.jp-carousel-buttons a.jp-carousel-commentlink, #jp-carousel-comments-loading {
+	display: none !important;
+}
+
+.jp-carousel-buttons {
+	padding: 0 !important;
+}
+
+.jp-carousel-image-meta {
+	display: none;
+}
+
+.jp-carousel-wrap .jp-carousel-light .jp-carousel-close-hint, .jp-carousel-wrap .jp-carousel-close-hint {
+	top: 20px;
+	span {
+		float: right;
+		font-size: 3em !important; 
+		color: inherit;
+		background: transparent !important;
+	}
+}
+
+.jp-carousel-info {
+	display: none;
+}
+
+.jp-carousel-info .jp-carousel-photo-info h2 {
+	font-size: 1.5em !important;
+}
+
+.jp-carousel-next-button span, .jp-carousel-previous-button span {
+	background: none !important;
+}
+
+.jp-carousel-next-button, .jp-carousel-previous-button {
+	overflow: visible !important;
+	text-indent: 0 !important;
+	opacity: 0.5;
+	transition: all 0.2s;
+	&:before {
+		height: 100px;
+		font-family: FontAwesome;
+		font-size: 100px;
+		position: absolute;
+		top: 50%;
+		margin-top: -50px;
+		left: 10px;
+		line-height: 1;
+		text-align: center;
+		color: $color-text;
+		content: "\F104";
+	}
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.jp-carousel-next-button:before {
+	left: auto;
+	right: 10px;
+	content: "\F105";
+}

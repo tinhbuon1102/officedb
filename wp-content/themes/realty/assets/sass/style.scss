@@ -1,0 +1,151 @@
+/*
+Theme Name:  Realty
+Theme URI:   http://themetrail.com/themes/realty/
+Author:      ThemeTrail
+Author URI:  http://themetrail.com
+Description: Premium Real Estate WordPress Theme.
+Version:     3.0.1
+Text Domain: realty
+License:
+License URI:
+*/
+
+/*
+ * normalize.css v4.0.0
+ */
+@import "common/normalize";
+
+/*
+ * Bootstrap v3.3.6
+ * @grid
+ * @modal
+ * @popover
+ * @tooltip
+ */
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/close";
+@import "bootstrap/grid";
+@import "bootstrap/modals";
+@import "bootstrap/navs";
+@import "bootstrap/panels";
+@import "bootstrap/tooltip";
+
+/*
+ * General Styles
+ */
+@import "common/variables";
+@import "common/global";
+
+/*
+ * Header
+ */
+@import "layouts/header";
+/*
+ * Footer
+ */
+@import "layouts/footer";
+/*
+ * Pages
+ */
+@import "layouts/pages";
+/*
+ * Posts
+ */
+@import "layouts/posts";
+/*
+ * Sidebar
+ */
+@import "layouts/sidebar";
+/*
+ * Single Property Page
+ */
+@import "layouts/single-property";
+/*
+ * Template - Contact
+ */
+@import "layouts/template-contact";
+/*
+ * Template - Intro
+ */
+@import "layouts/template-intro";
+/*
+ * Template - Property Map Vertical
+ */
+@import "layouts/template-vertical-map";
+/*
+ * Template - Property Search Results
+ */
+@import "layouts/template-search-results";
+/*
+ * Template - Property Submit
+ */
+@import "layouts/template-property-submit";
+/*
+ * Template - Property Submit Listing
+ */
+@import "layouts/template-property-submit-listing";
+
+/*
+ * Buttons
+ */
+@import "components/buttons";
+/*
+ * Comments
+ */
+@import "components/comments";
+/*
+ * Forms
+ */
+@import "components/forms";
+/*
+ * Maps
+ */
+@import "components/maps";
+/*
+ * PrettyPhoto
+ */
+@import "components/pretty-photo";
+/*
+ * Property Listing
+ */
+@import "components/property-listing";
+/*
+ * Property Search Form
+ */
+@import "components/property-search-form";
+/*
+ * Shortcodes
+ */
+@import "components/shortcodes";
+/*
+ * Slider
+ */
+@import "components/slider";
+/*
+ * Visual Composer
+ */
+@import "components/visual-composer";
+/*
+ * Widgets
+ */
+@import "components/widgets";
+/*
+ * WordPress Generated Classes
+ *	http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+ */
+@import "components/wp-classes";
+
+/**
+ * Plugins
+ */
+@import "plugins/chosen-js";
+@import "plugins/contact-form-7";
+@import "plugins/datepicker";
+@import "plugins/idx-optima-express";
+@import "plugins/jp-carousel";
+@import "plugins/latest-tweets";
+@import "plugins/magnific-popup";
+@import "plugins/slim-jetpack";
+@import "plugins/spinner";
+@import "plugins/wordpress-social-login";

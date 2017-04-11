@@ -1,0 +1,74 @@
+/*
+*  Notify Bar - jQuery plugin
+*
+*  Copyright (c) 2009-2015 Dmitri Smirnov
+*
+*  Licensed under the MIT license:
+*  http://www.opensource.org/licenses/mit-license.php
+*
+*  Project home:
+*  http://www.whoop.ee/posts/2013/04/05/the-resurrection-of-jquery-notify-bar.html
+*/
+
+/* Default bars' style */
+.jquery-notify-bar {
+  width:100%;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index:32768;
+  text-align:center;
+  padding: 1em 0;
+  cursor: pointer;
+}
+.jquery-notify-bar.bottom {
+  bottom:0;
+  top:auto;
+}
+
+.jquery-notify-bar.error .notify-bar-text-wrapper,
+.jquery-notify-bar.warning .notify-bar-text-wrapper,
+.jquery-notify-bar.tt-success .notify-bar-text-wrapper {
+  padding: 0 0 0 1em;
+}
+
+/* Style for errors */
+.jquery-notify-bar.error {
+  color:#d00;
+  background-color:#fdd;
+}
+.jquery-notify-bar.error .notify-bar-text-wrapper {
+  background: transparent url("../img/jq-notify-bar-icons.svg") no-repeat 0 -62px;
+}
+
+/* Style for warning */
+.jquery-notify-bar.warning {
+  color:#000;
+  background-color:#fffaaa;
+}
+.jquery-notify-bar.warning .notify-bar-text-wrapper {
+  background: transparent url("../img/jq-notify-bar-icons.svg") no-repeat 1px 1px;
+}
+
+/* Style for tt-success
+.jquery-notify-bar.tt-success {
+  color:#060;
+}
+ */
+ 
+.jquery-notify-bar.tt-success .notify-bar-text-wrapper {
+  background: transparent url("../img/jq-notify-bar-icons.svg") no-repeat 2px -31px;
+}
+
+/* Style for close button */
+.notify-bar-close {
+  position:absolute;
+  left:97%;
+  top: 13px;
+  text-decoration: none;
+  color: #222;
+  font-size: 30px;
+}
+.notify-bar-close:hover {
+  color: #05f;
+}

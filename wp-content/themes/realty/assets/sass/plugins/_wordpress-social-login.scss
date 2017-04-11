@@ -1,0 +1,21 @@
+/*------------------------------
+	Plugin: WordPress Social Login
+https://wordpress.org/plugins/wordpress-social-login/
+------------------------------*/
+
+.wp-social-login-widget {
+	margin-top: 1em;
+	padding-top: 1em;
+	border-top: 1px solid $color-border;
+	.wp-social-login-connect-with {
+		color: $color-muted;
+	}
+	.wp-social-login-provider-list {
+		margin-top: 0.5em;
+		padding: 0;
+		a {
+			display: inline-block;
+			margin-right: 3px;
+		}
+	}
+}

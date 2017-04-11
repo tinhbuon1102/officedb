@@ -1,0 +1,243 @@
+<wpml-config>
+  <custom-types>
+    <custom-type translate="1">inovoice</custom-type>
+    <custom-type translate="1">package</custom-type>
+    <custom-type translate="1">property</custom-type>
+  </custom-types>
+  <taxonomies>
+    <taxonomy translate="1">property-location</taxonomy>
+    <taxonomy translate="1">property-status</taxonomy>
+    <taxonomy translate="1">property-type</taxonomy>
+    <taxonomy translate="1">property-features</taxonomy>
+  </taxonomies>
+  <custom-fields>
+    <custom-field action="copy">estate_page_hide_site_header</custom-field>
+    <custom-field action="copy">estate_page_hide_sidebar</custom-field>
+    <custom-field action="copy">estate_page_hide_footer_widgets</custom-field>
+    <custom-field action="copy">estate_if_invoice_paid</custom-field>
+    <custom-field action="copy">estate_invoice_id</custom-field>
+    <custom-field action="copy">estate_invoiced_user_id</custom-field>
+    <custom-field action="copy">estate_invoice_item_title</custom-field>
+    <custom-field action="copy">estate_invoice_item_id</custom-field>
+    <custom-field action="copy">estate_invoice_payment_method</custom-field>
+    <custom-field action="copy">estate_invoice_amount_paid</custom-field>
+    <custom-field action="copy">estate_invoice_item_price</custom-field>
+    <custom-field action="copy">estate_date_invoice_created</custom-field>
+    <custom-field action="copy">estate_if_package_active</custom-field>
+    <custom-field action="copy">estate_package_valid_renew</custom-field>
+    <custom-field action="copy">estate_package_period_unit</custom-field>
+    <custom-field action="copy">estate_package_allowed_listings</custom-field>
+    <custom-field action="copy">estate_package_allowed_featured_listings</custom-field>
+    <custom-field action="copy">estate_package_price</custom-field>
+    <custom-field action="copy">estate_package_stripe_id</custom-field>
+
+    <custom-field action="copy">estate_property_gallery</custom-field>
+    <custom-field action="copy">estate_property_google_maps</custom-field>
+    <custom-field action="copy">estate_property_id</custom-field>
+		<custom-field action="copy">estate_property_featured</custom-field>
+		<custom-field action="copy">estate_property_layout</custom-field>
+		<custom-field action="copy">estate_property_video_provider</custom-field>
+		<custom-field action="copy">estate_property_video_id</custom-field>
+		<custom-field action="copy">estate_floor_plan_title</custom-field>
+		<custom-field action="copy">estate_property_status_update</custom-field>
+    <custom-field action="copy">estate_property_available_from</custom-field>
+    <custom-field action="copy">estate_property_price_prefix</custom-field>
+    <custom-field action="copy">estate_property_price</custom-field>
+    <custom-field action="copy">estate_property_price_suffix</custom-field>
+    <custom-field action="copy">estate_property_size</custom-field>
+    <custom-field action="copy">estate_property_size_unit</custom-field>
+    <custom-field action="copy">estate_property_rooms</custom-field>
+    <custom-field action="copy">estate_property_bedrooms</custom-field>
+    <custom-field action="copy">estate_property_bathrooms</custom-field>
+    <custom-field action="copy">estate_property_garages</custom-field>
+    <custom-field action="copy">estate_property_contact_information</custom-field>
+    <custom-field action="copy">estate_property_custom_agent</custom-field>
+    <custom-field action="copy">estate_property_internal_note</custom-field>
+    <custom-field action="copy">estate_property_attachment</custom-field>
+		<custom-field action="copy">estate_floor_plan_title</custom-field>
+    <custom-field action="copy">estate_floor_plan_bathrooms</custom-field>
+    <custom-field action="copy">estate_floor_plan_description</custom-field>
+		<custom-field action="copy">estate_floor_plan_image</custom-field>
+
+		<custom-field action="copy">estate_single_property_id</custom-field>
+  </custom-fields>
+  <admin-texts>
+    <key name="realty_theme_option">
+      <key name="site-layout"/>
+      <key name="site-max-width"/>
+      <key name="color-body-background"/>
+      <key name="color-accent"/>
+      <key name="favicon"/>
+      <key name="logo"/>
+      <key name="logo-retina"/>
+      <key name="logo-url"/>
+      <key name="logo-login"/>
+      <key name="background-login"/>
+      <key name="header-login-modal-layout"/>
+      <key name="google-recaptcha-site-key"/>
+      <key name="google-recaptcha-secret-key"/>
+      <key name="custom-styles"/>
+      <key name="custom-scripts"/>
+      <key name="enable-rtl-support"/>
+
+      <key name="property-search-results-page"/>
+      <key name="user-registration-terms-page"/>
+      <key name="404-page"/>
+
+      <key name="header-layout"/>
+      <key name="color-header-background"/>
+      <key name="color-header"/>
+      <key name="show-sub-menu-by-default-on-mobile"/>
+      <key name="disable-header-login-register-bar"/>
+      <key name="site-header-hide-property-submit-link"/>
+      <key name="site-header-position-fixed"/>
+      <key name="header-tagline"/>
+
+      <key name="map-height-type-home-search"/>
+      <key name="map-height-custom-home-search"/>
+      <key name="google-maps-api-key"/>
+      <key name="map-marker-property-default"/>
+      <key name="map-marker-property"/>
+      <key name="map-marker-cluster-default"/>
+      <key name="map-marker-cluster"/>
+      <key name="enable-vertical-listing-marker-sync"/>
+      <key name="map-marker-property-sync"/>
+      <key name="map-alternate-marker-property"/>
+      <key name="disable-google-maps-api"/>
+      <key name="style-your-map"/>
+      <key name="map-style"/>
+
+      <key name="property-slug"/>
+      <key name="property-show-login-users"/>
+      <key name="property-meta-data-type"/>
+      <key name="property-custom-meta-data"/>
+      <key name="property-custom-meta-data-field"/>
+      <key name="property-custom-meta-data-icon-class"/>
+      <key name="property-custom-meta-data-label"/>
+      <key name="property-custom-meta-data-label-plural"/>
+      <key name="property-custom-meta-data-tooltip"/>
+      <key name="property-meta-data-hide-print"/>
+      <key name="property-id-type"/>
+      <key name="property-layout"/>
+      <key name="property-single-slideshow-autoplay"/>
+      <key name="property-slideshow-animation-type"/>
+      <key name="property-lightbox"/>
+      <key name="property-image-height"/>
+      <key name="property-image-custom-height"/>
+      <key name="property-image-width"/>
+      <key name="property-slideshow-navigation-type"/>
+      <key name="property-additional-details-layout"/>
+      <key name="property-additional-details-hide-empty"/>
+      <key name="additional-area-hidden-fields"/>
+      <key name="property-features-hide-non-applicable"/>
+      <key name="property-title-details"/>
+      <key name="property-title-additional-details"/>
+      <key name="property-title-features"/>
+      <key name="property-title-map"/>
+      <key name="property-title-attachments"/>
+      <key name="property-title-floor-plan"/>
+      <key name="property-title-agent"/>
+      <key name="show-single-property-map"/>
+      <key name="property-floor-plan-disable"/>
+      <key name="property-social-sharing"/>
+      <key name="property-agent-information"/>
+      <key name="property-show-agent-to-logged-in-users"/>
+      <key name="property-contact-form"/>
+      <key name="property-contact-form-cf7-shortcode"/>
+      <key name="send-email-to-admin-only-cf7"/>
+      <key name="property-contact-form-default-email"/>
+      <key name="property-contact-form-cc-admin"/>
+      <key name="property-show-similar-properties"/>
+      <key name="property-similar-properties-criteria"/>
+      <key name="property-similar-properties-columns"/>
+      <key name="property-comments"/>
+
+      <key name="property-listing-type"/>
+      <key name="property-custom-listing"/>
+      <key name="property-custom-listing-field"/>
+      <key name="property-custom-listing-icon-class"/>
+      <key name="property-custom-listing-label"/>
+      <key name="property-custom-listing-label-plural"/>
+      <key name="property-custom-listing-tooltip"/>
+      <key name="property-listing-default-view"/>
+      <key name="property-listing-columns"/>
+      <key name="search-results-per-page"/>
+      <key name="property-new-badge"/>
+      <key name="property-listing-status-tag"/>
+      <key name="listing-sample-image"/>
+      <key name="property-comparison-disabled"/>
+      <key name="property-favorites-disabled"/>
+      <key name="property-favorites-temporary"/>
+      <key name="property-follow-disabled"/>
+      <key name="enable-social-on-listing"/>
+
+      <key name="search_results_default_order"/>
+      <key name="property-search-price-range-min"/>
+      <key name="property-search-price-range-max"/>
+      <key name="property-search-price-range-step"/>
+      <key name="datepicker-language"/>
+      <key name="property-search-features"/>
+      <key name="property-search-field-relation"/>
+      <key name="property-search-field-dropdowns"/>
+      <key name="property-search-price-dropdown"/>
+      <key name="section-property-search-fields"/>
+      <key name="property-search-fields"/>
+      <key name="property-search-field"/>
+      <key name="property-search-compare"/>
+      <key name="property-search-label"/>
+      <key name="property-search-parameter"/>
+      <key name="section-property-search-mini-fields"/>
+      <key name="property-search-mini-fields"/>
+      <key name="property-search-mini-field"/>
+      <key name="property-search-mini-compare"/>
+      <key name="property-search-mini-label"/>
+      <key name="property-search-mini-parameter"/>
+
+      <key name="property-submit-notification-email-recipient"/>
+      <key name="property-submit-disabled-for-subscriber"/>
+      <key name="property-submission-type"/>
+      <key name="package-slug"/>
+      <key name="invoice-slug"/>
+      <key name="paypal-enable"/>
+      <key name="paypal-alerts-hide"/>
+      <key name="paypal-enable-subscription"/>
+      <key name="paypal-subscription-recurrence"/>
+      <key name="paypal-subscription-period"/>
+      <key name="paypal-amount"/>
+      <key name="paypal-featured-amount"/>
+      <key name="paypal-merchant-id"/>
+      <key name="paypal-ipn-email-address"/>
+      <key name="paypal-currency-code"/>
+      <key name="paypal-sandbox"/>
+      <key name="paypal-ssl"/>
+      <key name="enable-stripe-payments"/>
+      <key name="stripe-api-secret-key"/>
+      <key name="stripe-api-publishable-key"/>
+      <key name="stripe-sandbox-testing"/>
+      <key name="paypal-auto-publish"/>
+
+      <key name="allow-html-author-bio"/>
+      <key name="show-agent-email"/>
+      <key name="show-agent-office"/>
+      <key name="show-agent-mobile"/>
+      <key name="show-agent-fax"/>
+      <key name="show-agent-website"/>
+      <key name="show-agent-social-networks"/>
+
+      <key name="typography-header"/>
+      <key name="typography-headings"/>
+      <key name="typography-body"/>
+
+      <key name="price-prefix"/>
+      <key name="price-suffix"/>
+      <key name="currency-sign"/>
+      <key name="currency-sign-position"/>
+      <key name="price-thousands-separator"/>
+      <key name="price-decimals"/>
+
+      <key name="color-footer-background"/>
+      <key name="color-footer-bottom-background"/>
+      <key name="color-footer"/>
+    </key>
+  </admin-texts>
+</wpml-config>

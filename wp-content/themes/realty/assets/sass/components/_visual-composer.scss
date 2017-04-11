@@ -1,0 +1,42 @@
+// Visual Composer: Row
+.vc_row {
+	&.container {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	&.container:not(.vc_row) {
+		padding: 0;
+	}
+	&.overlay {
+		position: relative;
+		.background-overlay {
+			position: absolute;
+			display: block;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			content: "";
+		}
+		.wpb_column {
+			position: relative;
+			z-index: 2;
+		}
+	}
+	&.full-width {
+		margin: 0;
+		.vc_column-inner {
+			padding: 0;
+		}
+	}
+}
+
+#row_background_slider {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	overflow: hidden;
+}

@@ -1,0 +1,381 @@
+/*
+Theme Name:   Realty Child Theme
+Theme URI:    http://demo.themetrail.com/realty/
+Description:  Realty Child Theme
+Author:       ThemeTrail
+Author URI:   http://themetrail.com
+Template:     realty
+Version:      1.0
+Text Domain:  realty_child
+*/
+
+@import url("../realty/style.css");
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+@font-face {
+  font-family: 'iconmoon';
+  src:  url('fonts/iconmoon.eot?jupbv2');
+  src:  url('fonts/iconmoon.eot?jupbv2#iefix') format('embedded-opentype'),
+    url('fonts/iconmoon.ttf?jupbv2') format('truetype'),
+    url('fonts/iconmoon.woff?jupbv2') format('woff'),
+    url('fonts/iconmoon.svg?jupbv2#iconmoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="iconmoon-"], [class*=" iconmoon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconmoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconmoon-location:before {
+  content: "\e903";
+}
+.iconmoon-crop_free:before {
+  content: "\e3c2";
+}
+.iconmoon-directions_transit:before {
+  content: "\e535";
+}
+.iconmoon-picture_as_pdf:before {
+  content: "\e415";
+}
+.iconmoon-visibility:before {
+  content: "\e8f4";
+}
+.iconmoon-train:before {
+  content: "\e900";
+}
+.iconmoon-pin:before {
+  content: "\e901";
+}
+.iconmoon-pin-alt:before {
+  content: "\e902";
+}
+
+
+
+
+@font-face {
+  font-family: 'iconthin';
+  src:  url('fonts/iconthin.eot?6a408u');
+  src:  url('fonts/iconthin.eot?6a408u#iefix') format('embedded-opentype'),
+    url('fonts/iconthin.ttf?6a408u') format('truetype'),
+    url('fonts/iconthin.woff?6a408u') format('woff'),
+    url('fonts/iconthin.svg?6a408u#iconthin') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="iconthin-"], [class*=" iconthin-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'iconthin' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.iconthin-icon-thinliner_alert:before {
+  content: "\e900";
+}
+.iconthin-icon-thinliner_alert2:before {
+  content: "\e901";
+}
+.iconthin-icon-thinliner_browse:before {
+  content: "\e902";
+}
+.iconthin-icon-thinliner_building:before {
+  content: "\e903";
+}
+.iconthin-icon-thinliner_calculate:before {
+  content: "\e904";
+}
+.iconthin-icon-thinliner_camera:before {
+  content: "\e905";
+}
+.iconthin-icon-thinliner_cart-in:before {
+  content: "\e906";
+}
+.iconthin-icon-thinliner_cart-remove:before {
+  content: "\e907";
+}
+.iconthin-icon-thinliner_cart:before {
+  content: "\e908";
+}
+.iconthin-icon-thinliner_clock:before {
+  content: "\e909";
+}
+.iconthin-icon-thinliner_comment:before {
+  content: "\e90a";
+}
+.iconthin-icon-thinliner_develop:before {
+  content: "\e90b";
+}
+.iconthin-icon-thinliner_doc:before {
+  content: "\e90c";
+}
+.iconthin-icon-thinliner_download:before {
+  content: "\e90d";
+}
+.iconthin-icon-thinliner_gallery:before {
+  content: "\e90e";
+}
+.iconthin-icon-thinliner_heart:before {
+  content: "\e90f";
+}
+.iconthin-icon-thinliner_label:before {
+  content: "\e910";
+}
+.iconthin-icon-thinliner_lock:before {
+  content: "\e911";
+}
+.iconthin-icon-thinliner_mail-open:before {
+  content: "\e912";
+}
+.iconthin-icon-thinliner_mail:before {
+  content: "\e913";
+}
+.iconthin-icon-thinliner_major:before {
+  content: "\e914";
+}
+.iconthin-icon-thinliner_menu:before {
+  content: "\e915";
+}
+.iconthin-icon-thinliner_off:before {
+  content: "\e916";
+}
+.iconthin-icon-thinliner_operator:before {
+  content: "\e917";
+}
+.iconthin-icon-thinliner_phone:before {
+  content: "\e918";
+}
+.iconthin-icon-thinliner_play:before {
+  content: "\e919";
+}
+.iconthin-icon-thinliner_printer:before {
+  content: "\e91a";
+}
+.iconthin-icon-thinliner_question:before {
+  content: "\e91b";
+}
+.iconthin-icon-thinliner_rank:before {
+  content: "\e91c";
+}
+.iconthin-icon-thinliner_register-label:before {
+  content: "\e91d";
+}
+.iconthin-icon-thinliner_register-lock:before {
+  content: "\e91e";
+}
+.iconthin-icon-thinliner_register:before {
+  content: "\e91f";
+}
+.iconthin-icon-thinliner_search:before {
+  content: "\e920";
+}
+.iconthin-icon-thinliner_signup:before {
+  content: "\e921";
+}
+.iconthin-icon-thinliner_spot:before {
+  content: "\e922";
+}
+.iconthin-icon-thinliner_star:before {
+  content: "\e923";
+}
+.iconthin-icon-thinliner_trash:before {
+  content: "\e924";
+}
+.iconthin-icon-thinliner_unlock:before {
+  content: "\e925";
+}
+.iconthin-icon-thinliner_user:before {
+  content: "\e926";
+}
+
+
+/*single property*/
+.row #property-layout-full-width {
+    margin-top: 0px;
+}
+#property-thumbnails {
+    margin: 15px 0;
+}
+h1 span.labeled .btn {
+    font-size: .5em;
+    padding: 0 .8em;
+    line-height: 2.1em;
+    vertical-align: middle;
+}
+#property-thumbnails .slick-slide {
+    margin: 0 5px 0;
+}
+#property-thumbnails.slick-slider .slick-list {
+    margin: 0 -2.5px;
+}
+.single-property .head-single .property-meta {
+    margin: 0;
+    padding: 0;
+	text-align: right;
+}
+.fl-right {
+    float: right;
+}
+.contact-argent .btn-lg {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    line-height: 3;
+}
+#acbuttons .contact-argent {
+	margin-bottom: 10px;
+}
+.buttons-group .btn {
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+}
+.buttons-group.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.buttons-group.row .col-sm-6 {
+    padding: 0 5px;
+}
+.btn.btn-square {
+    border-radius: 0px;
+}
+.btn.btn-line-border {
+    background: none;
+    color: #000;
+    border: 1px solid #000;
+}
+.btn.btn-line-border:hover, .btn.btn-line-border:focus {
+	color: #FFF;
+	background: #000;
+}
+.buttons-group .btn {
+	font-size: 14px;
+}
+.buttons-group .btn i {
+    font-size: 20px;
+    margin-right: 5px;
+	margin-top: -4px;
+    vertical-align: middle;
+}
+.buttons-group .btn i.icon-file-pdf-1 {
+    font-size: 18px;
+    margin-top: 0;
+    line-height: 1;
+}
+.buttons-group .btn span {
+    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+hr.basic-hr {
+    width: 100%;
+    display: block;
+    border-top: 1px solid #e1e8ed;
+}
+table.basic-table-style {
+	width: 100%;
+}
+table.basic-table-style th {
+	vertical-align: top;
+    text-align: left;
+    font-weight: normal;
+}
+section#property-details .row {
+    font-size: 12px;
+}
+section#property-details .row > div {
+    margin-bottom: 20px;
+}
+.rate.size-large {
+    font-size: 1.2em;
+}
+table#vacantfloors {
+	font-size: 12px;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0px;
+    border-collapse: collapse;
+}
+table#vacantfloors th.th_floor {
+    width: 100px;
+}
+td.td_view {
+    text-align: right;
+}
+.td_view .btn {
+    line-height: 2.4;
+}
+table.has-border th, table.has-border td {
+    padding: 0 1em;
+    border-bottom: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+table.has-border tbody td:last-child, table.has-border thead th:last-child {
+    border-right: 0px;
+    padding-right: 0px;
+}
+table.has-border tbody tr:last-child td {
+    border-bottom: 0px;
+}
+/*search result*/
+.property-item .property-meta.custom-meta-list > div {
+    width: auto;
+    margin-right: 10px;
+}
+.property-item .property-meta.custom-meta-list > div:last-child {
+    margin-right: 0px;
+}
+.property-meta.custom-meta-list .meta-title {
+    display: inline-block;
+    width: 15px;
+}
+#property-search-results .property-item.featured .property-title::after {
+    background: #FFF;
+	
+}
+#property-search-results .property-item.featured .property-title .title {
+	color: #000;
+}
+.property-item .property-title {
+    position: relative;
+    z-index: 0;
+    padding: 10px 15px 0;
+}
+.property-meta.custom-meta-list {
+    padding: 0 15px;
+}
+.check-field label {
+    padding-left: 10px;
+    line-height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.property-search-form .check-field {
+    margin-bottom: 10px;
+}

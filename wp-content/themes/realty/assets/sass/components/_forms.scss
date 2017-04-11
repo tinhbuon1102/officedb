@@ -1,0 +1,14 @@
+form {
+	input.error, textarea.error {
+		border-color: $color-danger;
+	}
+	label.error {
+		display: block;margin-top: .5em;
+		font-size: 0.9em;
+		color: $color-danger;
+	}
+}
+
+#form-errors, #form-success {
+	margin-top: 20px;
+}

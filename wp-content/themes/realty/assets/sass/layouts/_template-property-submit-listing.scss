@@ -1,0 +1,15 @@
+/*------------------------------
+	Template: Property Submit Listing
+------------------------------*/
+
+body.page-template-template-property-submit-listing-php {
+	form.paypal-button {
+		display: block;
+		button {
+			line-height: 1.5;
+		}
+	}
+	.property-search-form input[type="submit"] {
+		display: none;
+	}
+}

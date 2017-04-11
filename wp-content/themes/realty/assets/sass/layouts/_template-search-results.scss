@@ -1,0 +1,108 @@
+/*------------------------------
+	Template: Search Results
+------------------------------*/
+
+body.page-template-template-property-search-php {
+	header.navbar {
+		margin-bottom: 0;
+	}
+	.map-wrapper {
+		margin-bottom: 0;
+	}
+	.property-search-form, #sidebar {
+		margin-top: 50px;
+	}
+}
+
+.search-results-header {
+	margin-bottom: 30px;
+	font-size: .9em;
+	text-align: center;
+	@media(min-width: 768px) {
+		text-align: left;
+	}
+	.form-group {
+		margin:	0;
+	}
+	.page-title {
+		font-size: 1.5em;
+		@media(min-width: 768px) {
+			font-size: 2em;
+		}
+	}
+	.search-results-order {
+		float: none;
+		display: inline-block;
+		background-color: darken( $color-background-light, 2% );
+		@media(min-width: 768px) {
+			float: right;
+		}
+		.select {
+			&::after {
+				right: 14px;
+			}
+			select {
+				padding-right: 28px;
+				border: none;
+			}
+		}
+	}
+	.search-results-view {
+		display: none;
+		float: right;
+		@media(min-width: 992px) {
+			display: block;
+		}
+		i {
+			font-size: 1.2em;
+			height: 40px;
+			width: 40px;
+			margin-right: 5px;
+			color: $color-muted;
+			line-height: 40px;
+			text-align: center;
+			border: 1px solid $color-border;
+			background-color: darken( $color-background-light, 2% );
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.icon-view-grid.active:before {
+			content: "\e004";
+		}
+		.icon-view-list.active:before {
+			content: "\e001";
+		}
+	}
+}
+
+// List View (Default Styling = Grid View)
+[data-view="list-view"] {
+	li {
+		width: 100%;
+		font-size: 1em;
+		.property-item {
+			overflow: hidden;
+			@media(min-width: 992px) {
+				.property-thumbnail {
+					float: left;
+					width: 40%;
+				}
+				.title {
+					font-size: 1.4em;
+				}
+				.property-content {
+					float: left;
+					width: 60%;
+					.property-price {
+						position: absolute;
+						bottom: 0;
+						left: 40%;
+						right: 0;
+						margin: 0 30px;
+					}
+				}
+			}
+		}
+	}
+}

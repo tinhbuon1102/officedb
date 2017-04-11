@@ -1,0 +1,66 @@
+/*------------------------------
+	Contact Form 7
+------------------------------*/
+
+div.wpcf7 {
+	input:not([type="submit"]), textarea {
+		width: 100%;
+	}
+	label {
+		margin: 0;
+	}
+	.required {
+		color: #e82c0c;
+	}
+	img.ajax-loader {
+		margin-left: 1em;
+	}
+	img.wpcf7-captchac {
+		float: left;
+	}
+	input.wpcf7-not-valid, textarea.wpcf7-not-valid {
+		border-color: #e82c0c;
+	}
+	.wpcf7-textarea {
+		height: 153px;
+	}
+	span.wpcf7-quiz-label {
+		display: block;
+	}
+	span.wpcf7-not-valid-tip {
+		display: block;
+		margin-top: 10px;
+		font-size: 0.9em;
+		color: #e82c0c;
+	}
+	.wpcf7-response-output {
+		margin: 0 0 30px;
+		padding: 0;
+		font-size: 0.9em;
+	}
+	.wpcf7-validation-errors {
+		color: #e82c0c;
+		border: none;
+	}
+	.wpcf7-mail-sent-ok {
+		color: #45BF55;
+		border: none;
+	}
+	.screen-reader-response {
+		position: absolute;
+		overflow: hidden;
+		clip: rect(1px, 1px, 1px, 1px);
+		height: 1px;
+		width: 1px;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+	.wpcf7-form-control-wrap {
+		display: block !important;
+		margin-bottom: 1em;
+	}
+	br {
+		display: none;
+	}
+}

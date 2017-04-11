@@ -1,0 +1,83 @@
+/*------------------------------
+	Property: Search Form
+------------------------------*/
+
+.property-search-form {
+	position: relative;
+	z-index: 2;
+	margin-bottom: 50px;
+	padding: 30px 30px 10px;
+	font-size: 0.9em;
+	border-radius: 4px;
+	background-color: #fff;
+	input:not([type=submit]), select, select:focus, .chosen-container {
+		background-color: #fff;
+	}
+	input[type="submit"] {
+		width: 100%;
+	}
+	.property-search-more {
+		height: 0;
+		overflow: hidden;
+		transition: all 0.2s;
+		h6 {
+			padding: 1em;
+			background-color: $color-background-light;
+		}
+		&.show {
+			height: auto;
+			margin-bottom: 20px;
+		}
+		.form-group {
+			margin-bottom: 0.5em;
+		}
+		input[type="radio"] {
+			margin-left: 2px;
+		}
+		i {
+			display: block;
+		}
+	}
+	.price-range {
+		height: 40px;
+		label {
+			display: block;
+			margin: 0;
+			height: 22px;
+			max-height: 25px;
+			line-height: 1;
+			color: inherit;
+			text-align: center;
+		}
+	}
+	.price-range-slider, #price-range {
+		&.noUi-target {
+			border-radius: 0;
+			border-color: $color-border;
+		}
+		&.noUi-horizontal {
+			height: 15px;
+			.noUi-origin {
+				box-shadow: none;
+			}
+			.noUi-handle {
+				height: 24px;
+				width: 24px;
+				left: -12px;
+				top: -6px;
+				cursor: pointer;
+				border-radius: 0;
+				border-color: $color-border;
+				box-shadow: none;
+				&:before, &:after {
+					top: 6px;
+					left: 9px;
+					height: 10px;
+				}
+				&:after {
+					left: 12px;
+				}
+			}
+		}
+	}
+}

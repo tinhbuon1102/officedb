@@ -1,0 +1,859 @@
+[
+    {
+        "key": "group_553622d893591",
+        "title": "Property Fields",
+        "fields": [
+            {
+                "key": "field_5562dee6753f7",
+                "label": "Property Location",
+                "name": "acf-property-location",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "property-location",
+                "field_type": "checkbox",
+                "allow_null": 0,
+                "add_term": 1,
+                "load_save_terms": 1,
+                "return_format": "id",
+                "multiple": 0,
+                "load_terms": 0,
+                "save_terms": 1
+            },
+            {
+                "key": "field_55681a8db9d18",
+                "label": "Property Type",
+                "name": "acf-property-type",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "property-type",
+                "field_type": "checkbox",
+                "allow_null": 0,
+                "add_term": 1,
+                "load_save_terms": 1,
+                "return_format": "id",
+                "multiple": 0,
+                "load_terms": 0,
+                "save_terms": 1
+            },
+            {
+                "key": "field_55681ad3b9d19",
+                "label": "Property Status",
+                "name": "acf-property-status",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "property-status",
+                "field_type": "checkbox",
+                "allow_null": 0,
+                "add_term": 1,
+                "load_save_terms": 1,
+                "return_format": "id",
+                "multiple": 0,
+                "load_terms": 0,
+                "save_terms": 1
+            },
+            {
+                "key": "field_55681b1ab9d1a",
+                "label": "Property Features",
+                "name": "acf-property-features",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "property-features",
+                "field_type": "multi_select",
+                "allow_null": 0,
+                "add_term": 1,
+                "load_save_terms": 1,
+                "return_format": "id",
+                "multiple": 0,
+                "load_terms": 0,
+                "save_terms": 1
+            },
+            {
+                "key": "field_556c69038f2fa",
+                "label": "Featured Image",
+                "name": "_thumbnail_id",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_553624c8bfe23",
+                "label": "Gallery Images",
+                "name": "estate_property_gallery",
+                "type": "gallery",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "min": "",
+                "max": "",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": "",
+                "insert": "append"
+            },
+            {
+                "key": "field_55362588bfe26",
+                "label": "Address",
+                "name": "estate_property_google_maps",
+                "type": "google_map",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "center_lat": "",
+                "center_lng": "",
+                "zoom": "",
+                "height": ""
+            },
+            {
+                "key": "field_55362547bfe24",
+                "label": "Custom Property ID",
+                "name": "estate_property_id",
+                "type": "text",
+                "instructions": "Default is post ID.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_553623e61c243",
+                "label": "Featured",
+                "name": "estate_property_featured",
+                "type": "checkbox",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "1": "Highlight Property As \"Featured\""
+                },
+                "default_value": {
+                    "": ""
+                },
+                "layout": "vertical",
+                "toggle": 0
+            },
+            {
+                "key": "field_5536231605e57",
+                "label": "Layout",
+                "name": "estate_property_layout",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "theme_option_setting": "Theme Option Setting",
+                    "full_width": "Full Width",
+                    "boxed": "Boxed"
+                },
+                "default_value": {
+                    "theme_option_setting": "theme_option_setting"
+                },
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_5536246ebfe21",
+                "label": "Video Provider",
+                "name": "estate_property_video_provider",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "none": "None",
+                    "youtube": "YouTube",
+                    "vimeo": "Vimeo"
+                },
+                "default_value": {
+                    "": ""
+                },
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_553624b2bfe22",
+                "label": "Video ID",
+                "name": "estate_property_video_id",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_553623b71c242",
+                "label": "Status Update",
+                "name": "estate_property_status_update",
+                "type": "text",
+                "instructions": "E.g. \"Sold\", \"Rented Out\" etc.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_553669acf0fb1",
+                "label": "Available From",
+                "name": "estate_property_available_from",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "F j, Y",
+                "return_format": "Ymd",
+                "first_day": 1
+            },
+            {
+                "key": "field_55366a5655cb0",
+                "label": "Price Prefix",
+                "name": "estate_property_price_prefix",
+                "type": "text",
+                "instructions": "Appears Before Property Price (i.e. \"from\")",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366a9855cb1",
+                "label": "Price",
+                "name": "estate_property_price",
+                "type": "number",
+                "instructions": "Digits Only. Enter \"-1\" for \"Price Upon Request\".",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": -1,
+                "max": 999999999,
+                "step": "0.01",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366afc55cb2",
+                "label": "Price Suffix",
+                "name": "estate_property_price_suffix",
+                "type": "text",
+                "instructions": "Appears After Property Price (i.e. \"per month\").",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366b2555cb3",
+                "label": "Size",
+                "name": "estate_property_size",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": 999999,
+                "step": "0.01",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366b3a55cb4",
+                "label": "Size Unit",
+                "name": "estate_property_size_unit",
+                "type": "select",
+                "instructions": "Unit Appears After Property Size (i.e. \"sq ft\").",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "sq ft": "sq ft",
+                    "m2": "m2"
+                },
+                "default_value": {
+                    "": ""
+                },
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_55366b6755cb5",
+                "label": "Rooms",
+                "name": "estate_property_rooms",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": 99,
+                "step": "0.5",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366b8555cb6",
+                "label": "Bedrooms",
+                "name": "estate_property_bedrooms",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": 99,
+                "step": "0.5",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366b9255cb7",
+                "label": "Bathrooms",
+                "name": "estate_property_bathrooms",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": 99,
+                "step": "0.5",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366ba055cb8",
+                "label": "Garages",
+                "name": "estate_property_garages",
+                "type": "number",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "min": 0,
+                "max": 99,
+                "step": "0.5",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366bb455cb9",
+                "label": "Contact Information",
+                "name": "estate_property_contact_information",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "all": "Profile Information & Contact Form",
+                    "form": "Contact Form Only",
+                    "none": "None"
+                },
+                "default_value": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "disabled": 0,
+                "readonly": 0
+            },
+            {
+                "key": "field_55366be755cba",
+                "label": "Assign Agent",
+                "name": "estate_property_custom_agent",
+                "type": "user",
+                "instructions": "Selected agent will be able to edit this property.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "role": [
+                    "agent"
+                ],
+                "allow_null": 1,
+                "multiple": 0
+            },
+            {
+                "key": "field_55366c3455cbb",
+                "label": "Internal Note",
+                "name": "estate_property_internal_note",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "maxlength": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_55366c6a55cbc",
+                "label": "Attachments",
+                "name": "estate_property_attachments_repeater",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Add Row",
+                "sub_fields": [
+                    {
+                        "key": "field_55366e2dd72fc",
+                        "label": "Attachment",
+                        "name": "estate_property_attachment",
+                        "type": "file",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "array",
+                        "library": "all",
+                        "min_size": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    }
+                ],
+                "collapsed": ""
+            },
+            {
+                "key": "field_5537396ce3c14",
+                "label": "Floor Plan",
+                "name": "estate_property_floor_plans",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Add Floor Plan",
+                "sub_fields": [
+                    {
+                        "key": "field_553739f9e3c15",
+                        "label": "Title",
+                        "name": "acf_estate_floor_plan_title",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_55373a8ce3c1a",
+                        "label": "Bathrooms",
+                        "name": "acf_estate_floor_plan_bathrooms",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "min": "",
+                        "max": "",
+                        "step": "0.5",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_556c450013df8",
+                        "label": "Description",
+                        "name": "acf_estate_floor_plan_description",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": "",
+                        "new_lines": "wpautop",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_55373ae8e3c1c",
+                        "label": "Image",
+                        "name": "acf_estate_floor_plan_image",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "url",
+                        "preview_size": "thumbnail",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    }
+                ],
+                "collapsed": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "property"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "left",
+        "instruction_placement": "label",
+        "hide_on_screen": [
+            "featured_image",
+            "categories"
+        ],
+        "active": 1,
+        "description": ""
+    },
+    {
+        "key": "group_557e6ac6590b0",
+        "title": "Additional Details - Prefix \"Field Name\" with \"additional_\"",
+        "fields": [
+            {
+                "key": "field_557e6ad8f5975",
+                "label": "Public Transportation",
+                "name": "additional_public_transportation",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_557e6b71f5977",
+                "label": "Neighborhood",
+                "name": "additional_neighborhood",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": "wpautop",
+                "readonly": 0,
+                "disabled": 0
+            },
+            {
+                "key": "field_557e6b5df5976",
+                "label": "Air Quality",
+                "name": "additional_air_quality",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "new_lines": "",
+                "maxlength": "",
+                "placeholder": "",
+                "readonly": 0,
+                "disabled": 0,
+                "rows": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "property"
+                }
+            ]
+        ],
+        "menu_order": 1,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]

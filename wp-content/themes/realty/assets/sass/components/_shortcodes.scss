@@ -1,0 +1,343 @@
+// Shortcode: agents
+.agent {
+	img {
+		display: block;
+		width: 100%;
+	}
+	.description {
+		margin: 20px 0;
+		color: $color-muted;
+	}
+	.social, .social-transparent {
+		padding: 1em;
+		text-align: center;
+		background-color: darken($color-background-light, 2%);
+		a {
+			margin: 5px;
+			display: inline-block;
+		}
+		i {
+			margin: 0;
+		}
+	}
+}
+
+.agent-thumbnail {
+	width: 100%;
+}
+
+.agent-details {
+	position: relative;
+	padding: 20px;
+	background-color: #fff;
+	.title {
+		margin-top: 0.5em;
+		margin-bottom: 0;
+		font-size: 1.5em;
+		@media(min-width: 768px) {
+			margin-top: 0;
+		}
+	}
+	.company-name {
+		margin-bottom: .25em;
+		color: $color-muted;
+		font-size: 1.1em;
+	}
+	.contact {
+		font-size: .9em;
+		line-height: 2;
+		color: $color-muted;
+		i {
+			display: inline-block;
+			width: 20px;
+			margin-right: 5px;
+		}
+		a {
+			padding-bottom: 1px;
+			color: $color-muted;
+			border-bottom: 1px solid $color-border;
+			&:hover {
+				color: $color-text;
+			}
+		}
+	}
+}
+
+// Shortcode: latest_posts
+.latest-posts {
+	.entry-header .entry-title {
+		font-size: 1.5em;
+	}
+}
+
+// Shortcode: property_slider
+.wrapper-out {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	left: 15px;
+	bottom: 0;
+}
+
+.wrapper {
+	display: table;
+	position: relative;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	.inner {
+		display: table-cell;
+		vertical-align: middle;
+		&.bottom {
+			vertical-align: bottom;
+			.slideshow-content-link {
+				.title {
+					font-size: 1.3em !important;
+					@media(min-width: 768px) {
+						max-width: none !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.property-slider {
+	position: relative;
+	&.original {
+		height: auto !important;
+		min-height: 0 !important;
+	}
+	min-height: 400px !important;
+	width: 100%;
+	margin-bottom: 50px;
+	.slides {
+		overflow: hidden;
+		opacity: 0;
+	}
+	.slick-list {
+		margin: 0;
+	}
+	.slide-item {
+		position: relative;
+		margin: 0;
+	}
+	.title {
+		position: relative;
+		display: inline-block;
+		max-width: 80%;
+		margin-left: 10%;
+		margin-bottom: 0;
+		padding: 15px 20px;
+		font-size: 1.5em;
+		font-weight: 300;
+		color: #fff;
+		background-color: $color-primary;
+		@media(min-width: 768px) {
+			padding-left: 30px;
+			padding-right: 30px;
+			font-size: 1.8em;
+		}
+		@media(min-width: 1200px) {
+			max-width: 100%;
+			margin-left: 0;
+		}
+		transition: all 0.3s;
+		a {
+			color: #fff;
+		}
+		.property-video-popup {
+			opacity: 0.75;
+			padding-left: 15px;
+			font-size: 0.8em;
+			vertical-align: super;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	.description {
+		overflow: hidden;
+		display: inline-block;
+		max-width: 80%;
+		margin-left: 10%;
+		position: relative;
+		padding: 15px 20px 0;
+		font-size: 0.9em;
+		color: $color-muted;
+		background-color: #fff;
+		background-color: rgba(255, 255, 255, .95);
+		@media(min-width: 768px) {
+			padding: 15px 30px;
+			font-size: 1em;
+		}
+		@media(min-width: 1200px) {
+			max-width: 60%;
+			margin-left: 0;
+		}
+		transition: all 0.3s;
+		.arrow-right {
+			position: absolute;
+			top: -30px;
+			left: 0;
+			border-width: 30px;
+			border-left-color: $color-primary;
+			transition: all 0.3s;
+		}
+		.arrow-left {
+			position: absolute;
+			top: -30px;
+			right: 0;
+			border-width: 30px;
+			border-right-color: $color-primary;
+			transition: all 0.3s;
+		}
+		.property-price {
+			float: left;
+			font-size: 1.5em;
+			font-weight: 300;
+			line-height: 50px;
+			color: $color-text;
+		}
+		.property-data {
+			font-size: 0.9em;
+			border-top: 1px solid $color-border;
+			@media(min-width: 768px) {
+				padding-top: 1em;
+			}
+		}
+		.property-details {
+			display: none;
+			float: right;
+			margin: 0 -5px;
+			line-height: 50px;
+			@media(min-width: 768px) {
+				display: inherit;
+			}
+			div {
+				display: inline-block;
+				margin: 0 5px;
+			}
+			i {
+				width: 25px;
+			}
+		}
+	}
+	.toggle-property-search-more {
+		color: $color-text;
+	}
+	.property-search-more {
+		h6 {
+			padding: 0;
+			font-weight: 700;
+			background-color: transparent;
+		}
+	}
+	label {
+		color: $color-text;
+	}
+}
+
+.rtl .property-slider .title .property-video-popup {
+	padding: 0 15px 0 0;
+}
+
+.slideshow-search {
+	opacity: 0;
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	top: 50%;
+	text-align: center;
+	transition: all .8s .4s;
+	transform: scale(.5);
+	&.show {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.container {
+		opacity: 1 !important;
+	}
+	form {
+		display: inline-block;
+		height: 200px;
+		margin: -100px 0 0;
+		padding: 30px;
+		background-color: rgba(255, 255, 255, .95);
+		@media(min-width:768px) {
+			width: 80%;
+			height: 100px;
+			margin: -50px 10% 0;
+			text-align: left;
+		}
+		&.property-search-form {
+			height: auto;
+			padding-bottom: 15px;
+			border: none;
+		}
+		#mini-search-location, #mini_search_location_chosen {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 0.5em;
+			background-color: #fff;
+			@media(min-width:768px) {
+				width: auto !important;
+				min-width: 250px;
+				margin-bottom: 0;
+			}
+		}
+		#mini-search-status, #mini_search_status_chosen {
+			float: left;
+			margin-right: 10px;
+			background-color: #fff;
+			margin-bottom: 0.5em;
+			@media(min-width:768px) {
+				width: auto !important;
+				margin-bottom: 0;
+			}
+		}
+		select {
+			width: 100%;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+		}
+		.mini-search-form input[type="submit"] {
+			width: 100%;
+			@media(min-width:768px) {
+				width: auto;
+			}
+		}
+	}
+}
+
+// Shortcode: testimonial
+.testimonial-item {
+	.arrow-left {
+		position: absolute;
+		top: 15px;
+		left: -40px;
+		border-right-color: #fff;
+		border-width: 30px;
+		border-right-color: $color-background-light;
+	}
+	.content {
+		position: relative;
+		padding: 20px 25px;
+		font-size: 1em;
+		color: $color-muted;
+		background-color: $color-background-light;
+		blockquote {
+			margin: 0;
+			text-align: left;
+			p, cite {
+				font-size: 1em;
+			}
+		}
+	}
+}
+
+// Shortcode: section_title
+.section-title {
+	margin-top: 0;
+}

@@ -1,0 +1,64 @@
+.themetrail-icon {
+	height: 32px;
+	width: 32px;
+	background-color: #fff;
+	border-radius: 4px;
+	background-image: url("../images/vc-themetrail-logo-2.png") !important;
+	background-size: 24px !important;
+	background-position: 4px 4px !important;
+}
+
+.hide {
+	display: none;
+}
+
+/* Redux Theme Option Panel */
+.redux-dev-mode-notice-container.redux-dev-qtip,
+#redux-header .rAds img {
+	display: none !important;
+}
+
+/* Hide Visual Composer License Activation Notification */
+.vc_license-activation-notice {
+	display: none !important;
+}
+
+/* Property Meta Box - Floor Plan */
+#floor-plan-container .floor-plan-item {
+  overflow: hidden;
+  margin-bottom: 2em;
+  padding-bottom: 2em;
+  border-bottom: 2px solid #eee;
+}
+
+#floor-plan-container .floor-plan-item > div {
+  width: 48%;
+  margin-right: 2%;
+  float: left;
+}
+
+#floor-plan-container input,
+#floor-plan-container label,
+#floor-plan-container textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+#floor-plan-container #floor_plan_image_thumbnail {
+  max-width: 150px;
+}
+
+#floor-plan-container a {
+  margin-top: 1em;
+}
+
+.column-thumbnail img {
+  height: 90px !important;
+  width: 90px !important;
+}
+
+.icon-themetrail {
+	background-image: url('../../lib/images/themetrail-logo-150-150.png');
+	background-size: cover;
+}

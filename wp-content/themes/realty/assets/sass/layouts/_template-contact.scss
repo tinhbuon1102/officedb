@@ -1,0 +1,42 @@
+/*------------------------------
+	Template: Contact
+------------------------------*/
+
+.page-template-template-contact {
+	.map-wrapper {
+		margin-top: -50px;
+	}
+}
+
+.template-contact {
+	.contact-detail {
+		font-size: 1em;
+		i {
+			margin-right: 10px;
+		}
+	}
+	.google-map {
+		height: 400px;
+		margin-bottom: 30px;
+		#map-marker-container, .map-marker-container {
+			padding: 15px 20px;
+			img {
+				max-width: 100%;
+				margin-bottom: 15px;
+			}
+			.content {
+				padding: 0;
+			}
+		}
+	}
+}
+
+.contact-detail {
+	font-size: 0.9em;
+	color: $color-muted;
+	i {
+		display: inline-block;
+		width: 20px;
+		margin-right: 5px;
+	}
+}

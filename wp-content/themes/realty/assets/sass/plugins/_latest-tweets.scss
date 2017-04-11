@@ -1,0 +1,33 @@
+/* Latest Tweets Widget
+https://wordpress.org/plugins/latest-tweets-widget/
+-------------------------*/
+.widget_latest_tweets_widget {
+	.title:empty {
+		display: none;
+	}
+}
+
+.latest-tweets {
+	ul {
+		list-style: none;
+		padding: 0;
+		li {
+			padding: 15px;
+			background-color: #fff;
+			.tweet-text {
+				overflow: hidden;
+			}
+			.tweet-details {
+				margin: 0;
+				font-style: italic;
+				a {
+					opacity: 0.5;
+					color: inherit;
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}

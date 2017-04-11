@@ -1,0 +1,210 @@
+.map-wrapper {
+	position: relative;
+	a {
+		color: $color-text;
+	}
+	.loading, .map-overlay-no-results {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 50%;
+		height: 60px;
+		width: 60px;
+		margin-top: -30px;
+		margin-left: -30px;
+		line-height: 68px;
+		text-align: center;
+		opacity: 0.9;
+		border-radius: 2px;
+		background-color: #fff;
+		i {
+			font-size: 30px;
+		}
+	}
+	.map-overlay-no-results {
+		display: none;
+		width: 250px;
+		margin-left: -125px;
+		font-size: 0.9em;
+		line-height: 60px;
+	}
+	.map-controls {
+		position: absolute;
+		z-index: 1;
+		top: 10px;
+		right: 10px;
+		text-align: right;
+		> li {
+			display: inline-block;
+		}
+		.control {
+			display: inline-block;
+			margin-bottom: 5px;
+			padding: 0 10px;
+			font-size: 12px;
+			line-height: 30px;
+			opacity: .8;
+			border-radius: 2px;
+			background-color: #fff;
+			box-shadow: 1px 1px 1px 0 rgba(0,0,0,.2);
+			transition: background-color 0.2s;
+			&:hover {
+				opacity: 1;
+				color: #fff;
+				background-color: $color-primary;
+			}
+			&.active {
+				opacity: 1;
+				color: #fff;
+				background-color: $color-primary;
+				&:hover {
+					background-color: $color-primary;
+				}
+			}
+		}
+		i {
+			line-height: 30px;
+			text-align: center;
+		}
+		.current-location i {
+			margin: 0 5px 0 0;
+		}
+		.map-type {
+			position: relative;
+			ul {
+				position: absolute;
+				top: 33px;
+				left: 0;
+				display: none;
+				box-shadow: 1px 1px 1px 0 rgba(0,0,0,.2);
+				overflow: hidden;
+				opacity: .8;
+				li {
+					padding: 3px 10px;
+					font-size: 12px;
+					text-align: left;
+					color: $color-text;
+					background-color: #fff;
+					&:first-child {
+						margin-top: 3px;
+					}
+				}
+			}
+			&:hover {
+				ul {
+					display: block;
+					li:hover, li.active {
+						color: #fff;
+						background-color: $color-background-dark;
+					}
+				}
+			}
+		}
+	}
+}
+
+.google-map {
+	position: relative;
+	height: 400px;
+	min-height: 400px !important;
+	width: 100%;
+	// https://github.com/twbs/bootstrap/issues/1552
+	img {
+		max-width: none;
+		display: inline;
+	}
+	.cluster {
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		> div {
+			position: relative;
+			width: auto;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+			font-size: 15px !important;
+			font-weight: 700 !important;
+			color: #fff !important;
+		}
+	}
+	label {
+		width: auto;
+		display: inline;
+	}
+	.infoBox {
+		width: auto !important;
+		img[src*="close.png"] {
+			position: absolute !important;
+			z-index: 1001;
+			width: 32px;
+			height: 32px;
+			margin: 0;
+			top: -2px;
+			right: -2px;
+			background-color: rgba(255,255,255,.9);
+			opacity: .5;
+			transition: all .2s;
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+	.map-marker-container {
+		max-width: 250px;
+		position: relative;
+		font-size: 15px;
+		background-color: #fff;
+		background-color: rgba( 255, 255, 255, 0.9);
+		transition: all 0.3s;
+		.arrow-down {
+			position: absolute;
+			bottom: -28px;
+			left: 20px;
+			border-top-color: #fff;
+			border-top-color: rgba( 255, 255, 255, 0.9);
+			border-width: 14px;
+		}
+		.content {
+			padding: 15px 20px;
+			.title {
+				margin-bottom: 0;
+				transition: all 0.2s;
+				visibility: inherit;
+			}
+		}
+		a {
+			padding-bottom: 2px;
+			color: $color-muted;
+			border-bottom: 1px solid $color-border;
+		}
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+		.logo {
+			padding: 15px 20px 0;
+		}
+	}
+}
+
+.google-map .title {
+	color: $color-primary;
+}
+
+a.view-on-google-maps-link {
+	display: block;
+	opacity: 0.4;
+	margin-top: 1em;
+	font-size: 0.8em;
+	text-align: right;
+	line-height: 1;
+	color: $color-text;
+	&:hover {
+		opacity: 0.8;
+	}
+}
+
+.map-no-properties-found {
+	padding: 30px 0;
+}

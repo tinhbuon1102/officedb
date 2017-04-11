@@ -1,0 +1,213 @@
+.widget {
+	margin-bottom: 60px;
+	a {
+		//color: $color-text;
+	}
+	b {
+		font-weight: inherit;
+	}
+	img {
+		display: block;
+	}
+	form {
+		padding: 0;
+		box-shadow: none;
+		border: none;
+	}
+	table {
+		width: 100%;
+		margin: 0;
+		caption {
+			margin-bottom: 1em;
+			text-transform: uppercase;
+		}
+		tfoot {
+			margin-top: 0.5em;
+			a {
+				display: inline-block;
+				padding-top: 10px;
+				color: $color-muted;
+			}
+		}
+	}
+	.empty-title .widget-title {
+		display: none;
+	}
+	.widget-thumbnail {
+		position: relative;
+		z-index: 2;
+		background: #fff;
+		a:hover img {
+			opacity: 0.6;
+		}
+	}
+	.agent-details {
+		padding: 0;
+		box-shadow: none !important;
+	}
+	.wpcf7 {
+		p {
+			margin-bottom: 0.5em;
+		}
+		input[type="submit"] {
+			margin-top: 0.5em;
+		}
+		textarea, input:not([type="submit"]) {
+			border: 1px solid $color-border;
+			&:focus {
+				border-color: $color-primary;
+			}
+		}
+		textarea {
+			max-height: 100px;
+		}
+	}
+}
+
+.widget-container {
+	a {
+		color: $color-text;
+	}
+}
+
+.widget-title {
+	font-size: 1.4em;
+}
+
+.widget-text {
+	padding: 1em;
+	.title {
+		margin-bottom: 5px;
+		font-size: 1.2em;
+	}
+	.sub-title {
+		margin-bottom: 0;
+		line-height: 1;
+		color: $color-muted;
+	}
+}
+
+// Footer Widget Styling
+#footer {
+	.widget_featured_properties .widget-text {
+		background-color: rgba(255,255,255,.05);
+		.title {
+			color: #fff;
+		}
+	}
+	.menu {
+		list-style-type: none;
+		margin: 0 -5px;
+		padding: 0;
+		li {
+			display: inline-block;
+			margin: 0 5px;
+		}
+	}
+	form {
+		font-size: 1em;
+		box-shadow: none;
+		background-color: transparent;
+		.chosen-container {
+			background-color: transparent;
+		}
+	}
+	.chosen-single,
+	.chosen-drop {
+		border-color: #404040;
+		background-color: #404040;
+	}
+	.chosen-search input {
+		border-color: $color-primary;
+	}
+}
+
+// Theme Specific Widgets
+.widget_agent_properties,
+.widget_agents,
+.widget_featured_properties,
+.widget_latest_posts,
+.widget_single_property,
+.widget_testimonials,
+.widget_latest_tweets_widget {
+	.widget-content {
+		padding: 0;
+		border: none;
+		box-shadow: none;
+		background-color: transparent;
+	}
+	.widget-thumbnail img {
+		width: 100%;
+	}
+}
+.widget_property_listing {
+	.property-meta > div {
+		width: 100%;
+	}
+	.price-tag {
+		float: none;
+	}
+}
+
+.widget_property_map .widget-content {
+	padding: 0;
+	border: none;
+}
+
+#sidebar .widget_property_search,
+#footer .widget_property_search,
+#sidebar .widget_custom_property_search_form,
+#footer .widget_custom_property_search_form,
+#sidebar .widget_membership_packages,
+#footer .widget_membership_packages {
+	[class^="col-"] {
+		width: 100%;
+	}
+	.property-search-form {
+		margin-bottom: 0;
+	}
+}
+
+.widget_testimonials blockquote {
+	position: relative;
+	margin: 0;
+	p {
+		font-size: 1em;
+	}
+	cite {
+		font-size: 1em;
+	}
+}
+
+.widget_latest_posts {
+	.widget-text p {
+		font-size: 0.9em;
+	}
+}
+
+// Default WordPress Widgets
+#wp-calendar {
+	text-align: center;
+	#next {
+		text-align: right;
+	}
+	#prev {
+		text-align: left;
+	}
+	th {
+		text-align: center;
+	}
+}
+
+.widget_search {
+	input[type="submit"] {
+		font-size: 0.9em;
+	}
+	label {
+		display: block;
+		margin: 0;
+	}
+	input {
+		width: 100%;
+	}
+}

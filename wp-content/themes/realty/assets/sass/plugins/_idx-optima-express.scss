@@ -1,0 +1,99 @@
+#ihf-main-container {
+
+	font-size: 1em;
+	line-height: 1.7;
+
+	a, a:hover, a:focus {
+		color: $color-text;
+		text-decoration: none;
+	}
+
+	.well {
+		padding: 15px;
+		border: none;
+		border-radius: 0;
+		box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.15);
+	}
+
+	.title-bar-1 {
+		margin: 0 15px 15px;
+		padding: 15px;
+		border: none;
+		border-radius: 0;
+		text-shadow: none;
+		background-color: $color-background-light;
+	}
+
+	.ihf-tab-pane {
+		font-size: .9em;
+	}
+
+	.chosen-container-single .chosen-single div b {
+		display: none;
+	}
+
+	.btn:not(.ihf-share-btn) {
+		height: 40px;
+		line-height: 40px;
+		padding: 0 10px;
+		* {
+			line-height: 40px;
+		}
+	}
+	.btn-primary {
+		color: $color-text;
+		border: none;
+		background-color: $color-background-light;
+	}
+	.btn-link {
+		color: $color-text;
+	}
+
+	#saveSearchButton i {
+		display: none;
+	}
+
+	// Search Results Page
+	.ihf-grid-result-container {
+		.title-bar-1 {
+			margin: -15px -15px 0;
+			a {
+				color: $color-text !important;
+			}
+		}
+		.ihf-grid-result-address {
+			display: block;
+			margin: 15px 0;
+			color: $color-muted;
+			font-size: .9em;
+			text-transform: none;
+		}
+		.ihf-grid-result-mlsnum-proptype {
+			color: $color-muted;
+		}
+	}
+
+	// Property Detail Page
+	.ihf-listing-detail {
+		.ihf-main-image img {
+			width: 100%;
+		}
+		.carousel-control {
+			font-size: 40px;
+		}
+		.carousel-caption .badge {
+			padding: 6px 10px;
+			font-size: .8em;
+			text-shadow: none;
+			background-color: $color-background-dark;
+		}
+		.ihf-listing-number {
+			font-size: 1.2em;
+			color: $color-heading;
+		}
+		.ihf-virtual-tour-link a {
+			text-decoration: underline;
+		}
+	}
+
+}
