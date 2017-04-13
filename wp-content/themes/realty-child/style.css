@@ -211,7 +211,18 @@ Text Domain:  realty_child
   content: "\e926";
 }
 
-
+/* home slider*/
+.main-slider {
+    position: relative;
+}
+.main-slider .property-search-form {
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0px;
+    border-radius: 0px;
+}
 /*single property*/
 .row #property-layout-full-width {
     margin-top: 0px;
