@@ -11,6 +11,9 @@
 <!--[if lt IE 9]>
 <script src="<?php echo get_template_directory_uri(); ?>/lib/js/html5.js"></script>
 <![endif]-->
+<script src="https://use.typekit.net/sjj8vip.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link href="//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic" rel="stylesheet" type="text/css">
 
 </head>
 

@@ -10,6 +10,15 @@ Text Domain:  realty_child
 */
 
 @import url("../realty/style.css");
+@import url(//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic);
+@font-face {font-family: "DidotW01-Italic";
+    src: url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.eot");
+    src: url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.eot?#iefix") format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.woff2") format("woff2"),
+    url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.woff") format("woff"),
+    url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.ttf") format("truetype"),
+    url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.svg#DidotW01-Italic") format("svg");
+}
 
 /* =Theme customization starts here
 -------------------------------------------------------------- */
@@ -210,18 +219,212 @@ Text Domain:  realty_child
 .iconthin-icon-thinliner_user:before {
   content: "\e926";
 }
-
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+	font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+	background-color: #fff;
+	line-height: 1.4;
+	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ja-mincho {
+	font-family: "a-otf-ryumin-pr6n",sans-serif !important;
+}
+.ja {
+	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif !important;
+}
+.kozuaka {
+	font-family: "kozuka-gothic-pro","Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif !important;
+}
+.s1 p {
+    margin: 0;
+    line-height: normal;
+    letter-spacing: normal;
+	color: #2F2E2E;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.s1 .read_more {
+    margin-top: 20px;
+}
+input, input[type=submit], input:focus, textarea, .chosen-container.chosen-container-single .chosen-single, select:not(.attachment-filters) {
+    border-radius: 0;
+}
+.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
+    color: #000;
+}
+nav#navigation .primary-menu a {
+    line-height: 56px !important;
+}
+header#header {
+    position: fixed;
+    width: 100%;
+	top: 0;
+    left: 0;
+}
+div#content {
+    margin-top: 94px;
+    padding-top: 40px;
+}
+.home div#content {
+    margin-top: 0;
+    padding-top: 0;
+}
+.s1 p {
+    margin: 0;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #2F2E2E;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.container.vc_row.wpb_row.vc_inner.vc_row-fluid {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.bg-ltgray {
+    background: rgba(247,247,247,1);
+}
+.section-title.style2 span {
+	background: none !important;
+}
+/*home*/
+@media (min-width: 1200px) {
+	.container {
+    width: 980px;
+	}
+}
+h2.section-title {
+	margin-bottom: 60px;
+    font-family: "futura-pt",sans-serif;
+    font-weight: 100;
+    font-size: 26px;
+    font-size: 1.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #000;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.section-title.style2::after {
+	display: none;
+}
 /* home slider*/
 .main-slider {
     position: relative;
 }
+.main-slider .slider-searchbox {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+	background-color: rgba(245, 245, 245, 0.8);
+}
 .main-slider .property-search-form {
     margin: 0;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 0px;
     border-radius: 0px;
+	box-shadow: none;
+	background: none;
+}
+.main-slider div#n2-ss-3-arrow-previous img, .main-slider div#n2-ss-3 .nextend-arrow img {
+    display: none;
+}
+div#n2-ss-3-arrow-previous, div#n2-ss-3-arrow-next {
+    width: 60px !important;
+    height: 60px !important;
+}
+div#n2-ss-3-arrow-previous:before, div#n2-ss-3-arrow-next:before {
+    position: relative;
+    display: block;
+    color: #FFF;
+    font-size: 32px;
+    height: 60px;
+    width: 60px;
+    font-size: 30px;
+    line-height: 60px;
+    color: #fff;
+    text-align: center;
+    content: "\70";
+    font-family: realty!important;
+    font-style: normal!important;
+    font-weight: 400!important;
+    font-variant: normal!important;
+    text-transform: none!important;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	background-color: rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+    transition: all .2s;
+}
+div#n2-ss-3-arrow-previous:hover:before, div#n2-ss-3-arrow-next:hover:before {
+	background-color: rgba(0, 0, 0, 0.7);
+}
+div#n2-ss-3-arrow-previous:before {
+    content: "\70";
+}
+div#n2-ss-3-arrow-next:before {
+    content: "\73";
+}
+.entry-content .container {
+    padding: 0;
+}
+/*feature*/
+.container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row {
+    margin-left: -30px;
+    margin-right: -30px;
+}
+.container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row .vc_column_container>.vc_column-inner {
+    padding: 0 30px;
+}
+/*.container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row .vc_column_container:first-child>.vc_column-inner {
+	padding-left: 0;
+}
+.container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row .vc_column_container:last-child>.vc_column-inner {
+	padding-right: 0;
+}*/
+.feature_row {
+    margin-bottom: 80px;
+}
+.font_9 {
+	font: normal normal normal 16px/1.4em "futura-pt", sans-serif;
+	font-weight: 100;
+    color: #2F2E2E;
+}
+h3.fontbig {
+    font-size: 60px;
+	line-height: 1.2 !important;
+    margin: 0;
+    line-height: normal;
+	text-transform: uppercase;
+	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
+}
+h3.fontbig.sm80 {
+    font-size: 60px;
+}
+.read_more {
+	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
+}
+/*property list*/
+.property-item.border-box {
+    box-shadow: none;
+    border: 1px solid #eeeeee;
+}
+.property-items li.col-lg-4 .property-item .property-content .property-meta.custom-meta-list > div {
+	width: auto;
 }
 /*single property*/
 .row #property-layout-full-width {
