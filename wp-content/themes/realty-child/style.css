@@ -242,7 +242,7 @@ body {
     box-sizing: border-box;
 }
 .ja-mincho {
-	font-family: "a-otf-ryumin-pr6n",sans-serif !important;
+	font-family: "a-otf-ryumin-pr6n","Roboto Slab" , Garamond , "Times New Roman" , "游明朝" , "Yu Mincho" , "游明朝体" , "YuMincho" , "ヒラギノ明朝 Pro W3" , "Hiragino Mincho Pro" , "HiraMinProN-W3" , "HGS明朝E" , "ＭＳ Ｐ明朝" , "MS PMincho" , serif !important;
 }
 .ja {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif !important;
@@ -269,15 +269,30 @@ input, input[type=submit], input:focus, textarea, .chosen-container.chosen-conta
 }
 nav#navigation .primary-menu a {
     line-height: 56px !important;
+	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 header#header {
+    position: relative;
+    width: 100%;
+	box-shadow: none;
+    border-bottom: 1px solid #eeeeee;
+}
+header#header.sticky {
     position: fixed;
     width: 100%;
 	top: 0;
     left: 0;
 }
+.sticky .top-header {
+    display: none;
+}
+.breadcrumbs {
+    font-size: 12px;
+    line-height: 40px;
+    background: rgba(250,250,250,1);
+}
 div#content {
-    margin-top: 94px;
+    margin-top: 0;
     padding-top: 40px;
 }
 .home div#content {
@@ -302,10 +317,39 @@ div#content {
 .section-title.style2 span {
 	background: none !important;
 }
+/*header*/
+.top-header-sidebar ul {
+    padding: 0;
+    margin: 0;
+    line-height: inherit;
+}
+.top-header-sidebar ul li {
+	position: relative;
+    display: inline-block;
+    margin: 0 .5em;
+	line-height: inherit;
+    vertical-align: middle;
+}
+.top-header-sidebar li.lang-item-en {
+    text-transform: uppercase;
+}
+.top-header-sidebar ul li:first-child:after {
+    position: absolute;
+    content: "|";
+    display: inline-block;
+    right: -.7em;
+    color: #787878;
+}
+.top-header .lang-item.current-lang a {
+    color: #787878;
+}
+.top-header .lang-item a {
+    color: #bbbbbb;
+}
 /*home*/
 @media (min-width: 1200px) {
 	.container {
-    width: 980px;
+    width: 998px;
 	}
 }
 h2.section-title {
@@ -322,6 +366,43 @@ h2.section-title {
 }
 .section-title.style2::after {
 	display: none;
+}
+.align-right {
+    text-align: right;
+}
+section.bg-ltgray {
+    padding-bottom: 30px;
+	margin-bottom: 0;
+}
+section#joinms {
+    padding: 110px 0 80px;
+	text-align: center;
+}
+#joinms h2.section-title {
+	margin-bottom: 10px;
+    text-align: center;
+    font-size: 3.5em;
+	text-transform: uppercase;
+    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+}
+#joinms h4.section-title {
+	font-size: 18px;
+    letter-spacing: 2px;
+	text-align: center;
+	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+#joinms .btn-lg {
+    min-width: 260px;
+    line-height: 60px;
+    font-size: 1.3em;
+    letter-spacing: 3px;
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+}
+#joinms .wpb_text_column {
+    padding-top: 30px;
+	letter-spacing: 2px;
 }
 /* home slider*/
 .main-slider {
@@ -419,6 +500,9 @@ h3.fontbig.sm80 {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
 }
 /*property list*/
+body.page-template-template-search {
+    background: rgba(247,247,247,1);
+}
 .property-item.border-box {
     box-shadow: none;
     border: 1px solid #eeeeee;
@@ -426,7 +510,40 @@ h3.fontbig.sm80 {
 .property-items li.col-lg-4 .property-item .property-content .property-meta.custom-meta-list > div {
 	width: auto;
 }
+.property-item.border-box .property-content {
+    background: #FFF;
+}
 /*single property*/
+.contact-id {
+    border-bottom: 1px solid #000;
+    position: relative;
+}
+.contact-id:after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    display: block;
+    height: 150%;
+    width: 1px;
+    background: #000;
+}
+.head-single h1.bld-title {
+    margin: 0;
+    line-height: 1;
+}
+.head-single {
+    margin-bottom: 1.8em;
+}
+.single-property .property-meta.id-meta .meta-title {
+    width: auto;
+}
+.single-property .section-title {
+	color: #000;
+	font-size: 18px;
+	letter-spacing: 2px;
+	font-family: "a-otf-ryumin-pr6n","Roboto Slab" , Garamond , "Times New Roman" , "游明朝" , "Yu Mincho" , "游明朝体" , "YuMincho" , "ヒラギノ明朝 Pro W3" , "Hiragino Mincho Pro" , "HiraMinProN-W3" , "HGS明朝E" , "ＭＳ Ｐ明朝" , "MS PMincho" , serif !important;
+}
 .row #property-layout-full-width {
     margin-top: 0px;
 }
@@ -449,6 +566,9 @@ h1 span.labeled .btn {
     margin: 0;
     padding: 0;
 	text-align: right;
+	color: #000;
+	padding-right: 10px;
+	font-size: 12px;
 }
 .fl-right {
     float: right;
@@ -459,6 +579,9 @@ h1 span.labeled .btn {
     padding: 0;
     line-height: 3;
 }
+section#acbuttons {
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
 #acbuttons .contact-argent {
 	margin-bottom: 10px;
 }
@@ -467,6 +590,8 @@ h1 span.labeled .btn {
     display: inline-block;
     padding: 0;
     text-align: center;
+	line-height: 1;
+    padding: 10px 0;
 }
 .buttons-group.row {
     margin-left: -5px;
@@ -493,7 +618,6 @@ h1 span.labeled .btn {
 .buttons-group .btn i {
     font-size: 20px;
     margin-right: 5px;
-	margin-top: -4px;
     vertical-align: middle;
 }
 .buttons-group .btn i.icon-file-pdf-1 {
@@ -518,6 +642,9 @@ table.basic-table-style th {
 	vertical-align: top;
     text-align: left;
     font-weight: normal;
+	letter-spacing: 2px;
+	word-break: break-word;
+    min-width: 112px;
 }
 section#property-details .row {
     font-size: 12px;
@@ -557,6 +684,10 @@ table.has-border tbody td:last-child, table.has-border thead th:last-child {
 table.has-border tbody tr:last-child td {
     border-bottom: 0px;
 }
+section#property-details .meta-title {
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+}
 /*search result*/
 .property-item .property-meta.custom-meta-list > div {
     width: auto;
@@ -567,7 +698,7 @@ table.has-border tbody tr:last-child td {
 }
 .property-meta.custom-meta-list .meta-title {
     display: inline-block;
-    width: 15px;
+    width: 12px;
 }
 #property-search-results .property-item.featured .property-title::after {
     background: #FFF;
@@ -592,4 +723,15 @@ table.has-border tbody tr:last-child td {
 }
 .property-search-form .check-field {
     margin-bottom: 10px;
+}
+div#property-items ul.row {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+div#property-items li {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+div#property-items li .property-item.border-box {
+	margin-bottom: 10px;
 }

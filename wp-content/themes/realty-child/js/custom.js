@@ -14,6 +14,13 @@ jQuery(document).ready(function($){
 			 $(this).attr('srcset', $(this).attr('srcset').replace('_on', '_off'));
         }
 	});
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > 97) {
+			$('#header').addClass('sticky');
+		} else {
+			$('#header').removeClass('sticky');
+		}
+	});
 	$(window).on('load resize', function(){
 		var windowWidth = $(window).width();
 		var containerLeft = $(".entry-content .container").offset().left;
@@ -22,4 +29,15 @@ jQuery(document).ready(function($){
 		$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
 		//$('.main-slider .slider-searchbox').css('margin-top', '-' + ssearchHeight + 'px');
 	});
+	//latest office grid
+	$('#latestoffice #property-items li').removeClass('col-lg-4');
+	$('#latestoffice #property-items li').addClass('col-lg-6');
+	$('#latestoffice #property-items li:first-child').removeClass('col-lg-6');
+	$('#latestoffice #property-items li:first-child').addClass('col-lg-5 biglist');
+	$('#latestoffice #property-items li.col-lg-6').wrapAll('<li class="col-lg-7"><ul class="row list-unstyled"></ul></li>');
+	var lgHeight = $('div#property-items li.biglist .property-item').outerHeight();
+	console.log('おおきめ高さ：' + lgHeight + 'px');
+	var minConHeight =$('div#property-items li.col-lg-7 > ul > li > div > .property-content').height();
+	console.log('小さめ白高さ：' + minConHeight + 'px');
+	$('div#property-items li.col-lg-7 > ul > li > div > a > .property-thumbnail').css('height', (lgHeight / 2 - minConHeight - 7) + 'px');
 });

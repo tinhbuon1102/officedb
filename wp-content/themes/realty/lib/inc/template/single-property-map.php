@@ -1,9 +1,9 @@
 <?php
 	$property_title_map = $realty_theme_option['property-title-map'];
 	if ( $property_title_map && ! is_page_template( 'template-property-submit.php' ) ) {
-		echo '<h3 class="section-title"><span>' . $property_title_map . '</span></h3>';
+		//echo '<h3 class="section-title"><span>' . $property_title_map . '</span></h3>';
 		if ( $address ) {
-		 echo '<p class="text-muted">' . $address . '</p>';
+		 //echo '<p class="text-muted">' . $address . '</p>';
 		}
 	}
 ?>

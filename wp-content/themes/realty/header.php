@@ -78,5 +78,13 @@
   </div>
 
 </header>
+    <?php
+	   if(function_exists('bcn_display') && !is_front_page()) {
+		   echo '<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">';
+		   echo '<div class="container">';
+		   bcn_display();
+		   echo '</div>';
+		   echo '</div>';
+    }?>
 
 <div id="content">

@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-04-14 21:43+0900\n"
+"PO-Revision-Date: 2017-04-15 22:07+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr ""
 #: lib/redux/realty-theme-options.php:579
 #: realty-core/widgets/widget-custom-property-search-form.php:383
 msgid "Property ID"
-msgstr ""
+msgstr "問い合わせ番号"
 
 #: single-property.php:344
 msgid "Print this page"
@@ -771,7 +771,7 @@ msgstr ""
 
 #: lib/functions-login.php:16 lib/functions-login.php:77
 msgid "Register"
-msgstr ""
+msgstr "会員登録"
 
 #: lib/functions-login.php:25
 msgid "You have to be logged in to use this feature."
@@ -4541,6 +4541,24 @@ msgstr ""
 #. Author URI of the theme
 msgid "http://themetrail.com"
 msgstr ""
+
+msgid "Contact Argent"
+msgstr "この物件を問い合わせる"
+
+msgid "View PDF"
+msgstr "資料閲覧"
+
+msgid "station"
+msgstr "最寄駅"
+
+msgid "nearest station"
+msgstr "最寄駅"
+
+msgid "size"
+msgstr "面積"
+
+msgid "location"
+msgstr "エリア"
 
 msgid "Property Summary"
 msgstr "物件概要"

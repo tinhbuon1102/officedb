@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 <?php
 	global $realty_theme_option;
 
@@ -141,7 +140,7 @@
 	<?php //} ?>
 	<div class="head-single">
 	<div class="row">
-	<div class="col-sm-8 col-md-10">
+	<div class="col-sm-7 col-md-10">
 	<h1 class="bld-title">
 	<span><?php echo get_the_title( $single_property_id ); ?></span>
 	<?php if ( $property_status_update ) { ?>
@@ -160,10 +159,10 @@
 				?>
 
 	      <?php if ( ! empty ( $estate_property_id ) ) { ?>
-					<div class="col-sm-4 col-md-2">
-					<div class="property-meta">
-						<div class="meta-title"><i class="icon-hash"></i></div>
-						<div class="meta-data" data-toggle="tooltip" title="<?php esc_html_e( 'Property ID', 'realty' ); ?>">
+					<div class="col-sm-5 col-md-2 contact-id">
+					<div class="property-meta id-meta">
+						<div class="meta-title"><?php esc_html_e( 'Property ID', 'realty' ); ?>:</div>
+						<div class="meta-data" title="<?php esc_html_e( 'Property ID', 'realty' ); ?>">
 							<?php echo $estate_property_id; ?>
 						</div>
 					</div>
@@ -327,7 +326,6 @@
 	<section id="nearbyrate">
 	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>
 	<div class="rate size-large">
-		&yen;[nearbyratefrom]&nbsp;〜&nbsp;&yen;[nearbyrateto]
 		&yen;[nearbyratefrom]&nbsp;〜&nbsp;&yen;[nearbyrateto]
 	</div>
 	</section>

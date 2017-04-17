@@ -49,6 +49,7 @@ function tt_estate_setup() {
 	add_image_size( 'thumbnail-1200-400', 1200, 400, true );
 	add_image_size( 'thumbnail-400-300', 400, 300, true );
 	add_image_size( 'property-thumb', 600, 300, true );
+	add_image_size( 'property-thumb-long', 600, 600, true );
 	add_image_size( 'square-400', 400, 400, true );
 
 	// This theme uses wp_nav_menu() in one location.

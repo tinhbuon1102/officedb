@@ -55,7 +55,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 					}
 					$thumbnail_classes = join( ' ', $thumbnail_classes );
 
-					the_post_thumbnail( 'property-thumb', array( 'class' => $thumbnail_classes ) );
+					the_post_thumbnail( 'property-thumb-long', array( 'class' => $thumbnail_classes ) );
 				} else {
 					if ( ! empty( $realty_theme_option['listing-sample-image']['url'] ) ) {
 						echo '<img src ="' . $realty_theme_option['listing-sample-image']['url'] . '" />';
