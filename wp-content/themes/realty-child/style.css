@@ -746,9 +746,20 @@ div#property-items li .property-item.border-box {
 .post-date {
     color: #000;
     font-size: 16px;
-    font-size: 1.5em;
+    font-size: 1.25em;
+    font-family: "futura-pt",sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+}
+a.check_now {
     font-family: "futura-pt",sans-serif;
     font-weight: 300;
+    text-transform: uppercase;
+    font-size: .95em;
+}
+.latest-news-list .inner {
+    max-width: 243px;
+    margin: 0 auto;
 }
 .news .entry-content p {
     font-size: 1.2em;
@@ -784,17 +795,23 @@ ul.latest-news-list.row {
     padding: 0;
 	list-style: none;
 }
-ul.latest-news-list li:before {
+ul.latest-news-list li .inner:before {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
 	font-size: 60px;
     display: block;
 }
-ul.latest-news-list li:first-child:before {
+ul.latest-news-list li:first-child  .inner:before {
     content: "01";
 }
-ul.latest-news-list li:nth-child(2):before {
+ul.latest-news-list li:nth-child(2) .inner:before {
     content: "02";
 }
-ul.latest-news-list li:nth-child(3):before {
+ul.latest-news-list li:nth-child(3) .inner:before {
     content: "03";
+}
+.latest-news-list .title {
+    font-size: 1.25em;
+    line-height: 1.4em;
+    font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    font-weight: 500;
 }
