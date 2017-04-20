@@ -37,7 +37,38 @@ function my_php_Include($params = array()) {
 add_shortcode('myphp', 'my_php_Include');
 
 function getAvailablePrefectures() {
-	return array('東京都');
+	return array('東京都', 'Tokyo');
+}
+
+function getAvailableCities() {
+// 	$dir = ABSPATH . 'dataAddress/zipcode';
+// 	$cities = array();
+// 	$prefectures = getAvailablePrefectures();
+
+// 	for($i=0; $i<10; $i++)
+// 	{
+// 		$file = $dir . DIRECTORY_SEPARATOR . $i. '.csv';
+// 		if(file_exists($file)){
+// 			$spl = new SplFileObject($file);
+// 			while (!$spl->eof()) {
+// 				$columns = $spl->fgetcsv();
+// 				if(in_array($columns[1], $prefectures)){
+// 					$cities[$columns[2]] = $columns[2];
+// 				}
+// 			}
+// 		}
+// 	}
+// 	setlocale(LC_COLLATE, "jpn");
+// 	usort ($cities, "jpn_mccompare");
+		
+	$cities_jp = require(ABSPATH . 'dataAddress/cities_jp.php');
+	$cities_en = include(ABSPATH . 'dataAddress/cities_en.php');
+	$cities = array();
+	foreach ($cities_en as $city_index => $city)
+	{
+		$cities[$city] = $cities_jp[$city_index];
+	}
+	return $cities;
 }
 
 function pr($data)
@@ -77,54 +108,77 @@ function renderJapaneseDate($date, $hasTime = false)
 	return date(getDateFormat($hasTime), strtotime($date));
 }
 
-// add_action('init', 'realty_theme_init', 10, 3);
+add_action('init', 'realty_theme_init', 10, 3);
 function realty_theme_init()
 {
 	// Import new location
-	// 	importLocationFromPrefecture ();
+	if ($_GET['import_location'])
+	{
+		importLocationFromPrefecture ();
+	}
 }
 function importLocationFromPrefecture () {
+	global $wpdb;
 	// Delete old location;
-	$terms = get_terms( array(
-		'taxonomy' => 'property-location',
-		'hide_empty' => false,
-	) );
-
-	pr($terms);die;
+	$terms = $wpdb->get_results(
+	"SELECT  t.*, tt.* 
+			FROM wp_terms AS t  
+			INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id 
+			WHERE tt.taxonomy IN ('property-location') ORDER BY t.name ASC ");
+	
 	if (!empty($terms))
 	{
 		// Don't reimport
+		//@TODO uncomment
 		if (count($terms) >= 50) return;
 
+		
 		foreach ($terms as $term)
 		{
 			wp_delete_term($term->term_id, $term->taxonomy);
-		}
-	}
+			wp_remove_object_terms($term->term_id, $term->term_taxonomy_id, 'term_translations');
 
-	$dir = ABSPATH . 'dataAddress/zipcode';
-	$cities = array();
-	$prefectures = getAvailablePrefectures();
-
-	for($i=0; $i<10; $i++)
-	{
-		$file = $dir . DIRECTORY_SEPARATOR . $i. '.csv';
-		if(file_exists($file)){
-			$spl = new SplFileObject($file);
-			while (!$spl->eof()) {
-				$columns = $spl->fgetcsv();
-				if(in_array($columns[1], $prefectures)){
-					$cities[$columns[2]] = $columns[2];
-				}
+			$objectTerms = wp_get_object_terms(array($term->term_id), 'term_translations');
+			if (!empty($objectTerms))
+			{
+				wp_delete_term($objectTerms[0]->term_id, $objectTerms[0]->taxonomy);
+				wp_remove_object_terms($objectTerms[0]->term_id, $objectTerms[0]->term_taxonomy_id, 'term_translations');
+				
+				//
+				wp_remove_object_terms($objectTerms[0]->term_id, 38, 'term_language');
+				wp_remove_object_terms($objectTerms[0]->term_id, 35, 'term_language');
 			}
 		}
 	}
-
-	setlocale(LC_COLLATE, "jpn");
-	usort ($cities, "jpn_mccompare");
-	foreach ($cities as $city)
+	
+	$cities = getAvailableCities();
+	
+	foreach ($cities as $city_en => $city_jp)
 	{
-		wp_insert_term( $city, 'property-location');
+		$term_jp = wp_insert_term( $city_jp, 'property-location');
+		$term_en = wp_insert_term( $city_en, 'property-location');
+		if (function_exists('pll_save_term_translations'))
+		{
+			// Remove Trans for term en
+			$object_end = PLL()->model->term->get_object_term( $term_en['term_id'], 'term_translations' );
+			$term_trans = unserialize($object_end->description);
+			wp_delete_term($object_end->term_id, 'term_translations');
+			PLL()->model->term->delete_translation( $object_end->term_id );
+			foreach ($term_trans as $object_id) {
+				wp_remove_object_terms($object_id, $object_end->term_id, 'term_translations');
+			}
+
+			// Add trans EN to group with JA language 
+			$term_trans = array('ja' => $term_jp['term_id'], 'en' => $term_en['term_id']);
+			$object_jp = PLL()->model->term->get_object_term( $term_jp['term_id'], 'term_translations' );
+			wp_update_term($object_jp->term_id, 'term_translations', array( 'description' => serialize( $term_trans )));
+			wp_set_object_terms($term_en['term_id'], $object_jp->term_id, 'term_translations');
+			
+			//
+			wp_set_object_terms($term_en['term_id'], 38, 'term_language');
+			wp_set_object_terms($term_jp['term_id'], 35, 'term_language');
+			
+		}
 	}
 
 	return $cities;
