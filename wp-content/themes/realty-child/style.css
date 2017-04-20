@@ -735,3 +735,66 @@ div#property-items li {
 div#property-items li .property-item.border-box {
 	margin-bottom: 10px;
 }
+/* news archive */
+.news .entry-title {
+	line-height: 1.4;
+    margin-bottom: 15px;
+	font-size: 2em;
+    font-weight: 300;
+    font-family: "heisei-mincho-stdn", "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+.post-date {
+    color: #000;
+    font-size: 16px;
+    font-size: 1.5em;
+    font-family: "futura-pt",sans-serif;
+    font-weight: 300;
+}
+.news .entry-content p {
+    font-size: 1.2em;
+    font-family: "kozuka-gothic-pro",sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 2px;
+}
+.news .more-link {
+    font-family: "futura-pt",sans-serif;
+    font-weight: 300;
+    background: none;
+    color: #2F2E2E;
+    white-space: nowrap;
+    display: inline-block;
+    transition: color 0.4s ease 0s;
+    padding: 0;
+    letter-spacing: 0px;
+    font-size: 14px;
+    font-size: 1.1em;
+}
+.news .more-link:hover {
+	color: #7F7F7F;
+}
+.news .entry-header .header-content {
+    margin-bottom: 20px;
+}
+.news-archive article {
+    margin-bottom: 60px;
+}
+ul.latest-news-list.row {
+    margin-bottom: 0;
+    padding: 0;
+	list-style: none;
+}
+ul.latest-news-list li:before {
+	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	font-size: 60px;
+    display: block;
+}
+ul.latest-news-list li:first-child:before {
+    content: "01";
+}
+ul.latest-news-list li:nth-child(2):before {
+    content: "02";
+}
+ul.latest-news-list li:nth-child(3):before {
+    content: "03";
+}

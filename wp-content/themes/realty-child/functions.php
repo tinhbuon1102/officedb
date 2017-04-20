@@ -42,9 +42,38 @@ function jpn_mccompare($a, $b) {
 			return $res;
 }
 
+function getDateFormat($hasTime = true)
+{
+	$format = 'Y年m月d日';
+	$format .= $hasTime ? ' G:i' : '';
+	return $format;
+}
+
+function getTimeFormat($time)
+{
+	$format = 'G:i';
+	return date($format, strtotime($time));
+}
+
+function getDateFromStrTime($strTime)
+{
+	return date('Y-m-d H:i:s', $strTime);
+}
+
+function renderJapaneseDate($date, $hasTime = true)
+{
+	return date(getDateFormat($hasTime), strtotime($date));
+}
 
 add_action('init', 'realty_theme_init', 10, 3);
 function realty_theme_init() {
+	
+	$recent_posts = wp_get_recent_posts(array('post_type'=>'news'));
+	pr(renderJapaneseDate($recent_posts[0]['post_date']));die;
+	foreach( $recent_posts as $recent ){
+		echo '<li class="col-sm-4"><a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" ><div class="post-date">' .   $recent["post_time"] .'</div>'.$recent["post_title"].'</a> </li> ';
+	}
+	
 	// Import new location
 // 	importLocationFromPrefecture ();
 }
@@ -95,3 +124,12 @@ function importLocationFromPrefecture () {
 	
 	return $cities;
 }
+
+//ショートコードを使ったphpファイルの呼び出し方法
+function my_php_Include($params = array()) {
+ extract(shortcode_atts(array('file' => 'default'), $params));
+ ob_start();
+ include(STYLESHEETPATH . "/template-parts/$file.php");
+ return ob_get_clean();
+}
+add_shortcode('myphp', 'my_php_Include');

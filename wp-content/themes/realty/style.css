@@ -4123,7 +4123,6 @@ article.type-post.border-box .header-media {
 
 .has-post-thumbnail .post-date {
   margin-bottom: 0;
-  color: #ccc;
 }
 
 .entry-title {
@@ -4153,10 +4152,7 @@ article.type-post.border-box .header-media {
   font-size: 2em;
 }
 
-.post-date {
-  font-size: 1.2em;
-  color: #999;
-}
+
 
 .entry-content p:last-child {
   margin-bottom: 0;
