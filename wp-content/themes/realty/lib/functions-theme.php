@@ -238,7 +238,7 @@ if ( ! function_exists( 'tt_post_content_navigation' ) ) {
 	?>
 		<div class="entry-content">
 			<?php
-				the_content( esc_html__( 'Continue reading ..', 'realty' ) );
+				the_content( esc_html__( 'Read More', 'realty' ) );
 				wp_link_pages( array(
 					'before'      => '<div class="page-links"><span class="page-links-title">' . esc_html__( 'Pages:', 'realty' ) . '</span>',
 					'after'       => '</div>',
