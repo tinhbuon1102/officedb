@@ -1,5 +1,5 @@
 <?php
-define('SITE_DATE_FORMAT', 'Y年m月d日');
+define('SITE_DATE_FORMAT', 'Y/m/d');
 define('SITE_TIME_FORMAT', 'G:i');
 
 /**
