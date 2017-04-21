@@ -736,6 +736,9 @@ div#property-items li .property-item.border-box {
 	margin-bottom: 10px;
 }
 /* news archive */
+section#latestnews {
+    padding-top: 45px;
+}
 .news .entry-title {
 	line-height: 1.4;
     margin-bottom: 15px;
@@ -750,6 +753,7 @@ div#property-items li .property-item.border-box {
     font-family: "futura-pt",sans-serif;
     font-weight: 400;
     letter-spacing: 0.4em;
+	margin-bottom: 10px;
 }
 a.check_now {
     font-family: "futura-pt",sans-serif;
@@ -759,7 +763,13 @@ a.check_now {
 }
 .latest-news-list .inner {
     max-width: 243px;
-    margin: 0 auto;
+    margin: 0;
+}
+.latest-news-list li:nth-child(2) .inner {
+	margin: 0 auto;
+}
+.latest-news-list li:nth-child(3) .inner {
+	margin: 0 0 0 auto;
 }
 .news .entry-content p {
     font-size: 1.2em;
@@ -767,6 +777,14 @@ a.check_now {
     font-weight: 300;
     line-height: 1.6;
     letter-spacing: 2px;
+}
+.latest-news-list .meta {
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+.latest-news-list .con-inner {
+	min-height: 160px;
 }
 .news .more-link {
     font-family: "futura-pt",sans-serif;
@@ -799,6 +817,8 @@ ul.latest-news-list li .inner:before {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
 	font-size: 60px;
     display: block;
+	line-height: 1;
+    margin-bottom: 10px;
 }
 ul.latest-news-list li:first-child  .inner:before {
     content: "01";
@@ -814,4 +834,5 @@ ul.latest-news-list li:nth-child(3) .inner:before {
     line-height: 1.4em;
     font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
     font-weight: 500;
+	margin-bottom: 10px;
 }
