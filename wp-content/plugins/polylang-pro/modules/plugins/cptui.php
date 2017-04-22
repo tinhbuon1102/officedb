@@ -86,8 +86,10 @@ class PLL_CPTUI {
 	 * @since 2.1
 	 */
 	public function pll_language_defined() {
-		$this->translate_registered_types( $GLOBALS['wp_post_types'], array_keys( get_option( 'cptui_post_types' ) ) );
-		$this->translate_registered_types( $GLOBALS['wp_taxonomies'], array_keys( get_option( 'cptui_taxonomies' ) ) );
+		if (get_option( 'cptui_post_types' ))
+			$this->translate_registered_types( $GLOBALS['wp_post_types'], array_keys( get_option( 'cptui_post_types' ) ) );
+		if (get_option( 'cptui_taxonomies' ))
+			$this->translate_registered_types( $GLOBALS['wp_taxonomies'], array_keys( get_option( 'cptui_taxonomies' ) ) );
 	}
 
 	/**
