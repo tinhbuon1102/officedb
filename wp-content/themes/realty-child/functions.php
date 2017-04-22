@@ -145,7 +145,7 @@ function importLocationFromPrefecture () {
 	{
 		// Don't reimport
 		//@TODO uncomment
-// 		if (count($terms) >= 50) return;
+		if (count($terms) >= 50) return;
 
 		
 		foreach ($terms as $term)
