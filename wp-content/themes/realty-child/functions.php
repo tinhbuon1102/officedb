@@ -141,37 +141,32 @@ function realty_theme_init()
 	{
 		$image_url = $_GET['api_add_image'];
 		$post_id = $_GET['post_id'];
+		$building_id = $_GET['building_id'];
 		
-		$image = basename($image_url);
+		$image = $building_id . basename($image_url);
 		$upload_dir = wp_upload_dir();
 		$temp_folder = $upload_dir['basedir'] . '/temp/';
 		$filename = $temp_folder . $image;
 		
-		$attachs = get_image_id($image, $post_id);
-		
-		if ($attachs && !empty($attachs))
+		$attach = get_image_id($image, $post_id);
+		if ($attach)
 		{
-			foreach ($attachs as $attach)
-			{
-				// Delete old thumbnail
-				wp_delete_attachment( $attach->ID, true );
-			}
-		}
-
-		$image_file = file_get_contents($image_url);
-		if ($image_file)
-		{
-			file_put_contents($filename, file_get_contents($image_url));
-			$attach_id = attachImageToProduct($image, $post_id, true);
-			die('done attach_id = ' . $attach_id);
+			// Generate the metadata for the attachment, and update the database record.
+			set_post_thumbnail( $post_id, $attach->ID );
 		}
 		else {
-			die ('not ok');
+			$image_file = file_get_contents($image_url);
+			if ($image_file)
+			{
+				file_put_contents($filename, file_get_contents($image_url));
+				$attach_id = attachImageToProduct($filename, $post_id, true);
+				die('done attach_id = ' . $attach_id);
+			}
 		}
 	}
 }
 
-function attachImageToProduct ($image, $post_id, $setThumbnail = false)
+function attachImageToProduct ($filename, $post_id)
 {
 	if ( !function_exists('media_handle_sideload') ) {
 		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
@@ -179,32 +174,22 @@ function attachImageToProduct ($image, $post_id, $setThumbnail = false)
 		require_once(ABSPATH . "wp-admin" . '/includes/media.php');
 	}
 	
-	// $filename should be the path to a file in the upload directory.
-	$upload_dir = wp_upload_dir();
-	$temp_folder = $upload_dir['basedir'] . '/temp/';
-	$filename = $temp_folder . $image;
-
 	$file_array = array();
 	$file_array['name'] = basename($filename);
 	$file_array['tmp_name'] = $filename;
 
 	$attach_id = media_handle_sideload($file_array, $post_id);
-	if (is_wp_error($attach_id))
-	{
-		return '';
-	}
-
-	if ($setThumbnail)
-	{
-		// Generate the metadata for the attachment, and update the database record.
+	
+	if ($attach_id)
 		set_post_thumbnail( $post_id, $attach_id );
-	}
+	
 	return $attach_id;
 }
 
 function get_image_id($image_url, $post_id) {
 	global $wpdb;
-	$attachment = $wpdb->get_results($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_parent='%s' AND guid LIKE '%s';",$post_id, '%' . str_replace('.', '%', $image_url) . '%' ));
+	$aExplode = explode('.', $image_url);
+	$attachment = $wpdb->get_row($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid LIKE '%s';",'%' . $aExplode[0] . '%' ));
 	return $attachment;
 }
 
