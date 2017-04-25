@@ -10,6 +10,12 @@ $property_status = get_the_terms( $property_id, 'property-status' );
 $property_location = get_the_terms( $property_id, 'property-location' );
 $property_featured = get_post_meta( $property_id, 'estate_property_featured', true );
 $property_status_update = get_post_meta( $property_id, 'estate_property_status_update', true );
+$estate_property_station = get_post_meta( $property_id, 'estate_property_station', true );
+$estate_property_station = str_replace('Station', '', $estate_property_station);
+
+$estate_property_prefecture = get_post_meta( $property_id, 'estate_property_prefecture', true );
+$estate_property_district = get_post_meta( $property_id, 'estate_property_district', true );
+$estate_property_town = get_post_meta( $property_id, 'estate_property_town', true );
 
 $google_maps = get_post_meta( $property_id, 'estate_property_google_maps', true );
 if ( ! tt_is_array_empty( $google_maps ) ) {
@@ -66,7 +72,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 			?>
 			<figcaption>
 				<div class="property-excerpt">
-					<h4 class="address">Pref City Town<?php //echo $address; ?></h4>
+					<h4 class="address"><?php echo ($estate_property_prefecture .', '. $estate_property_district . ', ' . $estate_property_town); ?></h4>
 					<?php the_excerpt(); ?>
 					</div>
 					<?php if ( $property_status_update ) { ?>
@@ -82,19 +88,19 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 		<div class="property-title">
 			<a href="<?php echo get_permalink( $property_id ); ?>"><h3 class="title"><?php the_title(); ?></h3></a>
 		</div>
-		<?php if ( $realty_theme_option['property-listing-type'] != 'custom' && ( $size || $rooms || $bedrooms || $bathrooms ) ) { // Default Listing Fields ?>
+		<?php if ( $realty_theme_option['property-listing-type'] != 'custom' ) { // Default Listing Fields ?>
 			<div class="property-meta custom-meta-list clearfix">
 					<div>
 						<div class="meta-title"><i class="iconmoon-location"></i></div>
-						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('location', 'realty')?>">Shibuya-ku</div>
+						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('location', 'realty')?>"><?php  echo isset($property_location[0]) ? $property_location[0]->name : ''?></div>
 					</div>
 					<div>
 						<div class="meta-title"><i class="iconmoon-directions_transit"></i></div>
-						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('station', 'realty')?>">Shibuya sta.</div>
+						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('station', 'realty')?>"><?php echo $estate_property_station?></div>
 					</div>
 					<div>
 						<div class="meta-title"><i class="iconmoon-crop_free"></i></div>
-						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('size', 'realty')?>">80tsubo</div>
+						<div class="meta-data" data-toggle="tooltip" title="<?php echo __('size', 'realty')?>"><?php echo $size . $size_unit?></div>
 					</div>
 			
 			</div>

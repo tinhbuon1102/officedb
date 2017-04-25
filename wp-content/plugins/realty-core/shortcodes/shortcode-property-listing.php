@@ -1,4 +1,56 @@
 <?php
+
+
+add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
+function realty_posts_orderby_request( $orderby, &$query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
+	}
+	
+	return $orderby;
+}
+
+
+add_filter('posts_fields', 'realty_posts_fields', 10, 2);
+function realty_posts_fields( $fields, $query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$fields = "$wpdb->posts.ID, wp_postmeta.meta_value  as price";
+	}
+	return $fields;
+}
+
+add_filter('post_limits_request', 'realty_post_limits_request', 10, 2);
+function realty_post_limits_request( $limits, &$query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$query->property_limit = $limits;
+		$limits = '';
+	}
+	return $limits;
+}
+
+
+add_filter( 'posts_request', 'realty_posts_request', 10 ,2 );
+function realty_posts_request ($request, $query)
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing_request'] == 1)
+	{
+		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
+
+	}
+	elseif ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1)
+	{
+		$request = 'SELECT wp_posts.ID, price FROM wp_posts INNER JOIN ('. $request . ') as t ON wp_posts.ID = t.ID GROUP BY wp_posts.post_parent ' . $query->property_limit;
+	}
+	
+	return $request;
+}
 /**
  * Shortcode: Property Listings
  *
@@ -47,6 +99,8 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 
 				$custom_query_args['paged']	= $paged;
 				$custom_query_args['post_type'] = 'property';
+				
+				
 
 				if ( $per_page ) {
 					$custom_query_args['posts_per_page'] = $per_page;
@@ -215,7 +269,25 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 					$custom_query_args = array();
 					$custom_query_args = apply_filters( 'property_search_args', $custom_query_args );
 				}
+				
 
+				if (!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')) ) 
+				{
+					$custom_query_args_group['post_type'] = 'property';
+					$custom_query_args_group['posts_per_page'] = -1;
+					$custom_query_args_group['order'] = !$_GET[ 'order-by' ] ? 'ASC' : $custom_query_args['order'];
+					$custom_query_args_group['property_query_listing'] = true;
+					$custom_query_args_group['meta_query'] = array(array(
+						'key'     => 'estate_property_price',
+						'value'   => '',
+						'compare' => '!='
+		
+					));
+					$custom_query_group = new WP_Query( $custom_query_args_group );
+					$custom_query_args['property_query_listing_request'] = 1;
+					$custom_query_args['custom_inner_join'] = $custom_query_group->request;
+				}
+				
 				$custom_query = new WP_Query( $custom_query_args );
 			?>
 

@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Realty Core
-Plugin URI: http://themetrail.com/docs/realty/
+Plugin URI: http://themetrail.com/docs/realty123/
 Description: Required plugin for Realty - Real Estate Theme
 Author: ThemeTrail
-Author URI: http://themetrail.com
-Version: 1.0
+Author URI: http://themetrai1l.com
+Version: 1231231.0
 */
 
 define( 'REALTY_CORE_PLUGIN_DIR_URL', plugin_dir_path( __FILE__ ) );
