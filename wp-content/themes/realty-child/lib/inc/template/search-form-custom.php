@@ -742,10 +742,11 @@
 
 			?>
 
+<?php /* ?>
 			<div class="<?php echo $columns; ?> form-group">
 				<input type="submit" id="submit_search_form" value="<?php esc_html_e( 'Search', 'realty' ); ?>" class="btn btn-primary btn-block form-control" />
 			</div>
-
+<?php */ ?>
 			<?php } else { ?>
 
 				<div class="col-xs-12" style="margin-bottom: 20px">
