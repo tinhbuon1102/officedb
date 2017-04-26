@@ -273,19 +273,7 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 
 				if (!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')) ) 
 				{
-					$custom_query_args_group['post_type'] = 'property';
-					$custom_query_args_group['posts_per_page'] = -1;
-					$custom_query_args_group['order'] = !$_GET[ 'order-by' ] ? 'ASC' : $custom_query_args['order'];
-					$custom_query_args_group['property_query_listing'] = true;
-					$custom_query_args_group['meta_query'] = array(array(
-						'key'     => 'estate_property_price',
-						'value'   => '',
-						'compare' => '!='
-		
-					));
-					$custom_query_group = new WP_Query( $custom_query_args_group );
-					$custom_query_args['property_query_listing_request'] = 1;
-					$custom_query_args['custom_inner_join'] = $custom_query_group->request;
+					$custom_query_args = buildSearchArgs($custom_query_args);
 				}
 				
 				$custom_query = new WP_Query( $custom_query_args );

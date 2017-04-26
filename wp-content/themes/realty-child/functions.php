@@ -254,6 +254,37 @@ function get_image_id($image_url, $post_id) {
 	return $attachment;
 }
 
+function buildSearchArgs($search_results_args){
+	if (isset($search_results_args['meta_query']))
+	{
+		foreach ($search_results_args['meta_query'] as $meta_field)
+		{
+			if ($meta_field['key'] == 'estate_property_size')
+			{
+				// Don't group floor if has size in Search
+				return $search_results_args;
+			}
+		}
+	}
+	
+	$custom_query_args_group['post_type'] = 'property';
+	$custom_query_args_group['posts_per_page'] = -1;
+	$custom_query_args_group['order'] = !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
+	$custom_query_args_group['property_query_listing'] = true;
+	$custom_query_args_group['meta_query'] = array(array(
+		'key'     => 'estate_property_price',
+		'value'   => '',
+		'compare' => '!='
+	
+	));
+		
+	$custom_query_group = new WP_Query( $custom_query_args_group );
+	$search_results_args['property_query_listing_request'] = 1;
+	$search_results_args['custom_inner_join'] = $custom_query_group->request;
+	
+	return $search_results_args;
+}
+
 function importSpecific() {
 	global $wpdb;
 	$terms = $wpdb->get_results(
