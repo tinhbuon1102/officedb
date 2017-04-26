@@ -190,7 +190,7 @@ function realty_theme_init()
 	// Import new location
 	if (isset($_GET['import_location']))
 	{
-// 		importLocationFromPrefecture ();
+		importLocationFromPrefecture ();
 	}
 	
 	if (isset($_GET['import_specific']))
