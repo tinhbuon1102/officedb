@@ -43,6 +43,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			}
 		}
 
+		$searching_fields = array();
 		foreach ( $_GET as $search_key => $search_value ) {
 
 			// Exclude all nonproperty seach parameters
@@ -92,8 +93,10 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 					$search_position = array_search( $search_key, $search_parameters );
 					$search_compare = $realty_theme_option['property-search-compare'][$search_position];
 					$search_field = $search_fields[$search_position];
+					$search_fields[$i]= $search_field;
 				}
 
+				$searching_fields[$search_key] = $search_field;
 				switch ( $search_compare ) {
 					case 'greater_than' : case 'greather_than' : $search_compare = '>='; break; // Do NOT delete "greather_than" typo
 					case 'less_than'                           : $search_compare = '<='; break;
@@ -203,12 +206,16 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 						break;
 
 						case 'estate_property_size' :
-							$meta_query[] = array(
-								'key' 			=> 'estate_property_size',
-								'value' 		=> $search_value,
-								'type' 			=> 'NUMERIC',
-						    	'compare' 	=> $search_compare
-							);
+							if ($search_value && $search_value != 'all')
+							{
+								$aSizes = explode('-', $search_value); 
+								$meta_query[] = array(
+									'key' 			=> 'estate_property_size',
+									'value' 		=> array((float)$aSizes[0], (float)$aSizes[1]),
+									'type' 			=> 'NUMERIC',
+							    	'compare' 	=> 'BETWEEN'
+								);
+							}
 						break;
 
 						case 'estate_property_rooms' :
@@ -463,6 +470,25 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			$search_results_args['tax_query'] = $tax_query;
 		}
 
+		
+		$size_key = array_search('estate_property_size', $searching_fields);
+		if ((!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size'))) && ($size_key === false || !$_GET['$size_key']) )
+		{
+			$custom_query_args_group['post_type'] = 'property';
+			$custom_query_args_group['posts_per_page'] = -1;
+			$custom_query_args_group['order'] = !$_GET[ 'order-by' ] ? 'ASC' : $custom_query_args['order'];
+			$custom_query_args_group['property_query_listing'] = true;
+			$custom_query_args_group['meta_query'] = array(array(
+				'key'     => 'estate_property_price',
+				'value'   => '',
+				'compare' => '!='
+		
+			));
+			$custom_query_group = new WP_Query( $custom_query_args_group );
+			$search_results_args['property_query_listing_request'] = 1;
+			$search_results_args['custom_inner_join'] = $custom_query_group->request;
+		}
+		
 		return $search_results_args;
 
 	}
@@ -525,7 +551,7 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 				<li class="<?php echo $columns; ?>">
 					<?php
 						$property_id = get_the_id();
-						include( locate_template( 'lib/inc/template/property-item.php' ) );
+						include( locate_template( 'lib/inc/template/property-item-custom.php' ) );
 						$property_counter++;
 					?>
 				</li>

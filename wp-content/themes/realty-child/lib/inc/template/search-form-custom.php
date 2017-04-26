@@ -124,6 +124,68 @@
 								break;
 
 								case 'estate_property_location' : ?>
+									<div class="<?php echo $columns; ?> form-group checkbox">
+									    <?php
+										    $location = get_terms('property-location', array(
+										    	'orderby' => 'id',
+										    	'order'	=> 'ASC',
+										    	'parent' => 0,
+										    	'hide_empty' => false
+										    ) );
+										    
+										    $location_tmp = $location;
+										    $searchCites = getSearchingCities();
+										    ksort($searchCites['en']);
+										    ksort($searchCites['ja']);
+										    
+										    foreach ($location_tmp as $location_index => $location_obj)
+										    {
+										    	if (!in_array($location_obj->name, $searchCites['en']) && !in_array($location_obj->name, $searchCites['ja']))
+										    	{
+										    		unset($location[$location_index]);
+										    	}
+										    }
+										    if ( isset( $_GET[$search_parameter] ) ) {
+												$get_location = $_GET[$search_parameter];
+											} else {
+												$get_location = null;
+											}
+											
+											// Sort
+											$location_tmp = $location;
+											$location = array();
+											foreach ($location_tmp as $location_index => $location_obj)
+											{
+												if (($search_key = array_search($location_obj->name, $searchCites['en'])) !== false)
+												{
+													$location[$search_key] = $location_obj;
+													$lang = 'en';
+												}
+												elseif (($search_key = array_search($location_obj->name, $searchCites['ja'])) !== false)
+												{
+													$location[$search_key] = $location_obj;
+													$lang = 'ja';
+												}
+											}
+											
+											ksort($location);
+											?>
+	
+										<div class="row">
+										    <?php foreach ( $location as $key => $location ) : ?>
+									    	<div class="check-field col-sm-6">
+												<input type="checkbox" name="<?php echo $search_parameter; ?>[<?php echo $location->term_id?>]" 
+												id="<?php echo $search_parameter.$key; ?>" class="<?php echo esc_attr( $form_select_class ); ?>" 
+												value="<?php echo $location->slug; ?>" <?php checked( $location->slug, $get_location ); ?>/>    
+												<label for="<?php echo $search_parameter.$key; ?>"><?php echo $location->name;?></label>
+											</div>
+										    <?php endforeach; ?>
+									    </div>
+									</div>
+									<?php
+									break;
+									
+								case 'estate_property_location123123' : ?>
 								<div class="<?php echo $columns; ?> form-group select">
 									<?php
 										// http://wordpress.stackexchange.com/questions/14652/how-to-show-a-hierarchical-terms-list#answer-14658
@@ -434,10 +496,42 @@
 
 								case 'estate_property_price_min' :
 								case 'estate_property_price_max' :
-								case 'estate_property_size' :
+								case 'estate_property_size111' :
 								?>
 								<div class="<?php echo $columns; ?> form-group">
 									<input type="number" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter] ) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo $search_labels[$i]; ?>" min="0" class="form-control" />
+								</div>
+								<?php
+								break;
+								
+								case 'estate_property_size' :
+								?>
+								<div class="<?php echo $columns; ?> form-group select">
+									<?php
+										if ( ! empty( $search_labels[$i] ) ) {
+											$search_label_size = $search_labels[$i];
+										} else {
+											$search_label_size = esc_html__( 'Any Size', 'realty' );
+										}
+									?>
+									<select name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" class="<?php echo esc_attr( $form_select_class ); ?>">
+										<option value="all"><?php echo $search_label_size; ?></option>
+								    <?php
+									    $sizes = getSearchingSizes();
+
+									    if ( isset( $_GET[$search_parameter] ) ) {
+												$get_location = $_GET[$search_parameter];
+											} else {
+												$get_location = null;
+											}
+										?>
+
+								    <?php foreach ( $sizes as $key => $size ) : ?>
+								        <option value="<?php echo $key?>" <?php selected( $key, $get_location ); ?>>
+							            <?php echo $key; ?><?php echo pll_current_language() == 'en' ? trans_text('m2') : trans_text('tsubo') ;?>
+								        </option>
+								    <?php endforeach; ?>
+									</select>
 								</div>
 								<?php
 								break;
@@ -647,50 +741,9 @@
 				} // foreach()
 
 			?>
-		<!--added custom -->
-		    <!--selection of cities-->
-			<div class="<?php echo $columns; ?> form-group">
-			<div class="row">
-			<div class="check-field col-sm-6">
-			<input type="checkbox">
-			<label>City1</label>
-			</div>
-			<div class="check-field col-sm-6">
-			<input type="checkbox">
-			<label>City2</label>
-			</div>
-			<div class="check-field col-sm-6">
-			<input type="checkbox">
-			<label>City3</label>
-			</div>
-			<div class="check-field col-sm-6">
-			<input type="checkbox">
-			<label>City4</label>
-			</div>
-			</div>
-			</div>
-			<!--selector of size-->
-			<div class="<?php echo $columns; ?> form-group">
-			<select>
-				<option value=""><?php echo __('select size', 'realty')?></option>
-				<option value="">-30<?php echo __('tsubo', 'realty')?></option>
-				<option value="">30<?php echo __('tsubo', 'realty')?>-50<?php echo __('tsubo', 'realty')?></option>
-				<option value="">50<?php echo __('tsubo', 'realty')?>-75<?php echo __('tsubo', 'realty')?></option>
-				<option value="">75<?php echo __('tsubo', 'realty')?>-100<?php echo __('tsubo', 'realty')?></option>
-				<option value="">100<?php echo __('tsubo', 'realty')?>-150<?php echo __('tsubo', 'realty')?></option>
-				<option value="">150<?php echo __('tsubo', 'realty')?>-200<?php echo __('tsubo', 'realty')?></option>
-				<option value="">200<?php echo __('tsubo', 'realty')?>-250<?php echo __('tsubo', 'realty')?></option>
-				<option value="">300<?php echo __('tsubo', 'realty')?>-500<?php echo __('tsubo', 'realty')?></option>
-				<option value="">500<?php echo __('tsubo', 'realty')?>-600<?php echo __('tsubo', 'realty')?></option>
-				<option value="">700<?php echo __('tsubo', 'realty')?>-800<?php echo __('tsubo', 'realty')?></option>
-				<option value="">800<?php echo __('tsubo', 'realty')?>-900<?php echo __('tsubo', 'realty')?></option>
-				<option value="">900<?php echo __('tsubo', 'realty')?>-1000<?php echo __('tsubo', 'realty')?></option>
-				<option value="">1000<?php echo __('tsubo', 'realty')?>-</option>
-			</select>
-			</div>
 
 			<div class="<?php echo $columns; ?> form-group">
-				<input type="submit" value="<?php esc_html_e( 'Search', 'realty' ); ?>" class="btn btn-primary btn-block form-control" />
+				<input type="submit" id="submit_search_form" value="<?php esc_html_e( 'Search', 'realty' ); ?>" class="btn btn-primary btn-block form-control" />
 			</div>
 
 			<?php } else { ?>

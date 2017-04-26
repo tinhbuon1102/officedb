@@ -62,4 +62,5 @@ return array (
 	59 => 'Adachi-ku',
 	60 => 'Aogashima village',
 	61 => 'Ome city',
+	62 => 'Other',
 );

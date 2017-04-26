@@ -23,11 +23,15 @@ jQuery(document).ready(function($){
 	});
 	$(window).on('load resize', function(){
 		var windowWidth = $(window).width();
-		var containerLeft = $(".entry-content .container").offset().left;
-		//var ssearchHeight = $(".main-slider .slider-searchbox .property-search-form").outerHeight();
-		$('.main-slider .slider-searchbox').css('margin-left', '-' + containerLeft + 'px');
-		$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
-		//$('.main-slider .slider-searchbox').css('margin-top', '-' + ssearchHeight + 'px');
+		
+		if ($(".entry-content .container").length)
+		{
+			var containerLeft = $(".entry-content .container").offset().left;
+			//var ssearchHeight = $(".main-slider .slider-searchbox .property-search-form").outerHeight();
+			$('.main-slider .slider-searchbox').css('margin-left', '-' + containerLeft + 'px');
+			$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
+			//$('.main-slider .slider-searchbox').css('margin-top', '-' + ssearchHeight + 'px');
+		}
 	});
 	//latest office grid
 	$('#latestoffice #property-items li').removeClass('col-lg-4');

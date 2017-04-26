@@ -59,6 +59,62 @@ function getAvaileableStatuses(){
 	return array('For Rent' => '賃貸用', 'For Sale' => '販売用');
 }
 
+function getSearchingCities(){
+	$cities = array();
+	$cities['ja'] = array (
+		1 => '渋谷区',
+		2 => '港区',
+		3 => '目黒区',
+		4 => '中央区',
+		5 => '新宿区',
+		6 => '千代田区',
+		7 => '品川区',
+		8 => '台東区',
+		9 => '豊島区',
+		10 => '中野区',
+		11 => 'その他',
+	);
+	
+	$cities['en'] =array (
+		1 => 'Shibuya ku',
+		2 => 'Minato-ku',
+		3 => 'Meguro-ku',
+		4 => 'Chuo-ku',
+		5 => 'Shinjuku-ku',
+		6 => 'Chiyoda-ku',
+		7 => 'Shinagawa-ku',
+		8 => 'Taito Ward',
+		9 => 'Toshima-ku',
+		10 => 'Nakano ku',
+		10 => 'Other',
+	);
+	return $cities;
+}
+
+function trans_text($text, $echo = true)
+{
+	$text = __($text, 'realty');
+	if ($echo) echo $text;
+	else  return $text;
+}
+
+function getSearchingSizes(){
+	return array(
+		'-30' => '-30',
+		'30-50' => '30-50',
+		'50-75' => '50-75',
+		'75-100' => '75-100',
+		'100-150' => '100-150',
+		'150-200' => '150-200',
+		'300-500' => '300-500',
+		'500-600' => '500-600',
+		'700-800' => '700-800',
+		'800-900' => '800-900',
+		'900-1000' => '900-1000',
+		'1000-' => '1000-',
+	);
+}
+
 function insertTermTranslation($tran_en, $tran_jp, $term_name){
 	$term_jp = wp_insert_term( $tran_jp, $term_name);
 	$term_en = wp_insert_term( $tran_en, $term_name);
@@ -134,7 +190,12 @@ function realty_theme_init()
 	// Import new location
 	if (isset($_GET['import_location']))
 	{
-		importLocationFromPrefecture ();
+// 		importLocationFromPrefecture ();
+	}
+	
+	if (isset($_GET['import_specific']))
+	{
+// 		importSpecific();
 	}
 	
 	if (isset($_GET['api_add_image']))
@@ -193,6 +254,25 @@ function get_image_id($image_url, $post_id) {
 	return $attachment;
 }
 
+function importSpecific() {
+	global $wpdb;
+	$terms = $wpdb->get_results(
+			"SELECT  t.*, tt.*
+			FROM wp_terms AS t
+			INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
+			WHERE tt.taxonomy IN ('property-location') AND name='Other' ORDER BY t.name ASC ");
+	
+	if (count($terms) == 0)
+	{
+		$cities = array('Other' => 'その他');
+		foreach ($cities as $en => $jp)
+		{
+			insertTermTranslation($en, $jp, 'property-location');
+		}
+	}
+	pr('existing');die;
+}
+
 function importLocationFromPrefecture () {
 	global $wpdb;
 	// Delete old location;
@@ -206,7 +286,7 @@ function importLocationFromPrefecture () {
 	{
 		// Don't reimport
 		//@TODO uncomment
-		if (count($terms) >= 50) return;
+		if (count($terms) >= 50) return; 
 
 		
 		foreach ($terms as $term)
@@ -245,6 +325,8 @@ function importLocationFromPrefecture () {
 	{
 		insertTermTranslation($en, $jp, 'property-status');
 	}
+	
+	pr('done');die;
 
 	return $cities;
 }

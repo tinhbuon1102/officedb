@@ -93,6 +93,7 @@
         // Setup clickable area
         area = ('' + settings.increaseArea).replace('%', '') | 0;
 
+		
       // Selector limit
       if (selector == _checkbox || selector == _radio) {
         handle = 'input[type="' + selector + '"]';
@@ -201,6 +202,7 @@
                   return;
                 }
                 operate(self, false, true);
+                self.change();
 
               // Hover state
               } else if (labelHover) {
@@ -225,35 +227,6 @@
         }
 
         // Input events
-        self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
-          var type = event[_type],
-            key = event.keyCode;
-
-          // Click
-          if (type == _click) {
-            return false;
-
-          // Keydown
-          } else if (type == 'keydown' && key == 32) {
-            if (!(node[_type] == _radio && node[_checked])) {
-              if (node[_checked]) {
-                off(self, _checked);
-              } else {
-                on(self, _checked);
-              }
-            }
-
-            return false;
-
-          // Keyup
-          } else if (type == 'keyup' && node[_type] == _radio) {
-            !node[_checked] && on(self, _checked);
-
-          // Focus/blur
-          } else if (/us|ur/.test(type)) {
-            parent[type == 'blur' ? _remove : _add](focusClass);
-          }
-        });
 
         // Helper events
         helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
@@ -268,6 +241,7 @@
             // Click
             if (type == _click) {
               operate(self, false, true);
+              self.change();
 
             // Active and hover states
             } else {

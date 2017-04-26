@@ -427,8 +427,14 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 
 			} // END .price-range-slider
 
+			var searching_xhr;
 			// AJAX
 			function tt_ajax_search_results() {
+				if (searching_xhr)
+				{
+					searching_xhr.abort();
+				}
+				
 				"use strict";
 				if ( jQuery('.property-search-feature') ) {
 					var feature = [];
@@ -437,7 +443,7 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 					});
 				}
 				var ajaxData = jQuery('.property-search-form').first().serialize() + "&action=tt_ajax_search&base=" + window.location.pathname;
-				jQuery.ajax({
+				searching_xhr = jQuery.ajax({
 
 				  type: 'GET',
 				  url: ajax_object.ajax_url,
