@@ -86,7 +86,7 @@ function getSearchingCities(){
 		8 => 'Taito Ward',
 		9 => 'Toshima-ku',
 		10 => 'Nakano ku',
-		10 => 'Other',
+		11 => 'Other',
 	);
 	return $cities;
 }
@@ -190,7 +190,7 @@ function realty_theme_init()
 	// Import new location
 	if (isset($_GET['import_location']))
 	{
-		importLocationFromPrefecture ();
+// 		importLocationFromPrefecture ();
 	}
 	
 	if (isset($_GET['import_specific']))
@@ -317,7 +317,7 @@ function importLocationFromPrefecture () {
 	{
 		// Don't reimport
 		//@TODO uncomment
-// 		if (count($terms) >= 50) return; 
+		if (count($terms) >= 50) return; 
 
 		
 		foreach ($terms as $term)
