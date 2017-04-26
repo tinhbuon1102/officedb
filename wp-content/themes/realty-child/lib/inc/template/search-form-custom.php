@@ -130,7 +130,7 @@
 										    	'orderby' => 'id',
 										    	'order'	=> 'ASC',
 										    	'parent' => 0,
-										    	'hide_empty' => false
+										    	'hide_empty' => true
 										    ) );
 										    
 										    $location_tmp = $location;
