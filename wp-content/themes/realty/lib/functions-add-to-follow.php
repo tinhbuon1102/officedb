@@ -85,7 +85,7 @@ if ( ! function_exists( 'tt_follow_script' ) ) {
 		?>
 
 		<script>
-		jQuery('.container').on("click",'.add-to-follow',function() {
+		jQuery('body').on("click",'.add-to-follow',function() {
 
 			<?php if ( is_user_logged_in() ) { // Logged-In User ?>
 

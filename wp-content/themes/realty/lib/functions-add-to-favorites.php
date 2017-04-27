@@ -123,7 +123,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 		});
 		<?php } ?>
 
-		jQuery('.container').on("click",'.add-to-favorites',function() {
+		jQuery('body').on("click",'.add-to-favorites',function() {
 
 			<?php
 			// Logged-In User Or Temporary Favorites Enabled
