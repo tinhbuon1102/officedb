@@ -2,6 +2,7 @@
 <?php
 	global $realty_theme_option;
 
+	$current_language = pll_current_language();
 	if ( $realty_theme_option['property-show-login-users'] && ! is_user_logged_in() ) {
 		$show_property = false;
 	} else {
@@ -93,9 +94,30 @@
 			}
 		}
 
-	?>
-
-	<?php
+		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
+		// Get building info
+		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
+		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
+		
+		// Get Floor info
+		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
+		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		
+		// Get list same building
+		$buildingArgs = array(
+			'post_type' => 'property',
+			'posts_per_page' => -1,
+			'meta_query' => array(
+				array(
+					'key' => FLOOR_BUILDING_TYPE,
+					'value' => $building_id,
+					'compare' => '=',
+				)
+			)
+		);
+		$query_floors_results = new WP_Query($buildingArgs);
+		
+		
 		$property_layout = $realty_theme_option['property-layout'];
 		$property_meta_data_type = $realty_theme_option['property-meta-data-type'];
 		$social_sharing = $realty_theme_option['property-social-sharing'];
@@ -221,20 +243,39 @@
 	<table id="bldsummary" class="basic-table-style">
 		<tbody>
 			<tr>
-				<th><?php echo __('Address', 'realty')?></th><td>full address</td>
+				<th><?php echo __('Address', 'realty')?></th><td><?php echo $google_maps['address']?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Traffic', 'realty')?></th>
-				<td>train line / train line / train line<br/>
-				<ul class="list-stations">
-					<li>station by foot min</li>
-					<li>station by foot min</li>
-					<li>station by foot min</li>
-				</ul>
+				<td>
+					<?php if ($building['stations']) {
+					$i = 0;
+					foreach ($building['stations'] as $station)
+					{
+						$stationLines[] = translateStationLine($station['line']);
+						$stationDistances[$station['distance']] = $station['time']; 
+						$i ++;
+						if ($i == 3) break;
+					}
+					echo implode(' / ', $stationLines);
+					?>
+					<br/>
+					<ul class="list-stations">
+						<?php foreach ($stationDistances as $distance => $min) {?>
+						<li><?php echo sprintf(trans_text('Station by foot : %s - %sminutes'),$distance, $min)?></li>
+						<?php }?>
+					</ul>
+					<?php
+					}
+					?>
 				</td>
 			<tr>
 				<th><?php echo __('Construction', 'realty')?></th>
-				<td>[constructionType] / <?php echo __('above ground', 'realty')?>[floor_scale_up]&nbsp;<?php echo __('below ground', 'realty')?>[floor_scale_down]</td>
+				<td>
+				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
+					<?php echo $building['construction_type_name'] ? $building['construction_type_name'] . ' / ' : ''?> 
+					<?php echo __('above ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-'?>&nbsp;
+					<?php echo __('below ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-'?></td>
 			</tr>
 			</tr>
 		</tbody>
@@ -244,31 +285,35 @@
 		<tbody>
 			<tr>
 				<th><?php echo __('Area', 'realty')?></th>
-				<td>[Floor[area_ping]]</td>
+				<td><?php echo translateBuildingValue('area_ping', $building, $floor, $single_property_id)?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Floor', 'realty')?></th>
-				<td>[Floor[floor_down]]</td>
+				<td>
+				<?php echo translateBuildingValue('floor_up_down', $building, $floor, $single_property_id)?>
 			<tr>
 				<th><?php echo __('Rent', 'realty')?></th>
 				<td>
-				<!--if Floor[rent_unit_price_opt] is selected-->
+				<!--if Floor[rent_unit_price_opt] is selected
 				[Floor[rent_unit_price_opt]]
-				<!--else-->
-				[Floor[rent_unit_price]]</td>
+				else
+				[Floor[rent_unit_price]] -->
+				<?php echo $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);?>
+				</td>
 			</tr>
 			<tr>
 				<th><?php echo __('Common service', 'realty')?></th>
 				<td>
-				<!--if Floor[unit_condo_fee_opt] is selected-->
+				<!--if Floor[unit_condo_fee_opt] is selected
 				[Floor[unit_condo_fee_opt]]
-				<!--else-->
-				[Floor[unit_condo_fee]]
+				else
+				[Floor[unit_condo_fee]]-->
+				<?php echo $floor['unit_condo_fee'] ? renderPrice($floor['unit_condo_fee']) : translateBuildingValue('unit_condo_fee_opt', $building, $floor, $single_property_id);?>
 				</td>
 			</tr>
 			<tr>
 				<th><?php echo __('Total deposit', 'realty')?></th>
-				<td></td>
+				<td><?php echo renderPrice($floor['total_deposit']);?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Contract period', 'realty')?></th>
@@ -276,7 +321,7 @@
 			</tr>
 			<tr>
 				<th><?php echo __('Date of occupancy', 'realty')?></th>
-				<td>[Floor[move_date]]</td>
+				<td><?php echo translateBuildingValue('move_in_date', $building, $floor, $single_property_id);?></td>
 			</tr>
 			</tr>
 		</tbody>
@@ -287,46 +332,64 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Established', 'realty')?></div>
-			<div class="meta-data">[build_year]/[build_month]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('built_year', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Gross floor area', 'realty')?></div>
-			<div class="meta-data">[total_floor_space]m&sup2;</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('total_floor_space', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Earthquake proof', 'realty')?></div>
-			<div class="meta-data">[earth_quake_res_std]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('earth_quake_res_std', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Elevator', 'realty')?></div>
-			<div class="meta-data"><!--if elevator has 1 as value-->[b_ev_group]<!--else-->[elevator]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('elevator', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Parking', 'realty')?></div>
-			<div class="meta-data"><!--if parking_unit_no has 1 as value-->[b_parking_num]<!--else-->[parking_unit_no]</div>
+			<div class="meta-data">
+			<?php echo translateBuildingValue('parking_unit_no', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Optical cable', 'realty')?></div>
-			<div class="meta-data">[opticle_cable]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('opticle_cable', $building, $floor, $single_property_id);?>	
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Typical floor area', 'realty')?></div>
-			<div class="meta-data">[std_floor_space]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Security', 'realty')?></div>
-			<div class="meta-data">[security_id]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 		<div class="col-sm-4">
 			<div class="meta-title"><?php echo __('Renewal', 'realty')?></div>
-			<div class="meta-data">[renewal_data]</div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?>
+			</div>
 		</div>
 	</div>
 	</section>
 	<section id="nearbyrate">
 	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>
 	<div class="rate size-large">
-		&yen;[nearbyratefrom]&nbsp;〜&nbsp;&yen;[nearbyrateto]
+		<?php echo translateBuildingValue('avg_neighbor_fee', $building, $floor, $single_property_id);?>
 	</div>
 	</section>
 	<hr class="basic-hr">
@@ -359,6 +422,9 @@
 					<?php include get_template_directory() . '/lib/inc/template/single-property-floor-plan.php'; ?>
 				</section>
 				<?php }	?>
+				
+				<?php // List related building floors?>
+				<?php if ($query_floors_results->have_posts()) {?>
 				<section id="vacant-list">
 				<h3 class="section-title"><span><?php echo __('Vacancy info', 'realty')?></span></h3>
 				<table id="vacantfloors" class="basic-table-style has-border">
@@ -372,17 +438,32 @@
 					</tr>
 				</thead>
 				<tbody>
+					<?php while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+						global $post;
+						$related_property_id = get_the_ID();
+						$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+					?>
 					<tr>
-						<td class="td_floor">[Floor[floor_down]]<!--if Floor[floor_up] has value-->~[Floor[floor_up]]<!--end if--></td>
-						<td class="td_use">[Floor[type_of_use][]]</td>
-						<td class="td_area">[Floor[area_ping]]</td>
-						<td class="td_dateoccupancy">[Floor[move_date]]</td>
-						<td class="td_view"><a href="#" class="btn btn-primary btn-square btn-line-border"><?php echo __('view details', 'realty')?></a></td>
+						<td class="td_floor">
+							<?php echo translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id)?>
+						</td>
+						<td class="td_use">
+							<?php echo translateBuildingValue('type_of_use', $building, $related_floor, $related_property_id)?>
+						</td>
+						<td class="td_area">
+							<?php echo translateBuildingValue('area_ping', $building, $related_floor, $related_property_id)?>
+						</td>
+						<td class="td_dateoccupancy">
+							<?php echo translateBuildingValue('move_in_date', $building, $related_floor, $related_property_id)?>
+						</td>
+						<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><?php echo __('view details', 'realty')?></a></td>
 					</tr>
+					<?php endwhile;?>
 				</tbody>
 					
 				</table>
 				</section>
+				<?php }?>
 
 				<?php if ( $social_sharing ) { ?>
 					<section class="primary-tooltips"><?php echo tt_social_sharing(); ?></section>
@@ -414,8 +495,6 @@
 					 * Section: Map
 					 *
 					 */
-					$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
-
 					if ( ! tt_is_array_empty( $google_maps ) ) {
 						$address = $google_maps['address'];
 						if ( $google_maps['lat'] ) {

@@ -133,7 +133,7 @@
 										    	'hide_empty' => true
 										    ) );
 										    
-										    if (pll_current_language() == 'en')
+										    if (pll_current_language() == LANGUAGE_EN)
 										    	$otherLocation = get_term_by('name', 'Other', 'property-location');
 										    else
 										    	$otherLocation = get_term_by('name', 'その他', 'property-location');
@@ -142,12 +142,12 @@
 										    
 										    $location_tmp = $location;
 										    $searchCites = getSearchingCities();
-										    ksort($searchCites['en']);
-										    ksort($searchCites['ja']);
+										    ksort($searchCites[LANGUAGE_EN]);
+										    ksort($searchCites[LANGUAGE_JA]);
 										    
 										    foreach ($location_tmp as $location_index => $location_obj)
 										    {
-										    	if (!in_array($location_obj->name, $searchCites['en']) && !in_array($location_obj->name, $searchCites['ja']))
+										    	if (!in_array($location_obj->name, $searchCites[LANGUAGE_EN]) && !in_array($location_obj->name, $searchCites[LANGUAGE_JA]))
 										    	{
 										    		unset($location[$location_index]);
 										    	}
@@ -163,15 +163,15 @@
 											$location = array();
 											foreach ($location_tmp as $location_index => $location_obj)
 											{
-												if (($search_key = array_search($location_obj->name, $searchCites['en'])) !== false)
+												if (($search_key = array_search($location_obj->name, $searchCites[LANGUAGE_EN])) !== false)
 												{
 													$location[$search_key] = $location_obj;
-													$lang = 'en';
+													$lang = LANGUAGE_EN;
 												}
-												elseif (($search_key = array_search($location_obj->name, $searchCites['ja'])) !== false)
+												elseif (($search_key = array_search($location_obj->name, $searchCites[LANGUAGE_JA])) !== false)
 												{
 													$location[$search_key] = $location_obj;
-													$lang = 'ja';
+													$lang = LANGUAGE_JA;
 												}
 											}
 											
@@ -535,7 +535,7 @@
 
 								    <?php foreach ( $sizes as $key => $size ) : ?>
 								        <option value="<?php echo $key?>" <?php selected( $key, $get_location ); ?>>
-							            <?php echo $key; ?><?php echo pll_current_language() == 'en' ? trans_text('m2') : trans_text('tsubo') ;?>
+							            <?php echo $key; ?><?php echo pll_current_language() == LANGUAGE_EN ? AREA_M2 : trans_text('tsubo') ;?>
 								        </option>
 								    <?php endforeach; ?>
 									</select>
