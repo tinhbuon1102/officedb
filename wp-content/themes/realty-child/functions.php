@@ -561,6 +561,9 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 			
 		case 'floor_up_down' :
+			$floor['floor_down'] = str_replace(' ', '', $floor['floor_down']);
+			$floor['floor_up'] = str_replace(' ', '', $floor['floor_up']);
+			
 			if (!$floor['floor_down'] && !$floor['floor_up']){
 				return FIELD_MISSING_VALUE;
 			}
@@ -747,6 +750,31 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			$typeOfUse[] = $opt3Val;
 			return implode(' | ', $typeOfUse);
+			break;
+		case 'contract_period':
+			$return = '';
+			if(isset($floor['contract_period_opt']) && $floor['contract_period_opt'] != ""){
+				if($floor['contract_period_opt'] == 1){
+					$return .=  trans_text('通常');
+				}elseif($floor['contract_period_opt'] == 2){
+					$return .=  trans_text('定借');
+				}elseif($floor['contract_period_opt'] == 3){
+					$return .=  trans_text('定借希望');
+				}else{
+					$return .=  FIELD_MISSING_VALUE;
+				}
+			}else{
+				$return .=  FIELD_MISSING_VALUE;
+			}
+			
+			if(isset($floor['contract_period_optchk']) && $floor['contract_period_optchk'] == 1){
+				$return .=  trans_text('<br>年数相談');
+			}
+			
+			if(isset($floor['contract_period_duration']) && $floor['contract_period_duration'] != ''){
+				$return .=  '<br>'.$floor['contract_period_duration'] . ' ' .  trans_text('年');
+			}
+			return $return;
 			break;
 	}
 }

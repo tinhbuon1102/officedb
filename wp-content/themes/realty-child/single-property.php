@@ -274,8 +274,9 @@
 				<td>
 				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
 					<?php echo $building['construction_type_name'] ? $building['construction_type_name'] . ' / ' : ''?> 
-					<?php echo __('above ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-'?>&nbsp;
-					<?php echo __('below ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-'?></td>
+					<?php echo __('below ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-'?>
+					<?php echo FIELD_MISSING_VALUE. ' ' . __('above ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-'?>&nbsp;
+				</td>
 			</tr>
 			</tr>
 		</tbody>
@@ -317,7 +318,7 @@
 			</tr>
 			<tr>
 				<th><?php echo __('Contract period', 'realty')?></th>
-				<td>[Floor[total_deposit]]</td>
+				<td><?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Date of occupancy', 'realty')?></th>
