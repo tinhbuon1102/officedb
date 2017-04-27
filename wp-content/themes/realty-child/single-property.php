@@ -442,6 +442,10 @@
 					<?php while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
 						global $post;
 						$related_property_id = get_the_ID();
+						
+						// out if same as existing
+						if ($related_property_id == $single_property_id) continue;
+						
 						$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
 					?>
 					<tr>
