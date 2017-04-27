@@ -8,7 +8,7 @@ if ( ! function_exists( 'tt_realty_property_search_form' ) ) {
 
 		extract( shortcode_atts( array(
 			'search_form_columns' => 3,
-			//'search_results_columns' => 3
+			'search_type' => 'full',
 		), $atts ) );
 
 		if ( isset( $search_form_columns ) && !empty( $search_form_columns ) ) {
@@ -22,7 +22,11 @@ if ( ! function_exists( 'tt_realty_property_search_form' ) ) {
 		*/
 
 		ob_start();
-			include( locate_template( 'lib/inc/template/search-form.php' ) );
+			if ($search_type == 'full')
+				include( locate_template( 'lib/inc/template/search-form.php' ) );
+			else
+				include( locate_template( 'lib/inc/template/search-form-mini.php' ) );
+			
 		return ob_get_clean();
 
 	}

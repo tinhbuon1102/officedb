@@ -118,7 +118,7 @@
 								case 'estate_property_id' :
 								?>
 								<div class="<?php echo $columns; ?> form-group">
-									<input type="text" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo $search_labels[$i]; ?>" class="form-control" />
+									<input type="text" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo trans_text('Search keywords'); ?>" class="form-control" />
 								</div>
 								<?php
 								break;
