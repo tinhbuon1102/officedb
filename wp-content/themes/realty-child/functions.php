@@ -254,6 +254,57 @@ function get_image_id($image_url, $post_id) {
 	return $attachment;
 }
 
+add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
+function realty_posts_orderby_request( $orderby, &$query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
+	}
+
+	return $orderby;
+}
+
+
+add_filter('posts_fields', 'realty_posts_fields', 10, 2);
+function realty_posts_fields( $fields, $query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$fields = "$wpdb->posts.ID, wp_postmeta.meta_value  as price";
+	}
+	return $fields;
+}
+
+add_filter('post_limits_request', 'realty_post_limits_request', 10, 2);
+function realty_post_limits_request( $limits, &$query )
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+		$query->property_limit = $limits;
+		$limits = '';
+	}
+	return $limits;
+}
+
+
+add_filter( 'posts_request', 'realty_posts_request', 10 ,2 );
+function realty_posts_request ($request, $query)
+{
+	global $wpdb;
+	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing_request'] == 1)
+	{
+		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
+
+	}
+	elseif ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1)
+	{
+		$request = 'SELECT wp_posts.ID, price FROM wp_posts INNER JOIN ('. $request . ') as t ON wp_posts.ID = t.ID GROUP BY wp_posts.pinged ' . $query->property_limit;
+	}
+
+	return $request;
+}
+
 function buildSearchArgs($search_results_args){
 	if (isset($search_results_args['meta_query']))
 	{

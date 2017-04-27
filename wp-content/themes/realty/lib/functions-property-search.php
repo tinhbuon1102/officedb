@@ -52,7 +52,8 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			}
 
 			// Check If Key Has A Value
-			if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && $search_key != "order-by" && $search_key != "pagenumber" && $search_key != "pageid" && $search_key != "searchid" ) {
+			$aExcludeSearchKey = array('order-by', 'pagenumber', 'pageid', 'page_id', 'searchid');
+			if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && !in_array($search_key, $aExcludeSearchKey) ) {
 
 				// Search Form Mini
 				if ( isset ( $_GET['form'] ) && $_GET['form'] == "mini" ) {
