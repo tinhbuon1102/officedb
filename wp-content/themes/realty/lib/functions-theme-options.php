@@ -491,7 +491,7 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 				tt_ajax_search_results();
 			});
 
-			$('.property-search-form .input').keypress(function (e) {
+			jQuery('.property-search-form .input').keypress(function (e) {
 				if (e.which == 13) {
 					tt_ajax_search_results();
 				}

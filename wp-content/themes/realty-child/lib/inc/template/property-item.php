@@ -51,7 +51,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 
 <div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 
-	<a href="<?php echo get_permalink( $property_id ); ?>">
+	<a href="<?php echo get_permalink( $post ); ?>">
 		<figure class="property-thumbnail">
 			<?php
 				if ( has_post_thumbnail() ) {
@@ -86,7 +86,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 
 	<div class="property-content content">
 		<div class="property-title">
-			<a href="<?php echo get_permalink( $property_id ); ?>"><h3 class="title"><?php the_title(); ?></h3></a>
+			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php the_title(); ?></h3></a>
 		</div>
 		<?php if ( $realty_theme_option['property-listing-type'] != 'custom' ) { // Default Listing Fields ?>
 			<div class="property-meta custom-meta-list clearfix">

@@ -133,6 +133,13 @@
 										    	'hide_empty' => true
 										    ) );
 										    
+										    if (pll_current_language() == 'en')
+										    	$otherLocation = get_term_by('name', 'Other', 'property-location');
+										    else
+										    	$otherLocation = get_term_by('name', 'その他', 'property-location');
+										    
+										    $location[] = $otherLocation;
+										    
 										    $location_tmp = $location;
 										    $searchCites = getSearchingCities();
 										    ksort($searchCites['en']);

@@ -212,7 +212,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 								$aSizes = explode('-', $search_value); 
 								$meta_query[] = array(
 									'key' 			=> 'estate_property_size',
-									'value' 		=> array((float)$aSizes[0], (float)$aSizes[1]),
+									'value' 		=> array((float)($aSizes[0] ? $aSizes[0] : 1), (float)$aSizes[1]),
 									'type' 			=> 'NUMERIC',
 							    	'compare' 	=> 'BETWEEN'
 								);
@@ -266,6 +266,17 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 						case 'estate_property_location' :
 							if ( $search_value != "all" ) {  //&& strpos( $search_value, '/' ) !== true
+								foreach ($search_value as $location_slug)
+								{
+									if (in_array($location_slug, getOtherCities()))
+									{
+										// If location selected has "other", will get all properties has other location
+										// We have to must "$search_value" with other location (52 location)
+										$search_value += getNotSearchingCities('slug');
+										break;
+									}
+								}
+								
 								$tax_query[] = array(
 									'taxonomy' 	=> 'property-location',
 									'field' 		=> 'slug',

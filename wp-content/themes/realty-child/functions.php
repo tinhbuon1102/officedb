@@ -59,6 +59,7 @@ function getAvaileableStatuses(){
 	return array('For Rent' => '賃貸用', 'For Sale' => '販売用');
 }
 
+
 function getSearchingCities(){
 	$cities = array();
 	$cities['ja'] = array (
@@ -89,6 +90,32 @@ function getSearchingCities(){
 		11 => 'Other',
 	);
 	return $cities;
+}
+
+function getNotSearchingCities($get_by = false){
+	$citiesInvi = array();
+	$cities = getSearchingCities();
+	$cities = array_merge($cities['en'], $cities['ja']);
+	
+	$allCities = get_terms('property-location', array(
+		'orderby' => 'id',
+		'order' => 'ASC',
+		'parent' => 0,
+		'hide_empty' => false
+	));
+	
+	foreach ($allCities as $city)
+	{
+		if (!in_array($city->name, $cities))
+		{
+			$citiesInvi[$city->term_id] = $get_by ? $city->{$get_by} : $city;
+		}
+	}
+	return $citiesInvi;
+}
+
+function getOtherCities(){
+	return array('other', '%e3%81%9d%e3%81%ae%e4%bb%96');
 }
 
 function trans_text($text, $echo = true)
