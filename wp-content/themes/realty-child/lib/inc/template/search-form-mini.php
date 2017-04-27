@@ -111,6 +111,10 @@
 
 								case 'estate_search_by_keyword' :
 								case 'estate_property_id' :
+									if ($search_field == 'estate_search_by_keyword')
+									{
+										$search_labels[$i] = trans_text('Search keywords');
+									}
 								?>
 								<div class="<?php echo $columns; ?> form-group">
 									<input type="text" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo $search_labels[$i]; ?>" class="form-control" />
