@@ -128,6 +128,75 @@
 								break;
 
 								case 'estate_property_location' : ?>
+									<div class="<?php echo $columns; ?> form-group checkbox">
+									    <?php
+										    $location = get_terms('property-location', array(
+										    	'orderby' => 'id',
+										    	'order'	=> 'ASC',
+										    	'parent' => 0,
+										    	'hide_empty' => true
+										    ) );
+										    
+										    if (pll_current_language() == LANGUAGE_EN)
+										    	$otherLocation = get_term_by('name', 'Other', 'property-location');
+										    else
+										    	$otherLocation = get_term_by('name', 'その他', 'property-location');
+										    
+										    $location[] = $otherLocation;
+										    
+										    $location_tmp = $location;
+										    $searchCites = getSearchingCities();
+										    ksort($searchCites[LANGUAGE_EN]);
+										    ksort($searchCites[LANGUAGE_JA]);
+										    
+										    foreach ($location_tmp as $location_index => $location_obj)
+										    {
+										    	if (!in_array($location_obj->name, $searchCites[LANGUAGE_EN]) && !in_array($location_obj->name, $searchCites[LANGUAGE_JA]))
+										    	{
+										    		unset($location[$location_index]);
+										    	}
+										    }
+										    if ( isset( $_GET[$search_parameter] ) ) {
+												$get_location = $_GET[$search_parameter];
+											} else {
+												$get_location = null;
+											}
+											
+											// Sort
+											$location_tmp = $location;
+											$location = array();
+											foreach ($location_tmp as $location_index => $location_obj)
+											{
+												if (($search_key = array_search($location_obj->name, $searchCites[LANGUAGE_EN])) !== false)
+												{
+													$location[$search_key] = $location_obj;
+													$lang = LANGUAGE_EN;
+												}
+												elseif (($search_key = array_search($location_obj->name, $searchCites[LANGUAGE_JA])) !== false)
+												{
+													$location[$search_key] = $location_obj;
+													$lang = LANGUAGE_JA;
+												}
+											}
+											
+											ksort($location);
+											?>
+	
+										<div class="row">
+										    <?php foreach ( $location as $key => $location ) : ?>
+									    	<div class="check-field col-sm-6">
+												<input type="checkbox" name="<?php echo $search_parameter; ?>[<?php echo $location->term_id?>]" 
+												id="<?php echo $search_parameter.$key; ?>" class="<?php echo esc_attr( $form_select_class ); ?>" 
+												value="<?php echo $location->slug; ?>" <?php checked( $location->slug, $get_location ); ?>/>    
+												<label for="<?php echo $search_parameter.$key; ?>"><?php echo $location->name;?></label>
+											</div>
+										    <?php endforeach; ?>
+									    </div>
+									</div>
+									<?php
+									break;
+									
+								case 'estate_property_location123123' : ?>
 								<div class="<?php echo $columns; ?> form-group select">
 									<?php
 										// http://wordpress.stackexchange.com/questions/14652/how-to-show-a-hierarchical-terms-list#answer-14658
@@ -438,13 +507,45 @@
 
 								case 'estate_property_price_min' :
 								case 'estate_property_price_max' :
-								case 'estate_property_size' :
+								case 'estate_property_size1231' :
 								?>
 								<div class="<?php echo $columns; ?> form-group">
 									<input type="number" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter] ) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo $search_labels[$i]; ?>" min="0" class="form-control" />
 								</div>
 								<?php
 								break;
+								
+								case 'estate_property_size' :
+									?>
+									<div class="<?php echo $columns; ?> form-group select">
+										<?php
+											if ( ! empty( $search_labels[$i] ) ) {
+												$search_label_size = $search_labels[$i];
+											} else {
+												$search_label_size = esc_html__( 'Any Size', 'realty' );
+											}
+										?>
+										<select name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" class="<?php echo esc_attr( $form_select_class ); ?>">
+											<option value="all"><?php echo $search_label_size; ?></option>
+									    <?php
+										    $sizes = getSearchingSizes();
+		
+										    if ( isset( $_GET[$search_parameter] ) ) {
+													$get_location = $_GET[$search_parameter];
+												} else {
+													$get_location = null;
+												}
+											?>
+		
+									    <?php foreach ( $sizes as $key => $size ) : ?>
+									        <option value="<?php echo $key?>" <?php selected( $key, $get_location ); ?>>
+								            <?php echo $key; ?><?php echo pll_current_language() == LANGUAGE_EN ? AREA_M2 : trans_text('tsubo') ;?>
+									        </option>
+									    <?php endforeach; ?>
+										</select>
+									</div>
+									<?php
+									break;
 
 								// Dropdown options from 0 to 10
 								case 'estate_property_rooms' :
