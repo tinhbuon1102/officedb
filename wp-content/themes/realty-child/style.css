@@ -836,3 +836,5 @@ ul.latest-news-list li:nth-child(3) .inner:before {
     font-weight: 500;
 	margin-bottom: 10px;
 }
+
+.icon-hot-topic {display: none}
