@@ -26,6 +26,8 @@ if ( ! tt_is_array_empty( $google_maps ) ) {
 
 $size = get_post_meta( $property_id, 'estate_property_size', true );
 $size_unit = get_post_meta( $property_id, 'estate_property_size_unit', true );
+$size_unit = ($size_unit == 'm2' ? AREA_M2 : $size_unit);
+
 if ( ! empty( $size ) ) {
 	$size_meta = get_field_object( 'estate_property_size', $property_id );
 	if ( ! empty( $size_meta['label'] ) ) {

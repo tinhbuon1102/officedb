@@ -103,6 +103,9 @@
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
 		
+		// Get PDF
+		$pdfUrl = getBuildingPDF($building_id);
+		
 		// Get list same building
 		$buildingArgs = array(
 			'post_type' => 'property',
@@ -479,15 +482,18 @@
 	<!-- section action buttons -->
 		<section id="acbuttons">
 			<div class="contact-argent">
-			<a href="#" class="btn btn-primary btn-square btn-lg"><?php echo __('Contact Argent', 'realty')?></a>
+				<a href="#" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><?php echo __('Contact Argent', 'realty')?></a>
 			</div>
 			<div class="buttons-group row">
+			<?php if ( !is_user_logged_in() ) { ?>
 			<div class="col-sm-6">
-			<a href="#" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
+			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
 			</div>
+			<?php }?>
+			
 			<div class="col-sm-6">
 			<?php if ( is_user_logged_in() ) : ?>
-			<a href="#" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
+			<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 			<?php else : ?>
 			<a class="btn btn-primary btn-square btn-line-border disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 			<?php endif; ?>
