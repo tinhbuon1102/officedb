@@ -15,13 +15,25 @@
 		// Get Floor info
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		
 	}
+	
+	$buildingFloorPictures = getBuildingFloorPictures($building, $floor);
+	if ( has_post_thumbnail( $single_property_id ) ) {
+		$thumbnail_id = get_post_thumbnail_id($single_property_id);
+		$thumbnail_url_array = wp_get_attachment_image_src($thumbnail_id, $property_image_width, true);
+		$thumbnail_url = $thumbnail_url_array[0];
+		array_unshift($buildingFloorPictures, $thumbnail_url);
+	}
+	
+	
+	
 ?>
 
 <div class="<?php echo esc_attr( $classes_property_image_container ); ?>">
 	<div class="hide-initially" id="<?php echo esc_attr( $image_slider_id ); ?>">
 
-		<?php if ( ! tt_is_array_empty( $property_images ) ) { // Gallery Images ?>
+		<?php if ( ! tt_is_array_empty( $property_images ) || !empty($buildingFloorPictures)) { // Gallery Images ?>
 
 			<?php
 				$args = array(
@@ -64,6 +76,10 @@
 
 				<?php $i++; ?>
 
+			<?php }	?>
+			
+			<?php foreach ( $buildingFloorPictures as $attachment_url ) { ?>
+					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#"></div>
 			<?php }	?>
 
 		<?php } else { // Featured Image Only ?>

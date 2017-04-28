@@ -830,3 +830,82 @@ function renderPropertyPrice($property_id, $building, $floor)
 	}
 	return $price . '/' . trans_text('month');
 }
+
+function getBuildingFloorPicUrl($type_images, $type) {
+	$image_types = array(
+		'building_front' => '/buildingPictures/front/',
+		'building_entrance' => '/buildingPictures/entrance/',
+		'building_infront' => '/buildingPictures/inFront/',
+		
+		'floor_bathroom' => '/floorPictures/bathroom/',
+		'floor_indoor' => '/floorPictures/indoor/',
+		'floor_kitchen' => '/floorPictures/kitchen/',
+		'floor_other' => '/floorPictures/other/',
+		'floor_prospect' => '/floorPictures/prospect/',
+		'floor_tenant' => '/floorPictures/tenant/',
+		
+		'plan' => '/planPictures/',
+	);
+	
+	$images = array();
+	foreach ($type_images as $image)
+	{
+		$image_path = OFFICE_DB_FOLDER_PATH . $image_types[$type] . $image;
+		if (file_exists($image_path))
+		{
+			$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;
+			$images[] = $image_url;
+		}
+	}
+	return $images;
+}
+function getBuildingFloorPictures($building, $floor){
+	global $wpdb;
+	$building_id = $building['building_id'];
+	$floor_id = $floor['floor_id'];
+	// Get gallery from building and floor
+	$buildingPictureRow = $wpdb->get_row("SELECT * FROM building_pictures WHERE building_id=".(int)$building_id);
+	$all_images = array();
+	if ($buildingPictureRow)
+	{
+		$front_images = explode(',' , $buildingPictureRow->front_images);
+		$entrance_images = explode(',' , $buildingPictureRow->entrance_images);
+		$in_front_images = explode(',' , $buildingPictureRow->in_front_building_images);
+		
+		// get image urls
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($entrance_images, 'building_entrance'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($in_front_images, 'building_infront'));
+	}
+	
+	$floorPictureRow = $wpdb->get_row("SELECT * FROM floor_pictures WHERE floor_id=".(int)$floor_id . " AND building_id=".(int)$building_id);
+	if ($floorPictureRow)
+	{
+		$indoor_images = explode(',', $floorPictureRow->indoor_image);
+		$kitchen_images = explode(',', $floorPictureRow->kitchen_image);
+		$bathroom_images = explode(',', $floorPictureRow->bathroom_image);
+		$prospect_images = explode(',', $floorPictureRow->prospect_image);
+		$other_images = explode(',', $floorPictureRow->other_image);
+		$tenant_list_images = explode(',', $floorPictureRow->tenant_list_image);
+		
+		// get image urls
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($indoor_images, 'floor_indoor'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($kitchen_images, 'floor_kitchen'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($bathroom_images, 'floor_bathroom'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($prospect_images, 'floor_prospect'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($other_images, 'floor_other'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($tenant_list_images, 'floor_tenant'));
+	}
+	$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id);
+	if (!empty($planPictureResults))
+	{
+		$plan_images = array();
+		foreach ($planPictureResults as $planPictureResult)
+		{
+			$plan_images[] = $planPictureResult->name;
+		}
+		
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
+	}
+	return $all_images;
+}
