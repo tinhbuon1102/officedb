@@ -881,9 +881,9 @@ function getBuildingFloorPictures($building, $floor){
 		$in_front_images = array_filter(explode(',' , $buildingPictureRow->in_front_building_images), 'realty_array_filter');
 		
 		// get image urls
-		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($entrance_images, 'building_entrance'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($in_front_images, 'building_infront'));
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
 	}
 	
 	$floorPictureRow = $wpdb->get_row("SELECT * FROM floor_pictures WHERE floor_id=".(int)$floor_id . " AND building_id=".(int)$building_id);
