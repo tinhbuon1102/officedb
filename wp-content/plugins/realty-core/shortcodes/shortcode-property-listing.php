@@ -256,6 +256,7 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 
 				<?php wp_reset_query(); ?>
 
+				<?php if (!is_home()) {?>
 				<div id="pagination">
 					<?php
 						// Built Property Pagination
@@ -276,6 +277,7 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 						) );
 					?>
 				</div>
+				<?php }?>
 
 			<?php else : ?>
 
