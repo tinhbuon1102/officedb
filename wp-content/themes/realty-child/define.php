@@ -1,6 +1,4 @@
 <?php
-define('OFFICE_DB_SITE_URL', 'http://office-jpdb.com');
-
 define('BUILDING_TYPE', 'jpdb_building_id');
 define('FLOOR_TYPE', 'jpdb_floor_id');
 define('BUILDING_TYPE_CONTENT', 'jpdb_building_content');
