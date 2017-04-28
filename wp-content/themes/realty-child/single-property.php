@@ -426,7 +426,7 @@
 				<?php }	?>
 				
 				<?php // List related building floors?>
-				<?php if ($query_floors_results->have_posts()) {?>
+				<?php if ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) {?>
 				<section id="vacant-list">
 				<h3 class="section-title"><span><?php echo __('Vacancy info', 'realty')?></span></h3>
 				<table id="vacantfloors" class="basic-table-style has-border">
