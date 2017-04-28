@@ -327,7 +327,6 @@ if ( ! function_exists( 'tt_map' ) ) {
 								<li id="map-type-terrain-<?php echo $random; ?>" class="map-type"><?php esc_html_e( 'Terrain', 'realty' ); ?></li>
 							</ul>
 						</a></li>
-						<li><a href="#" id="current-location-<?php echo $random; ?>" class="control"><i class="icon-crosshair"></i> <?php esc_html_e( 'My Location', 'realty' ); ?></a></li>
 					</ul>
 				<?php } ?>
 
