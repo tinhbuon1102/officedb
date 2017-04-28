@@ -165,7 +165,7 @@
 	<?php //} ?>
 	<div class="head-single">
 	<div class="row">
-	<div class="col-sm-7 col-md-10">
+	<div class="col-sm-7 col-md-9">
 	<h1 class="bld-title">
 	<span><?php echo get_the_title( $single_property_id ); ?></span>
 	<?php if ( $property_status_update ) { ?>
@@ -184,12 +184,9 @@
 				?>
 
 	      <?php if ( ! empty ( $estate_property_id ) ) { ?>
-					<div class="col-sm-5 col-md-2 contact-id">
+					<div class="col-sm-5 col-md-3 contact-id">
 					<div class="property-meta id-meta">
-						<div class="meta-title"><?php esc_html_e( 'Property ID', 'realty' ); ?>:</div>
-						<div class="meta-data" title="<?php esc_html_e( 'Property ID', 'realty' ); ?>">
-							<?php echo $estate_property_id; ?>
-						</div>
+						<div class="meta-title"><?php echo $current_language == LANGUAGE_EN ? $building['name'] : $building['name_en']; ?>: <?php echo $floor['floorId']?></div>
 					</div>
 					</div>
 			  <?php } ?>

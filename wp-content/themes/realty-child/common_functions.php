@@ -384,6 +384,11 @@ function buildSearchArgs($search_results_args){
 			}
 		}
 	}
+	
+	if (isset($search_results_args['is_single']) && $search_results_args['is_single'])
+	{
+		return $search_results_args;
+	}
 
 	$custom_query_args_group['post_type'] = 'property';
 	$custom_query_args_group['posts_per_page'] = -1;

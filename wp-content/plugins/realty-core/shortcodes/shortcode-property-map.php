@@ -49,6 +49,7 @@ if ( ! function_exists( 'tt_map' ) ) {
 		// For use in single-property.php map section
 		if ( $single_property_id ) {
 			$query_properties_args['post__in'] = array( $single_property_id );
+			$query_properties_args['is_single'] = true;
 			$zoomlevel = '13';
 		}
 

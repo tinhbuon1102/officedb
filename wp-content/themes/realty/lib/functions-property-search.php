@@ -484,7 +484,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 		
 		$size_key = array_search('estate_property_size', $searching_fields);
-		if ((!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size'))) && ($size_key === false || !$_GET['$size_key']) )
+		if ((!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size'))) && ($size_key === false || !$_GET[$size_key]) )
 		{
 			$search_results_args = buildSearchArgs($search_results_args);
 		}
