@@ -1,13 +1,7 @@
 <?php 
 if (!isset($buildingFloorPictures))
 {
-	$buildingFloorPictures = getBuildingFloorPictures($building, $floor);
-	if ( has_post_thumbnail( $single_property_id ) ) {
-		$thumbnail_id = get_post_thumbnail_id($single_property_id);
-		$thumbnail_url_array = wp_get_attachment_image_src($thumbnail_id, $property_image_width, true);
-		$thumbnail_url = $thumbnail_url_array[0];
-		array_unshift($buildingFloorPictures, $thumbnail_url);
-	}
+	$buildingFloorPictures = getBuildingFloorPictures($building, $floor, $single_property_id);
 }
 
 if ( $property_images || ( $property_video_provider && $property_video_id && has_post_thumbnail() ) || !empty($buildingFloorPictures)) { ?>

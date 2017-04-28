@@ -862,28 +862,36 @@ function getBuildingFloorPicUrl($type_images, $type) {
 
 function realty_array_filter($string) {
 	global $main_image;
-	return strpos($string, $main_image) === false;
+	return in_array($string, $main_image) === false;
 }
 
-function getBuildingFloorPictures($building, $floor){
+function getBuildingFloorPictures($building, $floor, $property_id){
 	global $wpdb, $main_image;
 	$building_id = $building['building_id'];
 	$floor_id = $floor['floor_id'];
+	
+	if ( has_post_thumbnail( $property_id ) ) {
+		$thumbnail_id = get_post_thumbnail_id($property_id);
+		$thumbnail_url_array = wp_get_attachment_image_src($thumbnail_id, $property_image_width, true);
+		$thumbnail_url = $thumbnail_url_array[0];
+	}
+	
 	// Get gallery from building and floor
 	$buildingPictureRow = $wpdb->get_row("SELECT * FROM building_pictures WHERE building_id=".(int)$building_id);
 	$all_images = array();
 	if ($buildingPictureRow)
 	{
-		$main_image = $buildingPictureRow->main_image;
+		$thumbnail_name = basename($thumbnail_url);
+		$main_image = array($buildingPictureRow->main_image, substr($thumbnail_name, strlen($building['building_id'])));
 		
 		$front_images = array_filter(explode(',' , $buildingPictureRow->front_images), 'realty_array_filter');
 		$entrance_images = array_filter(explode(',' , $buildingPictureRow->entrance_images), 'realty_array_filter');
 		$in_front_images = array_filter(explode(',' , $buildingPictureRow->in_front_building_images), 'realty_array_filter');
 		
 		// get image urls
+		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($entrance_images, 'building_entrance'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($in_front_images, 'building_infront'));
-		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
 	}
 	
 	$floorPictureRow = $wpdb->get_row("SELECT * FROM floor_pictures WHERE floor_id=".(int)$floor_id . " AND building_id=".(int)$building_id);
@@ -914,6 +922,11 @@ function getBuildingFloorPictures($building, $floor){
 		}
 		
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
+	}
+	
+	if ($thumbnail_url)
+	{
+		array_unshift($all_images, $thumbnail_url);
 	}
 	return $all_images;
 }
