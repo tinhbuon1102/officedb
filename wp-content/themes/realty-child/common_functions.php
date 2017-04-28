@@ -781,3 +781,12 @@ function getBuildingPDF($building_id)
 	}
 	return $pdfUrl;
 }
+
+function getListBestPropertyViewed() {
+	$query_args['post_type'] = 'property';
+	$query_args['posts_per_page'] = 3;
+	$query_args['order'] = 'DESC';
+	$query_args['meta_key'] = 'estate_property_views_count';
+	$query_args['orderby'] = 'meta_value_num';
+	return new WP_Query( $query_args );
+}

@@ -1,5 +1,6 @@
 <?php
 	global $realty_theme_option, $wp_query;
+	$aListBestPropertyViewed = getListBestPropertyViewed();
 ?>
 
 <form class="property-search-form border-box" action="<?php if ( tt_page_id_template_search() ) { echo get_permalink( tt_page_id_template_search() ); } ?>">
@@ -840,3 +841,22 @@
 	<?php wp_reset_query(); ?>
 
 </form>
+
+<h2><?php echo trans_text('Best Viewed Property')?></h2>
+<div id="viewed_property_box" class="property-search-form border-box">
+	<?php if ($aListBestPropertyViewed->have_posts()) {?>
+	<?php $count_results = $aListBestPropertyViewed->found_posts; ?>
+	<ul class="row list-unstyled">
+		<?php $property_counter = 0; // Required for map marker sync ?>
+		<?php while ( $aListBestPropertyViewed->have_posts() ) : $aListBestPropertyViewed->the_post(); ?>
+			<li class="col-lg-12">
+				<?php
+					$property_id = get_the_id();
+					include( locate_template( 'lib/inc/template/property-item-custom.php' ) );
+					$property_counter++;
+				?>
+			</li>
+		<?php endwhile; ?>
+	</ul>
+	<?php }?>
+</div>
