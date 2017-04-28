@@ -795,3 +795,13 @@ function getListBestPropertyViewed() {
 	$query_args['orderby'] = 'meta_value_num';
 	return new WP_Query( $query_args );
 }
+
+function renderPropertyPrice($property_id, $building, $floor)
+{
+	$price = tt_property_price( $property_id );
+	if (!$price)
+	{
+		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
+	}
+	return $price;
+}

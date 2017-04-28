@@ -42,6 +42,7 @@
 		$property_video_provider = get_post_meta( $single_property_id, 'estate_property_video_provider', true );
 		$property_video_id = get_post_meta( $single_property_id, 'estate_property_video_id', true );
 		$property_images = get_post_meta( $single_property_id, 'estate_property_gallery', true );
+		
 		$featured = get_post_meta( $single_property_id, 'estate_property_featured', true );
 		$property_id = get_post_meta( $single_property_id, 'estate_property_id', true );
 

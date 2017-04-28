@@ -37,6 +37,15 @@ if ( ! empty( $size ) ) {
 	}
 }
 
+// Get building info
+$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+$building = get_post_meta($property_id, BUILDING_TYPE_CONTENT, true);
+
+// Get Floor info
+$floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
+$floor = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
+
+
 $classes = array();
 $classes[] = 'property-item';
 $classes[] = 'border-box';
@@ -172,7 +181,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 		<div class="property-price">
 
 			<div class="price-tag">
-				<?php echo tt_property_price( $property_id ); ?>
+				<?php echo renderPropertyPrice($property_id, $building, $floor) ?>
 			</div>
 
 			<div class="property-icons">
