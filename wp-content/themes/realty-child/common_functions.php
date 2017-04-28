@@ -798,10 +798,10 @@ function getListBestPropertyViewed() {
 
 function renderPropertyPrice($property_id, $building, $floor)
 {
-	$price = tt_property_price( $property_id ) . '/' . trans_text('month');
+	$price = tt_property_price( $property_id );
 	if (!$price)
 	{
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
-	return $price;
+	return $price . '/' . trans_text('month');
 }
