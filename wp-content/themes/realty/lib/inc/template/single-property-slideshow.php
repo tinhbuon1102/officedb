@@ -36,6 +36,7 @@
 		<?php if ( ! tt_is_array_empty( $property_images ) || !empty($buildingFloorPictures)) { // Gallery Images ?>
 
 			<?php
+			if (! tt_is_array_empty( $property_images )) {
 				$args = array(
 					'post_type' => 'attachment',
 					'orderby' => 'post__in',
@@ -46,41 +47,45 @@
 				$gallery_array = get_posts( $args );
 				$main_images = wp_get_attachment_image_src( $gallery_array[0]->ID, $property_image_width );
 				$main_images_url = $main_images[0];
-			?>
-
-			<?php foreach ( $gallery_array as $slide ) { ?>
-
-				<?php
-					$attachment = wp_get_attachment_image_src( $slide->ID, $property_image_width );
-					$attachment_url = $attachment[0];
 				?>
-
-				<?php if ( $realty_theme_option['property-image-height'] != 'original' ) { ?>
-					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#"></div>
-				<?php } ?>
-
-				<?php if ( $realty_theme_option['property-image-height'] == "original" ) { ?>
+	
+				<?php foreach ( $gallery_array as $slide ) { ?>
+	
 					<?php
-						$thumbnail_attr = array(
-							'class' => 'property-image',
-							'title' => wp_get_attachment_meta_data_title(),
-							'data-image' => wp_get_attachment_url( $slide->ID ),
-							'data-title' => wp_get_attachment_meta_data_title(),
-							'data-mfp-src' => wp_get_attachment_url( $slide->ID ),
-							'data-src' => wp_get_attachment_url( $slide->ID ),
-							'data-hash' => 'slide'. $i,
-						);
-						echo wp_get_attachment_image( $slide->ID, $property_image_width, false, $thumbnail_attr );
+						$attachment = wp_get_attachment_image_src( $slide->ID, $property_image_width );
+						$attachment_url = $attachment[0];
 					?>
-				<?php } ?>
-
-				<?php $i++; ?>
-
-			<?php }	?>
+	
+					<?php if ( $realty_theme_option['property-image-height'] != 'original' ) { ?>
+						<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#"></div>
+					<?php } ?>
+	
+					<?php if ( $realty_theme_option['property-image-height'] == "original" ) { ?>
+						<?php
+							$thumbnail_attr = array(
+								'class' => 'property-image',
+								'title' => wp_get_attachment_meta_data_title(),
+								'data-image' => wp_get_attachment_url( $slide->ID ),
+								'data-title' => wp_get_attachment_meta_data_title(),
+								'data-mfp-src' => wp_get_attachment_url( $slide->ID ),
+								'data-src' => wp_get_attachment_url( $slide->ID ),
+								'data-hash' => 'slide'. $i,
+							);
+							echo wp_get_attachment_image( $slide->ID, $property_image_width, false, $thumbnail_attr );
+						?>
+					<?php } ?>
+	
+					<?php $i++; ?>
+	
+				<?php }	?>
+			<?php }?>
 			
-			<?php foreach ( $buildingFloorPictures as $attachment_url ) { ?>
+			<?php 
+			if (!empty($buildingFloorPictures)) {
+				foreach ( $buildingFloorPictures as $attachment_url ) { ?>
 					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#"></div>
-			<?php }	?>
+				<?php }	
+			}?>
 
 		<?php } else { // Featured Image Only ?>
 

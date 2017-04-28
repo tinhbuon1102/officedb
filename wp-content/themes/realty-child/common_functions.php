@@ -859,8 +859,14 @@ function getBuildingFloorPicUrl($type_images, $type) {
 	}
 	return $images;
 }
+
+function realty_array_filter($string) {
+	global $main_image;
+	return strpos($string, $main_image) === false;
+}
+
 function getBuildingFloorPictures($building, $floor){
-	global $wpdb;
+	global $wpdb, $main_image;
 	$building_id = $building['building_id'];
 	$floor_id = $floor['floor_id'];
 	// Get gallery from building and floor
@@ -868,9 +874,11 @@ function getBuildingFloorPictures($building, $floor){
 	$all_images = array();
 	if ($buildingPictureRow)
 	{
-		$front_images = explode(',' , $buildingPictureRow->front_images);
-		$entrance_images = explode(',' , $buildingPictureRow->entrance_images);
-		$in_front_images = explode(',' , $buildingPictureRow->in_front_building_images);
+		$main_image = $buildingPictureRow->main_image;
+		
+		$front_images = array_filter(explode(',' , $buildingPictureRow->front_images), 'realty_array_filter');
+		$entrance_images = array_filter(explode(',' , $buildingPictureRow->entrance_images), 'realty_array_filter');
+		$in_front_images = array_filter(explode(',' , $buildingPictureRow->in_front_building_images), 'realty_array_filter');
 		
 		// get image urls
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));

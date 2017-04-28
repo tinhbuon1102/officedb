@@ -14,16 +14,20 @@ if ( $property_images || ( $property_video_provider && $property_video_id && has
 	<div id="property-thumbnails">
 		<?php
 			if ( $property_images || !empty($buildingFloorPictures)) {
-				// Gallery Images
-				foreach ( $gallery_array as $slide ) {
-					$attachment = wp_get_attachment_image_src( $slide->ID, 'property-thumb' );
-					$attachment_url = $attachment[0];
-					echo '<div><a href="#"><img src="' . $attachment_url . '" alt="" /></a></div>';
+				if ($property_images) {
+					// Gallery Images
+					foreach ( $gallery_array as $slide ) {
+						$attachment = wp_get_attachment_image_src( $slide->ID, 'property-thumb' );
+						$attachment_url = $attachment[0];
+						echo '<div><a href="#"><img src="' . $attachment_url . '" alt="" /></a></div>';
+					}
 				}
 				
-				// Gallery Images
-				foreach ( $buildingFloorPictures as $image_url ) {
-					echo '<div><a href="#"><img src="' . $image_url . '" alt="" /></a></div>';
+				if (!empty($buildingFloorPictures)) {
+					// Gallery Images
+					foreach ( $buildingFloorPictures as $image_url ) {
+						echo '<div><a href="#"><img src="' . $image_url . '" alt="" /></a></div>';
+					}
 				}
 			} else {
 				// Featured Image Only
