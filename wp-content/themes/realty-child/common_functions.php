@@ -851,7 +851,7 @@ function getBuildingFloorPicUrl($type_images, $type) {
 	foreach ($type_images as $image)
 	{
 		$image_path = OFFICE_DB_FOLDER_PATH . $image_types[$type] . $image;
-		if (file_exists($image_path))
+		if (file_exists($image_path) && is_file(file_exists($image_path)))
 		{
 			$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;
 			$images[] = $image_url;
