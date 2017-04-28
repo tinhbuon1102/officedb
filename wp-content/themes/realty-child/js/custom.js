@@ -7,11 +7,17 @@ jQuery(document).ready(function($){
 	$('.main-slider .property-search-form').wrap('<div class="slider-searchbox"><div class="container"></div></div>');
 	$('a img').hover(function(){
         $(this).attr('src', $(this).attr('src').replace('_off', '_on'));
-		$(this).attr('srcset', $(this).attr('srcset').replace('_off', '_on'));
-          }, function(){
-             if (!$(this).hasClass('currentPage')) {
-             $(this).attr('src', $(this).attr('src').replace('_on', '_off'));
-			 $(this).attr('srcset', $(this).attr('srcset').replace('_on', '_off'));
+        if ($(this).attr('srcset'))
+        {
+        	$(this).attr('srcset', $(this).attr('srcset').replace('_off', '_on'));
+        }
+    }, function(){
+    	if (!$(this).hasClass('currentPage')) {
+    		$(this).attr('src', $(this).attr('src').replace('_on', '_off'));
+    		if ($(this).attr('srcset'))
+    		{
+    			$(this).attr('srcset', $(this).attr('srcset').replace('_on', '_off'));
+    		}
         }
 	});
 	$(window).scroll(function() {
