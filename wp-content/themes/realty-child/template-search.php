@@ -71,7 +71,8 @@ jQuery(window).load(function() {
 
 						<?php wp_reset_query(); ?>
 
-						<?php if (!is_home()) {?>
+						<?php 
+						if (!is_front_page()) {?>
 						<div id="pagination">
 							<?php
 								// Built Property Pagination
