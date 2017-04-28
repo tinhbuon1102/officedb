@@ -187,7 +187,7 @@
 	      <?php if ( ! empty ( $estate_property_id ) ) { ?>
 					<div class="col-sm-5 col-md-3 contact-id">
 					<div class="property-meta id-meta">
-						<div class="meta-title"><?php echo $current_language == LANGUAGE_EN ? $building['name'] : $building['name_en']; ?>: <?php echo $floor['floorId']?></div>
+						<div class="meta-title"><?php echo $current_language == LANGUAGE_EN ? $building['name'] : ($building['name_en'] ? $building['name_en'] : $building['name']); ?>: <?php echo $floor['floorId']?></div>
 					</div>
 					</div>
 			  <?php } ?>
