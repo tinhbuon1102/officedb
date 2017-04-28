@@ -531,9 +531,34 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				return FIELD_MISSING_VALUE;
 			}
 			else{
-				$return = $floor['floor_down'] ? sprintf(trans_text('Floor Down: %s'), $floor['floor_down']) : '';
-				$return .= $floor['floor_up'] ? FIELD_MISSING_VALUE . sprintf(trans_text('Floor Up: %s'), $floor['floor_up']) : FIELD_MISSING_VALUE;
-				return $return;
+				if ($floor['floor_down'] != '')
+				{
+					$floor_down = abs($floor['floor_down']);
+					if (strpos($floor['floor_down'], '-') !== false)
+					{
+						// underground
+						$floor_down = $current_lang == LANGUAGE_EN ? 'B' . $floor_down : '地下'.$floor_down.'階';
+					}
+					else {
+						$floor_down = $current_lang == LANGUAGE_EN ? $floor_down . 'F' : $floor_down.'階';
+					}
+					$floorLevel[] = $floor_down;
+				}
+				if ($floor['floor_up'] != '')
+				{
+					$floor_up = abs($floor['floor_up']);
+					if (strpos($floor['floor_up'], '-') !== false)
+					{
+						// underground
+						$floor_up = $current_lang == LANGUAGE_EN ? 'B' . $floor_up : '地下'.$floor_up.'階';
+					}
+					else {
+						$floor_up = $current_lang == LANGUAGE_EN ? $floor_up . 'F' : $floor_up.'階';
+					}
+					$floorLevel[] = $floor_up;
+				}
+				
+				return implode(FIELD_MISSING_VALUE, $floorLevel);
 			}
 			break;
 				
