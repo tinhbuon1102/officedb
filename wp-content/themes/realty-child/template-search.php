@@ -71,6 +71,7 @@ jQuery(window).load(function() {
 
 						<?php wp_reset_query(); ?>
 
+						<?php if (!is_home()) {?>
 						<div id="pagination">
 							<?php
 								// Built Property Pagination
@@ -89,6 +90,7 @@ jQuery(window).load(function() {
 								) );
 							?>
 						</div>
+						<?php }?>
 
 					<?php else : ?>
 						<p class="lead text-center text-muted"><?php _e( 'No Properties Match Your Search Criteria.', 'realty' ); ?></p>
