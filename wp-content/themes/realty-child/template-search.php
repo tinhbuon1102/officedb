@@ -44,15 +44,11 @@ jQuery(window).load(function() {
 		</div>
 
 		<div class="col-sm-8 map-container">
+			<div id="property-search-results" data-view="<?php if ( isset( $listing_view ) ) { echo $listing_view; } else { echo 'grid-view'; } ?>">
+				<div class="property-items show-compare">
 			<?php if ( $query_search_results->have_posts() ) : ?>
 				<?php $count_results = $query_search_results->found_posts; ?>
-
-				
-
 				<?php // echo tt_property_listing_sorting_and_view( 'date-low', 'grid-view', false ); xxx-dont-show-because-list-view-overflow-ugly ?>
-
-				<div id="property-search-results" data-view="<?php if ( isset( $listing_view ) ) { echo $listing_view; } else { echo 'grid-view'; } ?>">
-					<div class="property-items show-compare">
 
 						<?php get_template_part( 'lib/inc/template/property', 'comparison' ); ?>
 

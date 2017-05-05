@@ -412,7 +412,7 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 
 				priceSlider.noUiSlider.on('change', function( values, handle ) {
 
-					loader();
+// 					loader();
 
 					priceValues[handle].innerHTML = values[handle];
 					var min_price = priceFormat.from( values[0] );
@@ -430,6 +430,8 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 			var searching_xhr;
 			// AJAX
 			function tt_ajax_search_results() {
+				loader();
+				
 				if (searching_xhr)
 				{
 					searching_xhr.abort();
@@ -484,23 +486,27 @@ if ( ! function_exists( 'tt_scripts' ) ) {
 
 			// Fire Search Results Ajax On Search Field Change (Exclude Datepicker)
 			jQuery('.property-search-form select, .property-search-form input').not('.datepicker').on('change',function() {
-				loader();
+				//loader();
 				if ( jQuery('.google-map').length > 0 ) {
 					removeMarkers();
 				}
-				tt_ajax_search_results();
+				//tt_ajax_search_results();
+			});
+
+			jQuery('#submit_search_form.ajax-submit').click(function (e) {
+				//tt_ajax_search_results();
 			});
 
 			jQuery('.property-search-form .input').keypress(function (e) {
 				if (e.which == 13) {
-					tt_ajax_search_results();
+					jQuery('.property-search-form .input').submit();
 				}
 			});
 							
 
 			// Fire Search Results Ajax On Search Field "Datepicker" Change
 			jQuery('.property-search-form input.datepicker').on('changeDate', function() {
-				loader();
+				//loader();
 				if ( jQuery('.google-map').length > 0 ) {
 					removeMarkers();
 				}
