@@ -132,7 +132,7 @@
 											$search_label_location = esc_html__( 'Any Location', 'realty' );
 										}
 									?>
-									<select name="<?php echo $search_parameter; ?>[<?php echo $location->term_id?>]" id="<?php echo $search_parameter; ?>" class="<?php echo esc_attr( $form_select_class ); ?>">
+									<select name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" class="<?php echo esc_attr( $form_select_class ); ?>">
 										<option value="all"><?php echo $search_label_location; ?></option>
 								    <?php
 								    $location = get_terms('property-location', array(
@@ -187,7 +187,9 @@
 								    		ksort($location);
 										?>
 
-								    <?php foreach ( $location as $key => $location ) : ?>
+							    <?php 
+							    $locations = $location;
+							    foreach ( $locations as $key => $location ) : ?>
 						        <option value="<?php echo $location->slug; ?>" <?php selected( $location->slug, $get_location ); ?>>
 					            <?php
 						            echo $location->name;

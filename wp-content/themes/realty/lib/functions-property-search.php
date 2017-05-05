@@ -266,6 +266,8 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 						case 'estate_property_location' :
 							if ( $search_value != "all" ) {  //&& strpos( $search_value, '/' ) !== true
+								$search_value = (array)$search_value;
+								
 								foreach ($search_value as $location_slug)
 								{
 									if (in_array($location_slug, getOtherCities()))

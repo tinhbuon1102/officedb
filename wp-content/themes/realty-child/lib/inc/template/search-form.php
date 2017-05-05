@@ -180,14 +180,15 @@
 											}
 											
 											ksort($location);
+											$locations = $location;
 											?>
 	
 										<div class="row">
-										    <?php foreach ( $location as $key => $location ) : ?>
+										    <?php foreach ( $locations as $key => $location ) : ?>
 									    	<div class="check-field col-sm-6">
 												<input type="checkbox" name="<?php echo $search_parameter; ?>[<?php echo $location->term_id?>]" 
 												id="<?php echo $search_parameter.$key; ?>" class="<?php echo esc_attr( $form_select_class ); ?>" 
-												value="<?php echo $location->slug; ?>" <?php checked( $location->slug, $get_location ); ?>/>    
+												value="<?php echo $location->slug; ?>" <?php echo in_array( $location->slug, (array)$get_location ) ? 'checked' : ''?>/>    
 												<label for="<?php echo $search_parameter.$key; ?>"><?php echo $location->name;?></label>
 											</div>
 										    <?php endforeach; ?>
