@@ -79,7 +79,7 @@ jQuery(document).ready(function($){
 		            '<img src="{{image_url}}">' +
 		        '</span></span>' +
 		        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
-		        '<span class="description" style="display: block;">{{description}}</span></span>' +
+		        '<span class="address" style="display: block;">{{address}}</span></span>' +
 		    '</span>',
 		    correlativeTemplate: true,
 			source : {
@@ -89,7 +89,7 @@ jQuery(document).ready(function($){
 						return {
 							type: 'GET',
 							data: $('.property-search-form').serialize(),
-							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json&query="+query.trim() ,
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
 							path : "data.floor"
 						}
 					}

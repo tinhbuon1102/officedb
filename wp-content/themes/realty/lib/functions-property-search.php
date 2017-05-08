@@ -6,8 +6,6 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 		global $realty_theme_option;
 
-		if (isset($_GET['query'])) $_GET['keyword'] = $_GET['query'];
-		
 		/* define arrays for META & TAX QUERIES: */
 		$meta_query = array();
 		$tax_query = array();
@@ -99,6 +97,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 					$search_fields[$i]= $search_field;
 				}
 
+				$search_field = trim($search_field);
 				$searching_fields[$search_key] = $search_field;
 				switch ( $search_compare ) {
 					case 'greater_than' : case 'greather_than' : $search_compare = '>='; break; // Do NOT delete "greather_than" typo
@@ -538,12 +537,13 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 			if ( $query_search_results->have_posts() ) {
 				$count = 1;
 				while ( $query_search_results->have_posts() ) : $query_search_results->the_post();
+					$google_maps = get_post_meta( get_the_ID(), 'estate_property_google_maps', true );
 					$response[] = array(
 						'id' => get_the_ID(),
 						'id_str' => (string)get_the_ID(),
 						'name' => (string)get_the_title(),
 						'image_url' => (string)get_the_post_thumbnail_url(),
-						'description' => (string)get_the_excerpt()
+						'address' => (string)$google_maps['address']
 					);
 					$count ++;
 				endwhile;
