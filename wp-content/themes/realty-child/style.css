@@ -970,3 +970,4 @@ ul.latest-news-list li:nth-child(3) .inner:before {
   text-align: center;
 
 }
+#viewed_property_box {z-index: 1;}
