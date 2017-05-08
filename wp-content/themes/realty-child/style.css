@@ -694,6 +694,21 @@ section#similar-properties {
 #similar-properties .property-items {
     margin-bottom: 0;
 }
+#similar-properties .section-title span {
+    background: none;
+}
+#similar-properties .section-title::after {
+	display: none;
+}
+section#links {
+    padding: 60px 0;
+}
+#links .wpb_single_image h2.wpb_heading {
+    font-size: 14px;
+    margin: 0;
+    padding: 10px;
+    background: #FFF;
+}
 .secpad {
 	padding: 60px 0;
 }
