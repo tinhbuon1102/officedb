@@ -150,7 +150,7 @@ if ( ! function_exists( 'tt_login_failed' ) ) {
 
 	}
 }
-add_action( 'wp_login_failed', 'tt_login_failed' );
+// add_action( 'wp_login_failed', 'tt_login_failed' );
 
 /**
  * Login Failed - No Username & Password Entered
@@ -187,7 +187,7 @@ if ( ! function_exists( 'tt_login_blank' ) ) {
 
 	}
 }
-add_action( 'authenticate', 'tt_login_blank' );
+// add_action( 'authenticate', 'tt_login_blank' );
 
 /**
  * Login with Username OR Email Address
