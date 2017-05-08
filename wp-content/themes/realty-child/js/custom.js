@@ -79,7 +79,6 @@ jQuery(document).ready(function($){
 		            '<img src="{{image_url}}">' +
 		        '</span></span>' +
 		        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
-		        '<span class="address" style="display: block;">{{address}}</span></span>' +
 		    '</span>',
 		    correlativeTemplate: true,
 			source : {
