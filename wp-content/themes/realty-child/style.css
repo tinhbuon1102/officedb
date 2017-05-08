@@ -346,6 +346,75 @@ div#content {
 .top-header .lang-item a {
     color: #bbbbbb;
 }
+/*footer*/
+#footer #footer-top h2.git {
+    font-size: 48px;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	color: #FFF;
+}
+#footer-top .middle-txt {
+    font-size: 16px;
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+#footer .textwidget .list-info {
+    font-size: 2em;
+    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	line-height: 1.4;
+    vertical-align: middle;
+}
+#footer .textwidget .list-info .f-label {
+    padding-right: 15px;
+}
+#footer .textwidget .list-info span {
+	vertical-align: middle;
+}
+#footer .textwidget .list-info .bignum {
+    font-size: 1.8em;
+}
+.site-footer-top .col-sm-5 ul li {
+    text-align: right;
+}
+#footer #footer-top .widget {
+    margin-bottom: 0;
+}
+#footer-top ul.list-unstyled {
+    margin: 0;
+}
+#footer-top {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+#footer {
+    margin: 0 auto 0;
+}
+.link-items {
+    background: #FFF;
+    padding-bottom: 10px;
+	border: 1px solid #eeeeee;
+}
+
+#links h4 {
+    color: #000;
+    margin: 10px 0;
+	padding: 0 15px;
+    font-size: 14px;
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+#links {
+    padding: 80px 0;
+}
+.row.link-list .col-sm-3 {
+    padding: 0 5px;
+}
+.row.link-list {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+#links .container {
+    padding: 0;
+}
 /*home*/
 @media (min-width: 1200px) {
 	.container {
@@ -513,7 +582,35 @@ body.page-template-template-search {
 .property-item.border-box .property-content {
     background: #FFF;
 }
+.result-column .description {
+    font-size: 12px;
+    line-height: 1.4;
+}
+.col-xs-8.result-column {
+    padding: 0;
+}
+.property-search-form input[type="submit"] {
+    font-weight: bold;
+    font-size: 14px;
+}
+.chosen-container.chosen-container-single .chosen-single {
+    font-size: 14px;
+    color: #787878;
+}
+.chosen-container .chosen-results li {
+    font-size: 14px;
+}
+.property-item .property-title .title {
+    font-size: 1.2em;
+	font-family: a-otf-ryumin-pr6n,"Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
 /*single property*/
+body.single-property div#content {
+    margin-bottom: 0px;
+}
+body.single-property div#links {
+    background: #FFF;
+}
 .contact-id {
     border-bottom: 1px solid #000;
     position: relative;
