@@ -995,3 +995,8 @@ ul.latest-news-list li:nth-child(3) .inner:before {
 
 }
 #viewed_property_box {z-index: 1;}
+#login-modal.modal .modal-dialog {max-width: 800px;}
+#registerform ul, li.wppb-form-field {list-style-type: none; padding-left: 0} 
+li.wppb-form-field {margin-bottom: 10px;}
+.cls, .clear {clear: both;} 
+#registerform li label.error {display: none !important;}

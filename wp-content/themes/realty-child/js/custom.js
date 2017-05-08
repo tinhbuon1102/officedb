@@ -89,7 +89,7 @@ jQuery(document).ready(function($){
 						return {
 							type: 'GET',
 							data: $('.property-search-form').serialize(),
-							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json&keyword=" + query.trim() ,
 							path : "data.floor"
 						}
 					}
@@ -105,6 +105,20 @@ jQuery(document).ready(function($){
 	}
 	
 	initTypeHead();
+	
+	if ($("form#registerform").length)
+	{
+		$("form#registerform input").each(function(){
+			if ($(this).attr('required'))
+			{
+				$(this).addClass('validate[required]');
+			}
+		});
+		$("form#registerform").validationEngine();
+	}
+	
+	
+//	var validate = $("form#omOrder").validationEngine('validate');
 });
 
 
