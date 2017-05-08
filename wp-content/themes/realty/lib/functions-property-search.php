@@ -6,6 +6,8 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 		global $realty_theme_option;
 
+		if (isset($_GET['query'])) $_GET['keyword'] = $_GET['query'];
+		
 		/* define arrays for META & TAX QUERIES: */
 		$meta_query = array();
 		$tax_query = array();

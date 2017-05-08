@@ -86,11 +86,10 @@ jQuery(document).ready(function($){
 				floor : {
 					display: 'name',
 					ajax : function(query){
-						$('#keyword').val($('#keyword').val().trim());
 						return {
 							type: 'GET',
 							data: $('.property-search-form').serialize(),
-							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json&query="+query.trim() ,
 							path : "data.floor"
 						}
 					}
