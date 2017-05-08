@@ -562,7 +562,12 @@
 						include get_template_directory() . '/lib/inc/template/contact-form.php';
 					}
 				?>
-
+				</div><!-- #main-container -->
+				</div><!-- .col-sm-9 -->
+				</div><!-- .row -->
+	</div><!-- .container -->
+				<div class="full-width-container bg-ltgray secpad">
+				<div class="container">
 				<?php
 					/**
 					 * Section: Similar Properties
@@ -572,6 +577,8 @@
 						include get_template_directory() . '/lib/inc/template/single-property-similar-properties.php';
 					}
 				?>
+				</div><!-- .container -->
+				</div><!-- .full-width-container -->
 
 				<?php
 					/**
@@ -583,7 +590,7 @@
 					}
 				?>
 
-			</div><!-- #main-container -->
+			
 
 			<?php
 				if ( $realty_theme_option['property-single-slideshow-autoplay'] ) {
@@ -628,7 +635,7 @@
 				tt_script_slick_slider( $slider_params );
 			?>
 
-			</div><!-- .col-sm-9 -->
+			
 
 			<?php if ( is_active_sidebar( 'sidebar_property' ) ) : ?>
 				<div class="col-sm-4 col-md-3">
@@ -638,8 +645,7 @@
 				</div>
 			<?php endif; ?>
 
-		</div><!-- .row -->
-	</div><!-- .container -->
+		
 
 <?php } else { // Show property only to logged in users ?>
 	<div class="container">

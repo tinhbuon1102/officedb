@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-04-14 21:43+0900\n"
+"PO-Revision-Date: 2017-05-08 13:19+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -4649,3 +4649,60 @@ msgstr "オフィス仲介実績"
 
 msgid "Latest office blog"
 msgstr "オフィス情報最前線ブログ"
+
+msgid "Firm"
+msgstr "事務所"
+
+msgid "Store"
+msgstr "店舗"
+
+msgid "showroom"
+msgstr "ショールーム"
+
+msgid "warehouse"
+msgstr "倉庫"
+
+msgid "Dwelling"
+msgstr "住居"
+
+msgid "Parking lot"
+msgstr "駐車場"
+
+msgid "Refreshments"
+msgstr "軽飲食"
+
+msgid "Heavy diet"
+msgstr "重飲食"
+
+msgid "hospital"
+msgstr "医院"
+
+msgid "Este"
+msgstr "エステ"
+
+msgid "Classroom"
+msgstr "教室"
+
+msgid "Product sales"
+msgstr "物販"
+
+msgid "Rental office"
+msgstr "レンタルオフィス"
+
+msgid "tsubo"
+msgstr "坪"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid "Exists"
+msgstr "有"
+
+msgid "below ground"
+msgstr "地下"
+
+msgid "above ground"
+msgstr "地上"
+
+msgid "Stand"
+msgstr "台"

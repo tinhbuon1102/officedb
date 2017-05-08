@@ -688,6 +688,15 @@ section#property-details .meta-title {
     letter-spacing: 2px;
     padding-bottom: 10px;
 }
+section#similar-properties {
+    margin: 0;
+}
+#similar-properties .property-items {
+    margin-bottom: 0;
+}
+.secpad {
+	padding: 60px 0;
+}
 /*search result*/
 .property-item .property-meta.custom-meta-list > div {
     width: auto;
