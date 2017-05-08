@@ -530,6 +530,26 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 			$orderby = "date-new";
 		}
 
+		if ((isset($_GET['response']) && $_GET['response'] == 'json'))
+		{
+			$response = array();
+			if ( $query_search_results->have_posts() ) {
+				$count = 1;
+				while ( $query_search_results->have_posts() ) : $query_search_results->the_post();
+					$response[] = array(
+						'id' => get_the_ID(),
+						'id_str' => (string)get_the_ID(),
+						'name' => (string)get_the_title(),
+						'image_url' => (string)get_the_post_thumbnail_url(),
+						'description' => (string)get_the_excerpt()
+					);
+					$count ++;
+				endwhile;
+			}
+			echo json_encode(array('data' => array('floor' => $response)));
+			die;
+		}
+		
 		if ( $query_search_results->have_posts() ) :
 
 		$count_results = $query_search_results->found_posts;

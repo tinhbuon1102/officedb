@@ -117,7 +117,13 @@
 									}
 								?>
 								<div class="<?php echo $columns; ?> form-group">
-									<input type="text" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo $search_labels[$i]; ?>" class="form-control" />
+									<div class="typeahead__container">
+								        <div class="typeahead__field">
+								            <span class="typeahead__query">
+								            	<input autocomplete="off" type="search" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo trans_text('Search keywords'); ?>" class="form-control Typeahead-input" />
+								            </span>
+								        </div>
+								    </div>
 								</div>
 								<?php
 								break;
@@ -802,7 +808,6 @@
 	<?php } ?>
 
 	<input type="hidden" name="pageid" value="<?php echo $post->ID; ?>" />
-	<input type="hidden" name="form" value="mini" />
 
   <?php if ( get_query_var( 'property_search_id' ) ) { ?>
     <input type="hidden" name="searchid" value="<?php echo get_query_var('property_search_id'); ?>" />

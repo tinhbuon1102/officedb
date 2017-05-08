@@ -58,4 +58,52 @@ jQuery(document).ready(function($){
 		console.log('小さめ白高さ：' + minConHeight + 'px');
 		$('div#property-items li.col-lg-7 > ul > li > div > a > .property-thumbnail').css('height', (lgHeight / 2 - minConHeight - 7) + 'px');
 	}
+	
+		function initTypeHead() {
+		$.typeahead({
+			input : '#keyword',
+			minLength : 3,
+			maxItem : 15,
+			order : "asc",
+			accent: true,
+			highlight: true,
+//			display: ["name", "description"],
+			maxItemPerGroup : 5,
+			backdropOnFocus: true,
+			dropdownFilter : false,
+			dynamic: true,
+			emptyTemplate: 'No result for "{{query}}"',
+		    template: '<span>' +
+				'<span class="col-xs-4 col-sm-4 col-md-4 result-column"><span class="building-logo">' +
+		            '<img src="{{image_url}}">' +
+		        '</span></span>' +
+		        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
+		        '<span class="description" style="display: block;">{{description}}</span></span>' +
+		    '</span>',
+		    correlativeTemplate: true,
+			source : {
+				floor : {
+					display: 'name',
+					ajax : function(query){
+						return {
+							type: 'GET',
+							data: $('.property-search-form').serialize(),
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
+							path : "data.floor"
+						}
+					}
+				}
+			},
+			callback : {
+				done: function(){
+					
+				}
+			},
+			debug : true
+		});
+	}
+	
+	initTypeHead();
 });
+
+

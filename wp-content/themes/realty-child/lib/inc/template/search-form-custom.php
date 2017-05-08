@@ -119,7 +119,14 @@
 								case 'estate_property_id' :
 								?>
 								<div class="<?php echo $columns; ?> form-group">
-									<input type="text" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo trans_text('Search keywords'); ?>" class="form-control" />
+									<div class="typeahead__container">
+								        <div class="typeahead__field">
+								 
+								            <span class="typeahead__query">
+								            	<input autocomplete="off" type="search" name="<?php echo $search_parameter; ?>" id="<?php echo $search_parameter; ?>" value="<?php echo isset( $_GET[$search_parameter]) ? $_GET[$search_parameter] : ''; ?>" placeholder="<?php echo trans_text('Search keywords'); ?>" class="form-control Typeahead-input" />
+								            </span>
+								        </div>
+								    </div>
 								</div>
 								<?php
 								break;
