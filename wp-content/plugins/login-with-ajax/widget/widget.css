@@ -25,7 +25,7 @@ form.lwa-form, form.lwa-remember, div.lwa-register form { position:relative; }
 .lwa-remember { margin-top:10px; display:none; }
 
 /*Registration*/
-.lwa .lwa-register { margin-top:10px; display:none; }
+.lwa .lwa-register {display:none; }
 
 /*OpenID specific*/
 .lwa-register hr { display:block; }

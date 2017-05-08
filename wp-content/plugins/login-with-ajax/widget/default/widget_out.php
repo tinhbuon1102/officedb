@@ -22,30 +22,38 @@
 				<div class="lwa-form-block">
 					<span class="lwa-status"></span>
 					<div class="row">
-						<label for="username"><?php _e( 'Username', 'realty' ); ?></label>
-						<span class="user">
-							<input type="text" name="log" class="input-text" id="lwa_user_login" placeholder="<?php _e( 'Username', 'realty' ); ?>" />
-						</span>
+						<div class="col-xs-12">
+							<label for="lwa_user_login"><?php _e( 'Username', 'realty' ); ?></label>
+							<span class="user">
+								<input type="text" name="log" class="input-text" id="lwa_user_login" placeholder="<?php _e( 'Username', 'realty' ); ?>" />
+							</span>
+						</div>
 					</div>
 					<div class="row">
-						<label for="password"><?php _e( 'Password', 'realty' ); ?> <span class="required">*</span>
-						</label>
-						<span class="pass">
-							<input type="password" name="pwd" class="input-text" placeholder="<?php _e( 'Password', 'realty' ); ?>" />
-						</span>
+						<div class="col-xs-12">
+							<label for="password"><?php _e( 'Password', 'realty' ); ?> <span class="required">*</span>
+							</label>
+							<span class="pass">
+								<input type="password" id="password" name="pwd" class="input-text" placeholder="<?php _e( 'Password', 'realty' ); ?>" />
+							</span>
+						</div>
 					</div>
 					<div class="row">
-						<input name="rememberme" type="checkbox" class="lwa-rememberme" value="forever" />
-						<label class="visible"><?php esc_html_e( 'Remember Me','login-with-ajax' ) ?></label>
+						<div class="col-xs-12">
+							<input name="rememberme" type="checkbox" class="lwa-rememberme" value="forever" />
+							<label class="visible"><?php esc_html_e( 'Remember Me','login-with-ajax' ) ?></label>
+						</div>
 					</div>
 					<div class="row">
-						<input type="submit" name="wp-submit" id="lwa_wp-submit" class="button" value="<?php esc_attr_e('Log In', 'login-with-ajax'); ?>" tabindex="100" />
-						<input type="hidden" name="lwa_profile_link" value="<?php echo esc_attr($lwa_data['profile_link']); ?>" />
-						<input type="hidden" name="login-with-ajax" value="login" />
+						<div class="col-xs-12">
+							<input type="submit" name="wp-submit" id="lwa_wp-submit" class="button" value="<?php esc_attr_e('Log In', 'login-with-ajax'); ?>" tabindex="100" />
+							<input type="hidden" name="lwa_profile_link" value="<?php echo esc_attr($lwa_data['profile_link']); ?>" />
+							<input type="hidden" name="login-with-ajax" value="login" />
 							<?php if( !empty($lwa_data['redirect']) ): ?>
 							<input type="hidden" name="redirect_to" value="<?php echo esc_url($lwa_data['redirect']); ?>" />
 							<?php endif; ?>
-		           </div>
+						</div>
+					</div>
 					<div class="lost_password">
 		           	<?php if( !empty($lwa_data['remember']) ): ?>
 							<a class="lwa-links-remember" href="<?php echo esc_attr(LoginWithAjax::$url_remember); ?>" title="<?php esc_attr_e('Password Lost and Found','login-with-ajax') ?>"><?php esc_attr_e('Lost your password?','login-with-ajax') ?></a>
@@ -67,7 +75,7 @@
 							<td class="lwa-remember-email">  
 	                        <?php $msg = __("Enter username", 'login-with-ajax'); ?>
 	                        <input type="text" name="user_login" class="lwa-user-remember" value="<?php echo esc_attr($msg); ?>" onfocus="if(this.value == '<?php echo esc_attr($msg); ?>'){this.value = '';}" onblur="if(this.value == ''){this.value = '<?php echo esc_attr($msg); ?>'}" />
-	                    </td>
+							</td>
 						</tr>
 						<tr>
 							<td class="lwa-remember-buttons">

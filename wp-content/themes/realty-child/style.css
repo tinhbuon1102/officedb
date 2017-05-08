@@ -1099,3 +1099,7 @@ li.wppb-form-field {margin-bottom: 10px;}
 #registerform li label.error {display: none !important;}
 .lwa-modal {width: 60%; left: 37%; margin-top: 40px;}
 #custom_order_login_modal #lang {display: none;}
+.lwa-register-form ul {padding-left: 0; overflow: hidden;}
+.lwa-form.login .row {
+	margin-bottom: 15px;
+}
