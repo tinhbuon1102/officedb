@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 		function initTypeHead() {
 		$.typeahead({
 			input : '#keyword',
-			minLength : 3,
+			minLength : 1,
 			maxItem : 15,
 			order : "asc",
 			accent: true,
