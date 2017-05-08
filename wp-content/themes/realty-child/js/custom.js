@@ -133,7 +133,9 @@ jQuery(document).ready(function($){
         });
         
         function actionLoginRegister(e, i, n){
-        	location.reload();
+        	if (i.result) {
+        		location.reload();
+        	}
         }
         
         $(document).on("lwa_register", function(e, i, n) {
