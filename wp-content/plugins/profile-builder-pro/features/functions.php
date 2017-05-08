@@ -100,6 +100,7 @@ if ( is_admin() ){
 
 	// register the settings for the menu only display sidebar menu for a user with a certain capability, in this case only the "admin"
 	add_action( 'admin_init', 'wppb_register_settings' );	
+	include_once( WPPB_PLUGIN_DIR.'/front-end/class-formbuilder.php' );
 
 	// display the same extra profile fields in the admin panel also
 	if ( file_exists ( WPPB_PLUGIN_DIR.'/front-end/extra-fields/extra-fields.php' ) ){

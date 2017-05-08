@@ -6,6 +6,9 @@
 if ( ! function_exists( 'tt_login_form' ) ) {
 	function tt_login_form() {
 
+		// @TODO thangvn removed here;
+		return '';
+		
 		ob_start();
 		global $realty_theme_option;
 		?>
@@ -58,11 +61,27 @@ if ( ! function_exists( 'tt_login_form' ) ) {
 			<?php if ( get_option ('users_can_register' ) ) { ?>
 				<div class="tab-pane" id="tab-registration">
 					<form name="registerform" id="registerform" action="<?php echo wp_registration_url(); ?>" method="post">
-						<?php do_action( 'register_form' );?>
+						<div class="form-group">
+							<input type="text" name="user_login" id="user_login" placeholder="<?php echo esc_attr( 'Username', 'realty' ); ?>">
+						</div>
+						<div class="form-group">
+							<input type="text" name="user_email" id="user_email" placeholder="<?php echo esc_attr( 'Email', 'realty' ); ?>">
+						</div>
+						<?php if ( ! empty( $realty_theme_option['user-registration-terms-page'] ) ) { ?>
+						<div class="form-group">
+							<input type="checkbox" name="user_terms" id="user_terms" title="<?php esc_html_e( 'Please accept our terms and conditions to register.', 'realty' ); ?>">
+							<label for="user_terms"><?php esc_html_e( 'I hereby agree to the', 'realty' ); ?> <a href="<?php echo get_permalink ( $realty_theme_option['user-registration-terms-page'] ); ?>" target="_blank"><?php esc_html_e( 'terms and conditions', 'realty' ); ?></a></label>
+						</div>
+						<?php } ?>
+						<p id="reg_passmail">
+							<?php esc_html_e( 'A password will be e-mailed to you.', 'realty' ); ?>
+						</p>
+						<input type="hidden" name="redirect_to" value="<?php echo site_url(); ?>?user-register=registered">
+						<input type="submit" name="wp-submit-registration" id="wp-submit-registration" value="<?php esc_html_e( 'Register', 'realty' ); ?>">
 					</form>
 					<?php
 						if ( ! is_user_logged_in() && is_plugin_active( 'wordpress-social-login/wp-social-login.php' ) ) {
-							//do_action( 'wordpress_social_login' );
+							do_action( 'wordpress_social_login' );
 						}
 					?>
 				</div>

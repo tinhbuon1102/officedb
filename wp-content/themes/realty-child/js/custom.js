@@ -103,21 +103,64 @@ jQuery(document).ready(function($){
 		});
 	}
 	
-	initTypeHead();
-	
-	if ($("form#registerform").length)
-	{
-		$("form#registerform input").each(function(){
-			if ($(this).attr('required'))
-			{
-				$(this).addClass('validate[required]');
-			}
-		});
-		$("form#registerform").validationEngine();
+	function initLoginRegisterForm() {
+		if ($("form#registerform").length)
+		{
+			$("form#registerform input").each(function(){
+				if ($(this).attr('required'))
+				{
+					$(this).addClass('validate[required]');
+				}
+			});
+			$("form#registerform").validationEngine();
+		}
+		
+		$('body').on('click', '.lwa-links-modal', function(){
+        	$('.modal').modal('hide');
+        });
+        
+        $('body').on('click', '.step_wraper a.showlogin', function(e){
+        	e.preventDefault();
+        	showLoginPopup();
+        });
+        
+        $('body').on('click', '.lwa-links-login', function(e){
+        	e.preventDefault();
+        	$(".lwa-status").trigger("reveal:close");
+        	setTimeout(function(){
+        		showLoginPopup();
+        	}, 300);
+        });
+        
+        function actionLoginRegister(e, i, n){
+        	location.reload();
+        }
+        
+        $(document).on("lwa_register", function(e, i, n) {
+        	actionLoginRegister(e, i, n);
+        });
+        
+        $(document).on("lwa_login", function(e, i, n) {
+        	actionLoginRegister(e, i, n);
+        });
+        
+        function showLoginPopup(popup){
+        	$('body').LoadingOverlay("hide");
+        	if (popup == 'register')
+        	{
+        		$('.lwa-links-modal').click();
+        	}
+        	else {
+        		$('#custom_order_login_modal').modal({
+        			backdrop: 'static',
+        		    keyboard: false
+        		});
+        	}
+        }
 	}
 	
-	
-//	var validate = $("form#omOrder").validationEngine('validate');
+	initTypeHead();
+	initLoginRegisterForm();
 });
 
 

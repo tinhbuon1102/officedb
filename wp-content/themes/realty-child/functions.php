@@ -28,6 +28,7 @@ function custom_scripts ()
 	wp_enqueue_style('validation_engine_css', get_stylesheet_directory_uri() . '/js/validationEngine/validationEngine.jquery.css');
 	wp_enqueue_script('validation_engine_js', get_stylesheet_directory_uri() . '/js/validationEngine/jquery.validationEngine.js', array('jquery'));
 	wp_enqueue_script('validation_engine_lang', get_stylesheet_directory_uri() . '/js/validationEngine/jquery.validationEngine-'.pll_current_language().'.js', array('jquery'));
+	wp_enqueue_script('overlay', get_stylesheet_directory_uri() . '/js/loadingoverlay.js');
 }
 add_action('wp_enqueue_scripts', 'custom_scripts');
 
@@ -45,11 +46,27 @@ function realty_excerpt_length( $length ) {
 	return 20;
 }
 
-add_action( 'register_form', 'realty_register_form' );
+function hide_plugin_order_by_product ()
+{
+	global $wp_list_table;
+	$hidearr = array(
+		'login-with-ajax/login-with-ajax.php',
+		'profile-builder-pro/index.php'
+	);
+	$myplugins = $wp_list_table->items;
+	foreach ( $myplugins as $key => $val )
+	{
+		if ( in_array($key, $hidearr) )
+		{
+			unset($wp_list_table->items[$key]);
+		}
+	}
+}
+// add_action('pre_current_active_plugins', 'hide_plugin_order_by_product');
+
+add_action( 'lwa_register_form', 'realty_register_form' );
 function realty_register_form(){
 	echo do_shortcode('[wppb-register]');
-?>
-<?php
 }
 
 add_filter( 'wppb_field_css_class', 'realty_wppb_field_css_class', 10, 4 );
@@ -88,3 +105,33 @@ function realty_wppb_after_form_fields($tag, $formType, $formID)
 {
 	return $tag . '<div class="clear cls"></div>';
 }
+
+
+add_action( 'register_new_user', 'autoLoginUser', 10, 1 );
+function autoLoginUser($user_id){
+	$user = get_user_by( 'id', $user_id );
+	if( $user && isset($_POST['login-with-ajax']) ) {
+		wp_set_password($_POST['passw1'], $user_id);
+		wp_set_current_user( $user_id, $user->user_login );
+		wp_set_auth_cookie( $user_id );
+		
+		realty_save_account_details ($user_id);
+		
+		do_action( 'wp_login', $user->user_login, $user);
+	}
+}
+
+function realty_save_account_details ($user_id)
+{
+	if ( class_exists('Profile_Builder_Form_Creator') )
+	{
+		$formBuilder = new Profile_Builder_Form_Creator(array(
+			'form_type' => 'register'
+		));
+		foreach ( $formBuilder->args['form_fields'] as $field )
+		{
+			do_action('wppb_save_form_field', $field, $user_id, $_REQUEST, $formBuilder->args['form_type']);
+		}
+	}
+}
+

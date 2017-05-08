@@ -430,12 +430,7 @@
 						});
 
 					} else {
-						$("html, body").animate({
-							scrollTop: destination
-						}, 1100, function(){
-							if(options.focusFirstField) first_err.focus();
-						});
-						$("html, body").animate({scrollLeft: fixleft},1100)
+						if(options.focusFirstField) first_err.focus();
 					}
 
 				} else if(options.focusFirstField)

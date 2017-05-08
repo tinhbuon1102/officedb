@@ -1097,3 +1097,5 @@ ul.latest-news-list li:nth-child(3) .inner:before {
 li.wppb-form-field {margin-bottom: 10px;}
 .cls, .clear {clear: both;} 
 #registerform li label.error {display: none !important;}
+.lwa-modal {width: 60%; left: 37%; margin-top: 40px;}
+#custom_order_login_modal #lang {display: none;}

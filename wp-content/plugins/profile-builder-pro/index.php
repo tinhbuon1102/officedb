@@ -140,10 +140,10 @@ function wppb_plugin_init() {
 
         if (file_exists(WPPB_PLUGIN_DIR . '/update/update-checker.php')) {
             include_once(WPPB_PLUGIN_DIR . '/update/update-checker.php');
-            include_once(WPPB_PLUGIN_DIR . '/admin/register-version.php');
+//             include_once(WPPB_PLUGIN_DIR . '/admin/register-version.php');
         }
 
-        if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php')) {
+        if (file_exists(WPPB_PLUGIN_DIR . '/modules/modules.php')  && false) {
             include_once(WPPB_PLUGIN_DIR . '/modules/modules.php');
             include_once(WPPB_PLUGIN_DIR . '/modules/repeater-field/repeater-module.php');
             include_once(WPPB_PLUGIN_DIR . '/modules/custom-redirects/custom-redirects.php');
@@ -164,7 +164,7 @@ function wppb_plugin_init() {
             include_once(WPPB_PLUGIN_DIR . '/modules/email-customizer/user-email-customizer.php');
         }
 
-        include_once(WPPB_PLUGIN_DIR . '/admin/add-ons.php');
+//         include_once(WPPB_PLUGIN_DIR . '/admin/add-ons.php' );
         include_once(WPPB_PLUGIN_DIR . '/assets/misc/plugin-compatibilities.php');
         if ( PROFILE_BUILDER != 'Profile Builder Free' )
             include_once(WPPB_PLUGIN_DIR . '/front-end/extra-fields/recaptcha/recaptcha.php'); //need to load this here for displaying reCAPTCHA on Login and Recover Password forms
