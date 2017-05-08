@@ -471,9 +471,13 @@ if ( ! function_exists( 'tt_page_id_template_search' ) ) {
 
 		global $realty_theme_option;
 
+		$current_lang = pll_current_language();
+		$translations = pll_get_post_translations ($realty_theme_option['property-search-results-page']);
+		
 		if ( isset( $realty_theme_option['property-search-results-page'] ) && ! empty( $realty_theme_option['property-search-results-page'] ) ) {
 			// @since v3.0
-			return $realty_theme_option['property-search-results-page'];
+// 			return $realty_theme_option['property-search-results-page'];
+			return $translations[$current_lang];
 		} else {
 			// @until v2.4.3
 
@@ -493,7 +497,10 @@ if ( ! function_exists( 'tt_page_id_template_search' ) ) {
 
 			if ( ! empty( $template_page_property_search_array[0] ) ) {
 				foreach ( $template_page_property_search_array as $template_page_property_search ) {
-					return $template_page_property_search = $template_page_property_search->ID;
+					$translations = pll_get_post_translations ($template_page_property_search->ID);
+					return $translations[$current_lang];
+					
+// 					return $template_page_property_search = $template_page_property_search->ID;
 					break;
 				}
 			}
