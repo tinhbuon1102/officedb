@@ -72,7 +72,7 @@ jQuery(document).ready(function($){
 			backdropOnFocus: true,
 			dropdownFilter : false,
 			dynamic: true,
-			emptyTemplate: 'No result for "{{query}}"',
+			emptyTemplate: message_no_result,
 		    template: '<span>' +
 				'<span class="col-xs-4 col-sm-4 col-md-4 result-column"><span class="building-logo">' +
 		            '<img src="{{image_url}}">' +
