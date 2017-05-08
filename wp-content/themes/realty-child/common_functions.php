@@ -694,51 +694,12 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			return $return;
 			break;
 		case 'type_of_use' :
-			$floorTypeUseArray = array();
+			$userTypesList = $wpdb->get_results("SELECT * FROM `use_types` WHERE user_type_id IN(". (string)$floor['type_of_use'] .")");
 			$typeOfUse = array();
-			$floorTypeUse = $floor['type_of_use'];
-			$floorTypeUseArray = explode(',',$floorTypeUse);
-			$opt1Val = trans_text('×事');
-			if ( in_array('1', $floorTypeUseArray) )
-			{
-				$opt1Val = trans_text('○事');
+			foreach($userTypesList as $useList){
+				$typeOfUse[] = trans_text($useList->user_type_name);
 			}
-			$typeOfUse[] = $opt1Val;
-			$opt1Val = trans_text('×店');
-			if ( in_array('2', $floorTypeUseArray) )
-			{
-				$opt1Val = trans_text('○店');
-			}
-			$typeOfUse[] = $opt1Val;
-			$opt2Val = trans_text('×倉');
-			if ( in_array('5', $floorTypeUseArray) )
-			{
-				$opt2Val = trans_text('○倉');
-			}
-			$typeOfUse[] = $opt2Val;
-			$opt3Val = trans_text('×他');
-			$otherArray = array();
-			$useOfType = $wpdb->get_results("SELECT * FROM `use_types` WHERE is_active = 1");
-			foreach ( $useOfType as $uType )
-			{
-				$uType = (array)$uType;
-				if ( $uType['user_type_id'] == '1' || $uType['user_type_id'] == '2' || $uType['user_type_id'] == '5' )
-				{
-					continue;
-				}
-				else
-				{
-					$otherArray[] = $uType['user_type_id'];
-				}
-			}
-			$intersect = array_intersect($floorTypeUseArray, $otherArray);
-				
-			if ( ! empty($intersect) )
-			{
-				$opt3Val = trans_text('○他');
-			}
-			$typeOfUse[] = $opt3Val;
-			return implode(' | ', $typeOfUse);
+			return implode(',', $typeOfUse);
 			break;
 		case 'contract_period':
 			$return = '';
