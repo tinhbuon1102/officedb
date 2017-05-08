@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-08 13:19+0900\n"
+"PO-Revision-Date: 2017-05-08 22:36+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -1329,7 +1329,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:25
 msgid "Search Property"
-msgstr ""
+msgstr "物件を検索"
 
 #: realty-core/custom-post-types.php:26
 msgid "No Property found."
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:71
 msgid "Search Property Location"
-msgstr ""
+msgstr "物件地域を検索"
 
 #: realty-core/custom-post-types.php:72
 msgid "Popular Property Location"
@@ -1437,7 +1437,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:143
 msgid "Search Property Type"
-msgstr ""
+msgstr "物件タイプを検索"
 
 #: realty-core/custom-post-types.php:144
 msgid "Popular Property Type"
@@ -2078,7 +2078,7 @@ msgstr ""
 
 #: lib/redux/realty-theme-options.php:552
 msgid "Search by Keyword"
-msgstr ""
+msgstr "キーワードで検索"
 
 #: lib/redux/realty-theme-options.php:558
 msgid "Price Range (set options above)"
@@ -2590,7 +2590,7 @@ msgstr ""
 #: lib/redux/realty-theme-options.php:1149
 #: realty-core/widgets/widget-property-search-form.php:29
 msgid "Property Search"
-msgstr ""
+msgstr "物件検索"
 
 #: lib/redux/realty-theme-options.php:1150
 msgid "Even if you currently don't use the price range slider, it is highly recommended to set default values, instead of leaving them blank."
@@ -3857,7 +3857,7 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-property-slider.php:326
 #: realty-core/widgets/widget-property-search-form.php:17
 msgid "Property Search Form"
-msgstr ""
+msgstr "物件検索フォーム"
 
 #: realty-core/shortcodes/shortcode-property-slider.php:288
 msgid "Property Slider"
@@ -4065,7 +4065,7 @@ msgstr ""
 #: lib/inc/template/search-form-mini.php:128
 #: lib/inc/template/search-form.php:133
 msgid "Any Location"
-msgstr ""
+msgstr "全ての地域"
 
 #: realty-core/widgets/widget-custom-property-search-form.php:53
 #: realty-core/widgets/widget-custom-property-search-form.php:243
@@ -4443,7 +4443,7 @@ msgstr ""
 #: lib/inc/template/search-form-mini.php:646
 #: lib/inc/template/search-form.php:652
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: lib/inc/template/search-form-mini.php:658
 msgid "Please setup \"Property \"Search Mini\" under \"Appearance > Theme Options > Property Search\"."
@@ -4706,3 +4706,9 @@ msgstr "地上"
 
 msgid "Stand"
 msgstr "台"
+
+msgid "Any Size"
+msgstr "全ての坪数"
+
+msgid "Search keywords"
+msgstr "キーワードで検索"
