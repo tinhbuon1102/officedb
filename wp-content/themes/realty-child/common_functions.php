@@ -688,8 +688,8 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				$return = FIELD_MISSING_VALUE;
 			}
 			else{
-				$return = $building['avg_neighbor_fee_min'] ? sprintf(trans_text('¥%s'), $building['avg_neighbor_fee_min']) : '';
-				$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . sprintf(trans_text('¥%s'), $building['avg_neighbor_fee_max']) : FIELD_MISSING_VALUE;
+				$return = $building['avg_neighbor_fee_min'] ? renderPrice($building['avg_neighbor_fee_min']) : '-';
+				$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice($building['avg_neighbor_fee_max']) : FIELD_MISSING_VALUE;
 			}
 			return $return;
 			break;
