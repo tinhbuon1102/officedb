@@ -69,7 +69,7 @@
     };
 	</script>
 
-	<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+	<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=<?php echo pll_current_language()?>" async defer></script>
 
 	<script>
 		(function($) {
