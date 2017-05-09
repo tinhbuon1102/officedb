@@ -8,6 +8,8 @@ if ( ! isset( $property_id ) || empty( $property_id ) ) {
 $property_type = get_the_terms( $property_id, 'property-type' );
 $property_status = get_the_terms( $property_id, 'property-status' );
 $property_location = get_the_terms( $property_id, 'property-location' );
+var_dump($property_id);
+pr($property_location);die;
 $property_featured = get_post_meta( $property_id, 'estate_property_featured', true );
 $property_status_update = get_post_meta( $property_id, 'estate_property_status_update', true );
 $estate_property_station = get_post_meta( $property_id, 'estate_property_station', true );

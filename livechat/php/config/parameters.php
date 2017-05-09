@@ -1,11 +1,10 @@
 <?php
-
 return array (
-  'dbHost' => 'localhost',
+  'dbHost' => DB_HOST,
   'dbPort' => '3306',
-  'dbUser' => 'jpofficedb_japan',
-  'dbPassword' => 'ZvmAb6H3z6wBSKmG',
-  'dbName' => 'jpofficedb_japan',
+  'dbUser' => DB_USER,
+  'dbPassword' => DB_PASSWORD,
+  'dbName' => DB_NAME,
   'superUser' => 'admin',
   'superPass' => 'envyme1122',
   'services' => 

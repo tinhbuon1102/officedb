@@ -18,6 +18,7 @@ $estate_property_district = get_post_meta( $property_id, 'estate_property_distri
 $estate_property_town = get_post_meta( $property_id, 'estate_property_town', true );
 
 $google_maps = get_post_meta( $property_id, 'estate_property_google_maps', true );
+pr($google_maps);die;
 if ( ! tt_is_array_empty( $google_maps ) ) {
 	$address = $google_maps['address'];
 } else {
