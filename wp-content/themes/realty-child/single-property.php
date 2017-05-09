@@ -126,7 +126,7 @@
 		$property_meta_data_type = $realty_theme_option['property-meta-data-type'];
 		$social_sharing = $realty_theme_option['property-social-sharing'];
 		$property_contact_form_default_email = $realty_theme_option['property-contact-form-default-email'];
-		$property_image_height = $realty_theme_option['property-contact-form-default-email'];
+		$property_image_height = $realty_theme_option['property-image-height'];
 		$property_image_width = $realty_theme_option['property-image-width'];
 
 		if ( ! isset( $property_image_width ) ) {
