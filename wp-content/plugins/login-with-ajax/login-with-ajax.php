@@ -464,19 +464,7 @@ class LoginWithAjax {
 
 	public static function new_user_notification($user_login, $login_link, $user_email, $blogname){
 		//Copied out of /wp-includes/pluggable.php
-		$message = __('Thanks for signing up to our blog.
-		
-You can login with the following credentials by visiting %BLOGURL%
-		
-Username : %USERNAME%
-Password : %PASSWORD%
-		
-We look forward to your next visit!
-		
-The team at %BLOGNAME%', 'login-with-ajax');
-		
-		pr(pll_current_language());
-		pr($message);die;
+		$message = self::$data['notification_message'];
 		$message = str_replace('%USERNAME%', $user_login, $message);
 		$message = str_replace('%PASSWORD%', $login_link, $message);
 		$message = str_replace('%BLOGNAME%', $blogname, $message);
