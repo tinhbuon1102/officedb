@@ -107,7 +107,7 @@
 				<span class="linericon-cross" aria-hidden="true">X</span>
 			</button>
 			<div class="modal-header">
-				<h4 class="modal-title" ><?php echo __('Login', 'realty')?></h4>
+				<h4 class="modal-title" ><?php echo __('Login / Register', 'realty')?></h4>
 			</div>
 			<div class="modal-body">
 				<?php login_with_ajax();?>
