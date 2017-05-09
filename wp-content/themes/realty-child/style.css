@@ -23,6 +23,42 @@ Text Domain:  realty_child
 /* =Theme customization starts here
 -------------------------------------------------------------- */
 @font-face {
+  font-family: 'topicons';
+  src:  url('fonts/topicons.eot?9opkm6');
+  src:  url('fonts/topicons.eot?9opkm6#iefix') format('embedded-opentype'),
+    url('fonts/topicons.ttf?9opkm6') format('truetype'),
+    url('fonts/topicons.woff?9opkm6') format('woff'),
+    url('fonts/topicons.svg?9opkm6#topicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="topicon-"], [class*=" topicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'topicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.topicon-icon-topnav01:before {
+  content: "\e900";
+}
+.topicon-icon-topnav02:before {
+  content: "\e901";
+}
+.topicon-icon-topnav03:before {
+  content: "\e902";
+}
+
+@font-face {
   font-family: 'iconmoon';
   src:  url('fonts/iconmoon.eot?jupbv2');
   src:  url('fonts/iconmoon.eot?jupbv2#iefix') format('embedded-opentype'),
@@ -267,9 +303,80 @@ input, input[type=submit], input:focus, textarea, .chosen-container.chosen-conta
 .entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
     color: #000;
 }
+/*header*/
+.calling-info {
+    float: right;
+    height: 65px;
+	min-width: 16.5em;
+    vertical-align: middle;
+    font-size: 1em;
+    display: table;
+}
+.calling-info .calling-content {
+    display: table-cell;
+    vertical-align: middle;
+}
+.calling-info i {
+    font-size: 2.45em;
+    float: left;
+    padding: 0 0.25em;
+    line-height: 49px;
+}
+.calling-info .calling-desc {
+    color: #444;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.5em;
+    font-weight: normal;
+}
+.calling-info .calling-desc .jat {
+    font-size: .8em;
+}
+.calling-info .calling-desc span a {
+    color: #000;
+    font-size: 2em;
+	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	letter-spacing: 2px;
+}
+.top-header-sidebar.lang-switch ul:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: "\e900";
+    color: #787878;
+    font-family: 'topicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.primary-menu li {
+    float: left;
+    margin: 0 15px;
+    height: 65px;
+    line-height: 65px;
+}
 nav#navigation .primary-menu a {
-    line-height: 56px !important;
+    line-height: inherit !important;
 	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+ul#menu-main-menu:before, ul#menu-main-menu:after {
+	content: " ";
+    display: table;
+}
+ul#menu-main-menu:after {
+	clear: both;
+}
+.site-branding {
+    max-width: 50px;
+    padding: 5px 0;
+}
+nav#navigation {
+    float: left;
+    margin-left: 5%;
 }
 header#header {
     position: relative;
@@ -416,6 +523,7 @@ div#content {
     padding: 0;
 }
 /*home*/
+
 @media (min-width: 1200px) {
 	.container {
     width: 998px;
@@ -604,7 +712,13 @@ body.page-template-template-search {
     font-size: 1.2em;
 	font-family: a-otf-ryumin-pr6n,"Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
+.property-item .property-title h3.title {
+    min-height: 42px;
+}
 /*single property*/
+section#property-content p {
+    line-height: 1.8;
+}
 body.single-property div#content {
     margin-bottom: 0px;
 }
