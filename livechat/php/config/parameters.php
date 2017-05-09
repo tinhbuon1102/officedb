@@ -1,13 +1,11 @@
 <?php
-define('IS_LIVECHAT', true);
-include_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-config.php');
 
 return array (
-  'dbHost' => DB_HOST,
+  'dbHost' => 'localhost',
   'dbPort' => '3306',
-  'dbUser' => DB_USER,
-  'dbPassword' => DB_PASSWORD,
-  'dbName' => DB_NAME,
+  'dbUser' => 'jpofficedb_japan',
+  'dbPassword' => 'ZvmAb6H3z6wBSKmG',
+  'dbName' => 'jpofficedb_japan',
   'superUser' => 'admin',
   'superPass' => 'envyme1122',
   'services' => 
