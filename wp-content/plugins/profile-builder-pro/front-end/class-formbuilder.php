@@ -443,6 +443,7 @@ class Profile_Builder_Form_Creator{
 				?>
 			</p><!-- .form-submit -->
 			<?php wp_nonce_field( 'verify_form_submission', $this->args['form_type'].'_nonce_field' ); ?>
+			<input type="text" name="lang" id="lang" value="<?php echo pll_current_language()?>">
 			<input type="hidden" name="login-with-ajax" value="register" />
 		</form>
 		<?php
