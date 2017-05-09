@@ -276,8 +276,8 @@
 				<td>
 				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
 					<?php echo $building['construction_type_name'] ? $building['construction_type_name'] . ' / ' : ''?> 
-					<?php echo __('below ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-'?>
-					<?php echo FIELD_MISSING_VALUE. ' ' . __('above ground', 'realty')?>&nbsp;<?php echo (isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-'?>&nbsp;
+					<?php echo sprintf(trans_text('below ground %s'),(isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-');?>
+					<?php echo FIELD_MISSING_VALUE . ' ' . sprintf(trans_text('above ground %s'),(isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-');?>
 				</td>
 			</tr>
 			</tr>
