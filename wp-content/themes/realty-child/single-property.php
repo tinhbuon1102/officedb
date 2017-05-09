@@ -254,7 +254,8 @@
 					foreach ($building['stations'] as $station)
 					{
 						$stationLines[] = translateStationLine($station['line']);
-						$stationDistances[$station['distance']] = $station['time']; 
+						$station_name = $current_language == LANGUAGE_EN ? $station['name_en'] : $station['name'];
+						$stationDistances[$station_name] = $station['time']; 
 						$i ++;
 						if ($i == 3) break;
 					}
@@ -262,8 +263,8 @@
 					?>
 					<br/>
 					<ul class="list-stations">
-						<?php foreach ($stationDistances as $distance => $min) {?>
-						<li><?php echo sprintf(trans_text('Station by foot : %s - %sminutes'),$distance, $min)?></li>
+						<?php foreach ($stationDistances as $station_name => $min) {?>
+						<li><?php echo sprintf(trans_text('Station %s by foot : %sminutes'),$station_name, $min)?></li>
 						<?php }?>
 					</ul>
 					<?php
