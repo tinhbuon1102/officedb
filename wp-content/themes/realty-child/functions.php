@@ -22,8 +22,6 @@ add_action('wp_enqueue_scripts', 'icheck_scripts');
 add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
-	
-// 	realty_process_image();
 }
 
 add_filter( 'body_class', 'realty_body_class', 10, 2 );
@@ -168,31 +166,4 @@ function realty_save_account_details ($user_id)
 			do_action('wppb_save_form_field', $field, $user_id, $_REQUEST, $formBuilder->args['form_type']);
 		}
 	}
-}
-
-function realty_process_image() {
-	@error_reporting(0); // Don't break the JSON result
-	include_once( ABSPATH . 'wp-admin/includes/image.php' );
-	
-	$id = (int) $_REQUEST['id'];
-	$id = 1279;
-	$image = get_post($id);
-	
-	if ( ! $image || 'attachment' != $image->post_type || 'image/' != substr($image->post_mime_type, 0, 6) ) die(json_encode(array(
-		'error' => sprintf(__('Failed resize: %s is an invalid image ID.', 'regenerate-thumbnails'), esc_html($_REQUEST['id']))
-	)));
-	
-	$fullsizepath = get_attached_file($image->ID);
-	
-	@set_time_limit(900); // 5 minutes per image should be PLENTY
-	
-	$metadata = wp_generate_attachment_metadata($image->ID, $fullsizepath);
-// 	pr($metadata);die;
-	
-	// If this fails, then it just means that nothing was changed (old value == new value)
-	wp_update_attachment_metadata($image->ID, $metadata);
-	
-	die(json_encode(array(
-		'success' => sprintf(__('&quot;%1$s&quot; (ID %2$s) was successfully resized in %3$s seconds.', 'regenerate-thumbnails'), esc_html(get_the_title($image->ID)), $image->ID, timer_stop())
-	)));
 }
