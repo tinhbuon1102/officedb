@@ -51,6 +51,7 @@
 			<?php } ?>
 			<input type="hidden" name="property_title" value="<?php echo get_the_title( get_the_ID() ); ?>" />
 			<input type="hidden" name="property_url" value="<?php echo get_permalink( get_the_ID() ); ?>" />
+			<input type="hidden" name="property_id" value="<?php echo get_the_ID() ; ?>" />
 		</form>
 	<?php } ?>
 
