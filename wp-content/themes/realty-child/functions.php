@@ -23,7 +23,7 @@ add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
 	
-	realty_process_image();
+// 	realty_process_image();
 }
 
 add_filter( 'body_class', 'realty_body_class', 10, 2 );
@@ -187,7 +187,7 @@ function realty_process_image() {
 	@set_time_limit(900); // 5 minutes per image should be PLENTY
 	
 	$metadata = wp_generate_attachment_metadata($image->ID, $fullsizepath);
-	pr($metadata);die;
+// 	pr($metadata);die;
 	
 	// If this fails, then it just means that nothing was changed (old value == new value)
 	wp_update_attachment_metadata($image->ID, $metadata);
