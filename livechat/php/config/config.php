@@ -4,6 +4,8 @@ require_once ROOT_DIR . '/lib/timezone.php';
 
 $parameters = include ROOT_DIR . '/config/parameters.php';
 
+$site_lang = $_SESSION[Session::SESSION_NAMESPACE]['lang'];
+
 $config = Utils::arrayMergeRecursive(array(
 
     // Environment info
@@ -16,7 +18,7 @@ $config = Utils::arrayMergeRecursive(array(
 
         'configuration' => array(
 
-            'appSettingsFile' => 'app.settings.php'
+            'appSettingsFile' => ($site_lang == 'ja' ? 'app.settings.php' : 'app.settings_en.php')
         ),
 
         'memory' => array(

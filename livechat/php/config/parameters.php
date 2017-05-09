@@ -1,13 +1,15 @@
 <?php
+define('IS_LIVECHAT', true);
+include_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-config.php');
 
 return array (
-  'dbHost' => 'localhost',
+  'dbHost' => DB_HOST,
   'dbPort' => '3306',
-  'dbUser' => 'root',
-  'dbPassword' => 'thang',
-  'dbName' => 'offispo',
+  'dbUser' => DB_USER,
+  'dbPassword' => DB_PASSWORD,
+  'dbName' => DB_NAME,
   'superUser' => 'admin',
-  'superPass' => 'admin',
+  'superPass' => 'envyme1122',
   'services' => 
   array (
     'mailer' => 

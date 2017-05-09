@@ -19,6 +19,33 @@ function icheck_scripts ()
 }
 add_action('wp_enqueue_scripts', 'icheck_scripts');
 
+add_action('init', 'realty_init');
+function realty_init() {
+	if (!session_id()) session_start();
+}
+
+add_action('wp_head', 'realty_wp_head');
+function realty_wp_head() {
+	$_SESSION['mirrormx_customer_chat']['lang'] = pll_current_language();
+	
+	if (is_user_logged_in())
+	{
+		$user = wp_get_current_user();
+		$avatar_id = get_user_meta($user->ID, 'user_avatar', true);
+		$_SESSION['mirrormx_customer_chat']['guest'] = array(
+			'id' => '',
+			'name' => $user->data->display_name,
+			'mail' => $user->data->user_email, 'roles' => array(0 => 'GUEST'),
+			'last_activity' => date('Y-m-d H:i:s'),
+			'image' => $avatar_id ? wp_get_attachment_url($avatar_id) : ''
+		);
+	}
+	else {
+		if (isset($_SESSION['mirrormx_customer_chat']) && isset($_SESSION['mirrormx_customer_chat']['guest']))
+			unset($_SESSION['mirrormx_customer_chat']['guest']);
+	}
+}
+
 function custom_scripts ()
 {
 	wp_enqueue_script('custom_js', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'));

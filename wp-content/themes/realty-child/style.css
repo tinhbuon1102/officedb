@@ -1103,3 +1103,4 @@ li.wppb-form-field {margin-bottom: 10px;}
 .lwa-form.login .row {
 	margin-bottom: 15px;
 }
+.lwa-register-form .wppb-form-field.wppb-avatar {display: none;}
