@@ -12,6 +12,9 @@ error_reporting(0);
 
 define('ROOT_DIR', dirname(__FILE__));
 
+define('IS_LIVECHAT', true);
+include(dirname(dirname(ROOT_DIR)) . '/wp-config.php');
+
 // Imports
 require_once ROOT_DIR . '/lib/timezone.php';
 require_once 'lib/error_handler.php';
