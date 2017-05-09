@@ -326,6 +326,7 @@ class LoginWithAjaxAdmin{
 									<input style="margin:0px; padding:0px; width:auto;" type="checkbox" name="lwa_notification_override" value='1' class='wide' <?php echo ( !empty($lwa_data['notification_override']) && $lwa_data['notification_override'] == '1' ) ? 'checked="checked"':''; ?> />
 								</td>
 							</tr>
+							<?php /*?>
 							<tr valign="top">
 								<th>
 									<label><?php _e("Subject", 'login-with-ajax'); ?></label>
@@ -353,7 +354,7 @@ class LoginWithAjaxAdmin{
 								</th>
 								<td>
 									<?php 
-										if( empty($lwa_data['notification_message']) ){
+										if( empty($lwa_data['notification_message']) || true){
 										    if( version_compare($wp_version, '4.3', '>=') ){
 										        $lwa_data['notification_message'] = __('Thanks for signing up to our blog. 
 
@@ -378,6 +379,7 @@ We look forward to your next visit!
 The team at %BLOGNAME%', 'login-with-ajax');
 										    }
 										}
+										
 										?>
 									<textarea name="lwa_notification_message" class='wide' style="width:100%; height:250px;"><?php echo $lwa_data['notification_message'] ?></textarea>
 									<em><?php _e("<code>%USERNAME%</code> will be replaced with a username.", 'login-with-ajax'); ?></em><br />
@@ -390,6 +392,7 @@ The team at %BLOGNAME%', 'login-with-ajax');
 									<em><?php _e("<code>%BLOGURL%</code> will be replaced with the url of your blog.", 'login-with-ajax'); ?></em>
 								</td>
 							</tr>
+							<?php */?>
 						</table>
 							<div>
 								<input type="hidden" name="lwasubmitted" value="1" />
