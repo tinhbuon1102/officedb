@@ -40,10 +40,6 @@ jQuery(document).ready(function($){
 		}
 	});
 	
-	$('body').on('click', '#contact_agent_button', function(){
-		$("html, body").animate({ scrollTop: $('#contact-form').offset().top - 150 }, 1000);
-	});
-	
 	if ($('#property-items li').length)
 	{
 		//latest office grid

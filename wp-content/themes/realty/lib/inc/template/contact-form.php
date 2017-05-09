@@ -16,6 +16,10 @@
 
 		} else {
  	?>
+ 	<div id="form-success" class="hide alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<?php esc_html_e( 'Message has been sent successfully.', 'realty' ); ?>
+	</div>
 	  <form id="contact-form" method="post" action="<?php echo admin_url( 'admin-ajax.php' ); ?>">
 			<div class="form-group">
 				<input type="text" name="name" id="name" class="form-control" title="<?php esc_html_e( 'Please enter your name.', 'realty' ); ?>" placeholder="<?php esc_html_e( 'Name', 'realty' ); ?>" />
@@ -50,10 +54,6 @@
 		</form>
 	<?php } ?>
 
-	<div id="form-success" class="hide alert alert-success alert-dismissable">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<?php esc_html_e( 'Message has been sent successfully.', 'realty' ); ?>
-	</div>
 	<div id="form-submitted"></div>
 
 	<script>
@@ -107,6 +107,7 @@
 						recaptcha: "<?php esc_html_e( 'Please verify the reCaptcha.', 'realty' ); ?>",
 					},
 					submitHandler: function(form) {
+						$('#contact_modal .modal-dialog').LoadingOverlay("show");
 						$(form).ajaxSubmit({
 							error: function() {
 								alert(getResponseContactForm);
@@ -121,10 +122,13 @@
 									data: formData,
 									success:function(){
 										//console.log(formData);
-										console.log("Message sent.");
+										$('#contact_modal .modal-dialog').LoadingOverlay("hide");
+										alert('<?php echo esc_html_e( 'Message has been sent successfully.', 'realty' )?>');
+										setTimeout(function(){$('#contact_modal').modal("hide");}, 1000);
 					       	},
 					       	error:function(){
 						       	console.log("Error: "+formData);
+						       	$('body').LoadingOverlay("hide");
 					       	}
 								});
 							}

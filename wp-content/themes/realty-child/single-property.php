@@ -481,7 +481,7 @@
 	<!-- section action buttons -->
 		<section id="acbuttons">
 			<div class="contact-argent">
-				<a href="#" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><?php echo __('Contact Argent', 'realty')?></a>
+				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><?php echo __('Contact Argent', 'realty')?></a>
 			</div>
 			<div class="buttons-group row">
 			<?php if ( !is_user_logged_in() ) { ?>
@@ -548,22 +548,31 @@
 			<?php }	?>
 
 			<div id="main-content">
-
-				
-
-
-				<?php
-					/**
-					 * Section: Contact Form
-					 * Check Theme Option + Property Settings For Author Contact Form
-					 *
-					 */
-					$show_property_contact_form = $realty_theme_option['property-contact-form'];
-					if ( $show_property_contact_form && $property_contact_information != 'none' ) {
-						include get_template_directory() . '/lib/inc/template/contact-form.php';
-					}
-				?>
-
+				<div class="modal fade modal-custom" id="contact_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
+									<span class="linericon-cross" aria-hidden="true">X</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<?php
+									/**
+									 * Section: Contact Form
+									 * Check Theme Option + Property Settings For Author Contact Form
+									 *
+									 */
+									$show_property_contact_form = $realty_theme_option['property-contact-form'];
+									if ( $show_property_contact_form && $property_contact_information != 'none' ) {
+										include get_template_directory() . '/lib/inc/template/contact-form.php';
+									}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+								
 				<?php
 					/**
 					 * Section: Similar Properties
