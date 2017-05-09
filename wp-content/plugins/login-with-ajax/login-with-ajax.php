@@ -480,7 +480,7 @@ The team at %BLOGNAME%', 'login-with-ajax');
 		$message = str_replace('%BLOGNAME%', $blogname, $message);
 		$message = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $message);
 
-		$subject = self::$data['notification_subject'];
+		$subject = __('Your registration at %BLOGNAME%', 'login-with-ajax');
 		$subject = str_replace('%BLOGNAME%', $blogname, $subject);
 		$subject = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $subject);
 
