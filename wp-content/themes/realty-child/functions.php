@@ -24,6 +24,12 @@ function realty_init() {
 	if (!session_id()) session_start();
 }
 
+add_filter( 'body_class', 'realty_body_class', 10, 2 );
+function realty_body_class($classes, $class){
+	$classes[] = pll_current_language();
+	return $classes;
+}
+
 add_action('wp_head', 'realty_wp_head');
 function realty_wp_head() {
 	$_SESSION['mirrormx_customer_chat']['lang'] = pll_current_language();
