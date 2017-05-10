@@ -264,7 +264,7 @@
 					<br/>
 					<ul class="list-stations">
 						<?php foreach ($stationDistances as $station_name => $min) {?>
-						<li><?php echo sprintf(trans_text('%s Station by foot : %sminutes'),$station_name, $min)?></li>
+						<li><?php echo sprintf(trans_text('%s by foot : %sminutes'),$station_name, $min)?></li>
 						<?php }?>
 					</ul>
 					<?php
