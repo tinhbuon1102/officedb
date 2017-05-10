@@ -34,6 +34,10 @@
 				<textarea name="message" rows="5" id="message" class="form-control" title="<?php esc_html_e( 'Please enter your message.', 'realty' ); ?>" placeholder="<?php esc_html_e( 'Message', 'realty' ); ?>"></textarea>
 			</div>
 
+			<div class="form-group" id="site_url"><?php esc_html_e('Property Url')?>
+				<input readonly="readonly" value="<?php echo get_permalink(get_the_ID())?>"/>
+			</div>
+			
 			<?php	if ( empty( $realty_theme_option['google-recaptcha-site-key'] ) ) { ?>
 				<p class="alert alert-info"><?php esc_html_e( 'Please enter your Google reCaptcha site keys under "Appearance > Theme Options > General".', 'realty' ); ?></p>
 			<?php } else { ?>
