@@ -187,7 +187,7 @@
 	      <?php if ( ! empty ( $estate_property_id ) ) { ?>
 					<div class="col-sm-5 col-md-3 contact-id">
 					<div class="property-meta id-meta">
-						<div class="meta-title"><?php echo $floor['floorId']?></div>
+						お問い合わせ番号: <div class="meta-title"><?php echo $floor['floorId']?></div>
 					</div>
 					</div>
 			  <?php } ?>
@@ -481,14 +481,19 @@
 	<!-- section action buttons -->
 		<section id="acbuttons">
 			<div class="contact-argent">
-				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><?php echo __('Contact Argent', 'realty')?></a>
+				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><i class="topicon-icon-thinliner_mail"></i><?php echo __('Contact Argent', 'realty')?></a>
 			</div>
 			<div class="buttons-group row">
 			<?php if ( !is_user_logged_in() ) { ?>
 			<div class="col-sm-6">
 			<a href="#custom_order_login_modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
 			</div>
+			<?php } else { ?>
+			<div class="col-sm-6">
+			<a href="#" class="btn btn-primary btn-square btn-line-border"><i class="fa fa-star-o" aria-hidden="true"></i><span><?php echo __('Add to favorite', 'realty')?></span></a>
+			</div>
 			<?php }?>
+			
 			
 			<?php if ($pdfUrl) {?>
 			<div class="col-sm-6">

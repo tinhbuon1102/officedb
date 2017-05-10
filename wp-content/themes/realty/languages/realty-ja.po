@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-10 03:09+0900\n"
+"PO-Revision-Date: 2017-04-14 21:43+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-KeywordsList: _;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;__;"
-"_e;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
-"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
-"esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x;esc_html_x;"
-"comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Poedit-KeywordsList: _;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;__;_e;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x;esc_html_x;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Generator: Poedit 1.8.12\n"
 "Last-Translator: \n"
 "Language: ja_JP\n"
@@ -96,53 +92,35 @@ msgid "Comment"
 msgstr ""
 
 #: functions.php:76
-msgid ""
-"Required: Please go to \"Appearance > Theme Options > Pages\" and set the "
-"page you want to use as your \"Property Search Results Page\"."
+msgid "Required: Please go to \"Appearance > Theme Options > Pages\" and set the page you want to use as your \"Property Search Results Page\"."
 msgstr ""
 
 #: functions.php:83
-msgid ""
-"Page template \"Agents\" is no longer supported in Realty 3.0. Please use "
-"\"Default Template\" and appropriate Visual Composer template instead."
+msgid "Page template \"Agents\" is no longer supported in Realty 3.0. Please use \"Default Template\" and appropriate Visual Composer template instead."
 msgstr ""
 
 #: functions.php:87
-msgid ""
-"Page template \"Contact\" is no longer supported in Realty 3.0. Please use "
-"\"Default Template\" and appropriate Visual Composer template instead."
+msgid "Page template \"Contact\" is no longer supported in Realty 3.0. Please use \"Default Template\" and appropriate Visual Composer template instead."
 msgstr ""
 
 #: functions.php:91
-msgid ""
-"Page template \"Intro\" is no longer supported in Realty 3.0. Please use "
-"\"Default Template\" and appropriate Visual Composer template instead."
+msgid "Page template \"Intro\" is no longer supported in Realty 3.0. Please use \"Default Template\" and appropriate Visual Composer template instead."
 msgstr ""
 
 #: functions.php:95
-msgid ""
-"Page template \"Membership Packages\" is no longer supported in Realty 3.0. "
-"Please use \"Default Template\" and Visual Composer shortcode \"Membership "
-"Packages\" instead."
+msgid "Page template \"Membership Packages\" is no longer supported in Realty 3.0. Please use \"Default Template\" and Visual Composer shortcode \"Membership Packages\" instead."
 msgstr ""
 
 #: functions.php:99
-msgid ""
-"Page template \"Property Map\" is no longer supported in Realty 3.0. Please "
-"use \"Default Template\" and appropriate Visual Composer template instead."
+msgid "Page template \"Property Map\" is no longer supported in Realty 3.0. Please use \"Default Template\" and appropriate Visual Composer template instead."
 msgstr ""
 
 #: functions.php:104
-msgid ""
-"Page template \"Property Search Results\" is no longer supported in Realty "
-"3.0. Please use page template \"Property Map Vertical\" or appropriate "
-"Visual Composer shortcodes instead."
+msgid "Page template \"Property Search Results\" is no longer supported in Realty 3.0. Please use page template \"Property Map Vertical\" or appropriate Visual Composer shortcodes instead."
 msgstr ""
 
 #: functions.php:108
-msgid ""
-"Page template \"Slideshow\" is no longer supported in Realty 3.0. Please use "
-"\"Default Template\" and appropriate Visual Composer template instead."
+msgid "Page template \"Slideshow\" is no longer supported in Realty 3.0. Please use \"Default Template\" and appropriate Visual Composer template instead."
 msgstr ""
 
 #: index.php:19
@@ -210,18 +188,12 @@ msgstr ""
 
 #: single-package.php:46
 #, php-format
-msgid ""
-"You are already subscribed to %s. Listings are available. If you still want "
-"to subscribe to this package proceed to make payment. Doing so makes your "
-"current package obsolete, as you can't have two active packages at the same "
-"time."
+msgid "You are already subscribed to %s. Listings are available. If you still want to subscribe to this package proceed to make payment. Doing so makes your current package obsolete, as you can't have two active packages at the same time."
 msgstr ""
 
 #: single-package.php:52
 #, php-format
-msgid ""
-"You are already subscribed to %s, but your publishing quota is used up. "
-"Proceed to make payment for this package in order to publish more properties."
+msgid "You are already subscribed to %s, but your publishing quota is used up. Proceed to make payment for this package in order to publish more properties."
 msgstr ""
 
 #: single-package.php:69
@@ -229,8 +201,7 @@ msgid "Payment Failed! Please try again with correct payment information."
 msgstr ""
 
 #: single-package.php:101
-msgid ""
-"You already subscribed to free package. Please go for other premium packages."
+msgid "You already subscribed to free package. Please go for other premium packages."
 msgstr ""
 
 #: single-package.php:103
@@ -243,15 +214,11 @@ msgid "Subscribe"
 msgstr ""
 
 #: single-package.php:117
-msgid ""
-"You are logged in as admin or agent. Please login as \"Subscriber\" to "
-"subscribe to this package."
+msgid "You are logged in as admin or agent. Please login as \"Subscriber\" to subscribe to this package."
 msgstr ""
 
 #: single-package.php:121
-msgid ""
-"You are not logged in. Please login as \"Subscriber\" to subscribe to this "
-"package."
+msgid "You are not logged in. Please login as \"Subscriber\" to subscribe to this package."
 msgstr ""
 
 #: single-package.php:135
@@ -273,15 +240,11 @@ msgid "Print this page"
 msgstr ""
 
 #: single-property.php:539
-msgid ""
-"You have to be logged-in to view agent details. Click Login/Register in the "
-"top menu."
+msgid "You have to be logged-in to view agent details. Click Login/Register in the top menu."
 msgstr ""
 
 #: single-property.php:639
-msgid ""
-"You have to be logged-in to view property details. Click Login/Register in "
-"the top menu."
+msgid "You have to be logged-in to view property details. Click Login/Register in the top menu."
 msgstr ""
 
 #: single.php:33
@@ -338,9 +301,7 @@ msgstr ""
 
 #: template-property-comparison.php:69 lib/functions-compare-properties.php:20
 #: lib/functions-compare-properties.php:29
-msgid ""
-"Local storage is not supported by your browser. Please disable \\\"Private "
-"Mode\\\", or upgrade to a modern browser."
+msgid "Local storage is not supported by your browser. Please disable \\\"Private Mode\\\", or upgrade to a modern browser."
 msgstr ""
 
 #. Name of the template
@@ -397,9 +358,7 @@ msgid "Property has been published."
 msgstr ""
 
 #: template-property-submit.php:70
-msgid ""
-"Property is submitted. To publish it go to \"My Properties\" and make "
-"payment."
+msgid "Property is submitted. To publish it go to \"My Properties\" and make payment."
 msgstr ""
 
 #: template-property-submit.php:73
@@ -412,8 +371,7 @@ msgstr ""
 
 #: template-property-submit.php:118
 #, php-format
-msgid ""
-"Your Package: %s | Remaining Listings %s | Remaining Featured Listings: %s"
+msgid "Your Package: %s | Remaining Listings %s | Remaining Featured Listings: %s"
 msgstr ""
 
 #: template-property-submit.php:153
@@ -437,15 +395,11 @@ msgid "Property will be published manually after payment completion."
 msgstr ""
 
 #: template-property-submit.php:183
-msgid ""
-"As a subscriber you do not have permission to submit or edit properties."
+msgid "As a subscriber you do not have permission to submit or edit properties."
 msgstr ""
 
 #: template-property-submit.php:191
-msgid ""
-"Your subscription package is either expired or you have reached your allowed "
-"number of listings. Please visit your profile page and check the status or "
-"select a package to subscribe."
+msgid "Your subscription package is either expired or you have reached your allowed number of listings. Please visit your profile page and check the status or select a package to subscribe."
 msgstr ""
 
 #: template-property-submit.php:205
@@ -458,12 +412,11 @@ msgstr ""
 
 #: template-user-favorites.php:83 template-user-favorites.php:88
 msgid "You haven't added any favorites."
-msgstr "お気に入りの登録はありません。"
+msgstr ""
 
 #: template-user-favorites.php:96
 msgid "To view your favorites you have to login or create an account."
 msgstr ""
-"お気に入りの登録を見るには、ログインするか、会員登録をおこなってください。"
 
 #. Name of the template
 msgid "User - Login"
@@ -575,17 +528,15 @@ msgstr ""
 #: lib/functions-add-to-favorites.php:63 lib/functions-add-to-favorites.php:118
 #: lib/functions-add-to-favorites.php:135
 msgid "Remove From Favorites"
-msgstr "お気に入りから削除"
+msgstr ""
 
 #: lib/functions-add-to-favorites.php:66 lib/functions-add-to-favorites.php:70
 msgid "Add To Favorites"
-msgstr "お気に入りに追加"
+msgstr ""
 
 #: lib/functions-add-to-favorites.php:109
 #: lib/functions-add-to-favorites.php:158
-msgid ""
-"Local storage is not supported by your browser. Please disable \"Private Mode"
-"\", or upgrade to a modern browser."
+msgid "Local storage is not supported by your browser. Please disable \"Private Mode\", or upgrade to a modern browser."
 msgstr ""
 
 #: lib/functions-add-to-follow.php:62 lib/functions-add-to-follow.php:94
@@ -602,9 +553,7 @@ msgid "A property that you follow has been updated"
 msgstr ""
 
 #: lib/functions-add-to-follow.php:167
-msgid ""
-"TpTo unsubscribe from update notifications about this property please follow "
-"the link above, then click the envelope icon next to the property title."
+msgid "TpTo unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title."
 msgstr ""
 
 #: lib/functions-compare-properties.php:158
@@ -739,8 +688,7 @@ msgstr ""
 
 #: lib/functions-email.php:75
 #, php-format
-msgid ""
-"A new property %s has been submitted. To view/publish this property visit: %s"
+msgid "A new property %s has been submitted. To view/publish this property visit: %s"
 msgstr ""
 
 #: lib/functions-email.php:99
@@ -830,9 +778,7 @@ msgid "You have to be logged in to use this feature."
 msgstr ""
 
 #: lib/functions-login.php:29
-msgid ""
-"Incorrect login details. Please enter your username and password, and submit "
-"again."
+msgid "Incorrect login details. Please enter your username and password, and submit again."
 msgstr ""
 
 #: lib/functions-login.php:44
@@ -891,14 +837,8 @@ msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:99
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to install the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"installed."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to install the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins installed."
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
 msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:100
@@ -915,36 +855,20 @@ msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:102
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugin. Contact the administrator of this site for help on getting the "
-"plugin activated."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to activate the %s "
-"plugins. Contact the administrator of this site for help on getting the "
-"plugins activated."
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
 msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:103
 #, php-format
-msgid ""
-"The following plugin needs to be updated to its latest version to ensure "
-"maximum compatibility with this theme: %1$s."
-msgid_plural ""
-"The following plugins need to be updated to their latest version to ensure "
-"maximum compatibility with this theme: %1$s."
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
 msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:104
 #, php-format
-msgid ""
-"Sorry, but you do not have the correct permissions to update the %s plugin. "
-"Contact the administrator of this site for help on getting the plugin "
-"updated."
-msgid_plural ""
-"Sorry, but you do not have the correct permissions to update the %s plugins. "
-"Contact the administrator of this site for help on getting the plugins "
-"updated."
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
 msgstr[0] ""
 
 #: lib/functions-plugin-activation.php:105
@@ -988,7 +912,7 @@ msgstr ""
 
 #: lib/functions-property.php:202
 msgid "Watch Trailer"
-msgstr "動画を見る"
+msgstr ""
 
 #: lib/functions-property.php:346 lib/redux/realty-theme-options.php:1164
 msgid "Featured First"
@@ -1333,9 +1257,7 @@ msgid "Custom Zoom Level"
 msgstr ""
 
 #: lib/meta-box.php:290
-msgid ""
-"Enter only, if your properties are located very closeby, and you would like "
-"to zoom closer. Zoom targets oldest property."
+msgid "Enter only, if your properties are located very closeby, and you would like to zoom closer. Zoom targets oldest property."
 msgstr ""
 
 #: lib/visual-composer.php:24
@@ -1407,7 +1329,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:25
 msgid "Search Property"
-msgstr "物件を検索"
+msgstr ""
 
 #: realty-core/custom-post-types.php:26
 msgid "No Property found."
@@ -1419,7 +1341,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:71
 msgid "Search Property Location"
-msgstr "物件地域を検索"
+msgstr ""
 
 #: realty-core/custom-post-types.php:72
 msgid "Popular Property Location"
@@ -1515,7 +1437,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:143
 msgid "Search Property Type"
-msgstr "物件タイプを検索"
+msgstr ""
 
 #: realty-core/custom-post-types.php:144
 msgid "Popular Property Type"
@@ -1783,8 +1705,7 @@ msgstr ""
 
 #: template-parts/content-none.php:7
 #, php-format
-msgid ""
-"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
 
 #: template-parts/content-none.php:11
@@ -1792,9 +1713,7 @@ msgid "Please try again with some different search terms."
 msgstr ""
 
 #: template-parts/content-none.php:16
-msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
 #: template-parts/content-single.php:32
@@ -1882,10 +1801,7 @@ msgid "Favicon"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:219
-msgid ""
-"Upload Square Graphic (Recommendation: 64x64 PNG file). In WordPress 4.3+ "
-"you can set the favicon under \"Appearance > Customize\" and click on \"Site "
-"Identity\" as well."
+msgid "Upload Square Graphic (Recommendation: 64x64 PNG file). In WordPress 4.3+ you can set the favicon under \"Appearance > Customize\" and click on \"Site Identity\" as well."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:224
@@ -1893,9 +1809,7 @@ msgid "Logo"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:227
-msgid ""
-"Make sure to upload a retina logo as well using the \"Retina Logo\" option "
-"below."
+msgid "Make sure to upload a retina logo as well using the \"Retina Logo\" option below."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:232
@@ -1903,10 +1817,7 @@ msgid "Retina Logo"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:235
-msgid ""
-"Image has to be double the size of your logo above. File name has to be same "
-"as logo above with \"@2x\" at the end. If your logo is named \"logo.png\", "
-"then retina logo has to be named \"logo@2x.png\"."
+msgid "Image has to be double the size of your logo above. File name has to be same as logo above with \"@2x\" at the end. If your logo is named \"logo.png\", then retina logo has to be named \"logo@2x.png\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:240
@@ -1914,9 +1825,7 @@ msgid "Logo URL"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:241
-msgid ""
-"Helpful when using intro page as your frontpage. If empty, URL will be your "
-"site address."
+msgid "Helpful when using intro page as your frontpage. If empty, URL will be your site address."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:247
@@ -1936,9 +1845,7 @@ msgid "Login Page or Popup"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:264
-msgid ""
-"If you select login page make sure to create a new page and assign page "
-"template \"Login Page\"."
+msgid "If you select login page make sure to create a new page and assign page template \"Login Page\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:267
@@ -1955,9 +1862,7 @@ msgstr ""
 
 #: lib/redux/realty-theme-options.php:277
 #: lib/redux/realty-theme-options.php:284
-msgid ""
-"If site key and secret key set, Google reCAPTCHA shows on all contact forms. "
-"Helps to prevent spam."
+msgid "If site key and secret key set, Google reCAPTCHA shows on all contact forms. Helps to prevent spam."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:282
@@ -1981,9 +1886,7 @@ msgid "Inline scripts right before closing <strong>&lt;/body&gt;</strong>"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:302
-msgid ""
-"Use \"jQuery\" selector, instead of \"$\" shorthand. Do not add any &lt;"
-"script&gt; tags, they are already applied to this code."
+msgid "Use \"jQuery\" selector, instead of \"$\" shorthand. Do not add any &lt;script&gt; tags, they are already applied to this code."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:308
@@ -2003,9 +1906,7 @@ msgid "Property Search Results Page"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:328
-msgid ""
-"Make sure the selected page contains [property_listing] and "
-"[property_search_form] shortcode to display property search results."
+msgid "Make sure the selected page contains [property_listing] and [property_search_form] shortcode to display property search results."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:334
@@ -2013,10 +1914,7 @@ msgid "User Registration: Select \"Terms & Conditions\" Page"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:335
-msgid ""
-"Select the page that contains your \"Terms & Conditions\". When a page has "
-"been selected, users are required to accept your terms and conditions in "
-"order to register."
+msgid "Select the page that contains your \"Terms & Conditions\". When a page has been selected, users are required to accept your terms and conditions in order to register."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:341
@@ -2024,9 +1922,7 @@ msgid "Custom 404 Error Page"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:342
-msgid ""
-"Content of selected page will be shown to visitors who request a non-"
-"existing, so called \"404 Error Page\"."
+msgid "Content of selected page will be shown to visitors who request a non-existing, so called \"404 Error Page\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:343
@@ -2128,10 +2024,7 @@ msgid "Custom Map Marker: Cluster"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:482
-msgid ""
-"For a non-square graphic, you have to add some Custom CSS to position the "
-"cluster number: #map .cluster > div { line-height: 1 !important; padding-"
-"top: ??px !important; }"
+msgid "For a non-square graphic, you have to add some Custom CSS to position the cluster number: #map .cluster > div { line-height: 1 !important; padding-top: ??px !important; }"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:483
@@ -2159,9 +2052,7 @@ msgid "Don't load Google Maps API"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:520
-msgid ""
-"Check this box, if map is not showing. Another plugin might already load the "
-"API, and a duplicate API request produces an error."
+msgid "Check this box, if map is not showing. Another plugin might already load the API, and a duplicate API request produces an error."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:526
@@ -2187,7 +2078,7 @@ msgstr ""
 
 #: lib/redux/realty-theme-options.php:552
 msgid "Search by Keyword"
-msgstr "キーワードで検索"
+msgstr ""
 
 #: lib/redux/realty-theme-options.php:558
 msgid "Price Range (set options above)"
@@ -2223,11 +2114,7 @@ msgid "Property Slug"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:629
-msgid ""
-"URL slug for single property URL. I.e. http://yoursite.com/immobilie/nice-"
-"place/ (where \"immobilie\" represents the property slug\"). Go to "
-"\"Settings > Permalinks\" and click \"Save Changes\" to apply your new "
-"property slug."
+msgid "URL slug for single property URL. I.e. http://yoursite.com/immobilie/nice-place/ (where \"immobilie\" represents the property slug\"). Go to \"Settings > Permalinks\" and click \"Save Changes\" to apply your new property slug."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:635
@@ -2253,10 +2140,7 @@ msgstr ""
 #: lib/redux/realty-theme-options.php:652
 #: lib/redux/realty-theme-options.php:1021
 #, php-format
-msgid ""
-"Only single value field types (i.e. text, number) are accepted. Advanced "
-"Custom Fields with a type of \"checkbox\" etc. won't work. %s format: \"fa "
-"fa-expand\". %s format \"icon-heart\"."
+msgid "Only single value field types (i.e. text, number) are accepted. Advanced Custom Fields with a type of \"checkbox\" etc. won't work. %s format: \"fa fa-expand\". %s format \"icon-heart\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:665
@@ -2380,9 +2264,7 @@ msgid "Property Image Width"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:769
-msgid ""
-"Select smaller dimension for faster page load time. Setting doesn't effect "
-"slideshow container width, image still stretches full width."
+msgid "Select smaller dimension for faster page load time. Setting doesn't effect slideshow container width, image still stretches full width."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:772
@@ -2434,9 +2316,7 @@ msgid "Applied on single property page"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:812
-msgid ""
-"Select all additional fields you want to hide in additional fields area on "
-"single property page."
+msgid "Select all additional fields you want to hide in additional fields area on single property page."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:817
@@ -2452,9 +2332,7 @@ msgid "Property Title: Additional Details"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:830
-msgid ""
-"Additional custom fields can be added from \"Custom Fields\" menu. Prefix "
-"any \"Field Name\" with \"additional_\"."
+msgid "Additional custom fields can be added from \"Custom Fields\" menu. Prefix any \"Field Name\" with \"additional_\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:831
@@ -2514,9 +2392,7 @@ msgid "Disable Follow The Property"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:885
-msgid ""
-"Email icon next to property title, to subscribe to notifications via email "
-"when property is updated."
+msgid "Email icon next to property title, to subscribe to notifications via email when property is updated."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:891
@@ -2536,9 +2412,7 @@ msgid "Use Any Contact Form shortcode Instead Of Default Contact Form"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:910
-msgid ""
-"Enter your Contact Form complete shortcode. Make sure the relevent plugin is "
-"activate. Leave empty to use the default contact form."
+msgid "Enter your Contact Form complete shortcode. Make sure the relevent plugin is activate. Leave empty to use the default contact form."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:918
@@ -2546,10 +2420,7 @@ msgid "Use Contact Form 7 Instead Of Default Contact Form"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:919
-msgid ""
-"Enter your Contact Form 7 shortcode ID. Make sure CF7 plugin is activated "
-"and that ID entered matches your CF7 form ID. Leave empty to use the default "
-"contact form."
+msgid "Enter your Contact Form 7 shortcode ID. Make sure CF7 plugin is activated and that ID entered matches your CF7 form ID. Leave empty to use the default contact form."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:927
@@ -2573,9 +2444,7 @@ msgid "CC To Admin Email Address"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:943
-msgid ""
-"Used, if admin wants to get CC of the each email sent to Agents from "
-"property page."
+msgid "Used, if admin wants to get CC of the each email sent to Agents from property page."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:950
@@ -2683,9 +2552,7 @@ msgid "\"New\" Property Badge"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1095
-msgid ""
-"Add <i class=\"icon-hot-topic\"></i> icon to property, if published within "
-"the last .. days. Set to \"0\" to disable this feature."
+msgid "Add <i class=\"icon-hot-topic\"></i> icon to property, if published within the last .. days. Set to \"0\" to disable this feature."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1105
@@ -2701,10 +2568,7 @@ msgid "Property Listing Placeholder Image"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1115
-msgid ""
-"Image will be displayed in property listings if no featured image is "
-"provided. Upload any custom image of appropriate size (recommended: "
-"400x300px)."
+msgid "Image will be displayed in property listings if no featured image is provided. Upload any custom image of appropriate size (recommended: 400x300px)."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1120
@@ -2726,12 +2590,10 @@ msgstr ""
 #: lib/redux/realty-theme-options.php:1149
 #: realty-core/widgets/widget-property-search-form.php:29
 msgid "Property Search"
-msgstr "物件検索"
+msgstr ""
 
 #: lib/redux/realty-theme-options.php:1150
-msgid ""
-"Even if you currently don't use the price range slider, it is highly "
-"recommended to set default values, instead of leaving them blank."
+msgid "Even if you currently don't use the price range slider, it is highly recommended to set default values, instead of leaving them blank."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1162
@@ -2767,9 +2629,7 @@ msgid "Select the language of the property search datepicker."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1267
-msgid ""
-"Select all property features you want to add to property search form. Order "
-"via drag & drop."
+msgid "Select all property features you want to add to property search form. Order via drag & drop."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1272
@@ -2793,9 +2653,7 @@ msgid "Price Dropdown"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1284
-msgid ""
-"If any dropdown option selected, make sure to set price range parameters "
-"above (min, max and step) as well."
+msgid "If any dropdown option selected, make sure to set price range parameters above (min, max and step) as well."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1287
@@ -2815,10 +2673,7 @@ msgid "Fields: Property Search"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1308
-msgid ""
-"All search field attributes for every search field are mandatory. \"Unique "
-"Search Parameter\" has to be all lowercase letters, no spaces. Underscores "
-"and dashes allowed."
+msgid "All search field attributes for every search field are mandatory. \"Unique Search Parameter\" has to be all lowercase letters, no spaces. Underscores and dashes allowed."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1325
@@ -2871,11 +2726,7 @@ msgid "Fields: Property Search Mini"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1360
-msgid ""
-"The following search mini setup is used in shortcode [property_slider], "
-"which is also available in Visual Composer &quot;Property Slider&quot;. "
-"Search fields that are used in property search too, should have identical "
-"parameters. Mini search doesn't show &quot;More&quot; link for features."
+msgid "The following search mini setup is used in shortcode [property_slider], which is also available in Visual Composer &quot;Property Slider&quot;. Search fields that are used in property search too, should have identical parameters. Mini search doesn't show &quot;More&quot; link for features."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1425
@@ -2913,9 +2764,7 @@ msgstr ""
 
 #: lib/redux/realty-theme-options.php:1441
 #, php-format
-msgid ""
-"If notification ends up in spam folder, set up %s for the email address "
-"entered above."
+msgid "If notification ends up in spam folder, set up %s for the email address entered above."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1448
@@ -2951,9 +2800,7 @@ msgid "no-paid-submission"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1463
-msgid ""
-"If you select \"Membership\" make sure you have created at least one "
-"membership package under \"Memberships\"."
+msgid "If you select \"Membership\" make sure you have created at least one membership package under \"Memberships\"."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1468
@@ -2961,10 +2808,7 @@ msgid "Package Slug"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1470
-msgid ""
-"URL slug for single package URL. I.e. http://yoursite.com/package/package-"
-"name/ (where \"package\" represents the package slug\"). Go to \"Settings > "
-"Permalinks\" and click \"Save Changes\" to apply your new package slug."
+msgid "URL slug for single package URL. I.e. http://yoursite.com/package/package-name/ (where \"package\" represents the package slug\"). Go to \"Settings > Permalinks\" and click \"Save Changes\" to apply your new package slug."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1479
@@ -2972,10 +2816,7 @@ msgid "Invoice Slug"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1481
-msgid ""
-"URL slug for single invoice URL. I.e. http://yoursite.com/invoice/invoice-"
-"name/ (where \"invoice\" represents the invoice slug\"). Go to \"Settings > "
-"Permalinks\" and click \"Save Changes\" to apply your new invoice slug."
+msgid "URL slug for single invoice URL. I.e. http://yoursite.com/invoice/invoice-name/ (where \"invoice\" represents the invoice slug\"). Go to \"Settings > Permalinks\" and click \"Save Changes\" to apply your new invoice slug."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1490
@@ -2991,9 +2832,7 @@ msgid "Enable property subscription via PayPal"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1505
-msgid ""
-"If checked, recurring payments (subscriptions) will be charged instead of "
-"one-time payments."
+msgid "If checked, recurring payments (subscriptions) will be charged instead of one-time payments."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1515
@@ -3071,9 +2910,7 @@ msgstr ""
 
 #: lib/redux/realty-theme-options.php:1616
 #: lib/redux/realty-theme-options.php:1624
-msgid ""
-"Enter API live key, If you want to enable testing or sandbox mode then "
-"please enter API testing keys"
+msgid "Enter API live key, If you want to enable testing or sandbox mode then please enter API testing keys"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1623
@@ -3085,9 +2922,7 @@ msgid "Enable Stripe Sandbox for Testing"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1632
-msgid ""
-"Disable to process live transactions. Please enter Stripe testing keys above "
-"for testing."
+msgid "Disable to process live transactions. Please enter Stripe testing keys above for testing."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1639
@@ -3132,9 +2967,7 @@ msgid "Allow HTML in Author Bio"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1695
-msgid ""
-"Enabling this option comes with potential security risks. Don't turn on, if "
-"you not 100% your users won't harm you."
+msgid "Enabling this option comes with potential security risks. Don't turn on, if you not 100% your users won't harm you."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1706
@@ -3166,9 +2999,7 @@ msgid "e.g. \"from \""
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1876
-msgid ""
-"If filled out, prefix appears on every property price. Can be overwritten "
-"for each property."
+msgid "If filled out, prefix appears on every property price. Can be overwritten for each property."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1882
@@ -3180,9 +3011,7 @@ msgid "e.g. \"/month\""
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1884
-msgid ""
-"If filled out, suffix appears on every property price. Can be overwritten "
-"for each property."
+msgid "If filled out, suffix appears on every property price. Can be overwritten for each property."
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:1890
@@ -3226,10 +3055,7 @@ msgid "Section via hook"
 msgstr ""
 
 #: lib/redux/realty-theme-options.php:2053
-msgid ""
-"<p class=\"description\">This is a section created by adding a filter to the "
-"sections array. Can be used by child themes to add/remove sections from the "
-"options.</p>"
+msgid "<p class=\"description\">This is a section created by adding a filter to the sections array. Can be used by child themes to add/remove sections from the options.</p>"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-agents.php:207
@@ -3439,9 +3265,7 @@ msgstr ""
 
 #: realty-core/shortcodes/shortcode-button.php:74
 #: realty-core/shortcodes/shortcode-notification.php:96
-msgid ""
-"Make sure to include http:// or https:// protocol at the beginning of your "
-"URL."
+msgid "Make sure to include http:// or https:// protocol at the beginning of your URL."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-button.php:78
@@ -3481,9 +3305,7 @@ msgstr ""
 
 #: realty-core/shortcodes/shortcode-contact-form.php:60
 #: lib/inc/template/contact-form.php:34
-msgid ""
-"Please enter your Google reCaptcha site keys under \"Appearance > Theme "
-"Options > General\"."
+msgid "Please enter your Google reCaptcha site keys under \"Appearance > Theme Options > General\"."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-contact-form.php:81
@@ -3575,9 +3397,7 @@ msgid "Disable Google reCaptcha"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-contact-form.php:323
-msgid ""
-"If enabled, make sure to enter your reCaptcha site keys under \"Appearance > "
-"Theme Options > General\"."
+msgid "If enabled, make sure to enter your reCaptcha site keys under \"Appearance > Theme Options > General\"."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:238
@@ -3611,10 +3431,7 @@ msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:270
 #: realty-core/shortcodes/shortcode-google-maps.php:343
-msgid ""
-"Enter one longitude per line. Visit <a href=\"http://mondeca.com/index.php/"
-"en/any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-"
-"place-en</a> to retrieve coordinate of any address."
+msgid "Enter one longitude per line. Visit <a href=\"http://mondeca.com/index.php/en/any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-place-en</a> to retrieve coordinate of any address."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:274
@@ -3622,9 +3439,7 @@ msgid "Addresses"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:277
-msgid ""
-"Multiple locations supported. Enter one address per line (same for logo, "
-"phone, mobile, email."
+msgid "Multiple locations supported. Enter one address per line (same for logo, phone, mobile, email."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:281
@@ -3682,10 +3497,7 @@ msgid "Latitude"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:330
-msgid ""
-"Enter one latitude per line. Visit <a href=\"http://mondeca.com/index.php/en/"
-"any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-place-"
-"en</a> to retrieve coordinate of any address."
+msgid "Enter one latitude per line. Visit <a href=\"http://mondeca.com/index.php/en/any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-place-en</a> to retrieve coordinate of any address."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-google-maps.php:340
@@ -3808,9 +3620,7 @@ msgid "Square (400x400px)"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-membership-packages.php:97
-msgid ""
-"Please first enable memberships under \"Appearance > Theme Options > "
-"Property Submit\" and create membership packages."
+msgid "Please first enable memberships under \"Appearance > Theme Options > Property Submit\" and create membership packages."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-membership-packages.php:110
@@ -3874,33 +3684,25 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-property-carousel.php:309
 #: realty-core/shortcodes/shortcode-property-listing.php:377
 #: realty-core/shortcodes/shortcode-property-map.php:482
-msgid ""
-"Use \"Slug\" as you can find under \"Properties > Property Location\". "
-"Separate by comma."
+msgid "Use \"Slug\" as you can find under \"Properties > Property Location\". Separate by comma."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-carousel.php:318
 #: realty-core/shortcodes/shortcode-property-listing.php:386
 #: realty-core/shortcodes/shortcode-property-map.php:491
-msgid ""
-"Use \"Slug\" as you can find under \"Properties > Property Status\". "
-"Separate by comma."
+msgid "Use \"Slug\" as you can find under \"Properties > Property Status\". Separate by comma."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-carousel.php:327
 #: realty-core/shortcodes/shortcode-property-listing.php:395
 #: realty-core/shortcodes/shortcode-property-map.php:500
-msgid ""
-"Use \"Slug\" as you can find under \"Properties > Property Type\". Separate "
-"by comma."
+msgid "Use \"Slug\" as you can find under \"Properties > Property Type\". Separate by comma."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-carousel.php:336
 #: realty-core/shortcodes/shortcode-property-listing.php:404
 #: realty-core/shortcodes/shortcode-property-map.php:509
-msgid ""
-"Use \"Slug\" as you can find under \"Properties > Property Features\". "
-"Separate by comma."
+msgid "Use \"Slug\" as you can find under \"Properties > Property Features\". Separate by comma."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-carousel.php:363
@@ -3934,10 +3736,7 @@ msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-map.php:397
 #: realty-core/shortcodes/shortcode-property-map.php:406
-msgid ""
-"Visit <a href=\"http://mondeca.com/index.php/en/any-place-en\" target="
-"\"_blank\">http://mondeca.com/index.php/en/any-place-en</a> to retrieve "
-"coordinate of any address."
+msgid "Visit <a href=\"http://mondeca.com/index.php/en/any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-place-en</a> to retrieve coordinate of any address."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-map.php:403
@@ -3949,15 +3748,11 @@ msgid "Address (Map Center)"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-map.php:415
-msgid ""
-"E.g. \"London, UK\". Leave latitude/longitude empty. Use if you no latitude/"
-"longitude available. "
+msgid "E.g. \"London, UK\". Leave latitude/longitude empty. Use if you no latitude/longitude available. "
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-map.php:444
-msgid ""
-"Only applicable when address or coordinates are set, otherwise map bounds "
-"will be calculated automatically."
+msgid "Only applicable when address or coordinates are set, otherwise map bounds will be calculated automatically."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-search-form-custom.php:158
@@ -3995,8 +3790,7 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-property-search-form-custom.php:300
 #: realty-core/shortcodes/shortcode-property-search-form-custom.php:309
 #: realty-core/shortcodes/shortcode-property-search-form-custom.php:318
-msgid ""
-"Entering a field label will add this field to this custom property search."
+msgid "Entering a field label will add this field to this custom property search."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-search-form-custom.php:189
@@ -4063,7 +3857,7 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-property-slider.php:326
 #: realty-core/widgets/widget-property-search-form.php:17
 msgid "Property Search Form"
-msgstr "物件検索フォーム"
+msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:288
 msgid "Property Slider"
@@ -4074,9 +3868,7 @@ msgid "Slider count"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:308
-msgid ""
-"Enter number of slides to display. Enter \"-1\" to list all vehicles. "
-"Ignored when \"Show only featured properties\" is selected."
+msgid "Enter number of slides to display. Enter \"-1\" to list all vehicles. Ignored when \"Show only featured properties\" is selected."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:312
@@ -4092,9 +3884,7 @@ msgid "Mini"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:333
-msgid ""
-"Search forms have to be configured first under \"Appearance > Theme Options "
-"> Property Search\"."
+msgid "Search forms have to be configured first under \"Appearance > Theme Options > Property Search\"."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:337
@@ -4167,9 +3957,7 @@ msgid "Extra Class Names"
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-property-slider.php:562
-msgid ""
-"Style particular content element differently - add a class name and refer to "
-"it in custom CSS."
+msgid "Style particular content element differently - add a class name and refer to it in custom CSS."
 msgstr ""
 
 #: realty-core/shortcodes/shortcode-section-title.php:36
@@ -4277,7 +4065,7 @@ msgstr ""
 #: lib/inc/template/search-form-mini.php:128
 #: lib/inc/template/search-form.php:133
 msgid "Any Location"
-msgstr "全ての地域"
+msgstr ""
 
 #: realty-core/widgets/widget-custom-property-search-form.php:53
 #: realty-core/widgets/widget-custom-property-search-form.php:243
@@ -4573,41 +4361,40 @@ msgstr ""
 #: lib/inc/template/login-bar-header.php:50
 #: lib/inc/template/login-bar-header.php:51 lib/inc/template/user-menu.php:31
 msgid "Favorites"
-msgstr "お気に入り"
+msgstr ""
 
 #: lib/inc/template/login-bar-header.php:24
 msgid "Login/Register"
-msgstr "ログイン/新規登録"
+msgstr ""
 
 #: lib/inc/template/login-bar-header.php:91
 #: lib/inc/template/login-bar-header.php:92 lib/inc/template/user-menu.php:32
 msgid "Logout"
-msgstr "ログアウト"
+msgstr ""
 
 #: lib/inc/template/login-modal.php:11
 msgid "Close"
-msgstr "閉じる"
+msgstr ""
 
 #: lib/inc/template/membership-package-item.php:36
 msgid "Price:"
-msgstr "価格"
+msgstr ""
 
 #: lib/inc/template/membership-package-item.php:39
 msgid "Free"
-msgstr "無料"
+msgstr ""
 
 #: lib/inc/template/property-comparison.php:9
 msgid "Compare Properties"
-msgstr "物件を比較"
+msgstr ""
 
 #: lib/inc/template/property-comparison.php:32
 #: lib/inc/template/property-item.php:242
 msgid "Compare"
-msgstr "比較"
+msgstr ""
 
 #: lib/inc/template/property-comparison.php:36
-msgid ""
-"Please create a page that is using page template \"Property Comparison\"."
+msgid "Please create a page that is using page template \"Property Comparison\"."
 msgstr ""
 
 #: lib/inc/template/property-comparison.php:41
@@ -4624,7 +4411,7 @@ msgstr ""
 
 #: lib/inc/template/property-item.php:227
 msgid "Share"
-msgstr "シェア"
+msgstr ""
 
 #: lib/inc/template/property-item.php:255
 msgid "Paid"
@@ -4633,18 +4420,19 @@ msgstr ""
 #: lib/inc/template/property-item.php:257
 #: lib/inc/template/property-item.php:262
 #: lib/inc/template/property-item.php:267
+msgid "Delete Property"
+msgstr ""
+
 #: lib/inc/template/property-item.php:261
 msgid "Draft"
-msgstr "下書き"
+msgstr ""
 
 #: lib/inc/template/property-item.php:266
 msgid "Pending"
 msgstr ""
 
 #: lib/inc/template/search-form-mini.php:11 lib/inc/template/search-form.php:11
-msgid ""
-"Please go to \"Appearance > Theme Options > Pages\" and set the page you "
-"want to use as your property search results."
+msgid "Please go to \"Appearance > Theme Options > Pages\" and set the page you want to use as your property search results."
 msgstr ""
 
 #: lib/inc/template/search-form-mini.php:476
@@ -4655,12 +4443,10 @@ msgstr ""
 #: lib/inc/template/search-form-mini.php:646
 #: lib/inc/template/search-form.php:652
 msgid "Search"
-msgstr "検索"
+msgstr ""
 
 #: lib/inc/template/search-form-mini.php:658
-msgid ""
-"Please setup \"Property \"Search Mini\" under \"Appearance > Theme Options > "
-"Property Search\"."
+msgid "Please setup \"Property \"Search Mini\" under \"Appearance > Theme Options > Property Search\"."
 msgstr ""
 
 #: lib/inc/template/search-form-mini.php:676
@@ -4674,9 +4460,7 @@ msgid "Property features:"
 msgstr ""
 
 #: lib/inc/template/search-form.php:664
-msgid ""
-"Please setup \"Property \"Search\" under \"Appearance > Theme Options > "
-"Property Search\"."
+msgid "Please setup \"Property \"Search\" under \"Appearance > Theme Options > Property Search\"."
 msgstr ""
 
 #: lib/inc/template/single-property-similar-properties.php:123
@@ -4705,10 +4489,7 @@ msgid "Demo Importer"
 msgstr ""
 
 #: lib/redux/extensions/wbc_importer/extension_wbc_importer.php:281
-msgid ""
-"One click demo content importer (content, placeholder images, widgets, theme "
-"options, menu, home pages). We recommend to run the importer on a fresh "
-"WordPress installation."
+msgid "One click demo content importer (content, placeholder images, widgets, theme options, menu, home pages). We recommend to run the importer on a fresh WordPress installation."
 msgstr ""
 
 #: lib/redux/extensions/wbc_importer/wbc_importer/field_wbc_importer.php:93
@@ -4851,11 +4632,8 @@ msgstr "相談"
 msgid "Free registration"
 msgstr "無料会員登録"
 
-msgid ""
-"offer secret properties, waiting for your interested properties and more "
-"variable member service."
-msgstr ""
-"未公開物件の提供、気になるビルの空室待ち、全物件の資料提供など会員特典あり"
+msgid "offer secret properties, waiting for your interested properties and more variable member service."
+msgstr "未公開物件の提供、気になるビルの空室待ち、全物件の資料提供など会員特典あり"
 
 msgid "Vacancy Info"
 msgstr "空室情報"
@@ -4871,87 +4649,3 @@ msgstr "オフィス仲介実績"
 
 msgid "Latest office blog"
 msgstr "オフィス情報最前線ブログ"
-
-msgid "Firm"
-msgstr "事務所"
-
-msgid "Store"
-msgstr "店舗"
-
-msgid "showroom"
-msgstr "ショールーム"
-
-msgid "warehouse"
-msgstr "倉庫"
-
-msgid "Dwelling"
-msgstr "住居"
-
-msgid "Parking lot"
-msgstr "駐車場"
-
-msgid "Refreshments"
-msgstr "軽飲食"
-
-msgid "Heavy diet"
-msgstr "重飲食"
-
-msgid "hospital"
-msgstr "医院"
-
-msgid "Este"
-msgstr "エステ"
-
-msgid "Classroom"
-msgstr "教室"
-
-msgid "Product sales"
-msgstr "物販"
-
-msgid "Rental office"
-msgstr "レンタルオフィス"
-
-msgid "tsubo"
-msgstr "坪"
-
-msgid "Unknown"
-msgstr "不明"
-
-msgid "Exists"
-msgstr "有"
-
-msgid "below ground %s"
-msgstr "地下%s階"
-
-msgid "above ground %s"
-msgstr "地上%s階"
-
-msgid "Stand"
-msgstr "台"
-
-msgid "Any Size"
-msgstr "全ての坪数"
-
-msgid "Search keywords"
-msgstr "キーワードで検索"
-
-msgid "My Account"
-msgstr "マイアカウント"
-
-msgid "No result for \"{{query}}\""
-msgstr "\"{{query}}\"での検索結果はありません"
-
-msgid "%s Station by foot : %sminutes"
-msgstr "%s駅から徒歩%s分"
-
-msgid "location"
-msgstr "地域"
-
-msgid "size"
-msgstr "坪数"
-
-msgid "station"
-msgstr "最寄駅"
-
-msgid "Contact Argent"
-msgstr "この物件を問い合わせる"
