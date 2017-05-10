@@ -1,7 +1,8 @@
 <ul class="latest-news-list row">
 <?php
 $recent_posts = wp_get_recent_posts(array(
-	'post_type' => 'news'
+	'post_type' => 'news',
+	'posts_per_page' => 3,
 ));
 
 foreach ( $recent_posts as $recent )
