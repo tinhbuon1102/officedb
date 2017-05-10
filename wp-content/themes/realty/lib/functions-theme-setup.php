@@ -43,14 +43,9 @@ function tt_estate_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// Custom Image Sizes
-	add_image_size( 'thumbnail-1600', 1600, 9999, false ); // @since v1.6.2 > Regenerate thumbnails: https://wordpress.org/plugins/regenerate-thumbnails/
-	add_image_size( 'thumbnail-1200', 1200, 9999, false );
-	add_image_size( 'thumbnail-16-9', 1200, 675, true );
-	add_image_size( 'thumbnail-1200-400', 1200, 400, true );
-	add_image_size( 'thumbnail-400-300', 400, 300, true );
 	add_image_size( 'property-thumb', 600, 300, true );
 	add_image_size( 'property-thumb-long', 600, 600, true );
-	add_image_size( 'square-400', 400, 400, true );
+	add_image_size( 'square-300', 300, 300, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array( 'primary' => esc_html__( 'Main Menu', 'realty' ) ) );
