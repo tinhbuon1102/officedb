@@ -187,7 +187,7 @@
 	      <?php if ( ! empty ( $estate_property_id ) ) { ?>
 					<div class="col-sm-5 col-md-3 contact-id">
 					<div class="property-meta id-meta">
-						お問い合わせ番号: <div class="meta-title"><?php echo $floor['floorId']?></div>
+						<?php echo trans_text('Contact Number')?>: <div class="meta-title"><?php echo $floor['floorId']?></div>
 					</div>
 					</div>
 			  <?php } ?>
