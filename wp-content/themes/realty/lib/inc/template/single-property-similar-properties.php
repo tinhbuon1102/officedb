@@ -110,7 +110,10 @@
 	}
 ?>
 
-<?php $query_similar_properties = new WP_Query( $args_similar_properties ); ?>
+<?php 
+$args_similar_properties = buildSearchArgs($args_similar_properties);
+$query_similar_properties = new WP_Query( $args_similar_properties ); 
+?>
 
 <?php if ( $query_similar_properties->have_posts() ) : ?>
 
