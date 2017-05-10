@@ -51,7 +51,7 @@ $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permal
 </div><!-- .entry-header -->
 <?php if ( has_post_thumbnail($news_post->ID) ) { ?>
 			<div class="header-media">
-				<a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo get_the_post_thumbnail($news_post->ID, 'property-thumb' ); ?></a>
+				<a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo get_the_post_thumbnail($news_post->ID, 'property-thumb-long' ); ?></a>
 			</div>
 		<?php } ?>
 <?php echo tt_post_content_navigation(); ?>
