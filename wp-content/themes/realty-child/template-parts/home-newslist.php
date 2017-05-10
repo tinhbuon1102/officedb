@@ -39,23 +39,26 @@ foreach ( $recent_posts as $recent )
 	{
 		$cat_name = $cat->cat_name;
 	}
+	$news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permalink($recent['ID']);
 	?>
 <li class="col-sm-4">
 		<div class="inner">
 			<div class="con-inner">
 				<div class="post-date"><?php echo renderJapaneseDate($recent['post_date'])?></div>
-				<div class="title"><?php echo $recent["post_title"]?></div>
+				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?></a></div>
 				<div class="meta">
 					<?php echo $cat_name?>&nbsp;|&nbsp;
 					<span class="common-cat">NEWS</span>
 				</div>
 				<div class="news_thumbnail">
+					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>">
 					<?php 
 					echo get_the_post_thumbnail($recent['ID'], 'thumbnail');
 					?>
+					</a>
 				</div>
 			</div>
-			<a href="<?php echo isset($new_property) ? get_permalink($new_property->ID) : get_permalink($recent['ID'])?>" title="Look <?php echo esc_attr($recent[" post_title"])?>" class="check_now">Check now</a>
+			<a href="<?php echo $news_url?>" title="Look <?php echo esc_attr($recent[" post_title"])?>" class="check_now">Check now</a>
 		</div>
 	</li>
 
