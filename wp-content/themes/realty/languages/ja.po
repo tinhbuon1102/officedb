@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-10 03:09+0900\n"
+"PO-Revision-Date: 2017-05-10 12:35+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -4955,3 +4955,24 @@ msgstr "最寄駅"
 
 msgid "Contact Argent"
 msgstr "この物件を問い合わせる"
+
+msgid "Old earthquake resistance standard"
+msgstr "旧耐震基準"
+
+msgid "Earthquake resistant reinforced"
+msgstr "耐震補強済"
+
+msgid "New earthquake resistance standard"
+msgstr "新耐震基準"
+
+msgid "Base isolation structure"
+msgstr "免震構造"
+
+msgid "Damping structure"
+msgstr "制振構造"
+
+msgid "Exist but unknown unit number"
+msgstr "有るが台数不明"
+
+msgid "Group"
+msgstr "基"
