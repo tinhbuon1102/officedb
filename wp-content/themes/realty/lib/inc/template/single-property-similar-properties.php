@@ -4,7 +4,7 @@
 
 	$args_similar_properties = array(
 		'post_type'					=> 'property',
-		'posts_per_page' 		=> 20,
+		'posts_per_page' 		=> 40,
 		'post__not_in'			=> array( $single_property_id )
 	);
 
