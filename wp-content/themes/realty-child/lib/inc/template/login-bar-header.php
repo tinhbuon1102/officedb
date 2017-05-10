@@ -4,7 +4,7 @@
 	if ( $realty_theme_option['header-login-modal-layout'] == 'login-page' ) {
 		$login_url = get_permalink( tt_page_id_user_login() );
 	} else {
-		$login_url = '#custom_order_login_modal';
+		$login_url = '#login-modal';
 	}
 ?>
 

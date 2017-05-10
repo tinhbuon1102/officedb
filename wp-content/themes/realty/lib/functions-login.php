@@ -5,10 +5,6 @@
  */
 if ( ! function_exists( 'tt_login_form' ) ) {
 	function tt_login_form() {
-
-		// @TODO thangvn removed here;
-		return '';
-		
 		ob_start();
 		global $realty_theme_option;
 		?>
@@ -219,7 +215,7 @@ if ( ! function_exists( 'tt_login_modal' ) ) {
 		}
 	}
 }
-add_action( 'wp_footer', 'tt_login_modal', 20 );
+// add_action( 'wp_footer', 'tt_login_modal', 20 );
 
 /**
  * Disable WP Admin Bar For Non-Admins

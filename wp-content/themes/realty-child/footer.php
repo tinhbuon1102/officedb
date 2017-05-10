@@ -100,7 +100,7 @@
 
 <?php wp_footer(); ?>
 
-<div class="modal fade modal-custom" id="custom_order_login_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+<div class="modal fade modal-custom" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">

@@ -486,7 +486,7 @@
 			<div class="buttons-group row">
 			<?php if ( !is_user_logged_in() ) { ?>
 			<div class="col-sm-6">
-			<a href="#custom_order_login_modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
+			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
 			</div>
 			<?php } else { ?>
 			<div class="col-sm-6">
