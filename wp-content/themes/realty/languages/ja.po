@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-10 12:59+0900\n"
+"PO-Revision-Date: 2017-05-10 13:43+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -457,7 +457,7 @@ msgstr ""
 
 #: template-user-profile.php:152
 msgid "Username"
-msgstr ""
+msgstr "ユーザー名"
 
 #: template-user-profile.php:152
 msgid "Usernames cannot be changed."
@@ -519,7 +519,7 @@ msgstr ""
 
 #: template-user-profile.php:228 lib/functions-login.php:45
 msgid "Password"
-msgstr ""
+msgstr "パスワード"
 
 #: template-user-profile.php:249
 msgid "Login to view and edit your profile."
@@ -671,7 +671,7 @@ msgstr ""
 
 #: lib/functions-email.php:45
 msgid "Looks like you want to reset your password!"
-msgstr ""
+msgstr "パスワードリセットしてください"
 
 #: lib/functions-email.php:46
 msgid "To do so please visit:"
@@ -767,11 +767,11 @@ msgstr ""
 
 #: lib/functions-login.php:14 lib/inc/template/login-bar-header.php:24
 msgid "Login"
-msgstr ""
+msgstr "ログイン"
 
 #: lib/functions-login.php:16 lib/functions-login.php:77
 msgid "Register"
-msgstr ""
+msgstr "新規登録"
 
 #: lib/functions-login.php:25
 msgid "You have to be logged in to use this feature."
@@ -783,7 +783,7 @@ msgstr ""
 
 #: lib/functions-login.php:44
 msgid "Username or email"
-msgstr ""
+msgstr "ユーザー名またはメールアドレス"
 
 #: lib/functions-login.php:69
 msgid "Please accept our terms and conditions to register."
@@ -803,7 +803,7 @@ msgstr ""
 
 #: lib/functions-login.php:113
 msgid "Lost Password?"
-msgstr ""
+msgstr "パスワードをお忘れですか？"
 
 #: lib/functions-plugin-activation.php:93
 msgid "Install Required Plugins"
