@@ -195,7 +195,7 @@
 			
 	</div><!--.row-->
 	</div><!-- .head-single -->
-	<div class="row">
+	<div class="row"  id="single_property_wraper">
 	<div class="col-sm-5">
 
 	<div id="property-layout-<?php echo $layout; ?>">
@@ -490,7 +490,7 @@
 			</div>
 			<?php } else { ?>
 			<div class="col-sm-6">
-			<a href="#" class="btn btn-primary btn-square btn-line-border"><i class="fa fa-star-o" aria-hidden="true"></i><span><?php echo __('Add to favorite', 'realty')?></span></a>
+			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
 			</div>
 			<?php }?>
 			

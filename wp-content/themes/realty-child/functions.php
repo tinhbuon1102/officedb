@@ -2,23 +2,6 @@
 include 'define.php';
 include 'common_functions.php';
 
-/**
- * Loads the child theme textdomain.
- */
-function tt_child_theme_setup() {
-	load_child_theme_textdomain( 'realty', get_stylesheet_directory() . '/languages' );
-}
-add_action( 'after_setup_theme', 'tt_child_theme_setup' );
-
-function icheck_scripts ()
-{
-	wp_enqueue_style('icheck_css', get_stylesheet_directory_uri() . '/js/icheck/skins/square/square.css');
-	wp_enqueue_script('icheck_js', get_stylesheet_directory_uri() . '/js/icheck/icheck.js', array(
-		'jquery'
-	));
-}
-add_action('wp_enqueue_scripts', 'icheck_scripts');
-
 add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
@@ -33,7 +16,7 @@ function realty_body_class($classes, $class){
 add_action('wp_head', 'realty_wp_head');
 function realty_wp_head() {
 	$_SESSION['mirrormx_customer_chat']['lang'] = pll_current_language();
-	
+
 	if (is_user_logged_in())
 	{
 		$user = wp_get_current_user();
@@ -52,6 +35,23 @@ function realty_wp_head() {
 	}
 }
 
+/**
+ * Loads the child theme textdomain.
+ */
+function tt_child_theme_setup() {
+	load_child_theme_textdomain( 'realty', get_stylesheet_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'tt_child_theme_setup' );
+
+add_action('wp_enqueue_scripts', 'icheck_scripts');
+function icheck_scripts ()
+{
+	wp_enqueue_style('icheck_css', get_stylesheet_directory_uri() . '/js/icheck/skins/square/square.css');
+	wp_enqueue_script('icheck_js', get_stylesheet_directory_uri() . '/js/icheck/icheck.js', array(
+		'jquery'
+	));
+}
+
 function custom_scripts ()
 {
 	wp_enqueue_script('custom_js', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'));
@@ -62,6 +62,7 @@ function custom_scripts ()
 	wp_enqueue_script('validation_engine_js', get_stylesheet_directory_uri() . '/js/validationEngine/jquery.validationEngine.js', array('jquery'));
 	wp_enqueue_script('validation_engine_lang', get_stylesheet_directory_uri() . '/js/validationEngine/jquery.validationEngine-'.pll_current_language().'.js', array('jquery'));
 	wp_enqueue_script('overlay', get_stylesheet_directory_uri() . '/js/loadingoverlay.js');
+	wp_enqueue_script('autokana', get_stylesheet_directory_uri() . '/js/jquery.autoKana.js');
 }
 add_action('wp_enqueue_scripts', 'custom_scripts');
 

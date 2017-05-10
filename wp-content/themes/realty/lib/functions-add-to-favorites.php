@@ -39,7 +39,7 @@ add_action( 'wp_ajax_tt_ajax_add_remove_favorites', 'tt_ajax_add_remove_favorite
  *
  */
 if ( !function_exists('tt_add_remove_favorites') ) {
-	function tt_add_remove_favorites( $property_id = 0 ) {
+	function tt_add_remove_favorites( $property_id = 0, $is_custom = '' ) {
 
 		global $realty_theme_option;
 
@@ -52,7 +52,8 @@ if ( !function_exists('tt_add_remove_favorites') ) {
 		if ( ! $property_id ) {
 			$property_id = get_the_ID();
 		}
-
+		
+		$favicon = '%s';
 		if ( is_user_logged_in() ) {
 			// Logged-In User
 			$user_id = get_current_user_id();
@@ -60,17 +61,24 @@ if ( !function_exists('tt_add_remove_favorites') ) {
 
 			if ( ! empty( $get_user_meta_favorites ) && in_array( $property_id, $get_user_meta_favorites[0] ) ) {
 				// Property Is Already In Favorites
-				$favicon = '<i class="add-to-favorites icon-heart" data-fav-id="' . $property_id . '" data-toggle="tooltip" title="' . esc_html__( 'Remove From Favorites', 'realty' ) . '"></i>';
+				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star' : 'add-to-favorites origin icon-heart';
+				$text = __( 'Remove From Favorites', 'realty' );
 			} else {
 				// Property Isn't In Favorites
-				$favicon = '<i class="add-to-favorites icon-heart-1" data-fav-id="' . $property_id . '" data-toggle="tooltip" title="' . esc_html__( 'Add To Favorites', 'realty' ) . '"></i>';
+				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin icon-heart-1';
+				$text = __( 'Add To Favorites', 'realty' );
 			}
 		} else {
 			// Not Logged-In Visitor
-			$favicon = '<i class="add-to-favorites icon-heart-1" data-fav-id="' . $property_id . '" data-toggle="tooltip" title="' . esc_html__( 'Add To Favorites', 'realty' ) . '"></i>';
+			$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin icon-heart-1';
+			$text = __( 'Add To Favorites', 'realty' );
 		}
 
-		return $favicon;
+		if ($is_custom){
+			$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-line-border add-to-favorites_wraper">%s<span>'.$text.'</span></a>';
+		}
+		
+		return sprintf($favicon, '<i class="'.$class.'" data-fav-id="' . $property_id . '" data-toggle="tooltip" data-remove-title="'.__( 'Remove From Favorites', 'realty' ).'" data-add-title="'.__( 'Add To Favorites', 'realty' ).'" title="' . $text . '"></i>');
 
 	}
 }
@@ -111,19 +119,28 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 		  }
 			// Toggle Heart Class
 			if ( inArray( jQuery(this).attr('data-fav-id'), store.get('favorites') ) ) {
-
-				jQuery(this).toggleClass('icon-heart icon-heart-1');
-
-				if ( jQuery(this).hasClass('icon-heart') ) {
-					jQuery(this).attr('data-original-title', '<?php esc_html_e( 'Remove From Favorites', 'realty' ); ?>');
+				if (!jQuery(this).hasClass('custom-fav'))
+				{
+					jQuery(this).toggleClass('icon-heart icon-heart-1');
 				}
+				else {
+					jQuery(this).toggleClass('fa-star-o fa-star');
+				}
+
 
 			}
 
 		});
 		<?php } ?>
 
-		jQuery('body').on("click",'.add-to-favorites',function() {
+		
+		jQuery('body').on("click",'.add-to-favorites_wraper',function(e) {
+			e.preventDefault();
+			jQuery(this).find('.add-to-favorites').click();
+		});
+		
+		jQuery('body').on("click",'.add-to-favorites',function(e) {
+	        e.stopPropagation();
 
 			<?php
 			// Logged-In User Or Temporary Favorites Enabled
@@ -131,12 +148,45 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 			?>
 
 				// Toggle Favorites Tooltips
-				if ( jQuery(this).hasClass('icon-heart') ) {
-					jQuery(this).attr('data-original-title', '<?php esc_html_e( 'Remove From Favorites', 'realty' ); ?>');
-				}
+				var single_wraper = jQuery(this).closest('#single_property_wraper');
+				var is_single = single_wraper.length;
+				var title;
+				
+				if (is_single)
+				{
+					single_wraper.find('i.add-to-favorites.origin').toggleClass('icon-heart icon-heart-1');
+					single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').toggleClass('fa-star-o fa-star');
 
-				jQuery(this).find('i').toggleClass('icon-heart icon-heart-1');
-				jQuery(this).closest('i').toggleClass('icon-heart icon-heart-1');
+					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star'))
+						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-remove-title');
+					else if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o'))
+						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-add-title');
+
+					single_wraper.find('i.add-to-favorites.origin').attr('data-original-title', title);
+					single_wraper.find('a.add-to-favorites_wraper span').text(title);
+					single_wraper.find('a.add-to-favorites_wraper').attr('title', title);
+				}
+				else {
+					if (jQuery(this).hasClass('custom-fav'))
+					{						
+						jQuery(this).find('i').toggleClass('fa-star-o fa-star');
+						jQuery(this).closest('i').toggleClass('fa-star-o fa-star');						
+					}
+					else {
+						jQuery(this).find('i').toggleClass('icon-heart icon-heart-1');
+						jQuery(this).closest('i').toggleClass('icon-heart icon-heart-1');
+
+						var element = jQuery(this).find('i').length ? jQuery(this).find('i') : jQuery(this).closest('i');
+						 
+						if (element.hasClass('icon-heart'))
+							title = element.attr('data-remove-title');
+						else if (element.hasClass('icon-heart-1'))
+							title = element.attr('data-add-title');
+
+						element.attr('data-original-title', title);
+					}
+				}
+					
 
 				<?php if ( is_user_logged_in() ) { ?>
 					<?php $user_id = get_current_user_id();	?>

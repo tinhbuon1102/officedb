@@ -159,6 +159,8 @@ jQuery(document).ready(function($){
 	
 	initTypeHead();
 	initLoginRegisterForm();
+	
+	$.fn.autoKana('#user_name', '#user_name_kana', {katakana:true});
 });
 
 
