@@ -640,11 +640,34 @@ div#content {
 	.hidden-sm {
 		display: none;
 	}
+	.site-title {
+    float: left;
+	}
+	.top-header-links.primary-tooltips.hidden-pc {
+    float: right;
+    padding-right: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    height: 43px;
+    line-height: 43px;
+	}
+	.top-header-links.primary-tooltips a span i {
+    font-size: 24px;
+	display: block;
+	}
+	.top-header-links span.mobile {
+    display: block;
+	}
 }
 @media (max-width: 767px) {
 	.row.link-list {
     margin-left: 0;
     margin-right: 0;
+	}
+	.top-header-links.primary-tooltips.hidden-pc {
+    height: 36px;
+    line-height: 36px;
 	}
 }
 #links .container {

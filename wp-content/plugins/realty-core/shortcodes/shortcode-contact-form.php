@@ -10,13 +10,19 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			'id'                 => rand(),
 			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
 			'show_name'          => true,
+			'show_namekana'      => true,//added kyoko
+			'show_companyname'   => true,//added kyoko
 			'show_phone'         => true,
 			'label_name'         => esc_html__( 'Your name', 'realty' ),
+			'label_namekana'         => esc_html__( 'Your name kana', 'realty' ),//added kyoko
+			'label_companyname'  => esc_html__( 'Company name', 'realty' ),//added kyoko
 			'label_email'        => esc_html__( 'Your email address', 'realty' ),
 			'label_phone'        => esc_html__( 'Your phone number', 'realty' ),
 			'label_message'      => esc_html__( 'Your message', 'realty' ),
 			'placeholders'       => false,
-			'required_name'			 => true,
+			'required_company_name' => true,//added kyoko
+			'required_name'	     => true,
+			'required_namekana'	 => true,//added kyoko
 			'required_phone'  	 => false,
 			'disable_recaptcha'  => false,
 			'submit_text'        => esc_html__( 'Submit', 'realty' ),
@@ -27,6 +33,16 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 		ob_start();
 		?>
 		<form id="<?php echo 'form-' . $id; ?>">
+		<!--added kyoko-->
+		<?php if ( $show_companyname ) { ?>
+			<p>
+				<?php if ( ! $placeholders ) { ?>
+					<label><?php echo $label_companyname; ?></label>
+				<?php } ?>
+				<input type="text" name="company_name" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_companyname ); } ?>">
+			</p>
+			<?php }	?>
+			<!--/added kyoko-->
 			<?php if ( $show_name ) { ?>
 			<p>
 				<?php if ( ! $placeholders ) { ?>
@@ -35,6 +51,16 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 				<input type="text" name="name" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_name ); } ?>">
 			</p>
 			<?php }	?>
+			<!--added kyoko-->
+			<?php if ( $show_namekana ) { ?>
+			<p>
+				<?php if ( ! $placeholders ) { ?>
+					<label><?php echo $label_namekana; ?></label>
+				<?php } ?>
+				<input type="text" name="name_kana" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_namekana ); } ?>">
+			</p>
+			<?php }	?>
+			<!--/added kyoko-->
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_email; ?></label>
@@ -49,6 +75,13 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 				<input type="text" name="phone" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_phone ); } ?>">
 			</p>
 			<?php } ?>
+			<!--added kyoko-->
+			<div class="radio-options">
+				<span><input type="radio" name="ctype" id="type1"><?php echo __('want to going for a private view', 'realty')?></span>
+				<span><input type="radio" name="ctype" id="type2"><?php echo __('asking to look for offices', 'realty')?></span>
+				<span><input type="radio" name="ctype" id="type3"><?php echo __('asking some questions', 'realty')?></span>
+			</div>
+			<!--/added kyoko-->
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_message; ?></label>
@@ -84,7 +117,9 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 		<?php
 			$required_fields = array(
 				'id'                => $id,
+				'company_name'      => $required_company_name,//added kyoko
 				'name'              => $required_name,
+				'name_kana'         => $required_namekana,//added kyoko
 				'email'             => true,
 				'phone'             => $required_phone,
 				'message'           => true,
