@@ -448,7 +448,7 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 			$recipient[] = $realty_theme_option['property-contact-form-cc-admin'];
 		}
 		wp_mail( $recipient, $subject, $message, $headers );
-		echo json_decode(array('error' => false)); die;
+		echo json_encode(array('error' => false)); die;
 	}
 }
 add_action( 'wp_ajax_realty_ajax_shortcode_contact_form', 'realty_ajax_shortcode_contact_form' );
