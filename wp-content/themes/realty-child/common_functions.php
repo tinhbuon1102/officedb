@@ -676,11 +676,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				
 		case 'security_id':
 			$securityDetails = $wpdb->get_row("SELECT * FROM `security` WHERE security_id=" . (int)$building['security_id']);
-			return $securityDetails ? $securityDetails->security_name : FIELD_MISSING_VALUE;
+			return $securityDetails ? trans_text($securityDetails->security_name) : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'renewal_data':
-			return $building[$field] ? $building[$field] : FIELD_MISSING_VALUE;
+			return $building[$field] ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'avg_neighbor_fee':
