@@ -856,7 +856,7 @@
 	<ul class="row list-unstyled">
 		<?php $property_counter = 0; // Required for map marker sync ?>
 		<?php while ( $aListBestPropertyViewed->have_posts() ) : $aListBestPropertyViewed->the_post(); ?>
-			<li class="col-lg-12">
+			<li class="col-lg-12 col-md-12 col-sm-4 col-xs-4">
 				<?php
 					$property_id = get_the_id();
 					include( locate_template( 'lib/inc/template/property-item-custom.php' ) );

@@ -20,7 +20,7 @@ jQuery(window).load(function() {
 <h2 class="page-title"><?php echo __('Properties List', 'realty')?></h2>
 	<div class="row">
 
-		<div class="col-sm-4 search-container">
+		<div class="col-md-4 search-container">
 			<?php
 				wp_reset_postdata();
 
@@ -43,7 +43,7 @@ jQuery(window).load(function() {
 
 		</div>
 
-		<div class="col-sm-8 map-container">
+		<div class="col-md-8 map-container">
 			<div id="property-search-results" data-view="<?php if ( isset( $listing_view ) ) { echo $listing_view; } else { echo 'grid-view'; } ?>">
 				<div class="property-items show-compare">
 			<?php if ( $query_search_results->have_posts() ) : ?>
@@ -55,7 +55,7 @@ jQuery(window).load(function() {
 						<ul class="row list-unstyled">
 							<?php $property_counter = 0; // Required for map marker sync ?>
 							<?php while ( $query_search_results->have_posts() ) : $query_search_results->the_post(); ?>
-								<li class="col-lg-6">
+								<li class="col-md-6 col-sm-6 col-xs-6">
 									<?php
 										$property_id = get_the_id();
 										include( locate_template( 'lib/inc/template/property-item-custom.php' ) );

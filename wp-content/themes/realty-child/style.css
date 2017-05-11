@@ -362,12 +362,7 @@ input, input[type=submit], input:focus, textarea, .chosen-container.chosen-conta
 .top-header a:hover, .top-header a:focus, .breadcrumbs a:hover, .breadcrumbs a:focus, .top-header .lang-item a:hover, .top-header .lang-item a:focus {
     color: #000;
 }
-.primary-menu li {
-    float: left;
-    margin: 0;
-    height: 65px;
-    line-height: 65px;
-}
+
 nav#navigation .primary-menu a {
 	border-bottom: 2px solid transparent;
 	padding: 0 15px;
@@ -422,14 +417,70 @@ ul#menu-main-menu:before, ul#menu-main-menu:after {
 ul#menu-main-menu:after {
 	clear: both;
 }
-.site-branding {
+.site-title {
+    position: relative;
+}
+.site-branding:before, .site-branding:after {
+    content: " ";
+    display: table;
+}
+.site-branding:after {
+    clear: both;
+}
+@media (min-width: 992px) {
+	.site-branding {
     max-width: 50px;
     padding: 5px 0;
-}
-nav#navigation {
+	}
+	nav#navigation {
     float: left;
     margin-left: 5%;
+	}
+	.primary-menu li {
+    float: left;
+    margin: 0;
+    height: 65px;
+    line-height: 65px;
+	}
 }
+@media (min-width: 768px) {
+.site-title {
+    width: 39px;
+}
+#toggle-navigation {
+    top: 20px;
+}
+}
+@media (min-width: 992px) {
+	.site-title {
+    width: auto;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.calling-info {
+		display: none;
+	}
+	body.ja nav#navigation .primary-menu a span:after {
+		display: none;
+	}
+	.main-navigation {
+    padding: 0;
+	}
+	nav#navigation .primary-menu a {
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;
+	}
+	
+}
+@media only screen and (max-width: 767px) {
+.site-title {
+    width: 32px;
+}
+#toggle-navigation {
+    top: 20px;
+}
+}
+
 header#header {
     position: relative;
     width: 100%;
@@ -574,9 +625,27 @@ div#content {
 .row.link-list .col-sm-3 {
     padding: 0 5px;
 }
-.row.link-list {
+@media (min-width: 992px) {
+	.hidden-pc {
+		display: none;
+	}
+}
+@media (min-width: 768px) {
+	.row.link-list {
     margin-left: -5px;
     margin-right: -5px;
+	}
+}
+@media (max-width: 991px) {
+	.hidden-sm {
+		display: none;
+	}
+}
+@media (max-width: 767px) {
+	.row.link-list {
+    margin-left: 0;
+    margin-right: 0;
+	}
 }
 #links .container {
     padding: 0;

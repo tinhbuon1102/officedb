@@ -38,7 +38,7 @@
 			<?php } ?>
 
 			<?php if ( ! $realty_theme_option['disable-header-login-register-bar'] ) { ?>
-				<div class="top-header-links primary-tooltips">
+				<div class="top-header-links primary-tooltips hidden-sm">
 					<?php get_template_part( 'lib/inc/template/login-bar-header' ); ?>
 				</div>
 		  <?php } ?>
@@ -66,6 +66,12 @@
 		    <?php echo get_bloginfo('description'); ?>
 	    </div>
 	    <?php } ?>
+	    <?php if ( ! $realty_theme_option['disable-header-login-register-bar'] ) { ?>
+				<div class="top-header-links primary-tooltips hidden-pc">
+					<?php get_template_part( 'lib/inc/template/login-bar-header' ); ?>
+				</div>
+		  <?php } ?>
+	    
 	    <a id="toggle-navigation" class="navbar-togglex" href="#"><i></i></a>
 			<div class="mobile-menu-overlay hide"></div>
     </div>
