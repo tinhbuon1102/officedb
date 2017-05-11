@@ -3,9 +3,9 @@
  * Shortcode: Contact Form
  *
  */
+
 if ( ! function_exists( 'realty_contact_form' ) ) {
 	function realty_contact_form( $atts ) {
-
 		extract( shortcode_atts( array(
 			'id'                 => rand(),
 			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
@@ -63,6 +63,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 					<input type="hidden" name="recaptcha">
 				<?php } ?>
 			<?php } ?>
+			<?php echo buildListContactProperty();?>
 			<p>
 				<input class="submit" type="submit" value="<?php echo esc_attr( $submit_text ); ?>">
 			</p>
@@ -71,6 +72,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			<input type="hidden" name="page_id" value="<?php the_id(); ?>" />
 			<input type="hidden" name="action" value="realty_ajax_shortcode_contact_form" />
 			<input type="hidden" name="nonce" value="<?php echo wp_create_nonce(); ?>" />
+			<input type="hidden" name="lang" value="<?php echo pll_current_language() ; ?>" />
 			<?php if ( is_user_logged_in() ) { ?>
 				<input type="hidden" name="user_id" value="<?php echo get_current_user_id(); ?>" />
 				<input type="hidden" name="current_time" value="<?php echo current_time( 'timestamp' ); ?>" />
@@ -168,6 +170,7 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 						recaptcha: "<?php esc_html_e( 'Please verify the reCaptcha.', 'realty' ); ?>",
 					},
 					submitHandler: function(form) {
+						$('body').LoadingOverlay("show");
 						$(form).ajaxSubmit({
 							error: function() {
 								$('#form-submit-success-<?php echo $required_fields['id']; ?>').addClass('hide');
@@ -182,9 +185,14 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 									success:function(){
 										//console.log(formData);
 										console.log("Message sent.");
+										$('body').LoadingOverlay("hide");
+										setTimeout(function(){
+											location.reload();
+										}, 400)
 					       	},
 					       	error:function(){
 						       	console.log("Error: "+formData);
+						       	$('body').LoadingOverlay("hide");
 					       	}
 								});
 							}
@@ -355,7 +363,15 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 		if ( $page_url ) {
 			$message .= esc_html__( 'Sent from', 'realty' ) . ': ' . $page_url;
 		}
+		
+		if (isset($_GET['send_multiple']) && $_GET['send_multiple'] == 1)
+		{
+			$message .= buildListContactProperty();
+		}
 
+		// Clear contact list
+		delete_user_meta(get_current_user_id(), 'realty_user_contact');
+		
 		$headers[] = "From:<$admin_email>";
 		$headers[] = "Reply-To: $name <$email>";
 		$headers[] = "Content-Type: text/html; charset=UTF-8";

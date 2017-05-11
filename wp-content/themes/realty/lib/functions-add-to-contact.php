@@ -1,4 +1,75 @@
 <?php
+function get_contact_property_list($user_id = false){
+	$user = get_currentuserinfo();
+	$user_id = $user->ID;
+	
+	$propertyIdList = get_user_meta($user_id, 'realty_user_contact', true);
+	if (!$propertyIdList) return array();
+	
+	$args = array(
+		'post_type' => 'property',
+		'posts_per_page' => -1,
+		'post__in' => $propertyIdList
+	);
+	
+	$properties = get_posts($args);
+	
+	$tableFloors = array();
+	foreach ($properties as $property_index => $property) {
+		$single_property_id = $property->ID;
+		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
+		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
+	
+		$tableFloors[$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';
+		$tableFloors[$property_index]['name'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . $property->post_title . '</a>';
+		$tableFloors[$property_index]['size'] = translateBuildingValue('area_ping', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['address'] = $google_maps['address'];
+		$tableFloors[$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['deposit'] = renderPrice($floor['total_deposit']);
+		$tableFloors[$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
+	}
+	return $tableFloors;
+}
+
+function buildListContactProperty(){
+	$tableFloors = get_contact_property_list();
+	$tableHtml = '';
+	if (!empty($tableFloors)) {
+		ob_start();
+		?>
+	<h4><?php echo trans_text('With list of properties below :')?></h4>
+	<input type="hidden" name="send_multiple" value="1"/>
+	<table id="contact_list_later">
+		<thead>
+			<tr>
+				<th class="floor_picture"><?php echo trans_text('Picture')?></th>
+				<th class="floor_name"><?php echo trans_text('Name')?></th>
+				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
+				<th class="floor_area"><?php echo trans_text('Area')?></th>
+				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
+				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($tableFloors as $floor) {?>
+		<tr class="contact_item">
+			<td class="floor_picture"><?php echo $floor['thumbnail']?></td>
+			<td class="floor_name"><?php echo $floor['name']?></td>
+			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
+			<td class="floor_area"><?php echo $floor['size']?></td>
+			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
+			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
+		</tr>
+		<?php }?>
+		</tbody>
+	</table>
+<?php 
+	$tableHtml = ob_get_contents();
+	ob_end_clean();
+	}
+	return $tableHtml;
+}
 /**
  * AJAX - contact
 *
@@ -9,51 +80,32 @@ if ( ! function_exists( 'tt_ajax_add_remove_contact' ) ) {
 		$user_id = $_GET['user'];
 		$property_id = $_GET['property'];
 
-		// Get contact Meta Data
-		$get_user_meta_contact = get_user_meta( $user_id, 'realty_user_contact', false ); // false = array()
-
-		if ( ! $get_user_meta_contact ) {
-			// No User Meta Data contact Found -> Add Data
-			$create_contact = array($property_id);
-			add_user_meta( $user_id, 'realty_user_contact', $create_contact );
-		} else {
-			// Meta Data Found -> Update Data
-			if ( ! in_array( $property_id, $get_user_meta_contact[0] ) ) {
-				// Add New Favorite
-				array_unshift( $get_user_meta_contact[0], $property_id ); // Add To Beginning Of contact Array
-				update_user_meta( $user_id, 'realty_user_contact', $get_user_meta_contact[0] );
+		$property_translations = pll_get_post_translations( $property_id );
+		
+		foreach ($property_translations as $property_id) {
+			// Get contact Meta Data
+			$get_user_meta_contact = get_user_meta( $user_id, 'realty_user_contact', false ); // false = array()
+	
+			if ( ! $get_user_meta_contact ) {
+				// No User Meta Data contact Found -> Add Data
+				$create_contact = array($property_id);
+				add_user_meta( $user_id, 'realty_user_contact', $create_contact );
 			} else {
-				// Remove Favorite
-				$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_contact[0] );
-				unset($get_user_meta_contact[0][$removeFavoriteFromPosition]);
-				update_user_meta( $user_id, 'realty_user_contact', $get_user_meta_contact[0] );
+				// Meta Data Found -> Update Data
+				if ( ! in_array( $property_id, $get_user_meta_contact[0] ) ) {
+					// Add New Favorite
+					array_unshift( $get_user_meta_contact[0], $property_id ); // Add To Beginning Of contact Array
+					update_user_meta( $user_id, 'realty_user_contact', $get_user_meta_contact[0] );
+				} else {
+					// Remove Favorite
+					$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_contact[0] );
+					unset($get_user_meta_contact[0][$removeFavoriteFromPosition]);
+					update_user_meta( $user_id, 'realty_user_contact', $get_user_meta_contact[0] );
+				}
 			}
 		}
 
-		$propertyIdList = get_user_meta($user_id, 'realty_user_contact', true);
-		$args = array(
-			'post_type' => 'property',
-			'posts_per_page' => -1,
-			'post__in' => $propertyIdList
-		);
-		
-		$properties = get_posts($args);
-		
-		$tableFloors = array();
-		foreach ($properties as $property_index => $property) {
-			$single_property_id = $property->ID;
-			$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
-			$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
-			$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
-				
-			$tableFloors[$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';
-			$tableFloors[$property_index]['name'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . $property->post_title . '</a>';
-			$tableFloors[$property_index]['size'] = translateBuildingValue('area_ping', $building, $floor, $single_property_id);
-			$tableFloors[$property_index]['address'] = $google_maps['address'];
-			$tableFloors[$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
-			$tableFloors[$property_index]['deposit'] = renderPrice($floor['total_deposit']);
-			$tableFloors[$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
-		}
+		$tableFloors = get_contact_property_list($user_id);
 		echo json_encode(array('floors' => $tableFloors)); die;
 	}
 }
