@@ -272,7 +272,7 @@
 					?>
 				</td>
 			<tr>
-				<th><?php echo __('Construction', 'realty')?></th>
+				<th><?php echo __('Structure', 'realty')?></th>
 				<td>
 				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
 					<?php echo $building['construction_type_name'] ? $building['construction_type_name'] . ' / ' : ''?> 
