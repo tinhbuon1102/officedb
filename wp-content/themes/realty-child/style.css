@@ -470,6 +470,33 @@ ul#menu-main-menu:after {
     padding: 10px;
     border-bottom: 1px solid #eeeeee;
 	}
+	nav#navigation .primary-menu a span:before {
+    font-family: 'iconthin' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.4em;
+    vertical-align: middle;
+    margin-right: 8px;
+    display: inline-block;
+}
+nav#navigation .primary-menu li#menu-item-1175 a span:before {
+    content: "\e920";
+}
+nav#navigation .primary-menu li#menu-item-1421 a span:before {
+    content: "\e920";
+}
+nav#navigation .primary-menu li#menu-item-1423 a span:before {
+    content: "\e920";
+}
+nav#navigation .primary-menu li#menu-item-1155 a span:before {
+    content: "\e913";
+}
 	
 }
 @media only screen and (max-width: 767px) {

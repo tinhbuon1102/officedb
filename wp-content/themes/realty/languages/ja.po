@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-11 23:56+0900\n"
+"PO-Revision-Date: 2017-05-12 03:49+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -485,17 +485,17 @@ msgstr ""
 
 #: template-user-profile.php:183 lib/functions-theme.php:529
 msgid "Company Name"
-msgstr ""
+msgstr "会社名"
 
 #: template-user-profile.php:188 lib/functions-forms.php:44
 #: realty-core/shortcodes/shortcode-contact-form.php:350
 #: lib/inc/template/contact-form.php:27
 msgid "Phone"
-msgstr ""
+msgstr "電話番号"
 
 #: template-user-profile.php:193
 msgid "Mobile"
-msgstr ""
+msgstr "携帯番号"
 
 #: template-user-profile.php:198
 msgid "Fax"
@@ -558,7 +558,7 @@ msgstr ""
 
 #: lib/functions-compare-properties.php:158
 msgid "Remove"
-msgstr ""
+msgstr "削除"
 
 #: lib/functions-compare-properties.php:173
 #: realty-core/custom-post-types.php:220 realty-core/custom-post-types.php:553
@@ -723,7 +723,7 @@ msgstr ""
 #: lib/functions-email.php:127
 #, php-format
 msgid "Password: %s"
-msgstr ""
+msgstr "パスワード: %s"
 
 #: lib/functions-email.php:128
 msgid "To login to your account, visit the following address:"
@@ -741,7 +741,7 @@ msgstr ""
 #: lib/functions-email.php:134
 #, php-format
 msgid "[%s] Your username and password info"
-msgstr ""
+msgstr "[%s] ユーザー名・パスワード情報"
 
 #: lib/functions-forms.php:25
 msgid "Agent Profile Page Contact Form"
@@ -799,7 +799,7 @@ msgstr ""
 
 #: lib/functions-login.php:74
 msgid "A password will be e-mailed to you."
-msgstr ""
+msgstr "パスワードがあなたのメールアドレスに送られました。"
 
 #: lib/functions-login.php:113
 msgid "Lost Password?"
@@ -3281,27 +3281,27 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-contact-form.php:14
 #: realty-core/shortcodes/shortcode-contact-form.php:279
 msgid "Your name"
-msgstr ""
+msgstr "担当者名"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:15
 #: realty-core/shortcodes/shortcode-contact-form.php:236
 msgid "Your email address"
-msgstr ""
+msgstr "メールアドレス"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:16
 #: realty-core/shortcodes/shortcode-contact-form.php:310
 msgid "Your phone number"
-msgstr ""
+msgstr "電話番号"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:17
 #: realty-core/shortcodes/shortcode-contact-form.php:245
 msgid "Your message"
-msgstr ""
+msgstr "お問い合わせ内容"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:22
 #: realty-core/shortcodes/shortcode-contact-form.php:227
 msgid "Submit"
-msgstr ""
+msgstr "送信"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:60
 #: lib/inc/template/contact-form.php:34
@@ -4757,3 +4757,15 @@ msgstr "%s駅から徒歩%s分"
 
 msgid "Contact Number"
 msgstr "お問い合わせ番号"
+
+msgid "Your name kana"
+msgstr "担当者名(ふりがな)"
+
+msgid "want to going for a private view"
+msgstr "内見希望"
+
+msgid "asking to look for offices"
+msgstr "オフィス探しの相談"
+
+msgid "asking some questions"
+msgstr "その他お問い合わせ"
