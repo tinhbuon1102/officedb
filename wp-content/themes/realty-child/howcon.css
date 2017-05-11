@@ -1,0 +1,144 @@
+@font-face {
+  font-family: 'howcons';
+  src:  url('fonts/howcons.eot?dt669i');
+  src:  url('fonts/howcons.eot?dt669i#iefix') format('embedded-opentype'),
+    url('fonts/howcons.ttf?dt669i') format('truetype'),
+    url('fonts/howcons.woff?dt669i') format('woff'),
+    url('fonts/howcons.svg?dt669i#howcons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="howcons-"], [class*=" howcons-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'howcons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.howcons-news:before {
+  content: "\e926";
+}
+.howcons-mail-envelope-closed:before {
+  content: "\e900";
+}
+.howcons-mail-checked:before {
+  content: "\e901";
+}
+.howcons-mail-checked2:before {
+  content: "\e902";
+}
+.howcons-mail-cancel:before {
+  content: "\e903";
+}
+.howcons-mail-cancel2:before {
+  content: "\e904";
+}
+.howcons-mail-add:before {
+  content: "\e905";
+}
+.howcons-mail-add2:before {
+  content: "\e906";
+}
+.howcons-mail-remove:before {
+  content: "\e907";
+}
+.howcons-mail-remove2:before {
+  content: "\e908";
+}
+.howcons-star:before {
+  content: "\e909";
+}
+.howcons-star2:before {
+  content: "\e90a";
+}
+.howcons-trash-can:before {
+  content: "\e90b";
+}
+.howcons-trash-can2:before {
+  content: "\e90c";
+}
+.howcons-information:before {
+  content: "\e90d";
+}
+.howcons-information2:before {
+  content: "\e90e";
+}
+.howcons-information3:before {
+  content: "\e90f";
+}
+.howcons-information4:before {
+  content: "\e910";
+}
+.howcons-clipboard-add:before {
+  content: "\e911";
+}
+.howcons-clipboard-add2:before {
+  content: "\e912";
+}
+.howcons-clipboard-remove:before {
+  content: "\e913";
+}
+.howcons-clipboard-remove2:before {
+  content: "\e914";
+}
+.howcons-clipboard-list:before {
+  content: "\e915";
+}
+.howcons-clipboard-list2:before {
+  content: "\e916";
+}
+.howcons-inbox:before {
+  content: "\e917";
+}
+.howcons-inbox2:before {
+  content: "\e918";
+}
+.howcons-inbox-document:before {
+  content: "\e919";
+}
+.howcons-inbox-document2:before {
+  content: "\e91a";
+}
+.howcons-inbox-download:before {
+  content: "\e91b";
+}
+.howcons-inbox-download2:before {
+  content: "\e91c";
+}
+.howcons-inbox-upload:before {
+  content: "\e91d";
+}
+.howcons-inbox-upload2:before {
+  content: "\e91e";
+}
+.howcons-search:before {
+  content: "\e91f";
+}
+.howcons-printer-text:before {
+  content: "\e920";
+}
+.howcons-printer-text2:before {
+  content: "\e921";
+}
+.howcons-thumb-up:before {
+  content: "\e922";
+}
+.howcons-thumb-up2:before {
+  content: "\e923";
+}
+.howcons-two-fingers-swipe-right:before {
+  content: "\e924";
+}
+.howcons-two-fingers-swipe-right2:before {
+  content: "\e925";
+}
+

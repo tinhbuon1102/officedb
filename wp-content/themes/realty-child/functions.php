@@ -63,6 +63,7 @@ function custom_scripts ()
 	wp_enqueue_script('validation_engine_lang', get_stylesheet_directory_uri() . '/js/validationEngine/jquery.validationEngine-'.pll_current_language().'.js', array('jquery'));
 	wp_enqueue_script('overlay', get_stylesheet_directory_uri() . '/js/loadingoverlay.js');
 	wp_enqueue_script('autokana', get_stylesheet_directory_uri() . '/js/jquery.autoKana.js');
+	wp_enqueue_style('howcon', get_stylesheet_directory_uri() . '/howcon.css');
 }
 add_action('wp_enqueue_scripts', 'custom_scripts');
 

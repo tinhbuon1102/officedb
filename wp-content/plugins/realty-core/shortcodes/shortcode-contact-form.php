@@ -8,7 +8,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 	function realty_contact_form( $atts ) {
 		extract( shortcode_atts( array(
 			'id'                 => rand(),
-			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
+			'subject'            => esc_html__( '高級オフィス検索から物件の問い合わせがきています', 'realty' ),
 			'show_name'          => true,
 			'show_namekana'      => true,//added kyoko
 			'show_companyname'   => true,//added kyoko
