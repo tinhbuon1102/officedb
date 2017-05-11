@@ -214,6 +214,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 					if ( get_post_status( $property_id ) == 'publish' ) {
 						echo tt_icon_new_property();
 						echo tt_add_remove_favorites();
+						echo tt_add_remove_contact();
 					}
 					echo tt_icon_property_video();
 

@@ -135,6 +135,7 @@
 							<th class="floor_area"><?php echo trans_text('Area')?></th>
 							<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
 							<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
+							<th class="floor_action_remove"><?php echo trans_text('Remove')?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -145,6 +146,7 @@
 						<td class="floor_area"></td>
 						<td class="floor_deposit"></td>
 						<td class="floor_date_move"></td>
+						<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" ><?php echo trans_text('Remove')?></a></td>
 					</tr>
 					</tbody>
 				</table>

@@ -128,6 +128,7 @@ if ( !function_exists('tt_add_remove_contact') ) {
 		}
 
 		$favicon = '%s';
+		$tmpClass = 'fa-star';
 		if ( is_user_logged_in() ) {
 			// Logged-In User
 			$user_id = get_current_user_id();
@@ -135,20 +136,22 @@ if ( !function_exists('tt_add_remove_contact') ) {
 
 			if ( ! empty( $get_user_meta_contact ) && in_array( $property_id, $get_user_meta_contact[0] ) ) {
 				// Property Is Already In contact
-				$class = 'add-to-contact origin icon-heart';
+				$class = 'add-to-contact origin fa '.$tmpClass.' fa-building';
 				$text = __( 'Remove From contact', 'realty' );
 			} else {
 				// Property Isn't In contact
-				$class = 'add-to-contact origin icon-heart-1';
+				$class = 'add-to-contact origin fa '.$tmpClass.' fa-building-1';
 				$text = __( 'Add To contact', 'realty' );
 			}
 		} else {
 			// Not Logged-In Visitor
-			$class = 'add-to-contact origin icon-heart-1';
+			$class = 'add-to-contact origin fa '.$tmpClass.' fa-building-1';
 			$text = __( 'Add To contact', 'realty' );
 		}
 
-		$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-line-border add-to-contact_wraper">%s<span>'.$text.'</span></a>';
+		if ($is_custom){
+			$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-line-border add-to-contact_wraper">%s<span>'.$text.'</span></a>';
+		}
 
 		return sprintf($favicon, '<i class="'.$class.'" data-fav-id="' . $property_id . '" data-toggle="tooltip" data-remove-title="'.__( 'Remove From contact', 'realty' ).'" data-add-title="'.__( 'Add To contact', 'realty' ).'" title="' . $text . '"></i>');
 
@@ -193,7 +196,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 			if ( inArray( jQuery(this).attr('data-fav-id'), store.get('contact') ) ) {
 				if (!jQuery(this).hasClass('custom-contact'))
 				{
-					jQuery(this).toggleClass('icon-heart icon-heart-1');
+					jQuery(this).toggleClass('fa-building fa-building-1');
 				}
 			}
 
@@ -218,22 +221,25 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 				// Toggle contact Tooltips
 				var title;
 				
-				jQuery('i.add-to-contact').toggleClass('icon-heart icon-heart-1');
+				jQuery(this).toggleClass('fa-building fa-building-1');
 
-				if (jQuery('a.add-to-contact_wraper i.add-to-contact').hasClass('icon-heart'))
+				if (jQuery(this).hasClass('fa-building'))
 				{
-					title = jQuery('a.add-to-contact_wraper i.add-to-contact').attr('data-remove-title');
+					title = jQuery(this).attr('data-remove-title');
 					show_popup = true;	
 				}
-				else if (jQuery('a.add-to-contact_wraper i.add-to-contact').hasClass('icon-heart-1'))
+				else if (jQuery(this).hasClass('fa-building-1'))
 				{
-					title = jQuery('a.add-to-contact_wraper i.add-to-contact').attr('data-add-title');
+					title = jQuery(this).attr('data-add-title');
 					show_popup = false;
 				}
 				
-				jQuery('i.add-to-contact').attr('data-original-title', title);
-				jQuery('a.add-to-contact_wraper span').text(title);
-				jQuery('a.add-to-contact_wraper').attr('title', title);
+				jQuery(this).attr('data-original-title', title);
+
+				if (jQuery(this).closest('a.add-to-contact_wraper').length) {
+					jQuery(this).closest('a.add-to-contact_wraper').find('span').text(title);
+					jQuery(this).closest('a.add-to-contact_wraper').attr('title', title);
+				}
 
 				<?php if ( is_user_logged_in() ) { ?>
 					<?php $user_id = get_current_user_id();	?>
@@ -273,6 +279,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 									floor_row.find('.floor_area').html(floor.size);
 									floor_row.find('.floor_deposit').html(floor.deposit);
 									floor_row.find('.floor_date_move').html(floor.date_move);
+									floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
 									console.log(floor_row);
 
