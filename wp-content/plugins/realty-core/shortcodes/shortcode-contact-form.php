@@ -342,6 +342,7 @@ add_action( 'vc_before_init', 'realty_vc_map_contact_form' );
 if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 	function realty_ajax_shortcode_contact_form() {
 
+		delete_user_meta(get_current_user_id(), 'realty_user_contact');
 		$admin_email = get_bloginfo( 'admin_email' );
 		$page_url = get_the_permalink( $_GET['page_id'] );
 		$email = $_GET['email'];
