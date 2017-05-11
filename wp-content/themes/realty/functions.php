@@ -5,6 +5,7 @@
  */
 require_once get_template_directory() . '/lib/functions-add-to-favorites.php';
 require_once get_template_directory() . '/lib/functions-add-to-follow.php';
+require_once get_template_directory() . '/lib/functions-add-to-contact.php';
 require_once get_template_directory() . '/lib/functions-advanced-custom-fields.php';
 require_once get_template_directory() . '/lib/functions-compare-properties.php';
 require_once get_template_directory() . '/lib/functions-email.php';

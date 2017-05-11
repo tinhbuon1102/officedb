@@ -483,6 +483,9 @@
 			<div class="contact-argent">
 				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><i class="topicon-icon-thinliner_mail"></i><?php echo __('Contact Argent', 'realty')?></a>
 			</div>
+			<div class="contact-argent">
+				<?php echo tt_add_remove_contact( $single_property_id, 'custom-contact' ) ?>
+			</div>
 			<div class="buttons-group row">
 			<?php if ( !is_user_logged_in() ) { ?>
 			<div class="col-sm-6">

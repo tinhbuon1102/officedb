@@ -586,11 +586,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 				
 		case 'move_in_date' :
-			return $floor[$field] ? $floor[$field] : FIELD_MISSING_VALUE;
+			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'built_year' :
-			return ($building[$field] && trim($building[$field]) != '-') ? $building[$field] : FIELD_MISSING_VALUE;
+			return ($building[$field] && trim($building[$field]) != '-') ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'total_floor_space':

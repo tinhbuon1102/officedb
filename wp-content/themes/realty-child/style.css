@@ -1310,3 +1310,9 @@ form #lang {display: none;}
 	margin-bottom: 15px;
 }
 .lwa-register-form .wppb-form-field.wppb-avatar {display: none;}
+.element-disable {display: none;}
+
+#contact_list_later th, #contact_list_later td {text-align: center;}
+td.floor_picture img {
+    max-width: 50px;
+}
