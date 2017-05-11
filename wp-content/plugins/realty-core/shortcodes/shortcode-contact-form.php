@@ -32,21 +32,22 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 
 		$user = get_currentuserinfo();
 		$user_name = get_user_meta($user->ID, 'user_name', true);
+		$user_company = get_user_meta($user->ID, 'user_company', true);
 		$user_name_kana = get_user_meta($user->ID, 'user_name_kana', true);
 		$user_email = $user->user_email;
 		$user_phone = get_user_meta($user->ID, 'user_phone', true);
-		
+		$current_lange = pll_current_language();
 		
 		ob_start();
 		?>
-		<form id="<?php echo 'form-' . $id; ?>">
+		<form id="<?php echo 'form-' . $id; ?>" method="post">
 		<!--added kyoko-->
 			<?php if ( $show_companyname ) { ?>
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_companyname; ?></label>
 				<?php } ?>
-				<input type="text" name="company_name" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_companyname ); } ?>">
+				<input type="text" name="company_name" value="<?php echo $user_company;?>" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_companyname ); } ?>">
 			</p>
 			<?php }	?>
 			<!--/added kyoko-->
@@ -59,7 +60,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			</p>
 			<?php }	?>
 			<!--added kyoko-->
-			<?php if ( $show_namekana ) { ?>
+			<?php if ( $show_namekana && $current_lange == LANGUAGE_JA) { ?>
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_namekana; ?></label>
@@ -105,7 +106,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			<?php } ?>
 			<?php echo buildListContactProperty();?>
 			<p>
-				<input class="submit" type="submit" value="<?php echo esc_attr( $submit_text ); ?>">
+				<input class="submit" id="contact_submit_btn" type="submit" value="<?php echo esc_attr( $submit_text ); ?>">
 			</p>
 
 			<input type="hidden" name="subject" value="<?php echo $subject; ?>" />
@@ -125,8 +126,8 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			$required_fields = array(
 				'id'                => $id,
 				'company_name'      => $required_company_name,//added kyoko
-				'name'              => $required_name,
-				'name_kana'         => $required_namekana,//added kyoko
+				'name'              => true,
+				'name_kana'         => true,//added kyoko
 				'email'             => true,
 				'phone'             => $required_phone,
 				'message'           => true,
@@ -175,6 +176,11 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 							required: true
 						},
 						<?php } ?>
+						<?php if ( isset ( $required_fields['name_kana'] ) && ! empty( $required_fields['name_kana'] ) && pll_current_language() == LANGUAGE_JA ) { ?>
+						name_kana: {
+							required: true
+						},
+						<?php } ?>
 						email: {
 							required: true,
 							email: true
@@ -190,7 +196,7 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 						recaptcha: {
 							required:
 							function() {
-								getResponseContactForm = grecaptcha.getResponse(contactFormCaptch4);
+								getResponseContactForm = grecaptcha.getResponse(contactFormCaptcha);
 								if(getResponseContactForm.length == 0) {
 									//reCaptcha not verified
 									return true;
@@ -211,34 +217,30 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 						message: "<?php esc_html_e( 'Please enter a message.', 'realty' ); ?>",
 						recaptcha: "<?php esc_html_e( 'Please verify the reCaptcha.', 'realty' ); ?>",
 					},
-					submitHandler: function(form) {
+					submitHandler: function(form, event) {
+					    event.preventDefault();
 						$('body').LoadingOverlay("show");
-						$(form).ajaxSubmit({
+						var formData = $('<?php echo '#form-' . $required_fields['id']; ?>').serialize();
+						$.ajax({
+							type: 'POST',
+							url: ajax_object.ajax_url,
+							data: formData,
+							dataType: 'json',
+							success:function(response){
+								if (!response.error)
+								{
+									$('body').LoadingOverlay("hide");
+									$('#form-submit-success-<?php echo $required_fields['id']; ?>').removeClass('hide');
+									setTimeout(function(){
+										location.reload();
+									}, 400);
+								}
+							},
 							error: function() {
 								$('#form-submit-success-<?php echo $required_fields['id']; ?>').addClass('hide');
-							},
-							success: function() {
-								var formData = $('<?php echo '#form-' . $required_fields['id']; ?>').serialize();
-								$('#form-submit-success-<?php echo $required_fields['id']; ?>').removeClass('hide');
-								$.ajax({
-									type: 'GET',
-									url: ajax_object.ajax_url,
-									data: formData,
-									success:function(){
-										//console.log(formData);
-										console.log("Message sent.");
-										$('body').LoadingOverlay("hide");
-										setTimeout(function(){
-											location.reload();
-										}, 400)
-					       	},
-					       	error:function(){
-						       	console.log("Error: "+formData);
-						       	$('body').LoadingOverlay("hide");
-					       	}
-								});
 							}
 						});
+			             return false; // required to block normal submit since you used ajax
 					}
 				});
 
@@ -383,35 +385,51 @@ add_action( 'vc_before_init', 'realty_vc_map_contact_form' );
  */
 if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 	function realty_ajax_shortcode_contact_form() {
-
+		global $realty_theme_option;
+		
 		$admin_email = get_bloginfo( 'admin_email' );
-		$page_url = get_the_permalink( $_GET['page_id'] );
-		$email = $_GET['email'];
-		$name = $_GET['name'];
-		$name_kana = $_GET['name_kana'];
-		$phone = $_GET['phone'];
-		$subject = $_GET['subject'];
+		$page_url = get_the_permalink( $_POST['page_id'] );
+		$email = $_POST['email'];
+		$name = $_POST['name'];
+		$name_kana = $_POST['name_kana'];
+		$company = $_POST['company_name'];
+		$phone = $_POST['phone'];
+		$ctype = $_POST['ctype'];
+		$subject = $_POST['subject'];
 		$message = '';
 
+		if ( $company ) {
+			$message .= esc_html__( 'Company name', 'realty' ) . ': ' . $company . '<br />';
+		}
+		
 		if ( $name ) {
 			$message .= esc_html__( 'Name', 'realty' ) . ': ' . $name . '<br />';
 		}
 		
-		if ( $name ) {
-			$message .= esc_html__( 'Name Kana', 'realty' ) . ': ' . $name . '<br />';
+		if ( $name_kana ) {
+			$message .= esc_html__( 'Name Kana', 'realty' ) . ': ' . $name_kana . '<br />';
 		}
 
 		if ( $phone ) {
 			$message .= esc_html__( 'Phone', 'realty' ) . ': ' . $phone . '<br />';
 		}
+		
+		if ( $email ) {
+			$message .= esc_html__( 'Email', 'realty' ) . ': ' . $email . '<br />';
+		}
 
-		$message .= '<br />' . $_GET['message'] . '<br /><br />';
+		if ( $ctype ) {
+			$message .= esc_html__( 'Contact Type', 'realty' ) . ': ' . $ctype . '<br />';
+		}
+		
+		
+		$message .= '<br />' . $_POST['message'] . '<br /><br />';
 
 		if ( $page_url ) {
 			$message .= esc_html__( 'Sent from', 'realty' ) . ': ' . $page_url;
 		}
 		
-		if (isset($_GET['send_multiple']) && $_GET['send_multiple'] == 1)
+		if (isset($_POST['send_multiple']) && $_POST['send_multiple'] == 1)
 		{
 			$message .= buildListContactProperty();
 		}
@@ -423,7 +441,14 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 		$headers[] = "Reply-To: $name <$email>";
 		$headers[] = "Content-Type: text/html; charset=UTF-8";
 
-		wp_mail( $admin_email, $subject, $message, $headers );
+		$recipient[] = $admin_email;
+		
+		if ($realty_theme_option['property-contact-form-cc-admin'])
+		{
+			$recipient[] = $realty_theme_option['property-contact-form-cc-admin'];
+		}
+		wp_mail( $recipient, $subject, $message, $headers );
+		echo json_decode(array('error' => false)); die;
 	}
 }
 add_action( 'wp_ajax_realty_ajax_shortcode_contact_form', 'realty_ajax_shortcode_contact_form' );
