@@ -10,7 +10,7 @@ define('SITE_DATE_FORMAT', 'Y/m/d');
 define('SITE_TIME_FORMAT', 'G:i');
 define('LANGUAGE_EN', 'en');
 define('LANGUAGE_JA', 'ja');
-define('FIELD_MISSING_VALUE', '〜');
+define('FIELD_MISSING_VALUE', '-');
 define('AREA_M2', 'm&sup2;');
 
 define('FLOOR_UNIT_OPTION_UNDECIDED', -1);
