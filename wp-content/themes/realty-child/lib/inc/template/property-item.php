@@ -83,7 +83,14 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 			?>
 			<figcaption>
 				<div class="property-excerpt">
-					<h4 class="address"><?php echo $estate_property_prefecture ? ($estate_property_prefecture .', '. $estate_property_district . ', ' . $estate_property_town) : ""; ?></h4>
+					<h4 class="address">
+					<?php $locale = get_locale(); /* get current locale */ ?>
+					<?php if ('en_US' == $locale  ) : /* English */?>
+					<?php echo $estate_property_prefecture ? ($estate_property_prefecture .', '. $estate_property_district . ', ' . $estate_property_town) : ""; ?>
+					<?php else:  /* Japanese */ ?>
+					<?php echo $estate_property_prefecture ? ($estate_property_prefecture .''. $estate_property_district . '' . $estate_property_town) : ""; ?>
+					<?php endif; ?>
+					</h4>
 					<?php the_excerpt(); ?>
 					</div>
 					<?php if ( $property_status_update ) { ?>

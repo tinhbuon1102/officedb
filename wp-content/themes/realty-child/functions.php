@@ -77,7 +77,7 @@ function my_php_Include($params = array()) {
 
 add_filter( 'excerpt_length', 'realty_excerpt_length', 99999 );
 function realty_excerpt_length( $length ) {
-	return 20;
+	return 60;
 }
 
 function hide_plugin_order_by_product ()

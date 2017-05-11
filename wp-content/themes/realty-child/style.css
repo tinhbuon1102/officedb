@@ -270,6 +270,9 @@ body {
 	line-height: 1.4;
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 }
+body.ja h1, body.ja h2, body.ja h3, body.ja h4, body.ja h5, body.ja h6 {
+	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
+}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1006,11 +1009,25 @@ section#links {
 	padding: 60px 0;
 }
 /*search result*/
-.property-item .property-meta.custom-meta-list > div {
+.property-excerpt .address {
+    background: #000;
+    color: #FFF;
+    display: inline-block;
+    padding: 3px 5px;
+    line-height: 1;
+    font-size: 1em;
+}
+.property-item .property-thumbnail {
+    max-height: 200px;
+}
+#latestoffice .property-item .property-thumbnail {
+    max-height: none;
+}
+.property-item .property-meta.custom-meta-list > div, #similar-properties .property-items .property-item .property-meta > div {
     width: auto;
     margin-right: 10px;
 }
-.property-item .property-meta.custom-meta-list > div:last-child {
+.property-item .property-meta.custom-meta-list > div:last-child, #similar-properties .property-items .property-item .property-meta > div:last-child {
     margin-right: 0px;
 }
 .property-meta.custom-meta-list .meta-title {
