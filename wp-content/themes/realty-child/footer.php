@@ -150,7 +150,7 @@
 				</table>
 				 
 				<div class="button_groups">
-					  <a class="btn btn-success" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('contact') : site_url('contact-us')?>"><?php echo trans_text('Contact Now')?></a>
+					  <a class="btn btn-success" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact Now')?></a>
 					  <button type="button" class="btn btn-danger"  data-dismiss="modal"><?php echo trans_text('Close')?></button>
 					
 				</div>

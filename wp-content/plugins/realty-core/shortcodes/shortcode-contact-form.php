@@ -30,11 +30,18 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 
 		global $realty_theme_option;
 
+		$user = get_currentuserinfo();
+		$user_name = get_user_meta($user->ID, 'user_name', true);
+		$user_name_kana = get_user_meta($user->ID, 'user_name_kana', true);
+		$user_email = $user->user_email;
+		$user_phone = get_user_meta($user->ID, 'user_phone', true);
+		
+		
 		ob_start();
 		?>
 		<form id="<?php echo 'form-' . $id; ?>">
 		<!--added kyoko-->
-		<?php if ( $show_companyname ) { ?>
+			<?php if ( $show_companyname ) { ?>
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_companyname; ?></label>
@@ -48,7 +55,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_name; ?></label>
 				<?php } ?>
-				<input type="text" name="name" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_name ); } ?>">
+				<input type="text" name="name" id="user_name" value="<?php echo $user_name?>" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_name ); } ?>">
 			</p>
 			<?php }	?>
 			<!--added kyoko-->
@@ -57,7 +64,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_namekana; ?></label>
 				<?php } ?>
-				<input type="text" name="name_kana" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_namekana ); } ?>">
+				<input type="text" name="name_kana" id="user_name_kana" value="<?php echo $user_name_kana?>" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_namekana ); } ?>">
 			</p>
 			<?php }	?>
 			<!--/added kyoko-->
@@ -65,21 +72,21 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_email; ?></label>
 				<?php }	?>
-				<input type="email" name="email" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_email ); } ?>">
+				<input type="email" name="email" value="<?php echo $user_email?>" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_email ); } ?>">
 			</p>
 			<?php if ( $show_phone ) { ?>
 			<p>
 				<?php if ( ! $placeholders ) { ?>
 					<label><?php echo $label_phone;?></label>
 				<?php }	?>
-				<input type="text" name="phone" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_phone ); } ?>">
+				<input type="text" name="phone" value="<?php echo $user_phone?>" placeholder="<?php if ( $placeholders ) { echo esc_attr( $label_phone ); } ?>">
 			</p>
 			<?php } ?>
 			<!--added kyoko-->
 			<div class="radio-options">
-				<span><input type="radio" name="ctype" id="type1"><?php echo __('want to going for a private view', 'realty')?></span>
-				<span><input type="radio" name="ctype" id="type2"><?php echo __('asking to look for offices', 'realty')?></span>
-				<span><input type="radio" name="ctype" id="type3"><?php echo __('asking some questions', 'realty')?></span>
+				<span><input type="radio" name="ctype" id="type1" value="<?php echo __('want to going for a private view', 'realty')?>"><?php echo __('want to going for a private view', 'realty')?></span>
+				<span><input type="radio" name="ctype" id="type2" value="<?php echo __('asking to look for offices', 'realty')?>"><?php echo __('asking to look for offices', 'realty')?></span>
+				<span><input type="radio" name="ctype" id="type3" value="<?php echo __('asking some questions', 'realty')?>"><?php echo __('asking some questions', 'realty')?></span>
 			</div>
 			<!--/added kyoko-->
 			<p>
@@ -183,7 +190,7 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 						recaptcha: {
 							required:
 							function() {
-								getResponseContactForm = grecaptcha.getResponse(contactFormCaptcha);
+								getResponseContactForm = grecaptcha.getResponse(contactFormCaptch4);
 								if(getResponseContactForm.length == 0) {
 									//reCaptcha not verified
 									return true;
@@ -381,12 +388,17 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 		$page_url = get_the_permalink( $_GET['page_id'] );
 		$email = $_GET['email'];
 		$name = $_GET['name'];
+		$name_kana = $_GET['name_kana'];
 		$phone = $_GET['phone'];
 		$subject = $_GET['subject'];
 		$message = '';
 
 		if ( $name ) {
 			$message .= esc_html__( 'Name', 'realty' ) . ': ' . $name . '<br />';
+		}
+		
+		if ( $name ) {
+			$message .= esc_html__( 'Name Kana', 'realty' ) . ': ' . $name . '<br />';
 		}
 
 		if ( $phone ) {

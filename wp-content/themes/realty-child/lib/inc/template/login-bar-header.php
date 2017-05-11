@@ -82,7 +82,7 @@
 
 	<?php wp_reset_query();	?>
 
-	<a href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('contact') : site_url('contact-us')?>">
+	<a href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>">
 		<span class="desktop"><i class="fa fa-star" aria-hidden="true"></i><?php esc_html_e( 'Contact List', 'realty' ); ?> (<span><?php echo count($tableFloors); ?></span>)</span>
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Contact List', 'realty' ); ?>"><i class="fa fa-star" aria-hidden="true"></i></span>
 	</a>

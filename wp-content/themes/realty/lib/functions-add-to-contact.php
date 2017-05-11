@@ -28,6 +28,7 @@ function get_contact_property_list($user_id = false){
 		$tableFloors[$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
 		$tableFloors[$property_index]['deposit'] = renderPrice($floor['total_deposit']);
 		$tableFloors[$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['property_id'] = $single_property_id;
 	}
 	return $tableFloors;
 }
