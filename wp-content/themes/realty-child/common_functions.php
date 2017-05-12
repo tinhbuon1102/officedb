@@ -892,3 +892,9 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 	}
 	return $all_images;
 }
+
+
+add_action('wp_footer', 'realty_add_mobile_search');
+function realty_add_mobile_search() {
+	echo '<div id="temporary_search_block_wraper" style="display: none;"><div class="temporary_search_block hidden-pc">' . do_shortcode('[property_search_form search_form_columns="3" search_type="mini"]') . '</div></div>';
+}

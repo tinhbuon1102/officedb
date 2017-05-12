@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
 	
 		function initTypeHead() {
 		$.typeahead({
-			input : '#keyword',
+			input : '[name="keyword"]',
 			minLength : 1,
 			maxItem : 15,
 			order : "asc",
@@ -81,9 +81,10 @@ jQuery(document).ready(function($){
 				floor : {
 					display: 'name',
 					ajax : function(query){
+						$('input[name="keyword"]').val(query);
 						return {
 							type: 'GET',
-							data: $('.property-search-form').serialize(),
+							data: $('.property-search-form:eq(0)').serialize(),
 							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
 							path : "data.floor"
 						}
@@ -157,10 +158,21 @@ jQuery(document).ready(function($){
         }
 	}
 	
+	// Add keyword field for mobile in all page
+	var searchElementWraper = $('#menu-item-1175');
+	if(searchElementWraper.length)
+	{
+		searchElementWraper.prepend($('#temporary_search_block_wraper').html());
+		
+		$(searchElementWraper).on('click', 'a', function(e){
+			e.preventDefault();
+		});
+	}
+	
 	initTypeHead();
 	initLoginRegisterForm();
-	
 	$.fn.autoKana('#user_name', '#user_name_kana', {katakana:true});
+	
 });
 
 
