@@ -1534,3 +1534,9 @@ a#big-tel {
     font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
     letter-spacing: 2px;
 }
+
+#menu-main-menu .form-group:nth-child(2),
+#menu-main-menu .form-group:nth-child(3)
+	{display: none;}
+#menu-main-menu .property-search-form {margin: 0; padding: 10px; box-shadow: none; border-radius: 0;}
+#menu-main-menu .form-group {margin-bottom: 10px;}
