@@ -398,7 +398,7 @@ body.ja nav#navigation .primary-menu a span:after {
 body.ja nav#navigation .primary-menu a span:after:not(:target) {
 	zoom: 1;
 }
-body.ja li#menu-item-1175 a span:after {
+body.ja li#menu-item-1175 > a > span:after {
     content: "SEARCH PROPERTIES";
 }
 body.ja li#menu-item-1421 a span:after {
@@ -486,7 +486,7 @@ ul#menu-main-menu:after {
     margin-right: 8px;
     display: inline-block;
 }
-nav#navigation .primary-menu li#menu-item-1175 a span:before {
+nav#navigation .primary-menu li#menu-item-1175 > a > span:before {
     content: "\e933";/*search*/
 }
 nav#navigation .primary-menu li#menu-item-1482 a span:before {
