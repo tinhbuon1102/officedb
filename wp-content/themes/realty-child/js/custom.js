@@ -163,10 +163,6 @@ jQuery(document).ready(function($){
 	if(searchElementWraper.length)
 	{
 		searchElementWraper.prepend($('#temporary_search_block_wraper').html());
-		
-		$(searchElementWraper).on('click', 'a', function(e){
-			e.preventDefault();
-		});
 	}
 	
 	initTypeHead();
