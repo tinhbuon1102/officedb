@@ -13,7 +13,7 @@
 	<?php if ( $realty_theme_option['property-favorites-temporary'] && ! $realty_theme_option['property-favorites-disabled'] ) { ?>
 		<a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>">
 			<span class="desktop"><?php esc_html_e( 'Favorites', 'realty' ); ?></span></span>
-			<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php echo esc_attr( 'Favorites', 'realty' ); ?>"><i class="icon-heart"></i></span>
+			<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php echo esc_attr( 'Favorites', 'realty' ); ?>"><i class="fa fa-star"></i></span>
 		</a>
 	<?php } ?>
 
@@ -48,7 +48,7 @@
 
 	<a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>">
 		<span class="desktop"><?php esc_html_e( 'Favorites', 'realty' ); ?> (<span><?php echo $number_of_favorites; ?></span>)</span>
-		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Favorites', 'realty' ); ?>"><i class="icon-heart"></i></span>
+		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Favorites', 'realty' ); ?>"><i class="fa fa-star"></i></span>
 	</a>
 	<?php } ?>
 

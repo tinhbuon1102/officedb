@@ -61,16 +61,16 @@ if ( !function_exists('tt_add_remove_favorites') ) {
 
 			if ( ! empty( $get_user_meta_favorites ) && in_array( $property_id, $get_user_meta_favorites[0] ) ) {
 				// Property Is Already In Favorites
-				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star' : 'add-to-favorites origin icon-heart';
+				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star' : 'add-to-favorites origin fa fa-star';
 				$text = __( 'Remove From Favorites', 'realty' );
 			} else {
 				// Property Isn't In Favorites
-				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin icon-heart-1';
+				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin  fa fa-star-o';
 				$text = __( 'Add To Favorites', 'realty' );
 			}
 		} else {
 			// Not Logged-In Visitor
-			$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin icon-heart-1';
+			$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star-o' : 'add-to-favorites origin fa fa-star-o';
 			$text = __( 'Add To Favorites', 'realty' );
 		}
 
@@ -121,7 +121,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 			if ( inArray( jQuery(this).attr('data-fav-id'), store.get('favorites') ) ) {
 				if (!jQuery(this).hasClass('custom-fav'))
 				{
-					jQuery(this).toggleClass('icon-heart icon-heart-1');
+					jQuery(this).toggleClass('fa-star fa-star-o');
 				}
 				else {
 					jQuery(this).toggleClass('fa-star-o fa-star');
@@ -154,7 +154,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 				
 				if (is_single)
 				{
-					single_wraper.find('i.add-to-favorites.origin').toggleClass('icon-heart icon-heart-1');
+					single_wraper.find('i.add-to-favorites.origin').toggleClass('fa-star fa-star-o');
 					single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').toggleClass('fa-star-o fa-star');
 
 					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star'))
@@ -173,14 +173,14 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						jQuery(this).closest('i').toggleClass('fa-star-o fa-star');						
 					}
 					else {
-						jQuery(this).find('i').toggleClass('icon-heart icon-heart-1');
-						jQuery(this).closest('i').toggleClass('icon-heart icon-heart-1');
+						jQuery(this).find('i').toggleClass('fa-star fa-star-o');
+						jQuery(this).closest('i').toggleClass('fa-star fa-star-o');
 
 						var element = jQuery(this).find('i').length ? jQuery(this).find('i') : jQuery(this).closest('i');
 						 
-						if (element.hasClass('icon-heart'))
+						if (element.hasClass('fa-star'))
 							title = element.attr('data-remove-title');
-						else if (element.hasClass('icon-heart-1'))
+						else if (element.hasClass('fa-star-o'))
 							title = element.attr('data-add-title');
 
 						element.attr('data-original-title', title);
