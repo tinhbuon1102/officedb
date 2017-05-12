@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'howcons';
-  src:  url('fonts/howcons.eot?dt669i');
-  src:  url('fonts/howcons.eot?dt669i#iefix') format('embedded-opentype'),
-    url('fonts/howcons.ttf?dt669i') format('truetype'),
-    url('fonts/howcons.woff?dt669i') format('woff'),
-    url('fonts/howcons.svg?dt669i#howcons') format('svg');
+  src:  url('fonts/howcons.eot?j48law');
+  src:  url('fonts/howcons.eot?j48law#iefix') format('embedded-opentype'),
+    url('fonts/howcons.ttf?j48law') format('truetype'),
+    url('fonts/howcons.woff?j48law') format('woff'),
+    url('fonts/howcons.svg?j48law#howcons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,6 +24,108 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.howcons-pencil4:before {
+  content: "\e928";
+}
+.howcons-heart:before {
+  content: "\e929";
+}
+.howcons-star3:before {
+  content: "\e92a";
+}
+.howcons-envelope:before {
+  content: "\e92b";
+}
+.howcons-file-lock:before {
+  content: "\e93d";
+}
+.howcons-enter:before {
+  content: "\e93e";
+}
+.howcons-exit:before {
+  content: "\e93f";
+}
+.howcons-papers:before {
+  content: "\e940";
+}
+.howcons-camera-play:before {
+  content: "\e941";
+}
+.howcons-profile:before {
+  content: "\e92c";
+}
+.howcons-user-lock:before {
+  content: "\e92d";
+}
+.howcons-telephone:before {
+  content: "\e92e";
+}
+.howcons-map-marker:before {
+  content: "\e92f";
+}
+.howcons-map:before {
+  content: "\e930";
+}
+.howcons-power-switch:before {
+  content: "\e942";
+}
+.howcons-bubbles:before {
+  content: "\e943";
+}
+.howcons-bubble-question:before {
+  content: "\e944";
+}
+.howcons-exit-left:before {
+  content: "\e931";
+}
+.howcons-exit-right:before {
+  content: "\e932";
+}
+.howcons-magnifier:before {
+  content: "\e933";
+}
+.howcons-chevron-up:before {
+  content: "\e945";
+}
+.howcons-chevron-down:before {
+  content: "\e946";
+}
+.howcons-chevron-left:before {
+  content: "\e947";
+}
+.howcons-chevron-right:before {
+  content: "\e948";
+}
+.howcons-warning:before {
+  content: "\e934";
+}
+.howcons-notification-circle:before {
+  content: "\e935";
+}
+.howcons-question-circle:before {
+  content: "\e936";
+}
+.howcons-checkmark-circle:before {
+  content: "\e937";
+}
+.howcons-cross-circle:before {
+  content: "\e938";
+}
+.howcons-chevron-up-circle:before {
+  content: "\e939";
+}
+.howcons-chevron-down-circle:before {
+  content: "\e93a";
+}
+.howcons-chevron-left-circle:before {
+  content: "\e93b";
+}
+.howcons-fingers-scroll-right:before {
+  content: "\e93c";
+}
+.howcons-user:before {
+  content: "\e927";
+}
 .howcons-news:before {
   content: "\e926";
 }
