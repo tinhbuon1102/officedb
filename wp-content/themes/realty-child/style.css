@@ -1488,3 +1488,49 @@ form #lang {display: none;}
 td.floor_picture img {
     max-width: 50px;
 }
+/*Contact Page*/
+.send-contact {
+	
+}
+.send-contact a {
+	width: 100%;
+}
+.lb-title {
+	margin-bottom: 10px;
+}
+span.req-label {
+    display: inline-block;
+    background: #000;
+    color: #FFF;
+    font-size: .9em;
+    padding: 2px 5px;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+.big-tel-row {
+	line-height: 60px;
+	    margin-bottom: 10px;
+}
+p.tel-note {
+    font-size: 1.2em;
+}
+p.tel-note span.open-hour {
+    margin-left: 15px;
+    letter-spacing: 1px;
+}
+i.bigtelcon {
+    font-size: 3em;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+a#big-tel {
+    line-height: inherit;
+    vertical-align: middle;
+}
+a#big-tel {
+    color: #000;
+    font-size: 3em;
+    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    letter-spacing: 2px;
+}
