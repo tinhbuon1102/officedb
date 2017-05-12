@@ -296,7 +296,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 							if (floors.length)
 							{
 								jQuery.each(floors, function(floor_index, floor){
-									var floor_row = jQuery('tr.contact_item_tmp:eq(1)').clone();
+									var floor_row = jQuery('tr.contact_item_tmp:eq(0)').clone();
 									floor_row.removeClass('contact_item_tmp element-disable');
 									floor_row.show();
 									floor_row.addClass('contact_item');
