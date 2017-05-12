@@ -33,10 +33,10 @@ function get_contact_property_list($user_id = false){
 	return $tableFloors;
 }
 
-function buildListContactProperty($show_remove = false){
+function buildListContactProperty($show_remove = false, $is_modal = false){
 	$tableFloors = get_contact_property_list();
 	$tableHtml = '';
-	if (!empty($tableFloors)) {
+	if (!empty($tableFloors) || $is_modal) {
 		ob_start();
 		?>
 	<h4><?php echo trans_text('With list of properties below :')?></h4>
@@ -456,7 +456,7 @@ function tt_contact_modal(){
 				<h4 class="modal-title" ><?php echo __('Contact List', 'realty')?></h4>
 			</div>
 			<div class="modal-body">
-				<?php echo buildListContactProperty(true);?>
+				<?php echo buildListContactProperty(true, true);?>
 				 
 				<div class="button_groups">
 					  <a class="btn btn-success" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact Now')?></a>
