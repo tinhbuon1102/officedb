@@ -30,5 +30,5 @@ define('EARTH_QUAKE_UNKNOW', 8);
 define('EARTH_QUAKE_DAMPING_STRUCTURE', 9);
 
 
-define('CONTACT_ICON_SELECTED', 'fa-building');
-define('CONTACT_ICON_NOT_SELECTED', 'fa-building-1');
+define('CONTACT_ICON_SELECTED', 'howcons-inbox-upload2');
+define('CONTACT_ICON_NOT_SELECTED', 'howcons-inbox-download2');
