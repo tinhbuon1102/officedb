@@ -40,7 +40,7 @@ $user_phone = get_user_meta($user->ID, 'user_phone', true);
 				<textarea name="message" rows="5" id="message" class="form-control" title="<?php esc_html_e( 'Please enter your message.', 'realty' ); ?>" placeholder="<?php esc_html_e( 'Message', 'realty' ); ?>"></textarea>
 			</div>
 
-			<div class="form-group" id="site_url"><?php esc_html_e('Property Url')?>
+			<div class="form-group" id="site_url"><?php trans_text('Property Url')?>
 				<input readonly="readonly" value="<?php echo get_permalink(get_the_ID())?>"/>
 			</div>
 			
