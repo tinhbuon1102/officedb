@@ -407,7 +407,7 @@ body.ja li#menu-item-1421 a span:after {
 body.ja li#menu-item-1423 a span:after {
     content: "NEWS";
 }
-body.ja li#menu-item-1155 a span:after {
+body.ja li#menu-item-1499 a span:after {
     content: "CONTACT US";
 }
 ul#menu-main-menu:before, ul#menu-main-menu:after {
@@ -1225,6 +1225,19 @@ body.post-type-archive-news .header-meta .meta {
     font-weight: 300;
     letter-spacing: 1px;
     font-size: 12px;
+	float: right;
+}
+body.post-type-archive-news a.check_now {
+    font-size: 1.2em;
+    display: inline-block;
+    margin-top: 15px;
+}
+.type-news .header-media {
+    overflow: hidden;
+    height: 260px;
+}
+.type-news .header-media img {
+    width: 100%;
 }
 .post-date {
     color: #000;

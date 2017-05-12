@@ -46,8 +46,8 @@ $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permal
 			<h2 class="entry-title"><a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo $news_post->post_title; ?><?php $locale = get_locale(); /* get current locale */ ?><?php if ('en_US' == $locale  ) : /* English */?>&nbsp;<?php else:  /* Japanese */ ?><?php endif; ?><?php esc_html_e( 'is added newly', 'realty' ); ?></a></h2>
 		<?php endif; ?>
 
-		<div class="header-meta">
-			<div class="post-date"><?php echo get_post_time('F d, Y', $news_post->ID); ?><?php //echo renderJapaneseDate($news_post['post_date'])?></div>
+		<div class="header-meta clearfix">
+			<div class="post-date"><?php echo renderJapaneseDate($news_post->post_date)?><?php //echo get_post_time('F d, Y', $news_post->ID); ?></div>
 			<div class="meta"><?php echo $cat_name?>&nbsp;|&nbsp;<span class="common-cat">NEWS</span></div>
 		</div>
 
