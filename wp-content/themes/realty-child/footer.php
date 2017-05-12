@@ -2,10 +2,10 @@
 <div id="links" class="common-links bg-ltgray">
 	<div class="container">
 		<div class="row link-list">
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links01.jpg"><h4>ハイグレードの小さな区画</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links02.jpg"><h4>条件絞込スマート検索</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links03.jpg"><h4>オフィス仲介実績</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links04.jpg"><h4>オフィス情報最前線ブログ</h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links01.jpg"><h4><?php esc_html_e( 'ハイグレードの小さな区画', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="<?php echo esc_url( home_url( '/smart-searching/' ) ); ?>"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links02.jpg"><h4><?php esc_html_e( '条件絞込スマート検索', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="http://www.properties.co.jp/our-archievement/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links03.jpg"><h4><?php esc_html_e( 'オフィス仲介実績', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="http://www.properties.co.jp/category/office-latest-news/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links04.jpg"><h4><?php esc_html_e( 'オフィス情報最前線ブログ', 'realty' ); ?></h4></a></div></div>
 		</div>
 	</div>
 </div>
