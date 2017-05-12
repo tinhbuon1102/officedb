@@ -58,15 +58,32 @@ if ( ! function_exists( 'tt_login_form' ) ) {
 				<div class="tab-pane" id="tab-registration">
 					<form name="registerform" id="registerform" action="<?php echo wp_registration_url(); ?>" method="post">
 						<div class="form-group">
-							<input type="text" name="user_login" id="user_login" placeholder="<?php echo esc_attr( 'Username', 'realty' ); ?>">
+							<input type="text" name="user_login" id="user_login" placeholder="<?php echo esc_html_e( 'Username', 'realty' ); ?>">
 						</div>
 						<div class="form-group">
-							<input type="text" name="user_email" id="user_email" placeholder="<?php echo esc_attr( 'Email', 'realty' ); ?>">
+							<input type="text" name="user_email" id="user_email" placeholder="<?php echo esc_html_e( 'Email', 'realty' ); ?>">
 						</div>
+						<!--added kyoko-->
+						<div class="form-group">
+							<input class="extra_field_input " name="user_company" maxlength="70" type="text" id="user_company" placeholder="<?php echo esc_html_e( 'Company Name', 'realty' ); ?>" required="">
+						</div>
+						<div class="form-group">
+							<input class="extra_field_input " name="user_name" maxlength="70" type="text" id="user_name" placeholder="<?php echo esc_html_e( 'Your name', 'realty' ); ?>" required="">
+						</div>
+						<div class="form-group">
+							<input class="extra_field_input " name="user_name_kana" maxlength="70" type="text" id="user_name_kana" placeholder="<?php echo esc_html_e( 'Your name kana', 'realty' ); ?>" required="">
+						</div>
+						<div class="form-group">
+							<input class="extra_field_input " name="user_address" maxlength="70" type="text" id="user_address" placeholder="<?php echo esc_html_e( 'Address', 'realty' ); ?>" required="">
+						</div>
+						<div class="form-group">
+							<input class="extra_field_input " name="user_phone" maxlength="70" type="text" id="user_phone" placeholder="<?php echo esc_html_e( 'Phone', 'realty' ); ?>" required="">
+						</div>
+						<!--/added kyoko-->
 						<?php if ( ! empty( $realty_theme_option['user-registration-terms-page'] ) ) { ?>
 						<div class="form-group">
 							<input type="checkbox" name="user_terms" id="user_terms" title="<?php esc_html_e( 'Please accept our terms and conditions to register.', 'realty' ); ?>">
-							<label for="user_terms"><?php esc_html_e( 'I hereby agree to the', 'realty' ); ?> <a href="<?php echo get_permalink ( $realty_theme_option['user-registration-terms-page'] ); ?>" target="_blank"><?php esc_html_e( 'terms and conditions', 'realty' ); ?></a></label>
+							<label for="user_terms"><?php esc_html_e( 'I hereby agree to the', 'realty' ); ?> <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy Policy', 'realty' ); ?></a><?php esc_html_e( 'I do', 'realty' ); ?></label>
 						</div>
 						<?php } ?>
 						<p id="reg_passmail">

@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-12 14:43+0900\n"
+"PO-Revision-Date: 2017-05-12 15:16+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr ""
 #: comments.php:53 lib/functions-forms.php:41
 #: lib/inc/template/contact-form.php:24
 msgid "Email"
-msgstr ""
+msgstr "メールアドレス"
 
 #: comments.php:54 template-user-profile.php:213
 msgid "Website"
@@ -791,7 +791,7 @@ msgstr ""
 
 #: lib/functions-login.php:70
 msgid "I hereby agree to the"
-msgstr ""
+msgstr "弊社の"
 
 #: lib/functions-login.php:70
 msgid "terms and conditions"
@@ -4808,3 +4808,9 @@ msgstr "無"
 
 msgid "is added newly"
 msgstr "が追加されました。"
+
+msgid "I do"
+msgstr "に同意する"
+
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"

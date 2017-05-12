@@ -45,7 +45,7 @@ foreach ( $recent_posts as $recent )
 		<div class="inner">
 			<div class="con-inner">
 				<div class="post-date"><?php echo renderJapaneseDate($recent['post_date'])?></div>
-				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?></a></div>
+				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?><?php $locale = get_locale(); /* get current locale */ ?><?php if ('en_US' == $locale  ) : /* English */?>&nbsp;<?php else:  /* Japanese */ ?><?php endif; ?><?php esc_html_e( 'is added newly', 'realty' ); ?></a></div>
 				<div class="meta">
 					<?php echo $cat_name?>&nbsp;|&nbsp;
 					<span class="common-cat">NEWS</span>

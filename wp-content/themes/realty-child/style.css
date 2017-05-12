@@ -884,6 +884,9 @@ body.page-template-template-search {
 .col-xs-8.result-column {
     padding: 0;
 }
+ul.typeahead__list .result-column {
+    line-height: 1.4;
+}
 .property-search-form input[type="submit"] {
     font-weight: bold;
     font-size: 14px;
