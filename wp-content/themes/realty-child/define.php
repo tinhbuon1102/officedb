@@ -28,3 +28,7 @@ define('EARTH_QUAKE_NEW_STANDARD', 6);
 define('EARTH_QUAKE_ISOLATION_STRUCTURE', 7);
 define('EARTH_QUAKE_UNKNOW', 8);
 define('EARTH_QUAKE_DAMPING_STRUCTURE', 9);
+
+
+define('CONTACT_ICON_SELECTED', 'fa-building');
+define('CONTACT_ICON_NOT_SELECTED', 'fa-building-1');

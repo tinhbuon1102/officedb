@@ -136,16 +136,16 @@ if ( !function_exists('tt_add_remove_contact') ) {
 
 			if ( ! empty( $get_user_meta_contact ) && in_array( $property_id, $get_user_meta_contact[0] ) ) {
 				// Property Is Already In contact
-				$class = 'add-to-contact origin fa '.$tmpClass.' fa-building';
+				$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_SELECTED;
 				$text = __( 'Remove From contact', 'realty' );
 			} else {
 				// Property Isn't In contact
-				$class = 'add-to-contact origin fa '.$tmpClass.' fa-building-1';
+				$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_NOT_SELECTED;
 				$text = __( 'Add To contact', 'realty' );
 			}
 		} else {
 			// Not Logged-In Visitor
-			$class = 'add-to-contact origin fa '.$tmpClass.' fa-building-1';
+			$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_NOT_SELECTED;
 			$text = __( 'Add To contact', 'realty' );
 		}
 
@@ -196,7 +196,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 			if ( inArray( jQuery(this).attr('data-fav-id'), store.get('contact') ) ) {
 				if (!jQuery(this).hasClass('custom-contact'))
 				{
-					jQuery(this).toggleClass('fa-building fa-building-1');
+					jQuery(this).toggleClass('<?php echo CONTACT_ICON_SELECTED?> <?php echo CONTACT_ICON_NOT_SELECTED?>');
 				}
 			}
 
@@ -212,6 +212,9 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 		jQuery('body').on("click",'.add-to-contact',function(e) {
 	        e.stopPropagation();
 	        var show_popup = false;
+	        var elementCLick = jQuery(this);
+	        var property_id = elementCLick.attr('data-fav-id');
+	        
 
 			<?php
 			// Logged-In User Or Temporary contact Enabled
@@ -221,24 +224,24 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 				// Toggle contact Tooltips
 				var title;
 				
-				jQuery(this).toggleClass('fa-building fa-building-1');
+				jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').toggleClass('<?php echo CONTACT_ICON_SELECTED?> <?php echo CONTACT_ICON_NOT_SELECTED?>');
 
-				if (jQuery(this).hasClass('fa-building'))
+				if (jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').hasClass('<?php echo CONTACT_ICON_SELECTED?>') || elementCLick.hasClass('remove_property'))
 				{
-					title = jQuery(this).attr('data-remove-title');
+					title = jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').attr('data-remove-title');
 					show_popup = true;	
 				}
-				else if (jQuery(this).hasClass('fa-building-1'))
+				else if (jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').hasClass('<?php echo CONTACT_ICON_NOT_SELECTED?>'))
 				{
-					title = jQuery(this).attr('data-add-title');
+					title = jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').attr('data-add-title');
 					show_popup = false;
 				}
 				
-				jQuery(this).attr('data-original-title', title);
+				jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').attr('data-original-title', title);
 
-				if (jQuery(this).closest('a.add-to-contact_wraper').length) {
-					jQuery(this).closest('a.add-to-contact_wraper').find('span').text(title);
-					jQuery(this).closest('a.add-to-contact_wraper').attr('title', title);
+				if (jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').closest('a.add-to-contact_wraper').length) {
+					jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').closest('a.add-to-contact_wraper').find('span').text(title);
+					jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').closest('a.add-to-contact_wraper').attr('title', title);
 				}
 
 				<?php if ( is_user_logged_in() ) { ?>
@@ -285,6 +288,9 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 
 									jQuery('#contact_list_later').append(floor_row);
 								});
+							}
+							else {
+								jQuery('#contact-multiple-modal').modal('hide');
 							}
 						}
 					  },
