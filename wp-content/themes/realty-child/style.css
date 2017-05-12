@@ -864,6 +864,24 @@ h3.fontbig.sm80 {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
 }
 /*property list*/
+i.add-to-contact.origin.fa {
+font-family: 'howcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.5em;
+}
+i.add-to-contact.origin.fa.howcons-inbox-download2:before {
+    content: "\e91c";
+}
+i.add-to-contact.origin.fa.howcons-inbox-upload2:before {
+    content: "\e91e";
+}
 body.ja h2.page-title, body.ja .search-result-container .search-container h2 {
     color: #000;
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
