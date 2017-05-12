@@ -40,7 +40,7 @@ function buildListContactProperty($show_remove = false){
 		ob_start();
 		?>
 	<h4><?php echo trans_text('With list of properties below :')?></h4>
-	<table id="contact_list_later">
+	<table class="contact_list_later">
 		<thead>
 			<tr>
 				<th class="floor_picture"><?php echo trans_text('Picture')?></th>
@@ -291,7 +291,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 							{
 								jQuery('#contact-multiple-modal').modal('show');
 							}
-							jQuery('#contact_list_later .contact_item').remove();
+							jQuery('.contact_list_later .contact_item').remove();
 							
 							if (floors.length)
 							{
@@ -308,14 +308,14 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 									floor_row.find('.floor_date_move').html(floor.date_move);
 									floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
-									jQuery('#contact_list_later').append(floor_row);
+									jQuery('.contact_list_later').append(floor_row);
 								});
 							}
 							else {
 								jQuery('#contact-multiple-modal').modal('hide');
 								if (elementCLick.closest('form.shortcode-form').length)
 								{
-									$('#contact_list_later').fadeOut();
+									$('.contact_list_later').fadeOut();
 								}
 							}
 						}
