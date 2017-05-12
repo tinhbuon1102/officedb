@@ -116,50 +116,7 @@
 	</div>
 </div>
 
-<div class="modal fade modal-custom" id="contact-multiple-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
-				<span class="linericon-cross" aria-hidden="true">X</span>
-			</button>
-			<div class="modal-header">
-				<h4 class="modal-title" ><?php echo __('Contact List', 'realty')?></h4>
-			</div>
-			<div class="modal-body">
-				<table id="contact_list_later">
-					<thead>
-						<tr>
-							<!--<th class="floor_picture"><?php //echo trans_text('Picture')?></th>-->
-							<th class="floor_name" colspan="2"><?php echo trans_text('Property Name')?></th>
-							<th class="floor_rent"><?php echo trans_text('Rent')?></th>
-							<th class="floor_area"><?php echo trans_text('Area')?></th>
-							<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
-							<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
-							<th class="floor_action_remove"><?php echo trans_text('Remove')?></th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr class="contact_item_tmp element-disable">
-						<td class="floor_picture"></td>
-						<td class="floor_name"></td>
-						<td class="floor_rent"></td>
-						<td class="floor_area"></td>
-						<td class="floor_deposit"></td>
-						<td class="floor_date_move"></td>
-						<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" ><?php echo trans_text('Remove')?></a></td>
-					</tr>
-					</tbody>
-				</table>
-				 
-				<div class="button_groups">
-					  <a class="btn btn-success" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact Now')?></a>
-					  <button type="button" class="btn btn-danger"  data-dismiss="modal"><?php echo trans_text('Close')?></button>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js"></script>
 </body>
 </html>

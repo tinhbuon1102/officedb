@@ -8,7 +8,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 	function realty_contact_form( $atts ) {
 		extract( shortcode_atts( array(
 			'id'                 => rand(),
-			'subject'            => esc_html__( '高級オフィス検索から物件の問い合わせがきています', 'realty' ),
+			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
 			'show_name'          => true,
 			'show_namekana'      => true,//added kyoko
 			'show_companyname'   => true,//added kyoko
@@ -40,7 +40,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 		
 		ob_start();
 		?>
-		<form id="<?php echo 'form-' . $id; ?>" method="post">
+		<form id="<?php echo 'form-' . $id; ?>" method="post" class="shortcode-form">
 		<!--added kyoko-->
 			<?php if ( $show_companyname ) { ?>
 			<p>
@@ -104,7 +104,8 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 					<input type="hidden" name="recaptcha">
 				<?php } ?>
 			<?php } ?>
-			<?php echo buildListContactProperty();?>
+			<input type="hidden" name="send_multiple" value="1"/>
+			<?php echo buildListContactProperty(true);?>
 			<p>
 				<input class="submit" id="contact_submit_btn" type="submit" value="<?php echo esc_attr( $submit_text ); ?>">
 			</p>

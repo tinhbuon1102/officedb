@@ -33,14 +33,13 @@ function get_contact_property_list($user_id = false){
 	return $tableFloors;
 }
 
-function buildListContactProperty(){
+function buildListContactProperty($show_remove = false){
 	$tableFloors = get_contact_property_list();
 	$tableHtml = '';
 	if (!empty($tableFloors)) {
 		ob_start();
 		?>
 	<h4><?php echo trans_text('With list of properties below :')?></h4>
-	<input type="hidden" name="send_multiple" value="1"/>
 	<table id="contact_list_later">
 		<thead>
 			<tr>
@@ -50,6 +49,9 @@ function buildListContactProperty(){
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
 				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
+				<?php if ($show_remove) {?>
+				<th class="floor_action_remove"><?php echo trans_text('Remove')?></th>
+				<?php }?>
 			</tr>
 		</thead>
 		<tbody>
@@ -61,8 +63,22 @@ function buildListContactProperty(){
 			<td class="floor_area"><?php echo $floor['size']?></td>
 			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
 			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
+			<?php if ($show_remove) {?>
+			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
+			<?php }?>
 		</tr>
 		<?php }?>
+		<tr class="contact_item_tmp element-disable" style="display:none">
+			<td class="floor_picture"></td>
+			<td class="floor_name"></td>
+			<td class="floor_rent"></td>
+			<td class="floor_area"></td>
+			<td class="floor_deposit"></td>
+			<td class="floor_date_move"></td>
+			<?php if ($show_remove) {?>
+			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" ><?php echo trans_text('Remove')?></a></td>
+			<?php }?>
+		</tr>
 		</tbody>
 	</table>
 <?php 
@@ -262,19 +278,27 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 					    'property'			: 	jQuery(this).attr('data-fav-id')
 					  },
 					  success: function (response) {
+						var floors = response.floors;
+						
+						// Update header count
+						jQuery('.contact-list-count').html(floors.length);
+						
 						if (show_popup)
 						{
 							jQuery('body').LoadingOverlay("hide");
 							// show popup
-							jQuery('#contact-multiple-modal').modal('show');
-
-							var floors = response.floors;
+							if (!elementCLick.closest('form.shortcode-form').length)
+							{
+								jQuery('#contact-multiple-modal').modal('show');
+							}
 							jQuery('#contact_list_later .contact_item').remove();
+							
 							if (floors.length)
 							{
 								jQuery.each(floors, function(floor_index, floor){
-									var floor_row = jQuery('tr.contact_item_tmp').clone();
+									var floor_row = jQuery('tr.contact_item_tmp:eq(1)').clone();
 									floor_row.removeClass('contact_item_tmp element-disable');
+									floor_row.show();
 									floor_row.addClass('contact_item');
 									floor_row.find('.floor_picture').html(floor.thumbnail);
 									floor_row.find('.floor_name').html(floor.name);
@@ -284,13 +308,15 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 									floor_row.find('.floor_date_move').html(floor.date_move);
 									floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
-									console.log(floor_row);
-
 									jQuery('#contact_list_later').append(floor_row);
 								});
 							}
 							else {
 								jQuery('#contact-multiple-modal').modal('hide');
+								if (elementCLick.closest('form.shortcode-form').length)
+								{
+									$('#contact_list_later').fadeOut();
+								}
 							}
 						}
 					  },
@@ -357,7 +383,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 	}
 }
 add_action( 'wp_footer', 'tt_contact_script', 21 );
-
+add_action( 'wp_footer', 'tt_contact_modal', 21 );
 /**
  * contact Temporary
  *
@@ -417,3 +443,29 @@ if ( ! function_exists( 'tt_ajax_contact_temporary' ) ) {
 }
 add_action('wp_ajax_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
 add_action('wp_ajax_nopriv_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
+
+function tt_contact_modal(){
+?>
+	<div class="modal fade modal-custom" id="contact-multiple-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
+				<span class="linericon-cross" aria-hidden="true">X</span>
+			</button>
+			<div class="modal-header">
+				<h4 class="modal-title" ><?php echo __('Contact List', 'realty')?></h4>
+			</div>
+			<div class="modal-body">
+				<?php echo buildListContactProperty(true);?>
+				 
+				<div class="button_groups">
+					  <a class="btn btn-success" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact Now')?></a>
+					  <button type="button" class="btn btn-danger"  data-dismiss="modal"><?php echo trans_text('Close')?></button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+}
