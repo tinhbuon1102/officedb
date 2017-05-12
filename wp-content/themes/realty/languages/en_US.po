@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-11 23:52+0900\n"
+"PO-Revision-Date: 2017-05-12 13:13+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -4773,6 +4773,9 @@ msgstr ""
 msgid "http://themetrail.com"
 msgstr ""
 
+msgid "通常"
+msgstr "Normal"
+
 msgid "普通借家"
 msgstr "old style leasehold contract"
 
@@ -4784,6 +4787,9 @@ msgstr "prefer to lease for years"
 
 msgid "年数相談"
 msgstr "Ask"
+
+msgid "<br>年数相談"
+msgstr "<br>Ask"
 
 msgid "即"
 msgstr "immediately"
