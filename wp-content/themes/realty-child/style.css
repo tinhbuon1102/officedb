@@ -1458,6 +1458,9 @@ form #lang {display: none;}
 .element-disable {display: none;}
 
 #contact_list_later th, #contact_list_later td {text-align: center;}
+#contact_list_later td.floor_name {
+    text-align: left;
+}
 td.floor_picture img {
     max-width: 50px;
 }

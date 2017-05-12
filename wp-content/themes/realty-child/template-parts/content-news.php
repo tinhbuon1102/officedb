@@ -38,7 +38,7 @@ $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permal
 		<?php if ( is_single() ) : ?>
 			<h1 class="entry-title"><a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo $news_post->post_title; ?></a></h1>
 		<?php else : ?>
-			<h2 class="entry-title"><a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo $news_post->post_title; ?></a></h2>
+			<h2 class="entry-title"><a href="<?php echo esc_url( $news_url ); ?>" rel="bookmark"><?php echo $news_post->post_title; ?><?php $locale = get_locale(); /* get current locale */ ?><?php if ('en_US' == $locale  ) : /* English */?>&nbsp;<?php else:  /* Japanese */ ?><?php endif; ?><?php esc_html_e( 'is added newly', 'realty' ); ?></a></h2>
 		<?php endif; ?>
 
 		<div class="header-meta">
@@ -56,5 +56,5 @@ $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permal
 		<?php } ?>
 <?php echo tt_post_content_navigation(); ?>
 
-
+<a href="<?php echo esc_url( $news_url ); ?>" class="check_now">Check now</a>
 </article>

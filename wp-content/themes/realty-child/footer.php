@@ -129,8 +129,8 @@
 				<table id="contact_list_later">
 					<thead>
 						<tr>
-							<th class="floor_picture"><?php echo trans_text('Picture')?></th>
-							<th class="floor_name"><?php echo trans_text('Name')?></th>
+							<!--<th class="floor_picture"><?php //echo trans_text('Picture')?></th>-->
+							<th class="floor_name" colspan="2"><?php echo trans_text('Property Name')?></th>
 							<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 							<th class="floor_area"><?php echo trans_text('Area')?></th>
 							<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>

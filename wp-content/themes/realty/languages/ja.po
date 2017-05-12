@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-12 03:49+0900\n"
+"PO-Revision-Date: 2017-05-12 13:13+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -1537,7 +1537,7 @@ msgstr ""
 
 #: realty-core/custom-post-types.php:213
 msgid "Property Name"
-msgstr ""
+msgstr "物件名"
 
 #: realty-core/custom-post-types.php:214
 msgid "Featured"
@@ -2227,7 +2227,7 @@ msgstr ""
 #: lib/redux/realty-theme-options.php:1286
 #: realty-core/shortcodes/shortcode-property-slider.php:329
 msgid "None"
-msgstr ""
+msgstr "無し"
 
 #: lib/redux/realty-theme-options.php:746
 msgid "Property Image Height"
@@ -4769,3 +4769,39 @@ msgstr "オフィス探しの相談"
 
 msgid "asking some questions"
 msgstr "その他お問い合わせ"
+
+msgid "Contact List"
+msgstr "お問い合わせリスト"
+
+msgid "Remove From contact"
+msgstr "問い合わせリストから削除"
+
+msgid "Add To contact"
+msgstr "問い合わせリストに追加"
+
+msgid "Contact Now"
+msgstr "今すぐ問い合わせる"
+
+msgid "Undecided"
+msgstr "未定"
+
+msgid "Included"
+msgstr "含む"
+
+msgid "Human power"
+msgstr "人乗"
+
+msgid "For basic loading"
+msgstr "人荷用"
+
+msgid "Not exists"
+msgstr "無"
+
+msgid "No exists"
+msgstr "無"
+
+msgid "Pull Yes"
+msgstr "引き込み有り"
+
+msgid "Nothing"
+msgstr "無"
