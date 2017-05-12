@@ -82,7 +82,7 @@
 
 				  <?php if ( ! is_author() ) { ?>
 				  	<div class="agent-more-link">
-					  	<a href="<?php echo $author_profile_url; ?>" class="btn btn-primary" rel="author"><?php esc_html_e( 'Profile', 'realty' ); ?></a>
+					  	<a href="<?php echo $author_profile_url; ?>" class="btn btn-primary" rel="author"><?php esc_html_e( 'My Account', 'realty' ); ?></a>
 					  </div>
 					<?php } ?>
 				</div>

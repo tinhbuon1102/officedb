@@ -84,8 +84,8 @@
 	<?php wp_reset_query();	?>
 
 	<a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>">
-		<span class="desktop"><?php esc_html_e( 'Profile', 'realty' ); ?></span>
-		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Profile', 'realty' ); ?>"><i class="icon-account"></i></span>
+		<span class="desktop"><?php esc_html_e( 'My Account', 'realty' ); ?></span>
+		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'My Account', 'realty' ); ?>"><i class="icon-account"></i></span>
 	</a>
 	<a href="<?php echo wp_logout_url( site_url('/') ); ?>">
 		<span class="desktop"><?php esc_html_e( 'Logout', 'realty' ); ?></span>
