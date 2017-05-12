@@ -1492,7 +1492,7 @@ td.floor_picture img {
 .send-contact {
 	
 }
-.send-contact a {
+.send-contact input[type='submit'] {
 	width: 100%;
 }
 .lb-title {
