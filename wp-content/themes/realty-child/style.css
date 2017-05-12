@@ -864,6 +864,10 @@ h3.fontbig.sm80 {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
 }
 /*property list*/
+body.ja h2.page-title, body.ja .search-result-container .search-container h2 {
+    color: #000;
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
 body.page-template-template-search {
     background: rgba(247,247,247,1);
 }
@@ -1489,6 +1493,7 @@ td.floor_picture img {
     max-width: 50px;
 }
 /*Contact Page*/
+
 .send-contact {
 	
 }
