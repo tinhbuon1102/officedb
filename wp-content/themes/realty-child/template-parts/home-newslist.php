@@ -53,7 +53,7 @@ foreach ( $recent_posts as $recent )
 				<div class="news_thumbnail">
 					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>">
 					<?php 
-					echo get_the_post_thumbnail($recent['ID'], 'thumbnail');
+					//echo get_the_post_thumbnail($recent['ID'], 'thumbnail');
 					?>
 					</a>
 				</div>

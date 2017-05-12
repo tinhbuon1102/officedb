@@ -25,6 +25,11 @@ if ($building_id)
 
 	}
 }
+$categories = get_the_category($news_post->ID); // post ID
+	foreach ( $categories as $cat )
+	{
+		$cat_name = $cat->cat_name;
+	}
 $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permalink($news_post);
 ?>
 <article id="post-<?php $news_post->ID; ?>" <?php post_class('', $news_post->ID); ?>>
@@ -42,8 +47,8 @@ $news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permal
 		<?php endif; ?>
 
 		<div class="header-meta">
-			<div class="post-date"><?php echo get_post_time('F d, Y', $news_post->ID); ?>
-</div>
+			<div class="post-date"><?php echo get_post_time('F d, Y', $news_post->ID); ?><?php //echo renderJapaneseDate($news_post['post_date'])?></div>
+			<div class="meta"><?php echo $cat_name?>&nbsp;|&nbsp;<span class="common-cat">NEWS</span></div>
 		</div>
 
 	</div>
