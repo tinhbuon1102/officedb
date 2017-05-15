@@ -50,7 +50,7 @@ if ( ! function_exists( 'tt_map' ) ) {
 		if ( $single_property_id ) {
 			$query_properties_args['post__in'] = array( $single_property_id );
 			$query_properties_args['is_single'] = true;
-			$zoomlevel = '13';
+			$zoomlevel = '16';
 		}
 
 		/* TAX QUERIES:

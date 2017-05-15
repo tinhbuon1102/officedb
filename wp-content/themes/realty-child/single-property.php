@@ -387,6 +387,18 @@
 				<?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
+		<div class="col-sm-4">
+			<div class="meta-title"><?php echo __('Floor Material', 'realty')?></div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="meta-title"><?php echo __('Ceiling Height', 'realty')?></div>
+			<div class="meta-data">
+				<?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?>
+			</div>
+		</div>
 	</div>
 	</section>
 	<section id="nearbyrate">

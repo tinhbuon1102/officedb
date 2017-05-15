@@ -23,6 +23,14 @@ function importSpecific() {
 	pr('existing');die;
 }
 
+function isEnglish(){
+	return pll_current_language() == LANGUAGE_EN;
+}
+
+function formatNumber($number)
+{
+	return number_format($number, 0);
+}
 function importLocationFromPrefecture () {
 	global $wpdb;
 	// Delete old location;
@@ -594,7 +602,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 				
 		case 'total_floor_space':
-			return $building[$field] ? $building[$field] . AREA_M2 : FIELD_MISSING_VALUE;
+			return $building[$field] ? formatNumber($building[$field]) . AREA_M2 : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'earth_quake_res_std' :
@@ -680,7 +688,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 				
 		case 'renewal_data':
-			return $building[$field] ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
+			return $building[$field] ? (isEnglish() ? trans_text($building['renewal_data_en']) : trans_text($building[$field])) : FIELD_MISSING_VALUE;
 			break;
 				
 		case 'avg_neighbor_fee':
@@ -725,6 +733,18 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				$return .=  '<br>'.$floor['contract_period_duration'] . ' ' .  trans_text('年');
 			}
 			return $return;
+			break;
+			
+		case 'floor_material':
+			return $building[$field] ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
+			break;
+			
+		case 'ceiling_height':
+			return $building[$field] ? trans_text(formatNumber($building[$field])) . 'mm' : FIELD_MISSING_VALUE;
+			break;
+			
+		default :
+			
 			break;
 	}
 }
