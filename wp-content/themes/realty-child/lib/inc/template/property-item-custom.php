@@ -90,6 +90,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 					<?php else:  /* Japanese */ ?>
 					<?php echo $estate_property_prefecture ? ($estate_property_prefecture .''. $estate_property_district . '' . $estate_property_town) : ""; ?>
 					<?php endif; ?>
+					<?php if (is_user_logged_in()) echo trans_text(sprintf('(Views : %s)', (int)get_post_meta(get_the_ID(), 'estate_property_views_count', true)));?>
 					</h4>
 					<?php the_excerpt(); ?>
 					</div>
