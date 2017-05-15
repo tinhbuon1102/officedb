@@ -166,7 +166,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 					$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
 					$message .= '<p style="color: #999">' . esc_html__( 'TpTo unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty' ) . '</p>';
 
-					$headers[] = "From: $name <$email>";
+					$headers[] = "From: $user->display_name <$user->user_email>";
 					$headers[] = "Content-Type: text/html; charset=UTF-8";
 					add_filter( 'wp_mail_content_type', 'tt_set_html_content_type_plugin' );
 					// Send email to user.
