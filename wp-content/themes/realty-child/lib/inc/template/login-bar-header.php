@@ -83,15 +83,15 @@
 	<?php wp_reset_query();	?>
 
 	<a class="contact-list-header" href="#contact-multiple-modal" data-toggle="modal">
-		<span class="desktop"><i class="fa <?php echo CONTACT_ICON_SELECTED?>" aria-hidden="true"></i><?php esc_html_e( 'Contact List', 'realty' ); ?> (<span class="contact-list-count"><?php echo count($tableFloors); ?></span>)</span>
-		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Contact List', 'realty' ); ?>"><i class="fa <?php echo CONTACT_ICON_SELECTED?>" aria-hidden="true"></i></span>
+		<span class="desktop"><i class="<?php echo CONTACT_ICON_EXIST?>"></i><?php esc_html_e( 'Contact List', 'realty' ); ?> (<span class="contact-list-count"><?php echo count($tableFloors); ?></span>)</span>
+		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Contact List', 'realty' ); ?>"><i class="<?php echo CONTACT_ICON_EXIST?>"></i></span>
 	</a>
 	
-	<a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>">
+	<a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>" class="hidden-xs">
 		<span class="desktop"><i class="fa fa-user-circle" aria-hidden="true"></i><?php esc_html_e( 'My Account', 'realty' ); ?></span>
-		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'My Account', 'realty' ); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php //esc_html_e( 'My Account', 'realty' ); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
 	</a>
-	<a href="<?php echo wp_logout_url( site_url('/') ); ?>">
+	<a href="<?php echo wp_logout_url( site_url('/') ); ?>" class="hidden-xs">
 		<span class="desktop"><i class="fa fa-sign-out" aria-hidden="true"></i><?php esc_html_e( 'Logout', 'realty' ); ?></span>
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Logout', 'realty' ); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
 	</a>

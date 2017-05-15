@@ -705,7 +705,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			$return = '';
 			if(isset($floor['contract_period_opt']) && $floor['contract_period_opt'] != ""){
 				if($floor['contract_period_opt'] == 1){
-					$return .=  trans_text('通常');
+					$return .=  trans_text('普通借家');
 				}elseif($floor['contract_period_opt'] == 2){
 					$return .=  trans_text('定借');
 				}elseif($floor['contract_period_opt'] == 3){

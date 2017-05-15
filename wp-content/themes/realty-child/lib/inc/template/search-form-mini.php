@@ -4,7 +4,7 @@
 
 <form class="property-search-form border-box" action="<?php if ( tt_page_id_template_search() ) { echo get_permalink( tt_page_id_template_search() ); } ?>">
 
-	<div class="row">
+	<div class="row search-form-row">
 
 		<?php if ( isset( $realty_theme_option['property-search-results-page'] ) && empty( $realty_theme_option['property-search-results-page'] ) ) { ?>
 			<div class="col-xs-12" style="margin-bottom: 1em">
@@ -116,7 +116,7 @@
 										$search_labels[$i] = trans_text('Search keywords');
 									}
 								?>
-								<div class="<?php echo $columns; ?> form-group">
+								<div class="<?php echo $columns; ?> form-group keyword-div">
 									<div class="typeahead__container">
 								        <div class="typeahead__field">
 								            <span class="typeahead__query">
@@ -725,7 +725,7 @@
 
 			?>
 
-			<div class="<?php echo $columns; ?> form-group">
+			<div class="<?php echo $columns; ?> form-group search-btn-div">
 				<input type="submit" value="<?php esc_html_e( 'Search', 'realty' ); ?>" class="btn btn-primary btn-block form-control" />
 			</div>
 

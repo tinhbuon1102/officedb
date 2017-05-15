@@ -20,9 +20,9 @@ body, html
 
 .customer-chat ::selection
 {
-    color: #fff;
+    /*color: #fff;
     
-    background: #00cfff;
+    background: #00cfff;*/
 }
 
 .customer-chat .customer-chat-content-message-body a:link,
@@ -30,7 +30,7 @@ body, html
 .customer-chat .customer-chat-content-message-body a:visited,
 .customer-chat .customer-chat-content-message-body a:active
 {
-    color: #36A9E1;
+    color: #2d2d2d;
     
     text-decoration: none;
 }
@@ -161,7 +161,7 @@ body, html
 {
     position: relative;
     width: 100%;
-    background: #36A9E1;
+    background: #2d2d2d;
     
     height: 55px;
     line-height: 55px;
@@ -433,7 +433,7 @@ body, html
 
 .customer-chat-header-button:hover, .customer-chat-header-button:focus
 {
-    background: #1e8fc6;
+    background: #000;
     
     outline: none;
 }
@@ -499,7 +499,7 @@ body, html
     padding: 16px 50px 16px 16px;
     
     border: 1px solid #eee;
-    border-left: 2px solid #36A9E1;
+    border-left: 2px solid #2d2d2d;
     outline: none;
     
     resize: none;
@@ -877,7 +877,7 @@ input
 
 .customer-chat-talk-header-users .user-info div .name
 {
-    color: #36A9E1;
+    color: #2d2d2d;
     width: 50px;
 }
 

@@ -1,6 +1,6 @@
 widgetTheme=widget-themes/oval
-primaryColor=#36a9e1
-secondaryColor=#86C953
+primaryColor=#2d2d2d
+secondaryColor=#000
 labelColor=#ffffff
 hideWhenOffline=false
 contactMail=kyoko@heart-hunger.com

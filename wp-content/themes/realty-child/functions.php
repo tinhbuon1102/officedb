@@ -34,7 +34,12 @@ function realty_wp_head() {
 			unset($_SESSION['mirrormx_customer_chat']['guest']);
 	}
 }
-
+register_nav_menus( array(
+    'sp_second_menu' => 'sp用下に表示させるメニュー'
+) );
+register_nav_menus( array(
+    'sp_bottom_menu' => 'sp用一番下に表示させるメニュー'
+) );
 /**
  * Loads the child theme textdomain.
  */

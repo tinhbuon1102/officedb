@@ -30,5 +30,7 @@ define('EARTH_QUAKE_UNKNOW', 8);
 define('EARTH_QUAKE_DAMPING_STRUCTURE', 9);
 
 
-define('CONTACT_ICON_SELECTED', 'howcons-inbox-upload2');
-define('CONTACT_ICON_NOT_SELECTED', 'howcons-inbox-download2');
+define('CONTACT_ICON_SELECTED', 'howcons-clipboard-remove2');
+define('CONTACT_ICON_NOT_SELECTED', 'howcons-clipboard-add2');
+define('CONTACT_ICON_EXIST', 'howcons-mail-checked2');
+define('CONTACT_ICON_NOT_EXIST', 'howcons-mail-envelope-closed4');

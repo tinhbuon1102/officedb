@@ -77,6 +77,8 @@
     </div>
 
 		<nav class="main-navigation" id="navigation">
+		<div class="flex-column fill-height">
+		<div class="flex-cell side-panel-top-row">
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'primary',
@@ -86,12 +88,36 @@
 					'link_after' => '</span>'
 				) );
 			?>
+		</div>
+		<div class="flex-cell-auto side-panel-bottom-row hidden-pc">
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'sp_second_menu',
+					'container' => 'ul',
+					'menu_class' => 'sp-second-menu',
+					'link_before' => '<span>',
+					'link_after' => '</span>'
+				) );
+			?>
+			<div class="ask-staff"><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="btn btn-primary btn-square"><?php esc_html_e( 'スタッフに相談', 'realty' ); ?></a></div>
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'sp_bottom_menu',
+					'container' => 'ul',
+					'menu_class' => 'sp-bottom-menu side-panel-legal-list text-overflow',
+					'link_before' => '<span>',
+					'link_after' => '</span>'
+				) );
+			?>
+		</div>
+		</div>
 		</nav>
+
 		
 		<div class="calling-info">
 			<div class="calling-content">
 				<i class="topicon-icon-topnav03"></i>
-				<div class="calling-desc"><span class="jat">平日</span>9:00~18:00<br/><span><a href="tel:03-5411-7500">03-5411-7500</a></span></div>
+				<div class="calling-desc"><span class="jat"><?php esc_html_e( '平日', 'realty' ); ?></span>9:00~18:00<br/><span><a href="tel:03-5411-7500">03-5411-7500</a></span></div>
 			</div>
 		</div>
   </div>

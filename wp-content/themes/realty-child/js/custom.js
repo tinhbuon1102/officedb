@@ -38,8 +38,13 @@ jQuery(document).ready(function($){
 			$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
 			//$('.main-slider .slider-searchbox').css('margin-top', '-' + ssearchHeight + 'px');
 		}
+		var windowHeight = $(window).height();
+		var headerH = $('#header').height();
+		var replaceWidth = 768;
+		if(windowWidth < replaceWidth) {
+		$('.main-slider').css('height', (windowHeight - headerH) + 'px');
+		}
 	});
-	
 	if ($('#property-items li').length)
 	{
 		//latest office grid
@@ -52,8 +57,14 @@ jQuery(document).ready(function($){
 		console.log('おおきめ高さ：' + lgHeight + 'px');
 		var minConHeight =$('div#property-items li.col-lg-7 > ul > li > div > .property-content').height();
 		console.log('小さめ白高さ：' + minConHeight + 'px');
+		var windowWidth = $(window).width();
+		var replaceWidth = 768;
+		if(windowWidth > replaceWidth) {
 		$('div#property-items li.col-lg-7 > ul > li > div > a > .property-thumbnail').css('height', (lgHeight / 2 - minConHeight - 7) + 'px');
+		}
 	}
+	
+
 	
 		function initTypeHead() {
 		$.typeahead({

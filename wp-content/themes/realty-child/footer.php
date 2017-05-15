@@ -2,10 +2,10 @@
 <div id="links" class="common-links bg-ltgray">
 	<div class="container">
 		<div class="row link-list">
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links01.jpg"><h4>ハイグレードの小さな区画</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links02.jpg"><h4>条件絞込スマート検索</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links03.jpg"><h4>オフィス仲介実績</h4></a></div></div>
-			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links04.jpg"><h4>オフィス情報最前線ブログ</h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links01.jpg"><h4><?php esc_html_e( 'ハイグレードの小さな区画', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="<?php echo esc_url( home_url( '/smart-searching/' ) ); ?>"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links02.jpg"><h4><?php esc_html_e( '条件絞込スマート検索', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="http://www.properties.co.jp/our-archievement/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links03.jpg"><h4><?php esc_html_e( 'オフィス仲介実績', 'realty' ); ?></h4></a></div></div>
+			<div class="col-sm-3"><div class="link-items"><a href="http://www.properties.co.jp/category/office-latest-news/" target="_blank"><img src="<?php echo get_stylesheet_directory_uri() ?>/images/links04.jpg"><h4><?php esc_html_e( 'オフィス情報最前線ブログ', 'realty' ); ?></h4></a></div></div>
 		</div>
 	</div>
 </div>
@@ -54,7 +54,7 @@
 		<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) || is_active_sidebar( 'sidebar_footer_bottom_center' ) || is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
 			<div class="site-footer-bottom" id="footer-bottom">
 				<div class="container">
-					<div class="row">
+					<div class="row sm-flex">
 						<?php
 							$class_columns_left = 'col-sm-12';
 							$class_columns_center = 'col-sm-12';
@@ -73,7 +73,7 @@
 						?>
 
 						<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) ) { ?>
-							<div class="<?php echo $class_columns_left; ?> footer-bottom-left">
+							<div class="<?php echo $class_columns_left; ?> footer-bottom-left order2">
 								<?php dynamic_sidebar( 'sidebar_footer_bottom_left' ); ?>
 							</div>
 						<?php } ?>
@@ -85,7 +85,7 @@
 						<?php } ?>
 
 						<?php if ( is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
-							<div class="<?php echo $class_columns_right; ?> footer-bottom-right">
+							<div class="<?php echo $class_columns_right; ?> footer-bottom-right order1">
 								<?php dynamic_sidebar( 'sidebar_footer_bottom_right' ); ?>
 							</div>
 						<?php } ?>

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'howcons';
-  src:  url('fonts/howcons.eot?j48law');
-  src:  url('fonts/howcons.eot?j48law#iefix') format('embedded-opentype'),
-    url('fonts/howcons.ttf?j48law') format('truetype'),
-    url('fonts/howcons.woff?j48law') format('woff'),
-    url('fonts/howcons.svg?j48law#howcons') format('svg');
+  src:  url('fonts/howcons.eot?18181j');
+  src:  url('fonts/howcons.eot?18181j#iefix') format('embedded-opentype'),
+    url('fonts/howcons.ttf?18181j') format('truetype'),
+    url('fonts/howcons.woff?18181j') format('woff'),
+    url('fonts/howcons.svg?18181j#howcons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,111 +26,155 @@
 
 .howcons-pencil4:before {
   content: "\e928";
+  color: #000;
 }
 .howcons-heart:before {
   content: "\e929";
+  color: #000;
 }
 .howcons-star3:before {
   content: "\e92a";
+  color: #000;
 }
 .howcons-envelope:before {
   content: "\e92b";
+  color: #000;
 }
 .howcons-file-lock:before {
   content: "\e93d";
+  color: #000;
 }
 .howcons-enter:before {
   content: "\e93e";
+  color: #000;
 }
 .howcons-exit:before {
   content: "\e93f";
+  color: #000;
 }
 .howcons-papers:before {
   content: "\e940";
+  color: #000;
 }
 .howcons-camera-play:before {
   content: "\e941";
+  color: #000;
 }
 .howcons-profile:before {
   content: "\e92c";
+  color: #000;
 }
 .howcons-user-lock:before {
   content: "\e92d";
+  color: #000;
 }
 .howcons-telephone:before {
   content: "\e92e";
+  color: #000;
 }
 .howcons-map-marker:before {
   content: "\e92f";
+  color: #000;
 }
 .howcons-map:before {
   content: "\e930";
+  color: #000;
 }
 .howcons-power-switch:before {
   content: "\e942";
+  color: #000;
 }
 .howcons-bubbles:before {
   content: "\e943";
+  color: #000;
 }
 .howcons-bubble-question:before {
   content: "\e944";
+  color: #000;
 }
 .howcons-exit-left:before {
   content: "\e931";
+  color: #000;
 }
 .howcons-exit-right:before {
   content: "\e932";
+  color: #000;
 }
 .howcons-magnifier:before {
   content: "\e933";
+  color: #000;
 }
 .howcons-chevron-up:before {
   content: "\e945";
+  color: #000;
 }
 .howcons-chevron-down:before {
   content: "\e946";
+  color: #000;
 }
 .howcons-chevron-left:before {
   content: "\e947";
+  color: #000;
 }
 .howcons-chevron-right:before {
   content: "\e948";
+  color: #000;
 }
 .howcons-warning:before {
   content: "\e934";
+  color: #000;
 }
 .howcons-notification-circle:before {
   content: "\e935";
+  color: #000;
 }
 .howcons-question-circle:before {
   content: "\e936";
+  color: #000;
 }
 .howcons-checkmark-circle:before {
   content: "\e937";
+  color: #000;
 }
 .howcons-cross-circle:before {
   content: "\e938";
+  color: #000;
 }
 .howcons-chevron-up-circle:before {
   content: "\e939";
+  color: #000;
 }
 .howcons-chevron-down-circle:before {
   content: "\e93a";
+  color: #000;
 }
 .howcons-chevron-left-circle:before {
   content: "\e93b";
+  color: #000;
 }
 .howcons-fingers-scroll-right:before {
   content: "\e93c";
+  color: #000;
 }
 .howcons-user:before {
   content: "\e927";
+  color: #000;
 }
 .howcons-news:before {
   content: "\e926";
+  color: #000;
 }
 .howcons-mail-envelope-closed:before {
   content: "\e900";
+}
+.howcons-mail-envelope-closed2:before {
+  content: "\e949";
+}
+.howcons-mail-envelope-closed3:before {
+  content: "\e94a";
+}
+.howcons-mail-envelope-closed4:before {
+  content: "\e94b";
 }
 .howcons-mail-checked:before {
   content: "\e901";
