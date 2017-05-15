@@ -238,6 +238,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 
 				// Toggle contact Tooltips
 				var title;
+				var is_remove = false;
 				
 				jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').toggleClass('<?php echo CONTACT_ICON_SELECTED?> <?php echo CONTACT_ICON_NOT_SELECTED?>');
 
@@ -250,6 +251,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 				{
 					title = jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').attr('data-add-title');
 					show_popup = false;
+					is_remove = true;
 				}
 				
 				jQuery('i.add-to-contact[data-fav-id="'+property_id+'"]').attr('data-original-title', title);
@@ -316,6 +318,12 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 								{
 									$('.contact_list_later').fadeOut();
 								}
+							}
+						}
+						else{
+							if (is_remove)
+							{
+								jQuery('.remove_property.add-to-contact[data-fav-id="'+property_id+'"]').closest('tr').remove();
 							}
 						}
 					  },
