@@ -45,6 +45,7 @@ $building = get_post_meta($property_id, BUILDING_TYPE_CONTENT, true);
 $floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
 $floor = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
 
+$post_title = isset($_GET['size']) && $_GET['size'] ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
 
 $classes = array();
 $classes[] = 'property-item';
@@ -104,7 +105,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 
 	<div class="property-content content">
 		<div class="property-title">
-			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php the_title(); ?></h3></a>
+			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php echo $post_title; ?></h3></a>
 		</div>
 		<?php if ( $realty_theme_option['property-listing-type'] != 'custom' ) { // Default Listing Fields ?>
 			<div class="property-meta custom-meta-list clearfix">
