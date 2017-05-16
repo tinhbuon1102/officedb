@@ -408,85 +408,89 @@
 	</div>
 	</section>
 	<hr class="basic-hr">
+		<?php 
+		if (!$floor['vacancy_info']) {?>
+			<div class="warning_message"><?php echo trans_text('Floor has no vacant !!!')?></div>
+		<?php } ?>
 		<?php
-					$post_content = get_post_field( 'post_content', $single_property_id );
-					if ( $post_content ) {
-				?>
-					<section id="property-content">
-						<?php
-							$property_title_details = $realty_theme_option['property-title-details'];
-							if ( $property_title_details ) {
-								echo '<h3 class="section-title"><span>' . $property_title_details . '</span></h3>';
-							}
-						?>
-						<?php do_action( 'tt_single_property_content_before' ); ?>
-						<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $single_property_id ) ); ?>
-						<?php do_action( 'tt_single_property_content_after' ); ?>
-					</section>
-				<?php } ?>
+		$post_content = get_post_field( 'post_content', $single_property_id );
+		if ( $post_content ) {
+		?>
+			<section id="property-content">
 				<?php
-					/**
-					 * Section: Floor Plan
-					 *
-					 */
-					$property_floor_plan_disable = $realty_theme_option['property-floor-plan-disable'];
-					$property_floor_plans = get_field( 'estate_property_floor_plans', $single_property_id );
-					if ( ! $property_floor_plan_disable && $property_floor_plans ) {
+					$property_title_details = $realty_theme_option['property-title-details'];
+					if ( $property_title_details ) {
+						echo '<h3 class="section-title"><span>' . $property_title_details . '</span></h3>';
+					}
 				?>
-				<section id="floor-plan" class="primary-tooltips">
-					<?php include get_template_directory() . '/lib/inc/template/single-property-floor-plan.php'; ?>
-				</section>
-				<?php }	?>
+				<?php do_action( 'tt_single_property_content_before' ); ?>
+				<?php echo apply_filters( 'the_content', get_post_field( 'post_content', $single_property_id ) ); ?>
+				<?php do_action( 'tt_single_property_content_after' ); ?>
+			</section>
+		<?php } ?>
+		<?php
+			/**
+			 * Section: Floor Plan
+			 *
+			 */
+			$property_floor_plan_disable = $realty_theme_option['property-floor-plan-disable'];
+			$property_floor_plans = get_field( 'estate_property_floor_plans', $single_property_id );
+			if ( ! $property_floor_plan_disable && $property_floor_plans ) {
+		?>
+		<section id="floor-plan" class="primary-tooltips">
+			<?php include get_template_directory() . '/lib/inc/template/single-property-floor-plan.php'; ?>
+		</section>
+		<?php }	?>
+		
+		<?php // List related building floors?>
+		<?php if ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) {?>
+		<section id="vacant-list">
+		<h3 class="section-title"><span><?php echo __('Vacancy info', 'realty')?></span></h3>
+		<table id="vacantfloors" class="basic-table-style has-border">
+		<thead>
+			<tr>
+				<th class="th_floor"><?php echo __('floor', 'realty')?></th>
+				<th class="th_use"><?php echo __('use', 'realty')?></th>
+				<th class="th_area"><?php echo __('Area', 'realty')?></th>
+				<th class="th_dateoccupancy"><?php echo __('Date of occupancy', 'realty')?></th>
+				<th class="th_view">&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+				global $post;
+				$related_property_id = get_the_ID();
 				
-				<?php // List related building floors?>
-				<?php if ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) {?>
-				<section id="vacant-list">
-				<h3 class="section-title"><span><?php echo __('Vacancy info', 'realty')?></span></h3>
-				<table id="vacantfloors" class="basic-table-style has-border">
-				<thead>
-					<tr>
-						<th class="th_floor"><?php echo __('floor', 'realty')?></th>
-						<th class="th_use"><?php echo __('use', 'realty')?></th>
-						<th class="th_area"><?php echo __('Area', 'realty')?></th>
-						<th class="th_dateoccupancy"><?php echo __('Date of occupancy', 'realty')?></th>
-						<th class="th_view">&nbsp;</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
-						global $post;
-						$related_property_id = get_the_ID();
-						
-						// out if same as existing
-						if ($related_property_id == $single_property_id) continue;
-						
-						$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
-					?>
-					<tr>
-						<td class="td_floor">
-							<?php echo translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id)?>
-						</td>
-						<td class="td_use">
-							<?php echo translateBuildingValue('type_of_use', $building, $related_floor, $related_property_id)?>
-						</td>
-						<td class="td_area">
-							<?php echo translateBuildingValue('area_ping', $building, $related_floor, $related_property_id)?>
-						</td>
-						<td class="td_dateoccupancy">
-							<?php echo translateBuildingValue('move_in_date', $building, $related_floor, $related_property_id)?>
-						</td>
-						<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><?php echo __('view details', 'realty')?></a></td>
-					</tr>
-					<?php endwhile;?>
-				</tbody>
-					
-				</table>
-				</section>
-				<?php }?>
+				// out if same as existing
+				if ($related_property_id == $single_property_id) continue;
+				
+				$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+			?>
+			<tr>
+				<td class="td_floor">
+					<?php echo translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id)?>
+				</td>
+				<td class="td_use">
+					<?php echo translateBuildingValue('type_of_use', $building, $related_floor, $related_property_id)?>
+				</td>
+				<td class="td_area">
+					<?php echo translateBuildingValue('area_ping', $building, $related_floor, $related_property_id)?>
+				</td>
+				<td class="td_dateoccupancy">
+					<?php echo translateBuildingValue('move_in_date', $building, $related_floor, $related_property_id)?>
+				</td>
+				<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><?php echo __('view details', 'realty')?></a></td>
+			</tr>
+			<?php endwhile;?>
+		</tbody>
+			
+		</table>
+		</section>
+		<?php }?>
 
-				<?php if ( $social_sharing ) { ?>
-					<section class="primary-tooltips"><?php echo tt_social_sharing(); ?></section>
-				<?php } ?>
+		<?php if ( $social_sharing ) { ?>
+			<section class="primary-tooltips"><?php echo tt_social_sharing(); ?></section>
+		<?php } ?>
 				
 	</div>
 	<div class="col-sm-5">

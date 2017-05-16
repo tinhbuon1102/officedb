@@ -1872,3 +1872,4 @@ a#big-tel {
 #menu-main-menu .form-group {margin-bottom: 10px;}
 nav#navigation .primary-menu .property-search-form a {border-bottom: 0;}
 nav#navigation .primary-menu .property-search-form a span {margin-top: 0;}
+.warning_message {font-weight: bold; font-size: 17px; color: red; margin-bottom: 20px;}
