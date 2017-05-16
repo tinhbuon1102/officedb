@@ -165,7 +165,7 @@ if ( !function_exists('tt_add_remove_contact') ) {
 		}
 
 		if ($is_custom){
-			$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-line-border add-to-contact_wraper">%s<span>'.$text.'</span></a>';
+			$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-lg add-to-contact_wraper" id="contact_list_button">%s<span>'.$text.'</span></a>';
 		}
 
 		return sprintf($favicon, '<i class="'.$class.'" data-fav-id="' . $property_id . '" data-toggle="tooltip" data-remove-title="'.__( 'Remove From contact', 'realty' ).'" data-add-title="'.__( 'Add To contact', 'realty' ).'" title="' . $text . '"></i>');

@@ -972,16 +972,7 @@ div#content {
     display: block;
 	}
 }
-@media (max-width: 767px) {
-	.row.link-list {
-    margin-left: 0;
-    margin-right: 0;
-	}
-	.top-header-links.primary-tooltips.hidden-pc {
-    height: 36px;
-    line-height: 36px;
-	}
-}
+
 #links .container {
     padding: 0;
 }
@@ -1158,6 +1149,12 @@ i.add-to-contact.origin.fa.howcons-clipboard-add2:before {
 i.add-to-contact.origin.fa.howcons-clipboard-remove2:before {
     content: "\e908";
 }
+.btn-lg i.add-to-contact.origin.fa.howcons-clipboard-add2:before {
+    content: "\e905";
+}
+.btn-lg i.add-to-contact.origin.fa.howcons-clipboard-remove2:before {
+    content: "\e907";
+}
 .property-item .property-price .property-icons i.add-to-contact {
     font-size: 1.5em;
 }
@@ -1213,16 +1210,23 @@ ul.typeahead__list .result-column {
     min-height: 42px;
 }
 /*single property*/
-a#contact_agent_button i {
-    font-size: 1.6em;
+a#contact_agent_button i, a#contact_list_button i {
     vertical-align: middle;
     display: inline-block;
     margin-right: 10px;
+	line-height: 1;
 }
-a#contact_agent_button {
+a#contact_agent_button i {
+    font-size: 1.6em;
+}
+a#contact_list_button i {
+    font-size: 1.8em;
+}
+a#contact_agent_button, a#contact_list_button {
     font-size: 1.2em;
-    font-weight: 600;
+    font-weight: 400;
 	line-height: 4;
+	/*-webkit-font-smoothing: antialiased;*/
 }
 section#property-content p {
     line-height: 1.8;
@@ -1873,3 +1877,68 @@ a#big-tel {
 nav#navigation .primary-menu .property-search-form a {border-bottom: 0;}
 nav#navigation .primary-menu .property-search-form a span {margin-top: 0;}
 .warning_message {font-weight: bold; font-size: 17px; color: red; margin-bottom: 20px;}
+
+@media (max-width: 767px) {
+	table {
+    table-layout: fixed;
+    word-break: break-all;
+    word-wrap: break-all;
+	}
+	.row.link-list {
+    margin-left: 0;
+    margin-right: 0;
+	}
+	.top-header-links.primary-tooltips.hidden-pc {
+    height: 36px;
+    line-height: 36px;
+	}
+	table#vacantfloors th {
+    min-width: auto;
+	}
+	table#vacantfloors th.th_floor {
+    width: 60px;
+	}
+	table#vacantfloors th.th_view {
+    width: 40px;
+	}
+	table#vacantfloors .th_use, table#vacantfloors .td_use {
+    display: none;
+	}
+	.td_view .btn {
+    border: none;
+    display: block;
+    padding: 0;
+	text-align: center;
+	}
+	.td_view .btn span {
+    display: none;
+	}
+	.td_view .btn:before {
+	display: inline-block;
+    text-align: center;
+    content: "\e948";
+    font-family: 'howcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	}
+	.fl-right {
+    float: none;
+	}
+	.buttons-group .btn {
+    padding: 12px 0;
+	}
+	.buttons-group .btn:first-child {
+    margin-bottom: 10px;
+	}
+}
+@media (max-width: 345px) {
+	table#vacantfloors th.th_dateoccupancy {
+    width: 110px;
+	}
+}

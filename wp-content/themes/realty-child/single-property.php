@@ -237,6 +237,41 @@
 			<?php include get_template_directory() . '/lib/inc/template/single-property-slideshow-thumbnails.php'; ?>
 		<!--</div>-->
 	<?php } ?>
+	<!-- section action buttons -->
+		<section id="acbuttons">
+			
+			<?php if ( !is_user_logged_in() ) { ?>
+			<div class="contact-argent">
+				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><i class="topicon-icon-thinliner_mail"></i><?php echo __('Contact Argent', 'realty')?></a>
+			</div>
+			<?php } else { ?>
+			<div class="contact-argent">
+				<?php echo tt_add_remove_contact( $single_property_id, 'custom-contact' ) ?>
+			</div>
+			<?php }?>
+			<div class="buttons-group row">
+			<?php if ( !is_user_logged_in() ) { ?>
+			<div class="col-sm-6">
+			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
+			</div>
+			<?php } else { ?>
+			<div class="col-sm-6">
+			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
+			</div>
+			<?php }?>
+			
+			
+			<?php if ($pdfUrl) {?>
+			<div class="col-sm-6">
+				<?php if ( is_user_logged_in() ) : ?>
+				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
+				<?php else : ?>
+				<a class="btn btn-primary btn-square btn-line-border disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
+				<?php endif; ?>
+			</div>
+			<?php }?>
+			</div>
+		</section>
 	</div><!-- .col-sm-5 -->
 	<div class="col-sm-7 fl-right">
 	<section id="property-summary">
@@ -479,7 +514,7 @@
 				<td class="td_dateoccupancy">
 					<?php echo translateBuildingValue('move_in_date', $building, $related_floor, $related_property_id)?>
 				</td>
-				<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><?php echo __('view details', 'realty')?></a></td>
+				<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><span><?php echo __('view details', 'realty')?></span></a></td>
 			</tr>
 			<?php endwhile;?>
 		</tbody>
@@ -494,37 +529,7 @@
 				
 	</div>
 	<div class="col-sm-5">
-	<!-- section action buttons -->
-		<section id="acbuttons">
-			<div class="contact-argent">
-				<a href="#contact_modal" data-toggle="modal" class="btn btn-primary btn-square btn-lg" id="contact_agent_button"><i class="topicon-icon-thinliner_mail"></i><?php echo __('Contact Argent', 'realty')?></a>
-			</div>
-			<div class="contact-argent">
-				<?php echo tt_add_remove_contact( $single_property_id, 'custom-contact' ) ?>
-			</div>
-			<div class="buttons-group row">
-			<?php if ( !is_user_logged_in() ) { ?>
-			<div class="col-sm-6">
-			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
-			</div>
-			<?php } else { ?>
-			<div class="col-sm-6">
-			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
-			</div>
-			<?php }?>
-			
-			
-			<?php if ($pdfUrl) {?>
-			<div class="col-sm-6">
-				<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
-				<?php else : ?>
-				<a class="btn btn-primary btn-square btn-line-border disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
-				<?php endif; ?>
-			</div>
-			<?php }?>
-			</div>
-		</section>
+	
 	
 	<?php
 					/**
