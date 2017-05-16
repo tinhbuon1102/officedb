@@ -357,7 +357,7 @@ function realty_post_limits_request( $limits, &$query )
 {
 	global $wpdb;
 	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
-		$query->property_limit = $limits;
+		$query->property_limit = '';
 		$limits = '';
 	}
 	return $limits;

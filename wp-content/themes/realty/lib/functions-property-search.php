@@ -89,6 +89,12 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 
 				} else {
 					// Default Search Form
+					$realty_theme_option['property-search-parameter'][] = 'type';
+					$realty_theme_option['property-search-parameter'][] = 'status';
+					
+					$realty_theme_option['property-search-field'][] = 'estate_property_type';
+					$realty_theme_option['property-search-field'][] = 'estate_property_status';
+					
 					$search_parameters = $realty_theme_option['property-search-parameter'];
 					$search_fields = $realty_theme_option['property-search-field'];
 					$search_position = array_search( $search_key, $search_parameters );

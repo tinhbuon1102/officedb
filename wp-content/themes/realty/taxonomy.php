@@ -11,6 +11,14 @@ if ( $listing_view == "list-view" ) {
 	$grid_active = "";
 	$list_active = "active";
 }
+
+
+$taxonomy = $wp_query->query;;
+$_GET[str_replace('property-', '', key($taxonomy))] = end($taxonomy);
+$search_results_args = apply_filters( 'property_search_args', $search_results_args );
+$search_results_args = buildSearchArgs($search_results_args);
+
+$wp_query = new WP_Query( $search_results_args );
 ?>
 
 <div class="taxonomy-results container">
