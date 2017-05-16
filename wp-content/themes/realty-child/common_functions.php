@@ -796,7 +796,7 @@ function getBuildingPDF($building_id)
 
 function getListBestPropertyViewed() {
 	$query_args['post_type'] = 'property';
-	$query_args['posts_per_page'] = 3;
+	$query_args['posts_per_page'] = PROPERTY_VIEWED_LIMIT;
 	$query_args['order'] = 'DESC';
 	$query_args['meta_key'] = 'estate_property_views_count';
 	$query_args['orderby'] = 'meta_value_num';

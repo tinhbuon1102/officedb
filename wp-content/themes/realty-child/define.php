@@ -12,6 +12,7 @@ define('LANGUAGE_EN', 'en');
 define('LANGUAGE_JA', 'ja');
 define('FIELD_MISSING_VALUE', '-');
 define('AREA_M2', 'm&sup2;');
+define('PROPERTY_VIEWED_LIMIT', 3);
 
 define('FLOOR_UNIT_OPTION_UNDECIDED', -1);
 define('FLOOR_UNIT_OPTION_ASK', -2);
