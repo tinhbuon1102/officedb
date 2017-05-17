@@ -1268,6 +1268,59 @@ body.single-property div#links {
 	letter-spacing: 2px;
 	font-family: "a-otf-ryumin-pr6n","Roboto Slab" , Garamond , "Times New Roman" , "游明朝" , "Yu Mincho" , "游明朝体" , "YuMincho" , "ヒラギノ明朝 Pro W3" , "Hiragino Mincho Pro" , "HiraMinProN-W3" , "HGS明朝E" , "ＭＳ Ｐ明朝" , "MS PMincho" , serif !important;
 }
+body.en.single-property h3.section-title {
+    letter-spacing: 0px;
+}
+section#similar-properties h3.section-title {
+    font-family: "futura-pt",sans-serif !important;
+    font-weight: 100;
+    font-size: 26px;
+    font-size: 1.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+body.ja section#similar-properties h3.section-title span:after {
+    content: "類似する空き物件";
+    display: block;
+    font-family: 游ゴシック, YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
+}
+body.ja.page-template-template-user-favorites h1.section-title {
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    color: #000;
+}
+div#page-user-favorites > .container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+div#page-user-favorites > .container > .vc_row.vc_row-fluid.boxed {
+    margin: 0;
+}
+div#page-user-favorites > .container > .vc_row.vc_row-fluid.boxed > .vc_column_container>.vc_column-inner {
+    padding: 0;
+}
+p.note-rate {
+    font-size: 12px;
+}
+/*best view*/
+.widget_view_listing_image {
+    position: relative;
+    float: left;
+    max-width: 40%;
+    background: #000;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.listing_name_right {
+    display: inline;
+    margin-left: 0px;
+    float: left;
+    line-height: 20px;
+    position: relative;
+    width: 60%;
+    padding-left: 13px;
+}
 .row #property-layout-full-width {
     margin-top: 0px;
 }
@@ -1387,6 +1440,7 @@ section#property-details .row > div {
     font-size: 1.8em;
 	font-family: 'Arapey', serif;
 	letter-spacing: 1px;
+	margin-bottom: 10px;
 }
 .rate.size-large .price {
 	 font-size: 1.2em;
@@ -1399,8 +1453,20 @@ table#vacantfloors {
     border: 0px;
     border-collapse: collapse;
 }
+body.en table#vacantfloors th.th_dateoccupancy {
+    min-width: 120px;
+}
+body.en table#vacantfloors th.th_area {
+    min-width: 90px;
+}
+body.en table#vacantfloors th.th_dateoccupancy {
+    min-width: 150px;
+}
 table#vacantfloors th.th_floor {
     width: 100px;
+}
+body.en table#vacantfloors th.th_view {
+    min-width: 100px;
 }
 td.td_view {
     text-align: right;

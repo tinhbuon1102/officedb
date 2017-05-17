@@ -441,6 +441,7 @@
 	<div class="rate size-large">
 		<?php echo translateBuildingValue('avg_neighbor_fee', $building, $floor, $single_property_id);?>
 	</div>
+	<p class="note-rate"><?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
 	</section>
 	<hr class="basic-hr">
 		<?php 

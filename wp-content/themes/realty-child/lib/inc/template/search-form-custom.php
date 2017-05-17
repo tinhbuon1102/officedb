@@ -859,7 +859,7 @@
 			<li class="col-lg-12 col-md-12 col-sm-4 col-xs-4">
 				<?php
 					$property_id = get_the_id();
-					include( locate_template( 'lib/inc/template/property-item-custom.php' ) );
+					include( locate_template( 'lib/inc/template/property-item-side.php' ) );
 					$property_counter++;
 				?>
 			</li>

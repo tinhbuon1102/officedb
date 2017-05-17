@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-05-12 15:10+0700\n"
+"PO-Revision-Date: 2017-05-17 16:31+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
 "esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x;esc_html_x;"
 "comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.8.12\n"
 "Last-Translator: \n"
 "Language: ja_JP\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -572,8 +572,7 @@ msgstr "パスワード"
 msgid "Login to view and edit your profile."
 msgstr ""
 
-#: lib/functions-add-to-favorites.php:63
-#: lib/functions-add-to-favorites.php:118
+#: lib/functions-add-to-favorites.php:63 lib/functions-add-to-favorites.php:118
 #: lib/functions-add-to-favorites.php:135
 msgid "Remove From Favorites"
 msgstr "お気に入りから削除"
@@ -624,8 +623,7 @@ msgid "Price"
 msgstr ""
 
 #: lib/functions-compare-properties.php:174
-#: realty-core/custom-post-types.php:218
-#: lib/redux/realty-theme-options.php:556
+#: realty-core/custom-post-types.php:218 lib/redux/realty-theme-options.php:556
 #: lib/redux/realty-theme-options.php:572
 #: realty-core/shortcodes/shortcode-button.php:37
 #: realty-core/shortcodes/shortcode-notification.php:64
@@ -638,8 +636,7 @@ msgid "Type"
 msgstr ""
 
 #: lib/functions-compare-properties.php:175
-#: realty-core/custom-post-types.php:217
-#: lib/redux/realty-theme-options.php:555
+#: realty-core/custom-post-types.php:217 lib/redux/realty-theme-options.php:555
 #: lib/redux/realty-theme-options.php:571
 #: realty-core/shortcodes/shortcode-property-carousel.php:315
 #: realty-core/shortcodes/shortcode-property-listing.php:383
@@ -650,8 +647,7 @@ msgid "Status"
 msgstr ""
 
 #: lib/functions-compare-properties.php:176
-#: realty-core/custom-post-types.php:216
-#: lib/redux/realty-theme-options.php:554
+#: realty-core/custom-post-types.php:216 lib/redux/realty-theme-options.php:554
 #: lib/redux/realty-theme-options.php:570
 #: lib/redux/realty-theme-options.php:843
 #: realty-core/shortcodes/shortcode-property-carousel.php:306
@@ -1633,8 +1629,7 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: realty-core/custom-post-types.php:223
-#: lib/inc/template/property-item.php:252
+#: realty-core/custom-post-types.php:223 lib/inc/template/property-item.php:252
 msgid "Published"
 msgstr ""
 
@@ -4646,8 +4641,7 @@ msgstr "下書き"
 msgid "Pending"
 msgstr ""
 
-#: lib/inc/template/search-form-mini.php:11
-#: lib/inc/template/search-form.php:11
+#: lib/inc/template/search-form-mini.php:11 lib/inc/template/search-form.php:11
 msgid ""
 "Please go to \"Appearance > Theme Options > Pages\" and set the page you "
 "want to use as your property search results."
@@ -5069,3 +5063,18 @@ msgstr "コメント"
 
 msgid "Property Url"
 msgstr "プロパティUrl"
+
+msgid "View PDF"
+msgstr "資料を見る"
+
+msgid "Floor Material"
+msgstr "床材"
+
+msgid "Ceiling Height"
+msgstr "天井高"
+
+msgid "My Favorites"
+msgstr "お気に入り"
+
+msgid "My Favorites List"
+msgstr "お気に入り一覧"
