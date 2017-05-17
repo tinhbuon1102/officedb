@@ -925,7 +925,7 @@ function realty_excerpt($limit) {
 	$content = apply_filters('the_content', $content);
 	$content = str_replace(']]>', ']]&gt;', $content);
 	
-	$content = mb_substr($limit, 0, $limit);
+	$content = mb_substr($content, 0, $limit);
 	if (count($content)>=$limit) {
 		array_pop($content);
 		$content = implode(" ",$content).'...';
