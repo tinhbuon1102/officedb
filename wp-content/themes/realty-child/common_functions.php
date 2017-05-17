@@ -921,15 +921,17 @@ function realty_add_mobile_search() {
 
 
 function realty_excerpt($limit) {
-	$content = explode(' ', get_the_content(), $limit);
-	if (count($content)>=$limit) {
-		array_pop($content);
-		$content = implode(" ",$content).'...';
-	} else {
-		$content = implode(" ",$content);
-	}
+	$content = get_the_content();
 	$content = preg_replace('/\[.+\]/','', $content);
 	$content = apply_filters('the_content', $content);
 	$content = str_replace(']]>', ']]&gt;', $content);
+	
+	$content = mb_substr($content, 0, $limit);
+	if ($content < $limit) {
+		$content = $content.'...';
+	} else {
+		$content = $content;
+	}
+	
 	return $content;
 }
