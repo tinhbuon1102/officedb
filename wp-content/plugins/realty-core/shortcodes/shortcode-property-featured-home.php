@@ -121,7 +121,7 @@ function getHomeFeaturedCol($col)
 							<div class="wpb_wrapper">
 								<div class="s1 txt-col">
 									<p class="font_8">
-										<?php echo realty_excerpt(96);?>
+										<?php echo realty_excerpt(48);?>
 									</p>
 									<p class="read_more">
 										<a href="<?php the_permalink()?>">&gt; <?php echo trans_text('More Info')?></a>

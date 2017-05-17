@@ -28,6 +28,8 @@ jQuery(document).ready(function($){
 		}
 	});
 	$(window).on('load resize', function(){
+		var fImgW = $('section#feature .wpb_single_image .vc_figure').width();
+		$('section#feature .wpb_single_image .vc_figure').css('height', fImgW + 'px');
 		var windowWidth = $(window).width();
 		
 		if ($(".entry-content .container").length)
