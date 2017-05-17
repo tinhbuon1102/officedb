@@ -918,3 +918,18 @@ add_action('wp_footer', 'realty_add_mobile_search');
 function realty_add_mobile_search() {
 	echo '<div id="temporary_search_block_wraper" style="display: none;"><div class="temporary_search_block hidden-pc">' . do_shortcode('[property_search_form search_form_columns="3" search_type="mini"]') . '</div></div>';
 }
+
+
+function realty_excerpt($limit) {
+	$content = explode(' ', get_the_content(), $limit);
+	if (count($content)>=$limit) {
+		array_pop($content);
+		$content = implode(" ",$content).'...';
+	} else {
+		$content = implode(" ",$content);
+	}
+	$content = preg_replace('/\[.+\]/','', $content);
+	$content = apply_filters('the_content', $content);
+	$content = str_replace(']]>', ']]&gt;', $content);
+	return $content;
+}
