@@ -46,6 +46,7 @@ require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-membership-packa
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-notification.php';
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-carousel.php';
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-listing.php';
+require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-featured-home.php';
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-map.php';
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-search-form.php';
 require_once REALTY_CORE_PLUGIN_DIR_URL . 'shortcodes/shortcode-property-search-form-custom.php';
