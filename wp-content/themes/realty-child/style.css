@@ -1321,6 +1321,34 @@ p.note-rate {
     width: 60%;
     padding-left: 13px;
 }
+#viewed_property_box .property-item.border-box {
+    background: none;
+    border: none;
+}
+#viewed_property_box .property-item.border-box .bestview-name {
+    padding: 0;
+}
+#viewed_property_box .property-item.border-box .bestview-name h3.title {
+    min-height: 1px;
+    margin-bottom: 10px;
+}
+div#viewed_property_box > ul > li {
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 20px;
+}
+div#viewed_property_box > ul > li:nth-child(1) h3:before {
+    content: "1";
+    display: inline-block;
+}
+div#viewed_property_box > ul > li:nth-child(2) h3:before {
+    content: "2";
+    display: inline-block;
+}
+div#viewed_property_box > ul > li:nth-child(3) h3:before {
+    content: "3";
+    display: inline-block;
+}
+
 .row #property-layout-full-width {
     margin-top: 0px;
 }
