@@ -321,7 +321,7 @@
 	<hr class="basic-hr lightcolor">
 	<?php 
 		if (!$floor['vacancy_info']) {?>
-			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This property has no vacant.')?></div>
+			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant.')?></div>
 		<?php } ?>
 		<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
 	<table id="floorsummary" class="basic-table-style">
