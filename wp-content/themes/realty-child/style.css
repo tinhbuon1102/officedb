@@ -1011,6 +1011,29 @@ ul.typeahead__list .result-column {
     min-height: 42px;
 }
 /*single property*/
+.property-header span {
+    display: inline-block;
+    vertical-align: middle;
+}
+.property-header i.fa-star {
+    vertical-align: middle;
+    display: inline-block;
+}
+.property-header i {
+    line-height: 40px;
+}
+@media (min-width: 768px) {
+	.property-header i.fa-star {
+    vertical-align: text-top;
+	}
+	.property-header i {
+    line-height: 1;
+	}
+	.property-header span {
+    vertical-align: top;
+    line-height: inherit;
+	}
+}
 a#contact_agent_button i, a#contact_list_button i {
     vertical-align: middle;
     display: inline-block;

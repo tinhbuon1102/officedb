@@ -42,9 +42,12 @@ jQuery(document).ready(function($){
 		}
 		var windowHeight = $(window).height();
 		var headerH = $('#header').height();
+		//var ptWidth = $('#property-thumbnails').width();
 		var replaceWidth = 768;
 		if(windowWidth < replaceWidth) {
 		$('.main-slider').css('height', (windowHeight - headerH) + 'px');
+		//$('.slick-slide').css('width', (ptWidth / 3) + 'px');
+		//console.log('slick slide：' + (ptWidth / 3) + 'px');
 		}
 	});
 	if ($('#property-items li').length)
