@@ -215,7 +215,7 @@
 					<h1 class="title">
 						<div class="clearfix mobile"></div>
 						<span><?php echo tt_add_remove_favorites( $single_property_id ); ?></span>
-						<span><a href="#location"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
+						<span><a href="#location_map"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
 						<span><?php echo tt_add_remove_follow( $single_property_id ); ?></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
 					</h1>
