@@ -555,7 +555,7 @@
 				?>
 
 				<?php if ( ! empty ( $address ) && $realty_theme_option['show-single-property-map']  ) { ?>
-					<section id="location">
+					<section id="location_map">
 						<?php include get_template_directory() . '/lib/inc/template/single-property-map.php'; ?>
 					</section>
 				<?php } ?>

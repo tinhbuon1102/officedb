@@ -6849,7 +6849,7 @@ function video_and_social_share() {
 
 		/* Smooth Scroll Menu Links
 		-------------------------*/
-		$('#up i, .property-header a[href="#location"]').on('click', function(e) {
+		$('#up i, .property-header a[href="#location_map"]').on('click', function(e) {
 	    e.preventDefault();
 	    $('html,body').animate({scrollTop:$(this.hash).offset().top-15}, 800);
 	  });
