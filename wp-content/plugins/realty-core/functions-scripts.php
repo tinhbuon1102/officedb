@@ -117,13 +117,13 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 			          {
 			            breakpoint: 768,
 			            settings: {
-			              slidesToShow: 1,
+			              slidesToShow: 3,
 			            }
 			          },
 			          {
 			            breakpoint: 992,
 			            settings: {
-			              slidesToShow: 2,
+			              slidesToShow: 3,
 			            }
 			          },
 			          {

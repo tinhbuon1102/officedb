@@ -368,67 +368,67 @@
 	<section id="property-details">
 	<h3 class="section-title"><span><?php echo __('Property details', 'realty')?></span></h3>
 	<div class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Established', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('built_year', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Gross floor area', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('total_floor_space', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Earthquake proof', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('earth_quake_res_std', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Elevator', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('elevator', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Parking', 'realty')?></div>
 			<div class="meta-data">
 			<?php echo translateBuildingValue('parking_unit_no', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Optical cable', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('opticle_cable', $building, $floor, $single_property_id);?>	
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Typical floor area', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Security', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Renewal', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Floor Material', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?>
 			</div>
 		</div>
-		<div class="col-sm-4">
+		<div class="col-sm-4 col-xs-6">
 			<div class="meta-title"><?php echo __('Ceiling Height', 'realty')?></div>
 			<div class="meta-data">
 				<?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?>
@@ -441,7 +441,7 @@
 	<div class="rate size-large">
 		<?php echo translateBuildingValue('avg_neighbor_fee', $building, $floor, $single_property_id);?>
 	</div>
-	<p class="note-rate"><?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
+	<p class="note-rate">※<?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
 	</section>
 	<hr class="basic-hr">
 		<?php 

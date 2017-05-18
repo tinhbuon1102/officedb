@@ -810,7 +810,7 @@ function renderPropertyPrice($property_id, $building, $floor)
 	{
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
-	return $price . '/' . trans_text('month');
+	return $price . '/' . trans_text('tsubo');
 }
 
 function getBuildingFloorPicUrl($type_images, $type) {
