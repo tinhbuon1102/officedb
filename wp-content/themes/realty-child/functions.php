@@ -5,6 +5,8 @@ include 'common_functions.php';
 add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
+	
+	date_default_timezone_set(get_option('timezone_string'));
 }
 
 add_filter( 'body_class', 'realty_body_class', 10, 2 );
