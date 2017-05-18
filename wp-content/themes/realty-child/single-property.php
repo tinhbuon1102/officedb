@@ -319,6 +319,10 @@
 		</tbody>
 	</table>
 	<hr class="basic-hr lightcolor">
+	<?php 
+		if (!$floor['vacancy_info']) {?>
+			<div class="warning_message"><?php echo trans_text('This property has no vacant.')?></div>
+		<?php } ?>
 	<table id="floorsummary" class="basic-table-style">
 		<tbody>
 			<tr>
@@ -444,10 +448,7 @@
 	<p class="note-rate">※<?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
 	</section>
 	<hr class="basic-hr">
-		<?php 
-		if (!$floor['vacancy_info']) {?>
-			<div class="warning_message"><?php echo trans_text('Floor has no vacant !!!')?></div>
-		<?php } ?>
+		
 		<?php
 		$post_content = get_post_field( 'post_content', $single_property_id );
 		if ( $post_content ) {

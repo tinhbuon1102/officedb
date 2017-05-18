@@ -99,6 +99,21 @@
 <?php } ?>
 
 <?php wp_footer(); ?>
+<div class="sp-fixfooter">
+	<div class="weekdays">
+		<p class="msg"><?php esc_html_e( '物件の空室確認、内見、お問い合わせなどはお気軽に', 'realty' ); ?></p>
+		<div class="btn-wrap">
+		<?php
+$time = intval(date('H'));
+if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
+<a href="tel:0354117500" class="button tel-btn"><i class="topicon-icon-topnav03"></i><span>03-5411-7500</span></a>
+<?php } else { // それ以外の時間帯のとき ?>
+<a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="button contact-btn"><i class="howcons-mail-envelope-closed"></i><span><?php esc_html_e( 'Contact us', 'realty' ); ?></span></a>
+<?php } ?>
+			<p class="openhour"><span class="jat"><?php esc_html_e( '平日', 'realty' ); ?></span>9:00~18:00</p>
+		</div>
+	</div>
+</div>
 
 <div class="modal fade modal-custom" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
 	<div class="modal-dialog modal-lg">
