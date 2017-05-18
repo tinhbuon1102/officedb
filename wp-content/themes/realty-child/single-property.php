@@ -321,8 +321,9 @@
 	<hr class="basic-hr lightcolor">
 	<?php 
 		if (!$floor['vacancy_info']) {?>
-			<div class="warning_message"><?php echo trans_text('This property has no vacant.')?></div>
+			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This property has no vacant.')?></div>
 		<?php } ?>
+		<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
 	<table id="floorsummary" class="basic-table-style">
 		<tbody>
 			<tr>
@@ -494,7 +495,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<?php while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+			<?php 
+			$count_related = 0;
+			while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
 				global $post;
 				$related_property_id = get_the_ID();
 				
@@ -502,6 +505,11 @@
 				if ($related_property_id == $single_property_id) continue;
 				
 				$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+				
+				// out if floor has no vacant
+				if (!$related_floor['vacancy_info']) continue;
+				
+				$count_related ++;
 			?>
 			<tr>
 				<td class="td_floor">
@@ -518,7 +526,18 @@
 				</td>
 				<td class="td_view"><a href="<?php echo get_permalink($post)?>" class="btn btn-primary btn-square btn-line-border"><span><?php echo __('view details', 'realty')?></span></a></td>
 			</tr>
-			<?php endwhile;?>
+			<?php endwhile;
+			if (!$count_related) {
+				echo '<style>';
+				if (!$floor['vacancy_info'])
+				{
+					echo '#floor_no_vacant{display: none;}';
+					echo '#building_no_vacant{display: block !important;}';
+				}
+				echo '#vacant-list{display: none;}';
+				echo '</style>';
+			}
+			?>
 		</tbody>
 			
 		</table>
