@@ -1,8 +1,8 @@
 <?php 
 $news_post = get_post();
-$building_id = get_post_meta(get_the_ID(), FLOOR_BUILDING_TYPE, true);
+$floor_id = get_post_meta(get_the_ID(), FLOOR_TYPE, true);
 
-if ($building_id)
+if ($floor_id)
 {
 	// Get property by news
 	$new_args = array(
@@ -10,8 +10,8 @@ if ($building_id)
 		'posts_per_page' => 1,
 		'meta_query' => array(
 			array(
-				'key' => FLOOR_BUILDING_TYPE,
-				'value' => $building_id,
+				'key' => FLOOR_TYPE,
+				'value' => $floor_id,
 			)
 		)
 	);
