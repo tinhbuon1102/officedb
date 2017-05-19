@@ -935,3 +935,43 @@ function realty_excerpt($limit) {
 	
 	return $content;
 }
+
+add_filter( 'post_type_link', 'realty_post_type_link', 10, 3 );
+function realty_post_type_link($permalink, $post, $leavename)
+{
+	if ($post->post_type == 'news')
+	{
+		$floor_id = get_post_meta($post->ID, FLOOR_TYPE, true);
+		
+		if ($floor_id)
+		{
+			// Get property by news
+			$new_args = array(
+				'post_type' => 'property',
+				'posts_per_page' => 1,
+				'meta_query' => array(
+					array(
+						'key' => FLOOR_TYPE,
+						'value' => $floor_id,
+					)
+				)
+			);
+			$the_news_query = new WP_Query( $new_args );
+			if ( $the_news_query->have_posts() )
+			{
+				while ( $the_news_query->have_posts() ) {
+					$the_news_query->the_post();
+					global $post;
+					$new_property = $post;
+				}
+		
+			}
+		}
+		
+		if (isset($new_property))
+		{
+			$permalink = get_permalink($new_property);
+		}
+	}
+	return $permalink;
+}

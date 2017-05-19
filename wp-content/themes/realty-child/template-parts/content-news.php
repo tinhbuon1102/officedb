@@ -1,38 +1,12 @@
 <?php 
 $news_post = get_post();
-$floor_id = get_post_meta(get_the_ID(), FLOOR_TYPE, true);
-
-if ($floor_id)
-{
-	// Get property by news
-	$new_args = array(
-		'post_type' => 'property',
-		'posts_per_page' => 1,
-		'meta_query' => array(
-			array(
-				'key' => FLOOR_TYPE,
-				'value' => $floor_id,
-			)
-		)
-	);
-	$the_news_query = new WP_Query( $new_args );
-	if ( $the_news_query->have_posts() )
-	{
-		while ( $the_news_query->have_posts() ) {
-			$the_news_query->the_post();
-			global $post;
-			$new_property = $post;
-		}
-
-	}
-}
 
 $categories = get_the_category($news_post->ID); // post ID
 	foreach ( $categories as $cat )
 	{
 		$cat_name = $cat->cat_name;
 	}
-$news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permalink($news_post);
+$news_url = get_permalink($news_post);
 ?>
 <article id="post-<?php $news_post->ID; ?>" <?php post_class('', $news_post->ID); ?>>
 
