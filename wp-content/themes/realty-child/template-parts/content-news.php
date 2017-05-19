@@ -1,6 +1,7 @@
 <?php 
 $news_post = get_post();
-$building_id = get_post_meta(get_the_ID(), 'jpdb_building_id', true);
+$building_id = get_post_meta(get_the_ID(), FLOOR_BUILDING_TYPE, true);
+
 if ($building_id)
 {
 	// Get property by news
@@ -25,6 +26,7 @@ if ($building_id)
 
 	}
 }
+
 $categories = get_the_category($news_post->ID); // post ID
 	foreach ( $categories as $cat )
 	{
