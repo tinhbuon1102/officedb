@@ -622,6 +622,14 @@ div#content {
 .bg-ltgray {
     background: rgba(247,247,247,1);
 }
+.pdtb_40 {
+	padding: 40px 0;
+	margin-bottom: 0;
+}
+.pdtb_60 {
+	padding: 40px 0;
+	margin-bottom: 0;
+}
 .section-title.style2 span {
 	background: none !important;
 }
@@ -1825,6 +1833,118 @@ a#big-tel {
 nav#navigation .primary-menu .property-search-form a {border-bottom: 0;}
 nav#navigation .primary-menu .property-search-form a span {margin-top: 0;}
 .warning_message {font-weight: bold; font-size: 17px; color: red; margin-bottom: 20px;}
+/*page*/
+body.en .page.type-page .entry-content h2.section-title {
+	letter-spacing:0px;
+    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 2em;
+}
+.page.type-page h2.section-title {
+	margin-bottom: 20px;
+}
+.square_filled.column_grid_square .wpb_column .vc_column-inner {
+    min-height: 270px;
+}
+.service-flow .list-inner .vc_column-inner .wpb_wrapper {
+    display: table;
+    width: 100%;
+}
+.service-flow .list-inner .vc_column-inner .wpb_wrapper > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+.service-flow .list-inner {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 30px 20px;
+	position: relative;
+	margin-bottom: 29px;
+}
+.container.vc_row.wpb_row.vc_inner.vc_row-fluid.service-flow {
+    margin: 0;
+}
+.service-flow .list-inner:after {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.1);
+    display: block;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.service-flow.last-child .list-inner:after {
+	display: none;
+}
+span.list-count {
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+    color: rgba(0,0,0,0.5);
+    padding-right: 15px;
+}
+.service-flow .list-inner .vc_column-inner .wpb_wrapper .vc_icon_element-align-left {
+    width: 120px;
+}
+.square_filled.column_grid_square > .vc_column_container>.vc_column-inner h4 {
+    font-size: 1.2em;
+}
+.square_filled.column_grid_square > .vc_column_container>.vc_column-inner p {
+    font-size: .9em;
+    line-height: 1.6;
+}
+/*smart searching*/
+#ss-intro h2.section-title {
+    margin-bottom: 20px;
+}
+body.en #ss-intro h2.section-title {
+    letter-spacing:0px;
+    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 2em;
+}
+
+body.ja #ss-intro h2.section-title {
+	font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+body.ja .mincho1 {
+	font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif !important;
+}
+body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
+	font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif !important;
+}
+.center-section h2.section-title, .center-section .wpb_text_column {
+    text-align: center;
+}
+.mb_20 {
+	margin-bottom: 20px;
+}
+.font_m {
+	font-size: 1.2em;
+	line-height: 1.6;
+}
+.column_grid_square .wpb_column {
+    
+	padding-left: 15px;
+    padding-right: 15px;
+}
+.column_grid_square > .vc_column_container>.vc_column-inner {
+    padding: 20px 15px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.square_filled.column_grid_square > .vc_column_container>.vc_column-inner {
+	border: none;
+	background: #FFF;
+}
+.column_grid_square .wpb_text_column {
+	margin-bottom: 0;
+	text-align: center;
+}
+.column_grid_square .vc_icon_element.vc_icon_element-outer .vc_icon_element-inner.vc_icon_element-size-xl {
+    height: 5em;
+}
+.service-flow.last-child .list-inner {
+    margin-bottom: 0;
+}
+
 @media (max-width: 991px) {
 	.flex-column {
     -webkit-flex-direction: column;
@@ -1922,6 +2042,28 @@ nav#navigation .primary-menu .property-search-form a span {margin-top: 0;}
 	}
 }
 @media (max-width: 767px) {
+	.service-flow .list-inner .vc_column-inner .wpb_wrapper .vc_icon_element-align-left {
+    width: 100%;
+		text-align: center;
+	}
+	.service-flow .list-inner .vc_column-inner .wpb_wrapper > div {
+    display: block;
+    vertical-align: middle;
+	}
+	.service-flow .list-inner .vc_column-inner .wpb_wrapper h4, .service-flow .list-inner .vc_column-inner .wpb_wrapper h4 span {
+    display: block;
+    text-align: center;
+    padding: 0;
+	}
+	.entry-content {
+    overflow-x: hidden;
+	}
+	.page.type-page .entry-content .container {
+    padding: 0 15px;
+} 
+	.column_grid_square .wpb_column {
+    margin-bottom: 15px;
+	}
 	.hidden-xs, .top-header-links a.hidden-xs {
 		display: none;
 	}
