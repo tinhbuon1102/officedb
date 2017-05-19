@@ -942,7 +942,6 @@ function realty_post_type_link($permalink, $post, $leavename)
 	if ($post->post_type == 'news')
 	{
 		$floor_id = get_post_meta($post->ID, FLOOR_TYPE, true);
-		
 		if ($floor_id)
 		{
 			// Get property by news
