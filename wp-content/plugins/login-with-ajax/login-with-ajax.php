@@ -483,6 +483,7 @@ The team at %BLOGNAME%', 'login-with-ajax');
 		$user_phone = @$_REQUEST['user_phone'];
 		
 		$message = str_replace('%USERNAME%', $user_login, $message);
+		$message = str_replace('%EMAIL%', $user_email, $message);
 		
 		$message = str_replace('%NAME%', $user_name, $message);
 		$message = str_replace('%NAME KANA%', $user_name_kana, $message);
