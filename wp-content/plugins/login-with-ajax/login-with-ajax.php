@@ -464,6 +464,7 @@ class LoginWithAjax {
 
 	public static function new_user_notification($user_login, $login_link, $user_email, $blogname){
 		//Copied out of /wp-includes/pluggable.php
+		$user = get_user_by('email', $user_email);
 		$message = __('Thanks for signing up to our blog. 
 
 You can login with the following credentials by visiting %BLOGURL%
@@ -474,12 +475,25 @@ Password : %PASSWORD%
 We look forward to your next visit!
 
 The team at %BLOGNAME%', 'login-with-ajax');
-
+		
+		$user_name = @$_REQUEST['user_name'];
+		$user_name_kana = @$_REQUEST['user_name_kana'];
+		$user_company = @$_REQUEST['user_company'];
+		$user_address = @$_REQUEST['user_address'];
+		$user_phone = @$_REQUEST['user_phone'];
+		
 		$message = str_replace('%USERNAME%', $user_login, $message);
+		
+		$message = str_replace('%NAME%', $user_name, $message);
+		$message = str_replace('%NAME KANA%', $user_name_kana, $message);
+		$message = str_replace('%CONPANY%', $user_company, $message);
+		$message = str_replace('%ADDRESS%', $user_address, $message);
+		$message = str_replace('%PHONE%', $user_phone, $message);
+		
 		$message = str_replace('%PASSWORD%', $login_link, $message);
 		$message = str_replace('%BLOGNAME%', $blogname, $message);
 		$message = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $message);
-
+		
 		$subject = __('Your registration at %BLOGNAME%', 'login-with-ajax');
 		$subject = str_replace('%BLOGNAME%', $blogname, $subject);
 		$subject = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $subject);
