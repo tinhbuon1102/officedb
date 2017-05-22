@@ -9,6 +9,30 @@ function realty_init() {
 	date_default_timezone_set(get_option('timezone_string'));
 }
 
+function remove_menus () {
+    if (!current_user_can('administrator')) { //管理者ではない場合
+		global $menu;
+    unset($menu[5]);  // 投稿
+    unset($menu[10]); // メディア
+    unset($menu[15]); // リンク
+    unset($menu[20]); // ページ
+    unset($menu[25]); // コメント
+    unset($menu[60]); // テーマ
+    unset($menu[65]); // プラグイン
+    //unset($menu[70]); // プロフィール
+    unset($menu[75]); // ツール
+    unset($menu[80]); // 設定
+		remove_menu_page( 'wpcf7' );
+		remove_menu_page( 'vc-welcome' );
+		remove_menu_page( 'smart-slider-3' );
+		remove_menu_page( 'edit.php?post_type=invoice' );
+		remove_menu_page( 'edit.php?post_type=package' );
+		remove_menu_page( 'edit.php?post_type=owners' );
+		remove_menu_page( 'edit.php?post_type=property' );
+    }
+}
+add_action('admin_menu', 'remove_menus');
+
 add_filter( 'body_class', 'realty_body_class', 10, 2 );
 function realty_body_class($classes, $class){
 	$classes[] = pll_current_language();

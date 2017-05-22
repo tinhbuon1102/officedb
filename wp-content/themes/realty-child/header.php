@@ -31,17 +31,20 @@
 
 	<div class="top-header">
 		<div class="container">
-			<?php if ( is_active_sidebar( 'sidebar_header' ) ) { ?>
-				<div class="top-header-sidebar lang-switch">
-					<?php dynamic_sidebar( 'sidebar_header' ); ?>
+			<div class="top-header-sidebar">
+					<?php esc_html_e( '東京都内の厳選された高級オフィス検索サイト', 'realty' ); ?>
 				</div>
-			<?php } ?>
 
 			<?php if ( ! $realty_theme_option['disable-header-login-register-bar'] ) { ?>
 				<div class="top-header-links primary-tooltips hidden-sm">
 					<?php get_template_part( 'lib/inc/template/login-bar-header' ); ?>
 				</div>
 		  <?php } ?>
+		  <?php if ( is_active_sidebar( 'sidebar_header' ) ) { ?>
+				<div class="top-header-sidebar lang-switch">
+					<?php dynamic_sidebar( 'sidebar_header' ); ?>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 
@@ -99,7 +102,7 @@
 					'link_after' => '</span>'
 				) );
 			?>
-			<div class="ask-staff"><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="btn btn-primary btn-square"><?php esc_html_e( 'スタッフに相談', 'realty' ); ?></a></div>
+			<div class="ask-staff"><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="btn btn-primary btn-square"><?php esc_html_e( 'Contact us', 'realty' ); ?></a></div>
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'sp_bottom_menu',
