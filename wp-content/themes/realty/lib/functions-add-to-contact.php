@@ -81,7 +81,9 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 		</tbody>
 	</table>
 	<?php if (!count($tableFloors)) {?>
-	<style>.contact_list_later {display: none;}</style>
+	<style>
+		.contact_list_later, .modal-body .button_groups .btn-success {display: none;}
+	</style>
 	<p class="contact_item no-contact-list alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>
 	<?php }?>
 <?php 
@@ -300,9 +302,10 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 
 							if (floors.length)
 							{
-								console.log('We have floors : ' + floors.length);
 								jQuery('.contact_list_later').show();
+								jQuery('.modal-body .button_groups .btn-success').show();
 								jQuery('.no-contact-list').remove();
+								
 								jQuery.each(floors, function(floor_index, floor){
 									var floor_row = jQuery('tr.contact_item_tmp:eq(0)').clone();
 									floor_row.removeClass('contact_item_tmp element-disable');
@@ -320,8 +323,8 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 								});
 							}
 							else {
-								console.log('We donot have floors : ' + floors.length);
 								jQuery('.contact_list_later').hide();
+								jQuery('.modal-body .button_groups .btn-success').hide();
 								jQuery('.contact_item').remove();
 								
 								jQuery('.contact_list_later').before('<p class="contact_item no-contact-list alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>');
