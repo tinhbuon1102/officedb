@@ -76,6 +76,10 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 						</ul>
 					</div>
 
+			<?php else :?>
+			<p class=" alert alert-info">
+				<?php esc_html_e( 'You haven\'t added any favorites.', 'realty' ); ?>
+			</p>
 	      <?php endif; ?>
 
 			<?php } else { // No Favorites Saved ?>
