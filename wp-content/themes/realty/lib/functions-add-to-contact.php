@@ -303,7 +303,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 							if (floors.length)
 							{
 								jQuery('.contact_list_later').show();
-								jQuery('.modal-body .button_groups .btn-success').show();
+								jQuery('.modal-body .button_groups .btn-success').css('display', 'inline-block');
 								jQuery('.no-contact-list').remove();
 								
 								jQuery.each(floors, function(floor_index, floor){
