@@ -296,7 +296,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 							{
 								jQuery('#contact-multiple-modal').modal('show');
 							}
-							jQuery('.contact_list_later .contact_item').remove();
+							jQuery('.contact_item').remove();
 
 							if (floors.length)
 							{
