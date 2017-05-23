@@ -298,9 +298,9 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 							}
 							jQuery('.contact_list_later .contact_item').remove();
 
-							console.log(floors.length);
 							if (floors.length)
 							{
+								console.log('We have floors : ' + floors.length);
 								jQuery('.contact_list_later').show();
 								jQuery.each(floors, function(floor_index, floor){
 									var floor_row = jQuery('tr.contact_item_tmp:eq(0)').clone();
@@ -319,6 +319,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 								});
 							}
 							else {
+								console.log('We donot have floors : ' + floors.length);
 								jQuery('.contact_list_later').hide();
 								jQuery('.contact_item').remove();
 								
