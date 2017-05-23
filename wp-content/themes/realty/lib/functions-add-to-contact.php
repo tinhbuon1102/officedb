@@ -297,7 +297,8 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 								jQuery('#contact-multiple-modal').modal('show');
 							}
 							jQuery('.contact_list_later .contact_item').remove();
-							
+
+							console.log(floors.length);
 							if (floors.length)
 							{
 								jQuery.each(floors, function(floor_index, floor){
@@ -317,6 +318,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 								});
 							}
 							else {
+								jQuery('.contact_list_later').append('<p class="contact_item alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>');
 								jQuery('#contact-multiple-modal').modal('hide');
 								if (elementCLick.closest('form.shortcode-form').length)
 								{
