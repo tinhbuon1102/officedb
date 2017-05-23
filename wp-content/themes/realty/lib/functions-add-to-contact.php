@@ -40,7 +40,6 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 		ob_start();
 		?>
 	<h4><?php echo trans_text('With list of properties below :')?></h4>
-	<?php if (count($tableFloors)) {?>
 	<table class="contact_list_later">
 		<thead>
 			<tr>
@@ -81,7 +80,8 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 		</tr>
 		</tbody>
 	</table>
-	<?php }else {?>
+	<?php if (!count($tableFloors)) {?>
+	<style>.contact_list_later {display: none;}</style>
 	<p class=" alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>
 	<?php }?>
 <?php 
