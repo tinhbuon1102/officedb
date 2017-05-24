@@ -742,6 +742,22 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'ceiling_height':
 			return $building[$field] ? trans_text(formatNumber($building[$field])) . 'mm' : FIELD_MISSING_VALUE;
 			break;
+		
+		case 'construction_type_name':
+			if (!$building['construction_type_name_en'])
+			{
+				$construction = trans_text(formatNumber($building[$field]));
+			}
+			else {
+				if (isEnglish())
+				{
+					$construction = $building['construction_type_name_en'];
+				}else {
+					$construction = $building[$field];
+				}
+			}
+			return $construction . ' / ';
+			break;
 			
 		default :
 			
