@@ -310,7 +310,7 @@
 				<th><?php echo __('Structure', 'realty')?></th>
 				<td>
 				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
-					<?php echo $building['construction_type_name'] ? $building['construction_type_name'] . ' / ' : ''?> 
+					<?php echo $building['construction_type_name'] ? trans_text($building['construction_type_name']) . ' / ' : ''?> 
 					<?php echo sprintf(trans_text('below ground %s'),(isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-');?>
 					<?php echo FIELD_MISSING_VALUE . ' ' . sprintf(trans_text('above ground %s'),(isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-');?>
 				</td>
