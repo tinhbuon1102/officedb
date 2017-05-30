@@ -617,6 +617,9 @@ div#content {
     margin-top: 0;
     padding-top: 40px;
 }
+body.page-template-template-map-vertical div#content {
+    padding: 0;
+}
 .home div#content {
     margin-top: 0;
     padding-top: 0;
@@ -2404,6 +2407,30 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	}
 }
 @media (max-width: 767px) {
+	.flex-sm {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+	}
+	.flex-sm .order1 {
+    -webkit-box-ordinal-group: 0;
+    -ms-flex-order: 0;
+    -webkit-order: 0;
+    order: 0;
+	}
+	.flex-sm .order2 {
+    -webkit-box-ordinal-group: 1;
+    -ms-flex-order: 1;
+    -webkit-order: 1;
+    order: 1;
+	}
+	.map-container.order1 {
+    width: 100%;
+	}
 	#property-items-featured h3 {
     font-size: 52px;
 	}
@@ -2535,9 +2562,9 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.main-slider .slider-searchbox {
     margin-left: 0px !important;
 	}
-	.n2-ss-align {
+	/*.n2-ss-align {
     margin-left: 0 !important;
-	}
+	}*/
 	.nextend-arrow-next, .nextend-arrow-previous {
     display: none !important;
 	}
@@ -2780,6 +2807,9 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	}
 }
 @media (max-width: 345px) {
+	.top-header-sidebar {
+    font-size: 12px;
+	}
 	div#n2-ss-3 .n2-ss-layer {
     position: absolute;
     outline: 1px solid RGBA(0,0,0,0);

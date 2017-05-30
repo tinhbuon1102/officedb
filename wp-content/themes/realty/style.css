@@ -3463,10 +3463,10 @@ cite:before {
 }
 
 @media (min-width: 768px) {
-  .header-fixed.admin-bar header.navbar {
+  /* .header-fixed.admin-bar header.navbar {
     top: 32px;
   }
-  .header-fixed #header {
+ .header-fixed #header {
     position: fixed;
     top: 0;
     left: 0;
@@ -3474,7 +3474,7 @@ cite:before {
   }
   .header-fixed #content {
     margin-top: 152px;
-  }
+  }*/
 }
 
 .site-branding {
@@ -4783,7 +4783,7 @@ article.type-post.border-box .header-media {
  *
  */
 .page-template-template-map-vertical #content {
-  margin: 0;
+  margin: 0 !important;
 }
 
 @media (min-width: 768px) {
@@ -4829,7 +4829,7 @@ article.type-post.border-box .header-media {
 }
 
 .header-fixed.page-template-template-map-vertical .search-result-container {
-  margin-top: -60px;
+  margin-top: 0px;
 }
 
 /*
@@ -5677,7 +5677,7 @@ form label.error {
 }
 
 .google-map .infoBox {
-  width: auto !important;
+    width: 370px !important;
 }
 
 .google-map .infoBox img[src*="close.png"] {
@@ -5698,7 +5698,7 @@ form label.error {
 }
 
 .google-map .map-marker-container {
-  max-width: 250px;
+  max-width: 370px;
   position: relative;
   font-size: 15px;
   background-color: #fff;
@@ -5733,8 +5733,9 @@ form label.error {
 
 .google-map .map-marker-container img {
   display: block;
-  width: 100%;
+  width: 150px;
   height: auto;
+  float: left;
 }
 
 .google-map .map-marker-container .logo {

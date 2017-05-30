@@ -11,7 +11,7 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 			'sort_by'                  => 'date-new',
 			'per_page'                 => 9,
 			'view'                     => 'grid-view',
-			'columns'                  => 2,
+			'columns'                  => 3,
 			'location'                 => '',
 			'status'                   => '',
 			'type'                     => '',
