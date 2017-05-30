@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+	$('div#n2-ss-3 .n2-ss-layer > div').wrapInner('<div class="sword-wrap"></div>');
 	$('input').iCheck({
     checkboxClass: 'icheckbox_square',
     radioClass: 'iradio_square',
