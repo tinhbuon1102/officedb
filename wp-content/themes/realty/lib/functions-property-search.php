@@ -544,10 +544,12 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 				$count = 1;
 				while ( $query_search_results->have_posts() ) : $query_search_results->the_post();
 					$google_maps = get_post_meta( get_the_ID(), 'estate_property_google_maps', true );
+					$post_title = isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all' ? get_the_title() : get_post_meta(get_the_ID(), 'post_title_building', true);
+					
 					$response[] = array(
 						'id' => get_the_ID(),
 						'id_str' => (string)get_the_ID(),
-						'name' => (string)get_the_title(),
+						'name' => (string)$post_title,
 						'image_url' => (string)get_the_post_thumbnail_url(),
 						'address' => (string)$google_maps['address']
 					);
