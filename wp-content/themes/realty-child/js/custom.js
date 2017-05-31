@@ -167,7 +167,8 @@ jQuery(document).ready(function($){
             $("#pdf_viewing_message").hide();
         })
         
-        $('body').on('click', '#pdf_viewing_disable', function(){
+        $('body').on('click', '#pdf_viewing_disable', function(e){
+        	e.preventDefault();
         	$("#pdf_viewing_message").show();
         	$('#login-modal').modal({
     			backdrop: 'static',
