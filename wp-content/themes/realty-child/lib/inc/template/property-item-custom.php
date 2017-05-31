@@ -44,7 +44,7 @@ $building = get_post_meta($property_id, BUILDING_TYPE_CONTENT, true);
 $floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
 $floor = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
 
-$post_title = isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all' ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
+$post_title = (isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all') || (isset($show_floor_title) && $show_floor_title) ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
 
 $classes = array();
 $classes[] = 'property-item';

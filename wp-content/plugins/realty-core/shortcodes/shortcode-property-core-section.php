@@ -163,6 +163,7 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 								echo '<li class="col-md-4 col-md-6">'; // Default: 3 columns
 							}
 
+							set_query_var( 'show_floor_title', true );
 							get_template_part( 'lib/inc/template/property', 'item' );
 
 							echo '</li>';
