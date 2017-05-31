@@ -163,6 +163,20 @@ jQuery(document).ready(function($){
         	actionLoginRegister(e, i, n);
         });
         
+        $('#login-modal').on('hidden.bs.modal', function() {
+            $("#pdf_viewing_message").hide();
+        })
+        
+        $('body').on('click', '#pdf_viewing_disable', function(){
+        	$("#pdf_viewing_message").show();
+        	$('#login-modal').modal({
+    			backdrop: 'static',
+    		    keyboard: false
+    		});
+        });
+
+        
+        
         function showLoginPopup(popup){
         	$('body').LoadingOverlay("hide");
         	if (popup == 'register')

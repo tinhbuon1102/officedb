@@ -746,7 +746,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'construction_type_name':
 			if (!$building['construction_type_name_en'])
 			{
-				$construction = trans_text(formatNumber($building[$field]));
+				$construction = trans_text(($building[$field]));
 			}
 			else {
 				if (isEnglish())

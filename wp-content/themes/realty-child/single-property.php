@@ -266,7 +266,7 @@
 				<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php else : ?>
-				<a class="btn btn-primary btn-square btn-line-border disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
+				<a href="#" class="btn btn-primary btn-square btn-line-border" id="pdf_viewing_disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php endif; ?>
 			</div>
 			<?php }?>

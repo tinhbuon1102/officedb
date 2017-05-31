@@ -123,6 +123,7 @@ if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
 			</button>
 			<div class="modal-header">
 				<h4 class="modal-title" ><?php echo __('Login / Register', 'realty')?></h4>
+				<p class="alert alert-info" id="pdf_viewing_message" style="display:none;"><?php echo trans_text('You need to login for seeing PDF')?></p>
 			</div>
 			<div class="modal-body">
 				<?php login_with_ajax();?>
