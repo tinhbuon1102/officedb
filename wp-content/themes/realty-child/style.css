@@ -938,7 +938,7 @@ div#n2-ss-3 .n2-ss-layer > div:before {
     content: '';
     position: absolute;
     left: 0;
-    top: -40px;
+    top: -35px;
     width: 100%;
     height: 80px;
     background: #000;

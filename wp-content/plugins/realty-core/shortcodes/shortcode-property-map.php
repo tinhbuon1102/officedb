@@ -7,7 +7,7 @@ if ( ! function_exists( 'tt_map' ) ) {
 	function tt_map( $atts ) {
 
 		extract( shortcode_atts( array(
-			'height'             => '400',
+			'height'             => '100',
 			//'type'             => 'ROADMAP',
 			'address'			       => '',
 			'latitude'           => '',
@@ -252,7 +252,7 @@ if ( ! function_exists( 'tt_map' ) ) {
 							content: 	'<div class="map-marker-wrapper">'+
 													'<div class="map-marker-container">'+
 														'<div class="arrow-down"></div>'+
-														'<img src="'+markerData[i].thumbnail+'" />'+
+														'<div class="map-photo"><img src="'+markerData[i].thumbnail+'" /></div>'+
 														'<div class="content">'+
 															'<a href="'+markerData[i].permalink+'">'+
 																'<h5 class="title">'+markerData[i].title+'</h5>'+
@@ -312,7 +312,7 @@ if ( ! function_exists( 'tt_map' ) ) {
 
 		  <?php echo tt_script_map_controls( 'map', $random ); ?>
 
-			<div class="map-wrapper" style="width: 100%; height: <?php echo $height . 'px'; ?>">
+			<div class="map-wrapper" style="width: 100%; height: <?php echo $height . '%'; ?>">
 
 				<?php if ( $disabledefaultui == 'true' ) { ?>
 					<ul class="map-controls list-unstyled">

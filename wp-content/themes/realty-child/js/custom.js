@@ -1,4 +1,26 @@
 jQuery(document).ready(function($){
+	//scroll map
+	$(window).bind("scroll", function() {
+	// ドキュメントの高さ
+	var scrollHeight = $(document).height();
+	// ウィンドウの高さ+スクロールした高さ→ 現在のトップからの位置
+	var scrollPosition = $(window).height() + $(window).scrollTop();
+	// フッターの高さ
+	var footHeight = $("footer").height();
+	var linkHeight = $("#links").innerHeight();
+	
+	// スクロール位置がフッターまで来たら
+	if ( scrollHeight - scrollPosition  <= footHeight && $(window).width() > 641 ) {
+		// ページトップリンクをフッターに固定
+		$(".page-template-template-map-vertical .map-container").addClass('static');
+		$(".page-template-template-map-vertical .map-container").css('bottom', linkHeight + 'px');
+	} else {
+		// ページトップリンクを右下に固定
+		$(".page-template-template-map-vertical .map-container").removeClass('static');
+		$(".page-template-template-map-vertical .map-container").css('bottom', 'initial');
+		}
+	});
+	//scroll map
 	$('div#n2-ss-3 .n2-ss-layer > div').wrapInner('<div class="sword-wrap"></div>');
 	$('input').iCheck({
     checkboxClass: 'icheckbox_square',

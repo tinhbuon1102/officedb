@@ -4807,6 +4807,9 @@ article.type-post.border-box .header-media {
     right: -30px;
     width: 50%;
   }
+	.page-template-template-map-vertical .map-container.static {
+		overflow: hidden;
+	}
 }
 
 .page-template-template-map-vertical form {
@@ -4819,10 +4822,10 @@ article.type-post.border-box .header-media {
   }
 }
 
-.header-fixed.page-template-template-map-vertical #header .container {
+/*.header-fixed.page-template-template-map-vertical #header .container {
   width: 100%;
   padding: 0 30px;
-}
+}*/
 
 .header-fixed.page-template-template-map-vertical .top-header {
   margin-top: 0 !important;
@@ -5650,6 +5653,7 @@ form label.error {
   height: 400px;
   min-height: 400px !important;
   width: 100%;
+  margin-top: 30px;
 }
 
 .google-map img {
@@ -5683,8 +5687,8 @@ form label.error {
 .google-map .infoBox img[src*="close.png"] {
   position: absolute !important;
   z-index: 1001;
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   margin: 0;
   top: -2px;
   right: -2px;
@@ -5704,8 +5708,15 @@ form label.error {
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.9);
   transition: all 0.3s;
+	padding: 10px;
 }
-
+.google-map .map-marker-container:before, .google-map .map-marker-container:after {
+	content:"";
+	display: table;
+}
+.google-map .map-marker-container:after  {
+	clear: both;
+}
 .google-map .map-marker-container .arrow-down {
   position: absolute;
   bottom: -28px;
@@ -5716,13 +5727,15 @@ form label.error {
 }
 
 .google-map .map-marker-container .content {
-  padding: 15px 20px;
+   padding: 0px 10px 0px 170px;
 }
 
 .google-map .map-marker-container .content .title {
   margin-bottom: 0;
   transition: all 0.2s;
   visibility: inherit;
+	font-size: 14px;
+    font-weight: bold;
 }
 
 .google-map .map-marker-container a {
@@ -5730,12 +5743,17 @@ form label.error {
   color: #999;
   border-bottom: 1px solid #e6e6e6;
 }
+.map-photo {
+    float: left;
+    width: 150px;
+    max-height: 160px;
+    overflow: hidden;
+}
 
 .google-map .map-marker-container img {
   display: block;
   width: 150px;
   height: auto;
-  float: left;
 }
 
 .google-map .map-marker-container .logo {
