@@ -802,10 +802,10 @@ function getBuildingPDF($building_id)
 	{
 		$folder = OFFICE_DB_SITE_URL . '/buildingPdfUploads/';
 		$pdfUrl = $folder . $Pdf->file_name;
-		if (!is_url_exist($pdfUrl))
-		{
-			$pdfUrl = '';
-		}
+// 		if (!is_url_exist($pdfUrl))
+// 		{
+// 			$pdfUrl = '';
+// 		}
 	}
 	return $pdfUrl;
 }
