@@ -9,14 +9,6 @@
 		</div>
 	</div>
 </div>
-<?php
-	if ( is_page_template( 'template-map-vertical.php' ) ) {
-		$show_footer = false;
-	} else {
-		$show_footer = true;
-	}
-	$hide_footer_widgets = get_post_meta( get_the_id(), 'estate_page_hide_footer_widgets', true );
-?>
 
 <?php if ( $show_footer && ! $hide_footer_widgets ) { ?>
 
