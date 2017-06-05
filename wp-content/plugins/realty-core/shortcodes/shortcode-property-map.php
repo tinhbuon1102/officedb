@@ -146,10 +146,10 @@ if ( ! function_exists( 'tt_map' ) ) {
 					$property_string .= "permalink:'" . get_the_permalink() . "', ";
 					$property_string .= "permalink_text:'" . trans_text('Go to detail') . "', ";
 					$property_string .= "title:'" . get_post_meta($post->ID, 'post_title_building', true) . "', ";
-					$property_string .= "address:'<span class='detail_label'>". trans_text('Address:') ."</span>" . $google_maps['address'] . "', ";
-					$property_string .= "size:'<span class='detail_label'>". trans_text('Size:') ."</span>" . $size .$size_unit . "', ";
-					$property_string .= "established:'<span class='detail_label'>". trans_text('Established:') ."</span>" .  translateBuildingValue('built_year', $building, $floor, $post->ID) . "', ";
-					$property_string .= "price:'<span class='detail_label'>". trans_text('Price:') ."</span>" .  tt_property_price() . "', ";
+					$property_string .= "address:'<span class=\'detail_label\'>". trans_text('Address:') ."</span>" . $google_maps['address'] . "', ";
+					$property_string .= "size:'<span class=\'detail_label\'>". trans_text('Size:') ."</span>" . $size .$size_unit . "', ";
+					$property_string .= "established:'<span class=\'detail_label\'>". trans_text('Established:') ."</span>" .  translateBuildingValue('built_year', $building, $floor, $post->ID) . "', ";
+					$property_string .= "price:'<span class=\'detail_label\'>". trans_text('Price:') ."</span>" .  tt_property_price() . "', ";
 					$property_string .= "latLng: new google.maps.LatLng(" . $address_latitude . ", " . $address_longitude . "), ";
 					if ( has_post_thumbnail() ) {
 						$property_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'property-thumb' );
