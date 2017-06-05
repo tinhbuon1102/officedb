@@ -28,6 +28,7 @@ jQuery(window).load(function() {
 					echo do_shortcode( base64_decode( $_GET['searchid'] ) );
 				} else {
 					$search_form_columns = 4; // 4 Column Search Form
+					$search_form_action = isEnglish ? site_url('property-map-vertical-2') : site_url('property-map-vertical');
 					include( locate_template( 'lib/inc/template/search-form.php' ) );
 				}
 

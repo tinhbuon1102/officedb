@@ -2,7 +2,13 @@
 	global $realty_theme_option, $wp_query;
 ?>
 
-<form class="property-search-form border-box" action="<?php if ( tt_page_id_template_search() ) { echo get_permalink( tt_page_id_template_search() ); } ?>">
+<?php 
+if ( !isset($search_form_action) ) {
+	$search_form_action = get_permalink( tt_page_id_template_search() );
+}
+
+?>
+<form class="property-search-form border-box" action="<?php if ( tt_page_id_template_search() ) { echo $search_form_action; } ?>">
 
 	<div class="row">
 
