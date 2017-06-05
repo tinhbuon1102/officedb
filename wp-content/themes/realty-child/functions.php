@@ -16,6 +16,7 @@ function realty_init() {
 			)
 			);
 	
+	remove_filter( 'user_contactmethods', 'tt_custom_user_contact_methods' );
 	date_default_timezone_set(get_option('timezone_string'));
 }
 

@@ -62,3 +62,5 @@
 	background-image: url('../../lib/images/themetrail-logo-150-150.png');
 	background-size: cover;
 }
+
+.user-url-wrap {display: none;}
