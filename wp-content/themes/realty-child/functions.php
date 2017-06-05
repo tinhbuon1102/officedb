@@ -6,6 +6,16 @@ add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
 	
+	$result = add_role(
+			'customer',
+			__( 'Customer' ),
+			array(
+				'read'         => true,  // true allows this capability
+				'false'   => true,
+				'delete_posts' => false, // Use false to explicitly deny
+			)
+			);
+	
 	date_default_timezone_set(get_option('timezone_string'));
 }
 
