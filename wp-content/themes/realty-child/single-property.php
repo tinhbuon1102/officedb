@@ -264,7 +264,7 @@
 			<?php if ($pdfUrl) {?>
 			<div class="col-sm-6">
 				<?php if ( is_user_logged_in() ) : ?>
-				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border"><i class="icon-file-pdf-1"></i><span><?php echo __('View PDF', 'realty')?></span></a>
+				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border pdf-button"><i class="fa fa-file-pdf-o"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php else : ?>
 				<a href="#" class="btn btn-primary btn-square btn-line-border" id="pdf_viewing_disable"><i class="iconthin-icon-thinliner_register-lock"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php endif; ?>
@@ -324,6 +324,7 @@
 			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant.')?></div>
 		<?php } ?>
 		<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
+	<?php if ($floor['vacancy_info']) {?>
 	<table id="floorsummary" class="basic-table-style">
 		<tbody>
 			<tr>
@@ -341,7 +342,7 @@
 				[Floor[rent_unit_price_opt]]
 				else
 				[Floor[rent_unit_price]] -->
-				<?php echo $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);?>
+				<?php echo $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price'])."/".trans_text('tsubo') : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);?>
 				</td>
 			</tr>
 			<tr>
@@ -369,6 +370,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<?php } ?>
 	</section>
 	<section id="property-details">
 	<h3 class="section-title"><span><?php echo __('Property details', 'realty')?></span></h3>

@@ -1388,12 +1388,31 @@ section#acbuttons {
     margin-right: 5px;
     vertical-align: middle;
 }
-.buttons-group .btn i.icon-file-pdf-1 {
+.buttons-group .pdf-button i, #pdf_viewing_disable i {
     font-size: 18px;
     margin-top: 0;
-    line-height: 1;
+	margin-right: 0;
+    border-right: 1px solid #CCC;
+    line-height: 1.3;
+	display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background: #000;
+    color: #FFF;
+    height: 100%;
+    width: 38px;
 }
-.buttons-group .btn span {
+.buttons-group .pdf-button, #pdf_viewing_disable {
+    padding-left: 38px;
+	position: relative;
+	background: rgba(245,245,245,1);
+}
+#pdf_viewing_disable:hover, #pdf_viewing_disable:focus {
+	background: #000;
+}
+.buttons-group .btn span, #pdf_viewing_disable span {
     line-height: 20px;
     display: inline-block;
     vertical-align: middle;
