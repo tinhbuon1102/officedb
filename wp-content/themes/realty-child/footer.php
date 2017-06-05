@@ -10,11 +10,10 @@
 	</div>
 </div>
 
-<?php if ( $show_footer && ! $hide_footer_widgets ) { ?>
 
-	<footer class="site-footer" id="footer">
+<footer class="site-footer" id="footer">
 
-		<?php if ( is_active_sidebar( 'sidebar_footer_1' ) || is_active_sidebar( 'sidebar_footer_2' ) || is_active_sidebar( 'sidebar_footer_3' ) ) { ?>
+	<?php if ( is_active_sidebar( 'sidebar_footer_1' ) || is_active_sidebar( 'sidebar_footer_2' ) || is_active_sidebar( 'sidebar_footer_3' ) ) { ?>
       <div class="site-footer-top" id="footer-top">
         <div class="container">
           <div class="row">
@@ -43,52 +42,51 @@
       </div>
 		<?php } ?>
 
-		<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) || is_active_sidebar( 'sidebar_footer_bottom_center' ) || is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
-			<div class="site-footer-bottom" id="footer-bottom">
-				<div class="container">
-					<div class="row sm-flex">
-						<?php
-							$class_columns_left = 'col-sm-12';
-							$class_columns_center = 'col-sm-12';
-							$class_columns_right = 'col-sm-12';
+	<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) || is_active_sidebar( 'sidebar_footer_bottom_center' ) || is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
+		<div class="site-footer-bottom" id="footer-bottom">
+			<div class="container">
+				<div class="row sm-flex">
+					<?php
+						$class_columns_left = 'col-sm-12';
+						$class_columns_center = 'col-sm-12';
+						$class_columns_right = 'col-sm-12';
 
-							if ( ! is_active_sidebar( 'sidebar_footer_bottom_center' ) && ( is_active_sidebar( 'sidebar_footer_bottom_left' ) || is_active_sidebar( 'sidebar_footer_bottom_right' ) ) ) {
-								$class_columns_left = 'col-sm-6';
-								$class_columns_right = 'col-sm-6';
-							}
+						if ( ! is_active_sidebar( 'sidebar_footer_bottom_center' ) && ( is_active_sidebar( 'sidebar_footer_bottom_left' ) || is_active_sidebar( 'sidebar_footer_bottom_right' ) ) ) {
+							$class_columns_left = 'col-sm-6';
+							$class_columns_right = 'col-sm-6';
+						}
 
-							if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) && is_active_sidebar( 'sidebar_footer_bottom_center' ) && is_active_sidebar( 'sidebar_footer_bottom_right' ) ) {
-								$class_columns_left = 'col-sm-3';
-								$class_columns_center = 'col-sm-4';
-								$class_columns_right = 'col-sm-5';
-							}
-						?>
+						if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) && is_active_sidebar( 'sidebar_footer_bottom_center' ) && is_active_sidebar( 'sidebar_footer_bottom_right' ) ) {
+							$class_columns_left = 'col-sm-3';
+							$class_columns_center = 'col-sm-4';
+							$class_columns_right = 'col-sm-5';
+						}
+					?>
 
-						<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) ) { ?>
-							<div class="<?php echo $class_columns_left; ?> footer-bottom-left order2">
-								<?php dynamic_sidebar( 'sidebar_footer_bottom_left' ); ?>
-							</div>
-						<?php } ?>
+					<?php if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) ) { ?>
+						<div class="<?php echo $class_columns_left; ?> footer-bottom-left order2">
+							<?php dynamic_sidebar( 'sidebar_footer_bottom_left' ); ?>
+						</div>
+					<?php } ?>
 
-						<?php if ( is_active_sidebar( 'sidebar_footer_bottom_center' ) ) { ?>
-							<div class="<?php echo $class_columns_center; ?> footer-bottom-center">
-								<?php dynamic_sidebar( 'sidebar_footer_bottom_center' ); ?>
-							</div>
-						<?php } ?>
+					<?php if ( is_active_sidebar( 'sidebar_footer_bottom_center' ) ) { ?>
+						<div class="<?php echo $class_columns_center; ?> footer-bottom-center">
+							<?php dynamic_sidebar( 'sidebar_footer_bottom_center' ); ?>
+						</div>
+					<?php } ?>
 
-						<?php if ( is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
-							<div class="<?php echo $class_columns_right; ?> footer-bottom-right order1">
-								<?php dynamic_sidebar( 'sidebar_footer_bottom_right' ); ?>
-							</div>
-						<?php } ?>
-					</div>
+					<?php if ( is_active_sidebar( 'sidebar_footer_bottom_right' ) ) { ?>
+						<div class="<?php echo $class_columns_right; ?> footer-bottom-right order1">
+							<?php dynamic_sidebar( 'sidebar_footer_bottom_right' ); ?>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
-		<?php } ?>
+		</div>
+	<?php } ?>
 
-	</footer>
+</footer>
 
-<?php } ?>
 
 <?php wp_footer(); ?>
 <div class="sp-fixfooter">
