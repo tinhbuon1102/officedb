@@ -134,10 +134,22 @@ if ( ! function_exists( 'tt_map' ) ) {
 				// Check If We Have LatLng Coordinates From Google Maps
 				if ( $google_maps ) {
 
+					$size = get_post_meta( $post->ID, 'estate_property_size', true );
+					$size_unit = get_post_meta( $post->ID, 'estate_property_size_unit', true );
+					$size_unit = trans_text($size_unit == 'm2' ? AREA_M2 : $size_unit);
+					// Get building info
+					$building = get_post_meta($post->ID, BUILDING_TYPE_CONTENT, true);
+					// Get Floor info
+					$floor = get_post_meta($post->ID, FLOOR_TYPE_CONTENT, true);
+					
 					$property_string .= "{ ";
 					$property_string .= "permalink:'" . get_the_permalink() . "', ";
-					$property_string .= "title:'" . get_the_title() . "', ";
-					$property_string .= "price:'" . tt_property_price() . "', ";
+					$property_string .= "permalink_text:'" . trans_text('Go to detail') . "', ";
+					$property_string .= "title:'" . get_post_meta($post->ID, 'post_title_building', true) . "', ";
+					$property_string .= "address:'<span class='detail_label'>". trans_text('Address:') ."</span>" . $google_maps['address'] . "', ";
+					$property_string .= "size:'<span class='detail_label'>". trans_text('Size:') ."</span>" . $size .$size_unit . "', ";
+					$property_string .= "established:'<span class='detail_label'>". trans_text('Established:') ."</span>" .  translateBuildingValue('built_year', $building, $floor, $post->ID) . "', ";
+					$property_string .= "price:'<span class='detail_label'>". trans_text('Price:') ."</span>" .  tt_property_price() . "', ";
 					$property_string .= "latLng: new google.maps.LatLng(" . $address_latitude . ", " . $address_longitude . "), ";
 					if ( has_post_thumbnail() ) {
 						$property_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'property-thumb' );
@@ -257,7 +269,11 @@ if ( ! function_exists( 'tt_map' ) ) {
 															'<a href="'+markerData[i].permalink+'">'+
 																'<h5 class="title">'+markerData[i].title+'</h5>'+
 															'</a>'+
-															markerData[i].price+
+															'<p>' + markerData[i].address+ '</p>' +
+															'<p>' + markerData[i].size+ '</p>' +
+															'<p>' + markerData[i].established+ '</p>' +
+															'<p>' + markerData[i].price+ '</p>' +
+															'<p><a href="'+ markerData[i].permalink +'"><button class="btn btn-primary btn-block form-control">' + markerData[i].permalink_text+ '</button></a></p>' +
 														'</div>'+
 													'</div>'+
 												'</div>',
