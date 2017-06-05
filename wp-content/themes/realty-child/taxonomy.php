@@ -1,10 +1,13 @@
 <?php
 global $wp_query, $realty_theme_option;
 $taxonomy = $wp_query->query;
-if (key($taxonomy) == 'property-location')
+$taxonomy_name = key($taxonomy);
+$taxonomy_slug = end($taxonomy);
+if ($taxonomy_name == 'property-location')
 {
+	$oTerm = get_term_by('slug', $taxonomy_slug, $taxonomy_name);
 	$search_page = get_permalink( tt_page_id_template_search());
-	wp_redirect($search_page . '?location=' . end($taxonomy));
+	wp_redirect($search_page . '?location['.$oTerm->term_id.']=' . $taxonomy_slug);
 	exit();
 }
 get_header();
@@ -20,7 +23,7 @@ if ( $listing_view == "list-view" ) {
 }
 
 
-$_GET[str_replace('property-', '', key($taxonomy))] = end($taxonomy);
+$_GET[str_replace('property-', '', $taxonomy_name)] = $taxonomy_slug;
 $search_results_args = apply_filters( 'property_search_args', $search_results_args );
 $search_results_args = buildSearchArgs($search_results_args);
 
