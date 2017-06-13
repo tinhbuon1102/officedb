@@ -14,8 +14,6 @@ if ( ! function_exists( 'tt_property_price' ) ) {
 
 		$property_price = doubleval( get_post_meta( $property_id, 'estate_property_price', true ) );
 		
-		return renderPrice($property_price);
-		
 		$property_price_prefix = get_post_meta( $property_id, 'estate_property_price_prefix', true );
 		$property_price_suffix = get_post_meta( $property_id, 'estate_property_price_suffix', true );
 
