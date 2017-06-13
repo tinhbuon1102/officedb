@@ -40,6 +40,7 @@ function importLocationFromPrefecture () {
 			INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
 			WHERE tt.taxonomy IN ('property-location','property-type','property-status') ORDER BY t.name ASC ");
 
+	$terms = array();
 	if (!empty($terms))
 	{
 		// Don't reimport
@@ -197,34 +198,54 @@ function getSearchingSizes(){
 }
 
 function insertTermTranslation($tran_en, $tran_jp, $term_name){
-	$term_jp = wp_insert_term( $tran_jp, $term_name);
-	$term_en = wp_insert_term( $tran_en, $term_name);
-	$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
-
-	if (function_exists('pll_save_term_translations'))
+	$term_jp = (array)get_term_by('name', $tran_jp, $term_name);
+	$term_en = (array)get_term_by('name', $tran_en, $term_name);
+	
+	if ($term_jp)
 	{
-		// Make 2 post with same group
-		PLL()->model->term->set_language( $term_en['term_id'], 38 );
-		PLL()->model->term->set_language( $term_jp['term_id'], 35 );
-
-		// Remove Trans for term en
-		$object_eng = PLL()->model->term->get_object_term( $term_en['term_id'], 'term_translations' );
-		$term_trans = unserialize($object_eng->description);
-		wp_delete_term($object_eng->term_id, 'term_translations');
-		PLL()->model->term->delete_translation( $object_eng->term_id );
-		if (!empty($term_trans))
-		{
-			foreach ($term_trans as $object_id) {
-				wp_remove_object_terms($object_id, $object_eng->term_id, 'term_translations');
-			}
-		}
-
-		// Add trans EN to group with JA language
 		$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
-		$object_jp = PLL()->model->term->get_object_term( $term_jp['term_id'], 'term_translations' );
-		wp_update_term($object_jp->term_id, 'term_translations', array( 'description' => serialize( $term_trans )));
-		wp_set_object_terms($term_en['term_id'], $object_jp->term_id, 'term_translations');
-			
+		
+		if (function_exists('pll_save_term_translations'))
+		{
+			// Make 2 post with same group
+			PLL()->model->term->set_language( $term_en['term_id'], 38 );
+			PLL()->model->term->set_language( $term_jp['term_id'], 35 );
+		
+			PLL()->model->term->save_translations( $term_en['term_id'], $term_trans );
+			PLL()->model->term->save_translations( $term_jp['term_id'], $term_trans );
+		}
+	}
+	else {
+		$term_jp = (array)wp_insert_term( $tran_jp, $term_name);
+		$term_en = (array)wp_insert_term( $tran_en, $term_name);
+		
+		$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
+		
+		if (function_exists('pll_save_term_translations'))
+		{
+			// Make 2 post with same group
+			PLL()->model->term->set_language( $term_en['term_id'], 38 );
+			PLL()->model->term->set_language( $term_jp['term_id'], 35 );
+		
+			// Remove Trans for term en
+			$object_eng = PLL()->model->term->get_object_term( $term_en['term_id'], 'term_translations' );
+			$term_trans = unserialize($object_eng->description);
+			wp_delete_term($object_eng->term_id, 'term_translations');
+			PLL()->model->term->delete_translation( $object_eng->term_id );
+			if (!empty($term_trans))
+			{
+				foreach ($term_trans as $object_id) {
+					wp_remove_object_terms($object_id, $object_eng->term_id, 'term_translations');
+				}
+			}
+		
+			// Add trans EN to group with JA language
+			$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
+			$object_jp = PLL()->model->term->get_object_term( $term_jp['term_id'], 'term_translations' );
+			wp_update_term($object_jp->term_id, 'term_translations', array( 'description' => serialize( $term_trans )));
+			wp_set_object_terms($term_en['term_id'], $object_jp->term_id, 'term_translations');
+				
+		}
 	}
 }
 
@@ -266,7 +287,7 @@ function realty_theme_init()
 	// Import new location
 	if (isset($_GET['import_location']))
 	{
-		// 		importLocationFromPrefecture ();
+// 				importLocationFromPrefecture ();
 	}
 
 	if (isset($_GET['import_specific']))
