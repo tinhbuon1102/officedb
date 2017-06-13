@@ -787,7 +787,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 }
 
 function renderPrice($price) {
-	$price = str_replace(',', '', $price);
+	$price = str_replace(',', '.', $price);
 	if ($price)
 	{
 		$price = number_format($price, 0);
