@@ -422,20 +422,16 @@
 			</tr>
 			<tr>
 			<th><?php echo __('Floor Material', 'realty')?></th>
-			<td><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Ceiling Height', 'realty')?></th>
 			<td><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
-			<th colspan="1"><?php echo __('Renewal', 'realty')?></th>
-			<td colspan="3"><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
+			<th colspan="2"><?php echo __('Renewal', 'realty')?></th>
+			<td colspan="2"><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
 			</tr>
 		</tbody>
 	</table>
-	</section>
-	<section id="floorPlan">
-	<h3 class="section-title"><span><?php echo __('Floor Plan', 'realty')?></span></h3>
-	<div class="floorplan-img"></div>
 	</section>
 	<section id="nearbyrate">
 	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>

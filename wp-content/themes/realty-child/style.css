@@ -1113,6 +1113,27 @@ ul.typeahead__list .result-column {
     min-height: 42px;
 }
 /*single property*/
+table.fixTable {
+    table-layout: fixed;
+	width: 100%;
+    word-break: break-all;
+	border-collapse: collapse;
+	border-left: 1px solid #e5e5e5;
+	border-right: 1px solid #e5e5e5;
+}
+table.fixTable td, table.fixTable th {
+    text-align: left;
+	font-weight: normal;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 8px 10px;
+	font-size: 13px;
+}
+table.fixTable tr:first-child td, table.fixTable tr:first-child th {
+	border-top: 1px solid #e5e5e5;
+}
+table.fixTable th {
+	background: rgba(245,245,245,1);
+}
 .property-header span {
     display: inline-block;
     vertical-align: middle;
