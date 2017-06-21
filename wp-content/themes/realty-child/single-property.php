@@ -179,7 +179,7 @@
 	<div class="row">
 	<div class="col-sm-7 col-md-9">
 	<h1 class="bld-title">
-	<span><?php echo ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) ? get_the_title( $single_property_id ) : get_post_meta($single_property_id, 'post_title_building', true); ?></span>
+	<span><?php echo ($query_floors_results->have_posts() && $query_floors_results->post_count > 0) ? get_the_title( $single_property_id ) : get_post_meta($single_property_id, 'post_title_building', true); ?></span>
 	<?php if ( $property_status_update ) { ?>
 						<span class="labeled"><div class="btn btn-dark btn-sm status-update"><?php echo $property_status_update; ?></div></span>
 					<?php } ?>
@@ -305,7 +305,7 @@
 	
 	<h3 class="section-title"><span><?php echo __('Vacancy Info', 'realty')?></span></h3>
 	<?php 
-		if (!$floor['vacancy_info'] && ($query_floors_results->have_posts() && $query_floors_results->post_count > 1)) {?>
+		if (!$floor['vacancy_info'] && ($query_floors_results->have_posts() && $query_floors_results->post_count > 0)) {?>
 			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant.')?></div>
 		<?php } ?>
 		<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
