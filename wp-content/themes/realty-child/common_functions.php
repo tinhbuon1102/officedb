@@ -618,22 +618,22 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			switch ($building[$field])
 			{
 				case EARTH_QUAKE_OLD_STANDARD:
-					return trans_text('Old earthquake resistance standard');
+					return trans_text('old-seismic building code');
 					break;
 				case EARTH_QUAKE_REINFOCED:
-					return trans_text('Earthquake resistant reinforced');
+					return trans_text('Reinforced for Seismic Resistance');
 					break;
 				case EARTH_QUAKE_NEW_STANDARD:
-					return trans_text('New earthquake resistance standard');
+					return trans_text('new-seismic building code');
 					break;
 				case EARTH_QUAKE_ISOLATION_STRUCTURE:
-					return trans_text('Base isolation structure');
+					return trans_text('quake-absorbing structure');
 					break;
 				case EARTH_QUAKE_UNKNOW:
 					return trans_text('Unknown');
 					break;
 				case EARTH_QUAKE_DAMPING_STRUCTURE:
-					return trans_text('Damping structure');
+					return trans_text('Vibration Control Structure');
 					break;
 				default:
 					return FIELD_MISSING_VALUE;
