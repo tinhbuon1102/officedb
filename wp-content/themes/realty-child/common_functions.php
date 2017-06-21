@@ -928,7 +928,7 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 			$plan_images[] = $planPictureResult->name;
 		}
 		
-		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
+// 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
 	}
 	
 	if ($thumbnail_url)
