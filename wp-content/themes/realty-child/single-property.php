@@ -132,6 +132,15 @@
 		);
 		$query_floors_results = new WP_Query($buildingArgs);
 		
+		$i_vacancy_floor = 0;
+		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+			$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+			// out if floor has no vacant
+			if (!$related_floor['vacancy_info']) continue;
+			else $i_vacancy_floor ++;
+		endwhile;
+		wp_reset_postdata();
+		
 		
 		$property_layout = $realty_theme_option['property-layout'];
 		$property_meta_data_type = $realty_theme_option['property-meta-data-type'];
@@ -179,7 +188,7 @@
 	<div class="row">
 	<div class="col-sm-7 col-md-9">
 	<h1 class="bld-title">
-	<span><?php echo ($query_floors_results->have_posts() && $query_floors_results->post_count > 0) ? get_the_title( $single_property_id ) : get_post_meta($single_property_id, 'post_title_building', true); ?></span>
+	<span><?php echo ($i_vacancy_floor) ? get_the_title( $single_property_id ) : get_post_meta($single_property_id, 'post_title_building', true); ?></span>
 	<?php if ( $property_status_update ) { ?>
 						<span class="labeled"><div class="btn btn-dark btn-sm status-update"><?php echo $property_status_update; ?></div></span>
 					<?php } ?>
@@ -305,10 +314,11 @@
 	
 	<h3 class="section-title"><span><?php echo __('Vacancy Info', 'realty')?></span></h3>
 	<?php 
-		if (!$floor['vacancy_info'] && ($query_floors_results->have_posts() && $query_floors_results->post_count > 0)) {?>
+		if (!$floor['vacancy_info'] && $i_vacancy_floor) {?>
 			<div class="warning_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant.')?></div>
-		<?php } ?>
-		<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
+		<?php }else if (!$i_vacancy_floor) {?>
+			<div class="warning_message" id="building_no_vacant" style="display: none;"><?php echo trans_text('This building has no vacant.')?></div>
+		<?php }?>
 	<?php if ($floor['vacancy_info']) {?>
 	<table id="floorsummary" class="basic-table-style">
 		<tbody>
