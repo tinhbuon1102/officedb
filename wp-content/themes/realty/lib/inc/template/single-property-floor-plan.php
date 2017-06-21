@@ -81,7 +81,7 @@
 			</div>
 
 			<div id="floor-plan-<?php echo $i; ?>" class="panel-collapse collapse">
-			  <img src="<?php echo $image; ?>" />
+			  <img class="floor-plan" data-mfp-src="<?php echo $image; ?>" src="<?php echo $image; ?>" />
 			  <?php if ( $property_floor_plan_description[$i] ) { ?>
 			  <div class="panel-body"><?php echo $property_floor_plan_description[$i]; ?></div>
 			  <?php } ?>

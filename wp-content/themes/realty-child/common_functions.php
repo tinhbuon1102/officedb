@@ -618,22 +618,22 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			switch ($building[$field])
 			{
 				case EARTH_QUAKE_OLD_STANDARD:
-					return trans_text('old-seismic building code');
+					return trans_text('Old earthquake resistance standard');
 					break;
 				case EARTH_QUAKE_REINFOCED:
-					return trans_text('Reinforced for Seismic Resistance');
+					return trans_text('Earthquake resistant reinforced');
 					break;
 				case EARTH_QUAKE_NEW_STANDARD:
-					return trans_text('new-seismic building code');
+					return trans_text('New earthquake resistance standard');
 					break;
 				case EARTH_QUAKE_ISOLATION_STRUCTURE:
-					return trans_text('quake-absorbing structure');
+					return trans_text('Base isolation structure');
 					break;
 				case EARTH_QUAKE_UNKNOW:
 					return trans_text('Unknown');
 					break;
 				case EARTH_QUAKE_DAMPING_STRUCTURE:
-					return trans_text('Vibration Control Structure');
+					return trans_text('Damping structure');
 					break;
 				default:
 					return FIELD_MISSING_VALUE;
@@ -858,11 +858,8 @@ function getBuildingFloorPicUrl($type_images, $type) {
 	foreach ($type_images as $image)
 	{
 		$image_path = OFFICE_DB_FOLDER_PATH . $image_types[$type] . $image;
-		if (file_exists($image_path) && is_file($image_path))
-		{
-			$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;
-			$images[] = $image_url;
-		}
+		$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;$image_url = OFFICE_DB_SITE_URL . $image_types[$type] . $image;
+		$images[] = $image_url;
 	}
 	return $images;
 }

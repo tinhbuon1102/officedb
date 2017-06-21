@@ -95,7 +95,13 @@ jQuery(document).ready(function($){
 		}
 	}
 	
-
+	if ($('img.floor-plan').length)
+	{
+		$('img.floor-plan').magnificPopup({
+		  type: 'image'
+		  // other options
+		});
+	}
 	
 		function initTypeHead() {
 		$.typeahead({

@@ -104,6 +104,17 @@
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
 		
+		// Get Plan
+		$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id);
+		$plan_images = array();
+		if (!empty($planPictureResults))
+		{
+			foreach ($planPictureResults as $planPictureResult)
+			{
+				$plan_images[] = $planPictureResult->name;
+			}
+			$plan_images = getBuildingFloorPicUrl($plan_images, 'plan');
+		}
 		// Get PDF
 		$pdfUrl = getBuildingPDF($building_id);
 		
@@ -398,45 +409,48 @@
 		<tbody>
 			<tr>
 			<th><?php echo __('Established', 'realty')?></th>
-			<td data-th="<?php echo __('Established', 'realty')?>"><?php echo translateBuildingValue('built_year', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('built_year', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Gross floor area', 'realty')?></th>
-			<td data-th="<?php echo __('Gross floor area', 'realty')?>"><?php echo translateBuildingValue('total_floor_space', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('total_floor_space', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 			<th><?php echo __('Earthquake proof', 'realty')?></th>
-			<td data-th="<?php echo __('Earthquake proof', 'realty')?>"><?php echo translateBuildingValue('earth_quake_res_std', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('earth_quake_res_std', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Elevator', 'realty')?></th>
-			<td data-th="<?php echo __('Elevator', 'realty')?>"><?php echo translateBuildingValue('elevator', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('elevator', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 			<th><?php echo __('Parking', 'realty')?></th>
-			<td data-th="<?php echo __('Parking', 'realty')?>"><?php echo translateBuildingValue('parking_unit_no', $building, $floor, $single_property_id);?></td>
-			<th><?php echo __('Typical floor area', 'realty')?></th>
-			<td data-th="<?php echo __('Typical floor area', 'realty')?>"><?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?></td>
-			<!--<th><?php //echo __('Optical cable', 'realty')?></th>
-			<td data-th="<?php //echo __('Optical cable', 'realty')?>"><?php //echo translateBuildingValue('opticle_cable', $building, $floor, $single_property_id);?></td>-->
+			<td><?php echo translateBuildingValue('parking_unit_no', $building, $floor, $single_property_id);?></td>
+			<th><?php echo __('Optical cable', 'realty')?></th>
+			<td><?php echo translateBuildingValue('opticle_cable', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
+			<th><?php echo __('Typical floor area', 'realty')?></th>
+			<td><?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Security', 'realty')?></th>
-			<td data-th="<?php echo __('Security', 'realty')?>"><?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?></td>
-			<th><?php echo __('Ceiling Height', 'realty')?></th>
-			<td data-th="<?php echo __('Ceiling Height', 'realty')?>"><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
+			<td><?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?></td>
 			</tr>
-			<!--<tr>
-			<th><?php //echo __('Floor Material', 'realty')?></th>
-			<td data-th="<?php //echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
-			
-			</tr>-->
+			<tr>
+			<th><?php echo __('Floor Material', 'realty')?></th>
+			<td><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
+			<th><?php echo __('Ceiling Height', 'realty')?></th>
+			<td><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
+			</tr>
 			<tr>
 			<th colspan="1"><?php echo __('Renewal', 'realty')?></th>
-			<td colspan="3" data-th="<?php echo __('Renewal', 'realty')?>"><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
+			<td colspan="3"><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
 			</tr>
 		</tbody>
 	</table>
 	</section>
 	<section id="floorPlan">
 	<h3 class="section-title"><span><?php echo __('Floor Plan', 'realty')?></span></h3>
-	<div class="floorplan-img"></div>
+	<div class="floorplan-img">
+		<?php foreach ($plan_images as $plan_image) {?>
+			<img class="floor-plan" data-mfp-src="<?php echo $plan_image; ?>" src="<?php echo $plan_image; ?>" />
+		<?php }?>
+	</div>
 	</section>
 	<section id="nearbyrate">
 	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>
