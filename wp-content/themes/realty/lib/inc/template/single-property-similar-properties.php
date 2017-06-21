@@ -4,8 +4,10 @@
 
 	$args_similar_properties = array(
 		'post_type'					=> 'property',
-		'posts_per_page' 		=> 40,
-		'post__not_in'			=> array( $single_property_id )
+		'posts_per_page' 		=> 7,
+		'post__not_in'			=> array( $single_property_id ),
+		'is_similar'			=> true,
+		'similar_size'			=> $size
 	);
 
 	// Theme Options: Similar Properties Criteria
@@ -20,13 +22,11 @@
 		$location = '';
 	}
 
-	if ( $criteria['location'] ) {
-		$tax_query[] = array(
-			'taxonomy' 	=> 'property-location',
-			'field' 		=> 'slug',
-			'terms'			=> $location
-		);
-	}
+	$tax_query[] = array(
+		'taxonomy' 	=> 'property-location',
+		'field' 		=> 'slug',
+		'terms'			=> $location
+	);
 
 	if ( $property_status ) {
 		foreach ( $property_status as $status ) {
@@ -73,6 +73,15 @@
 
 	$meta_query = array();
 
+	$meta_query[] = array(
+		'size_clause' => array(
+			'key' => 'estate_property_size',
+			'value' => -1,
+			'compare'   => '!=',
+			'type'			=> 'DECIMAL'
+		),
+	);
+	
 	if ( $criteria['min_rooms'] ) {
 		$meta_query[] = array(
 			'key' 			=> 'estate_property_rooms',
@@ -107,6 +116,10 @@
 
 	if ( $meta_count > 0 ) {
 		$args_similar_properties['meta_query'] = $meta_query;
+		
+		$args_similar_properties['orderby'] = array(
+			'size_clause' => 'ASC'
+		);
 	}
 ?>
 
@@ -123,7 +136,7 @@ $query_similar_properties = new WP_Query( $args_similar_properties );
 	?>
 
 	<section id="similar-properties">
-		<h3 class="section-title"><span><?php esc_html_e( 'Similar Properties', 'realty' ); ?> (<?php echo $query_similar_properties->found_posts; ?>)</span></h3>
+		<h3 class="section-title"><span><?php esc_html_e( 'Similar Properties', 'realty' ); ?></span></h3>
 		<div class="property-items">
 
 			<div id="<?php echo esc_attr( $similar_properties_carousel_id ); ?>">

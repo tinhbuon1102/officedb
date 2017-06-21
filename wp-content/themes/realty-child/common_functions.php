@@ -346,7 +346,10 @@ function realty_posts_orderby_request( $orderby, &$query )
 	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
 		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
 	}
-
+	else if (isset($query->query['is_similar']) && $query->query['is_similar'])
+	{
+		$orderby = "ABS (CAST(wp_postmeta.meta_value AS CHAR) - ".$query->query['similar_size'].") " . $query->query['orderby']['size_clause'];
+	}
 	return $orderby;
 }
 
