@@ -312,12 +312,12 @@
 		<?php } ?>
 	<section id="property-summary">
 	
-	<h3 class="section-title"><span><?php echo __('Vacancy Info', 'realty')?></span></h3>
+	<h3 class="section-title"><span><?php echo __('Floor Information', 'realty')?></span></h3>
 	<?php 
 		if (!$floor['vacancy_info'] && $i_vacancy_floor) {?>
-			<div class="warning_message vacancy_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant.')?></div>
+			<div class="warning_message vacancy_message" id="floor_no_vacant"><?php echo trans_text('This floor has no vacant')?></div>
 		<?php }else if (!$i_vacancy_floor) {?>
-			<div class="warning_message vacancy_message" id="building_no_vacant" ><?php echo trans_text('This building has no vacant.')?></div>
+			<div class="warning_message vacancy_message" id="building_no_vacant" ><?php echo trans_text('Currently fully occupied')?></div>
 		<?php }?>
 	<?php if ($floor['vacancy_info']) {?>
 	<table id="floorsummary" class="basic-table-style">
