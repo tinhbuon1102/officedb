@@ -98,11 +98,11 @@
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 		// Get building info
 		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
-		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
+		$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
 		
 		// Get Floor info
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
-		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$floor = (array)$wpdb->get_row("SELECT * FROM floor WHERE floor_id=".(int)$floor_id);
 		
 		// Get Plan
 		$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id . ' AND plan_picture_id=' . (int)$building['plan_standard_id']);
