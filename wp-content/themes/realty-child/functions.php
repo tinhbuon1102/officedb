@@ -128,7 +128,8 @@ function hide_plugin_order_by_product ()
 	global $wp_list_table;
 	$hidearr = array(
 		'login-with-ajax/login-with-ajax.php',
-		'profile-builder-pro/index.php'
+		'profile-builder-pro/index.php',
+		'smart-slider-3/library/smartslider/smartslider3.php'
 	);
 	$myplugins = $wp_list_table->items;
 	foreach ( $myplugins as $key => $val )

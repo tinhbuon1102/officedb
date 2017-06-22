@@ -260,6 +260,10 @@ class N2SmartSliderSlide {
                 'parseFunction'
             ), $value);
         }
+        if (function_exists('trans_text'))
+        {
+        	$value = trans_text($value);
+        }
         return $value;
     }
 
