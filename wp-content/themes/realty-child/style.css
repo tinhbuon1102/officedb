@@ -947,6 +947,7 @@ section#joinms {
     -ms-transform: skewY(2.5deg);
     -o-transform: skewY(2.5deg);
     transform: skewY(-3.5deg);
+    z-index: -1;
     -webkit-backface-visibility: hidden;
 }
 .n2-ss-slider .n2-ss-layer > div > .sword-wrap {
