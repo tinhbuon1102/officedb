@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-06-21 11:28+0900\n"
+"PO-Revision-Date: 2017-06-22 20:29+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -4907,3 +4907,12 @@ msgstr "Access"
 
 msgid "Vacancy info"
 msgstr "Other spaces available in the building"
+
+msgid "良いビルに入居していると信用度が変わる。"
+msgstr "Better Building, More Credibility"
+
+msgid "例えば自然が街と調和し、公園にいる様な感覚のオフィス"
+msgstr "Office in harmony with nature and cities"
+
+msgid "優秀な人材や情報が集まる場所には、理由がある"
+msgstr "Where Skilled workers and quality information are attracted"
