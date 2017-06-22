@@ -920,21 +920,21 @@ section#joinms {
 .slider-searchbox .chosen-container.chosen-container-single::after {
     line-height: 58px;
 }
-.main-slider div#n2-ss-3-arrow-previous img, .main-slider div#n2-ss-3 .nextend-arrow img {
+.main-slider .nextend-arrow-previous img, .main-slider .n2-ss-slider .nextend-arrow img {
     display: none;
 }
-div#n2-ss-3 .n2-ss-layer {
+.n2-ss-slider .n2-ss-layer {
     bottom: 0px !important;
 	right: 0px !important;
 	width: 100% !important;
     
 }
-div#n2-ss-3 .n2-ss-layer > div {
+.n2-ss-slider .n2-ss-layer > div {
     background: #000;
     padding: 0px 20px 20px;
     position: relative;
 }
-div#n2-ss-3 .n2-ss-layer > div:before {
+.n2-ss-slider .n2-ss-layer > div:before {
     content: '';
     position: absolute;
     left: 0;
@@ -949,15 +949,15 @@ div#n2-ss-3 .n2-ss-layer > div:before {
     transform: skewY(-3.5deg);
     -webkit-backface-visibility: hidden;
 }
-div#n2-ss-3 .n2-ss-layer > div > .sword-wrap {
+.n2-ss-slider .n2-ss-layer > div > .sword-wrap {
 	position: relative;
 	line-height: 60px;
 }
-div#n2-ss-3-arrow-previous, div#n2-ss-3-arrow-next {
+.nextend-arrow-previous, .nextend-arrow-next {
     width: 60px !important;
     height: 60px !important;
 }
-div#n2-ss-3-arrow-previous:before, div#n2-ss-3-arrow-next:before {
+.nextend-arrow-previous:before, .nextend-arrow-next:before {
     position: relative;
     display: block;
     color: #FFF;
@@ -981,13 +981,13 @@ div#n2-ss-3-arrow-previous:before, div#n2-ss-3-arrow-next:before {
 	cursor: pointer;
     transition: all .2s;
 }
-div#n2-ss-3-arrow-previous:hover:before, div#n2-ss-3-arrow-next:hover:before {
+.nextend-arrow-previous:hover:before, .nextend-arrow-next:hover:before {
 	background-color: rgba(0, 0, 0, 0.7);
 }
-div#n2-ss-3-arrow-previous:before {
+.nextend-arrow-previous:before {
     content: "\70";
 }
-div#n2-ss-3-arrow-next:before {
+.nextend-arrow-next:before {
     content: "\73";
 }
 .entry-content .container {
@@ -2481,7 +2481,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.top-header-sidebar {
     font-size: 90%;
 	}
-	div#n2-ss-3 .n2-ss-layers-container {
+	.n2-ss-slider .n2-ss-layers-container {
 		margin-top: 0 !important;
 		height: 100% !important;
 	}
@@ -2494,7 +2494,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.main-slider .slider-searchbox {
     margin-top: -78px;
 	}
-	div#n2-ss-3 .n2-ss-layer {
+	.n2-ss-slider .n2-ss-layer {
 	right: 0px !important;
     bottom: 0px !important;
     font-size: 2em !important;
@@ -2622,10 +2622,10 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 		width: auto !important;
 		margin-left: 0 !important;
 	}
-	div#n2-ss-3 > div {
+	.n2-ss-slider > div {
     height: 100% !important;
 	}
-	div#n2-ss-3 {
+	.n2-ss-slider {
     height: 100% !important;
 	}
 	
@@ -2876,12 +2876,12 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.top-header-sidebar {
     font-size: 12px;
 	}
-	div#n2-ss-3 .n2-ss-layer {
+	.n2-ss-slider .n2-ss-layer {
     position: absolute;
     outline: 1px solid RGBA(0,0,0,0);
     display: none !important;
 	}
-	div#n2-ss-3 .n2-ss-layer > div > .sword-wrap {
+	.n2-ss-slider .n2-ss-layer > div > .sword-wrap {
     font-size: 16px;
     line-height: 30px;
 	}
