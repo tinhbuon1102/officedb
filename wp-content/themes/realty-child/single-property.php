@@ -134,11 +134,13 @@
 		
 		$i_vacancy_floor = 0;
 		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+			$related_property_id = get_the_ID();
 			$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
 			// out if floor has no vacant
 			if (!$related_floor['vacancy_info']) continue;
 			else $i_vacancy_floor ++;
 		endwhile;
+		
 		wp_reset_postdata();
 		
 		
