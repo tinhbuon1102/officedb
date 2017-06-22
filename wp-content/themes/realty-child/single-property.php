@@ -105,7 +105,7 @@
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
 		
 		// Get Plan
-		$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id);
+		$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id . ' AND plan_picture_id=' . (int)$building['plan_standard_id']);
 		$plan_images = array();
 		if (!empty($planPictureResults))
 		{
