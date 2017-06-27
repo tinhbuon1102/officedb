@@ -31,6 +31,28 @@ function formatNumber($number)
 {
 	return number_format($number, 0);
 }
+
+function customOtherThing(){
+	global $wpdb;
+	// Custom Price
+	$offset = (int)$_GET['offset'];
+	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 100;
+	
+	$floors = $wpdb->get_results("SELECT  * FROM floor LIMIT $offset, $limit");
+	
+	foreach ($floors as $floor)
+	{
+		$floorContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_value LIKE '%floor_id\";s:". strlen($floor->floor_id) .":\"". $floor->floor_id ."\"%'");
+		if (!empty($floorContents))
+		{
+			foreach ($floorContents as $floorContent)
+			{
+				update_post_meta($floorContent->post_id, 'estate_property_price', (float)str_replace(',', '.', $floor->rent_unit_price));
+			}
+		}
+	}
+}
+
 function importLocationFromPrefecture () {
 	global $wpdb;
 	// Delete old location;
@@ -275,12 +297,12 @@ function realty_theme_init()
 	// Import new location
 	if (isset($_GET['import_location']))
 	{
-				importLocationFromPrefecture ();
+		importLocationFromPrefecture ();
 	}
 
-	if (isset($_GET['import_specific']))
+	if (isset($_GET['custom_other_thing']))
 	{
-		// 		importSpecific();
+		customOtherThing();
 	}
 
 	if (isset($_GET['api_add_image']))
@@ -781,8 +803,8 @@ function renderPrice($price) {
 	$price = str_replace(',', '.', $price);
 	if ($price)
 	{
-		$price = number_format($price, 0);
-		return '<span class="price_currency">¥</span><span class="price">'.$price.'</span>';
+		$price = strpos($price, '.') === false ? number_format($price, 0) : $price;
+		return '<span class="price_currency">¥</span><span class="price">'.str_replace('.', ',', $price).'</span>';
 	}
 	else {
 		return FIELD_MISSING_VALUE;
@@ -833,8 +855,9 @@ function getListBestPropertyViewed() {
 
 function renderPropertyPrice($property_id, $building, $floor)
 {
+	$property_price = doubleval( get_post_meta( $property_id, 'estate_property_price', true ) );
 	$price = tt_property_price( $property_id );
-	if (!$price)
+	if ($property_price <= 0)
 	{
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
