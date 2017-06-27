@@ -99,6 +99,8 @@
 		// Get building info
 		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
 		$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
+		$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
+		$building['stations'] = $stations;
 		
 		// Get Floor info
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
@@ -380,7 +382,8 @@
 			<tr>
 				<th><?php echo __('Traffic', 'realty')?></th>
 				<td>
-					<?php if ($building['stations']) {
+					<?php 
+					if ($building['stations']) {
 					$i = 0;
 					foreach ($building['stations'] as $station)
 					{
