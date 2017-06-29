@@ -747,6 +747,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			return implode(',', $typeOfUse);
 			break;
+			
+		case 'contract_period_duration' :
+			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
+			break;
+			
 		case 'contract_period':
 			$return = '';
 			if(isset($floor['contract_period_opt']) && $floor['contract_period_opt'] != ""){
