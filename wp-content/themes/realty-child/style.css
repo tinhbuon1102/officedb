@@ -1545,6 +1545,10 @@ section#links {
 	padding: 60px 0;
 }
 /*search result*/
+.search-result-container .page-title, .col-md-4.search-container h2 {
+    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    color: #000;
+}
 .property-excerpt .address {
     background: #000;
     color: #FFF;

@@ -372,6 +372,15 @@
 		</tbody>
 	</table>
 	<?php } ?>
+	</section>
+	<section id="nearbyrate">
+	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>
+	<div class="rate size-large">
+		<?php echo translateBuildingValue('avg_neighbor_fee', $building, $floor, $single_property_id);?>
+	</div>
+	<p class="note-rate">※<?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
+	</section>
+	<section id="property-detail">
 	<h3 class="section-title"><span><?php echo __('Property details', 'realty')?></span></h3>
 	<!--<h3 class="section-title"><span><?php //echo __('Property Summary', 'realty')?></span></h3>-->
 	<table id="bldsummary" class="basic-table-style">
@@ -467,13 +476,7 @@
 		<?php }?>
 	</div>
 	</section>
-	<section id="nearbyrate">
-	<h3 class="section-title"><span><?php echo __('Nearby rate info', 'realty')?></span></h3>
-	<div class="rate size-large">
-		<?php echo translateBuildingValue('avg_neighbor_fee', $building, $floor, $single_property_id);?>
-	</div>
-	<p class="note-rate">※<?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
-	</section>
+	
 		
 		
 		<?php
