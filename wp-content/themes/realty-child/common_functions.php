@@ -153,7 +153,7 @@ function getSearchingCities(){
 	);
 
 	$cities[LANGUAGE_EN] =array (
-		1 => 'Shibuya ku',
+		1 => 'Shibuya-ku',
 		2 => 'Minato-ku',
 		3 => 'Meguro-ku',
 		4 => 'Chuo-ku',
@@ -162,7 +162,7 @@ function getSearchingCities(){
 		7 => 'Shinagawa-ku',
 		8 => 'Taito Ward',
 		9 => 'Toshima-ku',
-		10 => 'Nakano ku',
+		10 => 'Nakano-ku',
 		11 => 'Other',
 	);
 	return $cities;
@@ -229,6 +229,10 @@ function insertTermTranslation($tran_en, $tran_jp, $term_name){
 		$term_en = (array)wp_insert_term( $tran_en, $term_name);
 	}
 		
+	wp_update_term($term_jp->term_id, $term_name, array(
+		'name' => 'Non Catégorisé',
+	));
+	
 		
 	$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
 	
