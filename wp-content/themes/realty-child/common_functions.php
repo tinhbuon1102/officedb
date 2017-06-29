@@ -634,11 +634,6 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'move_in_date' :
 			if ($floor[$field])
 			{
-// 				-year/month/月内 → {Month}.{year} ex) Jul. 2017
-// 				-year/month/上旬→ early {Month}.{year} ex) early Jul. 2017
-// 				-year/month/中旬→ mid {Month}.{year} ex) mid Jul. 2017
-// 				-year/month/下旬→ end {Month}.{year} ex) end Jul. 2017
-// 				-year/month/day→ {Month}.{day}.{year} ex) Jul. 1, 2017
 				if ($current_lang == LANGUAGE_EN)
 				{
 					$aExplodeDate = explode('/', $floor[$field]);
