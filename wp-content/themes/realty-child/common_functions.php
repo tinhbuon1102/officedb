@@ -632,9 +632,51 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 				
 		case 'move_in_date' :
-			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
-			break;
+			if ($floor[$field])
+			{
+// 				-year/month/月内 → {Month}.{year} ex) Jul. 2017
+// 				-year/month/上旬→ early {Month}.{year} ex) early Jul. 2017
+// 				-year/month/中旬→ mid {Month}.{year} ex) mid Jul. 2017
+// 				-year/month/下旬→ end {Month}.{year} ex) end Jul. 2017
+// 				-year/month/day→ {Month}.{day}.{year} ex) Jul. 1, 2017
+				if ($current_lang == LANGUAGE_EN)
+				{
+					$aExplodeDate = explode('/', $floor[$field]);
+					$szDate = isset($aExplodeDate[2]) ? $aExplodeDate[2] : ''; 
+					unset($aExplodeDate[2]);
+					$move_date = strtotime(implode('-', $aExplodeDate));
+					$dateFormatWithoutDate = 'M.Y';
+					$dateFormatWithDate = 'M.d,Y';
+					
+					if (strpos($szDate, '月内') !== false)
+					{
+						$floor[$field] = date($dateFormatWithoutDate, $move_date);
+					}
+					elseif (strpos($szDate, '上旬') !== false)
+					{
+						$floor[$field] = 'Early ' . date($dateFormatWithoutDate, $move_date);
+					}
+					elseif (strpos($szDate, '中旬') !== false)
+					{
+						$floor[$field] = 'Mid ' . date($dateFormatWithoutDate, $move_date);
+					}
+					elseif (strpos($szDate, '下旬') !== false)
+					{
+						$floor[$field] = 'End ' . date($dateFormatWithoutDate, $move_date);
+					}
+					elseif (is_numeric($szDate))
+					{
+						$floor[$field] = date($dateFormatWithDate, $move_date);
+					}
+				}
 				
+				return trans_text($floor[$field]);
+			}
+			else {
+				return FIELD_MISSING_VALUE;
+			}
+			
+			break;
 		case 'built_year' :
 			return ($building[$field] && trim($building[$field]) != '-') ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
 			break;
