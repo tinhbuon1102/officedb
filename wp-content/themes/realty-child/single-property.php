@@ -353,7 +353,7 @@
 				[Floor[unit_condo_fee_opt]]
 				else
 				[Floor[unit_condo_fee]]-->
-				<?php echo $floor['unit_condo_fee'] ? renderPrice($floor['unit_condo_fee']) . '/坪' : translateBuildingValue('unit_condo_fee_opt', $building, $floor, $single_property_id);?>
+				<?php echo $floor['unit_condo_fee'] ? renderPrice($floor['unit_condo_fee']) . trans_text('/坪') : translateBuildingValue('unit_condo_fee_opt', $building, $floor, $single_property_id);?>
 				</td>
 			</tr>
 			<tr>
@@ -361,12 +361,11 @@
 				<td><?php echo renderPrice($floor['total_deposit']);?></td>
 			</tr>
 			<tr>
-				<th><?php echo __('Contract period', 'realty')?></th>
-				<td><?php echo translateBuildingValue('contract_period_duration', $building, $floor, $single_property_id);?></td>
-			</tr>
-			<tr>
 				<th><?php echo __('Contract type', 'realty')?></th>
-				<td><?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?></td>
+				<td>
+					<?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?>
+					<?php echo translateBuildingValue('contract_period_duration', $building, $floor, $single_property_id);?>
+				</td>
 			</tr>
 			<tr>
 				<th><?php echo __('Date of occupancy', 'realty')?></th>
