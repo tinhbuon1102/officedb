@@ -53,6 +53,38 @@ function customOtherThing(){
 	}
 }
 
+function changeNewsTitle(){
+	$recent_posts = wp_get_recent_posts(array(
+		'post_type' => 'news',
+		'posts_per_page' => -1,
+		's' => 'has new vacancy',
+		'orderby' => array( 'post_modified' => 'DESC' )
+	));
+	foreach ($recent_posts as $recent_post)
+	{
+		$my_post = array(
+			'ID'           => $recent_post['ID'],
+			'post_title'   => str_replace('has new vacancy', '', str_replace('に新しい空室が出ました', '', $recent_post['post_title'])),
+		);
+		wp_update_post( $my_post );
+	}
+	
+	$recent_posts = wp_get_recent_posts(array(
+		'post_type' => 'news',
+		'posts_per_page' => -1,
+		's' => 'に新しい空室が出ました',
+		'orderby' => array( 'post_modified' => 'DESC' )
+	));
+	foreach ($recent_posts as $recent_post)
+	{
+		$my_post = array(
+			'ID'           => $recent_post['ID'],
+			'post_title'   => str_replace('has new vacancy', '', str_replace('に新しい空室が出ました', '', $recent_post['post_title'])),
+		);
+		wp_update_post( $my_post );
+	}
+}
+
 function importLocationFromPrefecture () {
 	global $wpdb;
 	// Delete old location;
@@ -308,6 +340,11 @@ function realty_theme_init()
 	{
 		customOtherThing();
 	}
+	
+	if (isset($_GET['change_news_title']))
+	{
+		changeNewsTitle();
+	}
 
 	if (isset($_GET['api_add_image']))
 	{
@@ -375,6 +412,10 @@ function realty_posts_orderby_request( $orderby, &$query )
 	else if (isset($query->query['is_similar']) && $query->query['is_similar'])
 	{
 		$orderby = "ABS (CAST(wp_postmeta.meta_value AS CHAR) - ".$query->query['similar_size'].") " . $query->query['orderby']['size_clause'];
+	}
+	
+	if ($query->query['post_type'] == 'news') {
+		$orderby = "post_modified DESC";
 	}
 	return $orderby;
 }
@@ -1068,3 +1109,4 @@ function realty_post_type_link($permalink, $post, $leavename)
 	}
 	return $permalink;
 }
+

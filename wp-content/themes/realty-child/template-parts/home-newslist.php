@@ -3,10 +3,20 @@
 $recent_posts = wp_get_recent_posts(array(
 	'post_type' => 'news',
 	'posts_per_page' => 3,
+	'orderby' => array( 'post_modified' => 'DESC' )
 ));
 
 foreach ( $recent_posts as $recent )
 {
+	$floor_vacancy = get_post_meta($recent['ID'], 'floor_vacancy', true);
+	if ($floor_vacancy)
+	{
+		$recent['post_title'] .= trans_text( ' has new vacancy');
+	}
+	else {
+		$recent['post_title'] .= trans_text( ' is added newly');
+	}
+	
 	$building_id = get_post_meta($recent['ID'], 'jpdb_building_id', true);
 	if ($building_id)
 	{
@@ -45,7 +55,7 @@ foreach ( $recent_posts as $recent )
 		<div class="inner">
 			<div class="con-inner">
 				<div class="post-date"><?php echo renderJapaneseDate($recent['post_date'])?></div>
-				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?><?php $locale = get_locale(); /* get current locale */ ?><?php if ('en_US' == $locale  ) : /* English */?>&nbsp;<?php else:  /* Japanese */ ?><?php endif; ?><?php esc_html_e( 'is added newly', 'realty' ); ?></a></div>
+				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?></a></div>
 				<div class="meta">
 					<?php echo $cat_name?>&nbsp;|&nbsp;
 					<span class="common-cat">NEWS</span>
