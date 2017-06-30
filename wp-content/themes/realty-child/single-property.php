@@ -361,10 +361,12 @@
 				<td><?php echo renderPrice($floor['total_deposit']);?></td>
 			</tr>
 			<tr>
+				<th><?php echo __('Contract period', 'realty')?></th>
+				<td><?php echo translateBuildingValue('contract_period_duration', $building, $floor, $single_property_id);?></td>
+			</tr>
+			<tr>
 				<th><?php echo __('Contract type', 'realty')?></th>
-				<td>
-					<span class="contract_period"><?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?></span>
-				</td>
+				<td><?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Date of occupancy', 'realty')?></th>

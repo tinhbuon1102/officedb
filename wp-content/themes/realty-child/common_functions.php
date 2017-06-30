@@ -809,9 +809,6 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				$return .=  trans_text('<br>年数相談');
 			}
 				
-			if(isset($floor['contract_period_duration']) && $floor['contract_period_duration'] != ''){
-				$return .=  '<br>'.$floor['contract_period_duration'] . ' ' .  trans_text('年');
-			}
 			return $return;
 			break;
 			
