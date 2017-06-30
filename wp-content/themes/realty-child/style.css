@@ -455,6 +455,10 @@ ul#menu-main-menu:after {
 iframe#customer-chat-iframe {
     z-index: 999 !important;
 }
+.letter-home-word {
+	display: block;
+}
+
 @media (min-width: 992px) {
 	.property-meta.custom-meta-list {
     min-height: 50px;
