@@ -11,10 +11,10 @@ foreach ( $recent_posts as $recent )
 	$floor_vacancy = get_post_meta($recent['ID'], 'floor_vacancy', true);
 	if ($floor_vacancy)
 	{
-		$recent['post_title'] .= trans_text( ' has new vacancy');
+		$recent['post_title'] .= ' ' .  trans_text( 'has new vacancy');
 	}
 	else {
-		$recent['post_title'] .= trans_text( ' is added newly');
+		$recent['post_title'] .= ' ' .  trans_text( 'is added newly');
 	}
 	
 	$building_id = get_post_meta($recent['ID'], 'jpdb_building_id', true);

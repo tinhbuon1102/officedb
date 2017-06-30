@@ -11,10 +11,10 @@ $news_url = get_permalink($news_post);
 $floor_vacancy = get_post_meta($news_post->ID, 'floor_vacancy', true);
 if ($floor_vacancy)
 {
-	$news_post->post_title .= trans_text( ' has new vacancy');
+	$news_post->post_title .= ' ' .  trans_text( 'has new vacancy');
 }
 else {
-	$news_post->post_title .= trans_text( ' is added newly');
+	$news_post->post_title .= ' ' .  trans_text( 'is added newly');
 }
 ?>
 <article id="post-<?php $news_post->ID; ?>" <?php post_class('', $news_post->ID); ?>>
