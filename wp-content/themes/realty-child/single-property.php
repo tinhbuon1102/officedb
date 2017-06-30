@@ -130,7 +130,8 @@
 					'value' => $building_id,
 					'compare' => '=',
 				)
-			)
+			),
+			'orderby' => array( 'floor_up' => 'ASC', 'floor_down' => 'ASC' )
 		);
 		$query_floors_results = new WP_Query($buildingArgs);
 		
