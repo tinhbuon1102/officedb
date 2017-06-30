@@ -101,11 +101,19 @@ function getHomeFeaturedCol($col)
 			break;
 			
 		case 2:
+			$aProperty_title = explode(' ', the_title());
 			?>
 			<div class="order2 wpb_column vc_column_container vc_col-sm-4">
 				<div class="vc_column-inner ">
 					<div class="wpb_wrapper">
-						<h3 class="vc_custom_heading fontbig"><?php the_title()?></h3>
+						<h3 class="vc_custom_heading fontbig">
+							<?php 
+							foreach ($aProperty_title as $property_title)
+							{
+								echo '<span class="letters-'. strlen($property_title) .'"></span>';
+							}
+							?>
+						</h3>
 					</div>
 				</div>
 			</div>
