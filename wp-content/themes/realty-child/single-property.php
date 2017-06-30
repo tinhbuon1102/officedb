@@ -131,7 +131,7 @@
 					'compare' => '=',
 				)
 			),
-			'orderby' => array( 'floor_up' => 'ASC', 'floor_down' => 'ASC' )
+			'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
 		);
 		$query_floors_results = new WP_Query($buildingArgs);
 		
