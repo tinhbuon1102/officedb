@@ -373,6 +373,13 @@
 				<th><?php echo __('Date of occupancy', 'realty')?></th>
 				<td><?php echo translateBuildingValue('move_in_date', $building, $floor, $single_property_id);?></td>
 			</tr>
+			<tr>
+			<th><?php echo __('Floor Material', 'realty')?></th>
+			<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
+			</tr>
+			<tr>
+			<th><?php echo __('Ceiling Height', 'realty')?></th>
+			<td data-th="<?php echo __('Ceiling Height', 'realty')?>"><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
 			</tr>
 		</tbody>
 	</table>
@@ -460,12 +467,7 @@
 			<th><?php echo __('Security', 'realty')?></th>
 			<td data-th="<?php echo __('Security', 'realty')?>"><?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?></td>
 			</tr>
-			<tr>
-			<th><?php echo __('Floor Material', 'realty')?></th>
-			<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
-			<th><?php echo __('Ceiling Height', 'realty')?></th>
-			<td data-th="<?php echo __('Ceiling Height', 'realty')?>"><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
-			</tr>
+			
 			<tr>
 			<th colspan="1"><?php echo __('Renewal', 'realty')?></th>
 			<td data-th="<?php echo __('Renewal', 'realty')?>" colspan="3"><?php echo translateBuildingValue('renewal_data', $building, $floor, $single_property_id);?></td>
@@ -610,7 +612,7 @@
 				<div class="col-sm-12">
 			<?php }	?>
 
-			<div id="main-content">
+			<div id="main-content" class="similar-wrap">
 				<div class="modal fade modal-custom" id="contact_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">

@@ -456,6 +456,13 @@ iframe#customer-chat-iframe {
     z-index: 999 !important;
 }
 @media (min-width: 992px) {
+	.property-meta.custom-meta-list {
+    min-height: 50px;
+	}
+	
+	#similar-properties .property-items .property-item .property-meta {
+		min-height: 80px;
+	}
 	.top-header-sidebar.lang-switch {
 	float: right;
 	padding-right: 20px;
@@ -1117,6 +1124,10 @@ ul.typeahead__list .result-column {
     min-height: 42px;
 }
 /*single property*/
+.single-property #main-content.similar-wrap {
+    padding-left: 0;
+    padding-right: 0;
+}
 table.fixTable {
     table-layout: fixed;
 	width: 100%;
@@ -2732,6 +2743,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.news .entry-header .header-content {
     margin-bottom: 10px;
 	}
+	
 }
 @media (max-width: 767px) {
 	.contact_list_later .floor_rent, .contact_list_later .floor_deposit, .contact_list_later .floor_date_move, .contact_list_later .floor_area {
