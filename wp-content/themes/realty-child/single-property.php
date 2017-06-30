@@ -364,7 +364,6 @@
 				<th><?php echo __('Contract type', 'realty')?></th>
 				<td>
 					<span class="contract_period"><?php echo translateBuildingValue('contract_period', $building, $floor, $single_property_id);?></span>
-					<span class="contract_period_duration"><?php echo translateBuildingValue('contract_period_duration', $building, $floor, $single_property_id);?></span>
 				</td>
 			</tr>
 			<tr>
