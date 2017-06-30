@@ -57,7 +57,6 @@ function changeNewsTitle(){
 	$recent_posts = wp_get_recent_posts(array(
 		'post_type' => 'news',
 		'posts_per_page' => -1,
-		's' => 'has new vacancy',
 		'orderby' => array( 'post_modified' => 'DESC' )
 	));
 	foreach ($recent_posts as $recent_post)
@@ -72,7 +71,6 @@ function changeNewsTitle(){
 	$recent_posts = wp_get_recent_posts(array(
 		'post_type' => 'news',
 		'posts_per_page' => -1,
-		's' => 'に新しい空室が出ました',
 		'orderby' => array( 'post_modified' => 'DESC' )
 	));
 	foreach ($recent_posts as $recent_post)
