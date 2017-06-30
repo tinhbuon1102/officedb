@@ -54,7 +54,7 @@ foreach ( $recent_posts as $recent )
 <li class="col-sm-4">
 		<div class="inner">
 			<div class="con-inner">
-				<div class="post-date"><?php echo renderJapaneseDate($recent['post_date'])?></div>
+				<div class="post-date"><?php echo renderJapaneseDate($recent['post_modified'])?></div>
 				<div class="title"><a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>"><?php echo $recent["post_title"]?></a></div>
 				<div class="meta">
 					<?php echo $cat_name?>&nbsp;|&nbsp;

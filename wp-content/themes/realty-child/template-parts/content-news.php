@@ -36,7 +36,7 @@ else {
 		<?php endif; ?>
 
 		<div class="header-meta clearfix">
-			<div class="meta"><?php echo $cat_name?>&nbsp;|&nbsp;<span class="post-date"><?php echo renderJapaneseDate($news_post->post_date)?><?php //echo get_post_time('F d, Y', $news_post->ID); ?></span></div>
+			<div class="meta"><?php echo $cat_name?>&nbsp;|&nbsp;<span class="post-date"><?php echo renderJapaneseDate($news_post->post_modified)?><?php //echo get_post_time('F d, Y', $news_post->ID); ?></span></div>
 		</div>
 
 	</div>
