@@ -110,7 +110,7 @@ function getHomeFeaturedCol($col)
 							<?php 
 							foreach ($aProperty_title as $property_title)
 							{
-								echo '<span class="letters-'. strlen($property_title) .'"></span>';
+								echo '<span class="letters-'. strlen($property_title) .'">'.$property_title.'</span>';
 							}
 							?>
 						</h3>
