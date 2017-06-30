@@ -1065,6 +1065,9 @@ i.add-to-contact.origin.fa.howcons-clipboard-remove2:before {
 .property-item .property-price .property-icons i.icon-hot-topic {
     display: none;
 }
+.property-item .property-price .property-icons i:last-child {
+    margin-right: 0;
+}
 .property-item .property-price .property-icons > span {
     display: inline-block;
 }
@@ -1605,6 +1608,10 @@ section#links {
 }
 .property-item .property-price .property-icons > span, .property-item .property-price .property-icons i {
 	vertical-align: middle;
+	margin-right: 5px;
+}
+.property-item .property-price .property-icons i:last-child {
+	margin-right: 0px;
 }
 .property-item .property-price i:hover {
     color: #000;
@@ -1636,9 +1643,13 @@ section#latestnews {
 .news .entry-title {
 	line-height: 1.4;
     margin-bottom: 15px;
-	font-size: 2em;
-    font-weight: 300;
+	font-size: 1.6em;
+    font-weight: 500;
     font-family: "heisei-mincho-stdn", "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+.news .entry-title a {
+	color: #000;
 }
 body.post-type-archive-news .header-meta > div {
     display: inline-block;
@@ -1647,12 +1658,13 @@ body.post-type-archive-news .header-meta .meta {
     font-weight: 300;
     letter-spacing: 1px;
     font-size: 12px;
-	float: right;
+}
+body.post-type-archive-news .header-meta .meta .post-date {
+	font-size: 1em;
 }
 body.post-type-archive-news a.check_now {
     font-size: 1.2em;
     display: inline-block;
-    margin-top: 15px;
 }
 .type-news .header-media {
     overflow: hidden;
@@ -1718,10 +1730,37 @@ a.check_now {
 	color: #7F7F7F;
 }
 .news .entry-header .header-content {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 .news-archive article {
+	width: 100%;
     margin-bottom: 60px;
+	display: table;
+	    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+	
+}
+.news-archive article .entry-header, .news-archive article .header-media {
+	display: table-cell;
+	vertical-align: middle;
+	height: auto;
+}
+.news-archive article .entry-header {
+    padding-left: 20px;
+}
+.news-archive article .header-media {
+	width: 120px;
+}
+.title-wrap-news.style_a .big-title {
+    padding-top: 0px;
+}
+.title-wrap-news {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #000;
+}
+.title-wrap-news.style_a .ja-title {
+	margin-bottom: 0;
 }
 ul.latest-news-list.row {
     margin-bottom: 0;
@@ -2676,7 +2715,12 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	#footer .textwidget .list-info {
     font-size: 1.6em;
 	}
-	
+	.news-archive article .header-media {
+	width: 80px;
+	}
+	.news .entry-title {
+    font-size: 1.2em;
+	}
 }
 @media (min-width: 768px) {
 	.sp-fixfooter {
@@ -2684,6 +2728,9 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	}
 	section#map-head {
     margin-top: -40px;
+	}
+	.news .entry-header .header-content {
+    margin-bottom: 10px;
 	}
 }
 @media (max-width: 767px) {

@@ -1,7 +1,20 @@
 <?php get_header(); ?>
 <div class="container news-archive">
+<div class="vc_row vc_row-fluid style_a boxed title-wrap-news">
+<div class="wpb_column vc_column_container vc_col-sm-12">
+<div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+			<h1 class="big-title">News</h1>
+<p class="ja-title">新着情報</p>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-12">
 	<div class="search-results-header clearfix">
 
 		<?php if ( have_posts() ) : ?>
@@ -48,9 +61,9 @@
 
 	</div>
 </div>
-<div class="col-sm-4">
-<?php get_sidebar(); ?>
-</div>
+<!--<div class="col-sm-4">
+<?php //get_sidebar(); ?>
+</div>-->
 </div>
 
 </div>
