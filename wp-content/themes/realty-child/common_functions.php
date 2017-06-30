@@ -64,7 +64,7 @@ function changeNewsTitle(){
 	{
 		$my_post = array(
 			'ID'           => $recent_post['ID'],
-			'post_title'   => str_replace('has new vacancy', '', str_replace('に新しい空室が出ました', '', $recent_post['post_title'])),
+			'post_title'   => str_replace('has new vacancy', '', str_replace('に新しい空室が出ました', '', str_replace('。', '', $recent_post['post_title']))),
 		);
 		wp_update_post( $my_post );
 	}
