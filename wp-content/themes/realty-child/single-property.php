@@ -383,6 +383,8 @@
 			</tr>
 		</tbody>
 	</table>
+	<p class="note-word"><?php if (isEnglish()) { echo __('*Common Area Management Fee', 'realty'); }?></p>
+	
 	<?php } ?>
 	</section>
 	<section id="nearbyrate">
