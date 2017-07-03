@@ -750,15 +750,14 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			$elevatorExp = explode('-',$building['elevator']);
 			$return = '';
 			if($elevatorExp[0] == 1){
-				$return .= trans_text('Exists');
 				if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "")
-					$return .= '(';
-					$return .= isset($elevatorExp[1]) && $elevatorExp[1] != "" ? $elevatorExp[1].trans_text('Group') : "";
-					$return .= isset($elevatorExp[2]) && $elevatorExp[2] != "" ? '/'.$elevatorExp[2].trans_text('Human power') : "";
-					$return .= isset($elevatorExp[3]) && $elevatorExp[3] != "" ? $elevatorExp[3].trans_text('For basic loading') : "";
-					$return .= isset($elevatorExp[4]) && $elevatorExp[4] != "" ? $elevatorExp[4].trans_text('Human power') : "";
-					$return .= isset($elevatorExp[5]) && $elevatorExp[5] != "" ? $elevatorExp[5]. trans_text('Group') : "";
-					if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "") $return .= ')';
+// 					$return .= '(';
+					$return .= isset($elevatorExp[1]) && $elevatorExp[1] != "" ? $elevatorExp[1].trans_text('ELV(s)') : trans_text('Exists');
+// 					$return .= isset($elevatorExp[2]) && $elevatorExp[2] != "" ? '/'.$elevatorExp[2].trans_text('Human power') : "";
+// 					$return .= isset($elevatorExp[3]) && $elevatorExp[3] != "" ? $elevatorExp[3].trans_text('For basic loading') : "";
+// 					$return .= isset($elevatorExp[4]) && $elevatorExp[4] != "" ? $elevatorExp[4].trans_text('Human power') : "";
+// 					$return .= isset($elevatorExp[5]) && $elevatorExp[5] != "" ? $elevatorExp[5]. trans_text('Group') : "";
+// 					if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "") $return .= ')';
 			}else if($elevatorExp[0] == -2){
 				$return .= trans_text('Unknown');
 			}else if($elevatorExp[0] == 2){
@@ -772,7 +771,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'parking_unit_no' :
 			$parkingUnitNo = explode('-', $building['parking_unit_no']);
 			if($parkingUnitNo[0] == 1){
-				return trans_text('Exists').($parkingUnitNo[1] != "" ? '('.$parkingUnitNo[1].' '.trans_text('Stand').')' : "");
+				return ($parkingUnitNo[1] != "" ? $parkingUnitNo[1] : trans_text('Exists'));
 			}else if($parkingUnitNo[0] == 2){
 				return trans_text('No exists');
 			}else if($parkingUnitNo[0] == 3){
