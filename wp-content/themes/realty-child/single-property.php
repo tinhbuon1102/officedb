@@ -375,7 +375,7 @@
 			</tr>
 			<tr>
 			<th><?php echo __('Floor Material', 'realty')?></th>
-			<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('floor_material', $building, $floor, $single_property_id);?></td>
+			<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('oa_type', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 			<th><?php echo __('Ceiling Height', 'realty')?></th>
