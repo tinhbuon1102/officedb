@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-06-30 16:32+0900\n"
+"PO-Revision-Date: 2017-07-03 09:13+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgstr ""
 
 #: lib/functions-add-to-follow.php:62 lib/functions-add-to-follow.php:94
 msgid "Unsubscribe From Email Updates"
-msgstr ""
+msgstr "この物件の更新情報をメールで受け取るのをやめる"
 
 #: lib/functions-add-to-follow.php:65 lib/functions-add-to-follow.php:69
 #: lib/functions-add-to-follow.php:98

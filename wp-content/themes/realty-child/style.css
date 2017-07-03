@@ -835,6 +835,11 @@ section#feature .wpb_single_image .vc_figure {
     width: 998px;
 	}
 }
+#property-items-featured h3.spancount-5 .letters-4:first-child, #property-items-featured h3.spancount-5 .letters-4:nth-child(2) {
+    font-size: .8em;
+    display: inline-block;
+    padding-right: 10px;
+}
 h2.section-title, body.ja h2.section-title {
 	margin-bottom: 60px;
     font-family: "futura-pt",sans-serif;
@@ -2505,6 +2510,9 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     background: #000;
 	}
 }
+#property-items-featured h3 .letters-8, #property-items-featured h3 .letters-9 {
+    font-size: .8em;
+	}
 @media (max-width: 767px) {
 	.flex-sm {
 	display: -webkit-box;
