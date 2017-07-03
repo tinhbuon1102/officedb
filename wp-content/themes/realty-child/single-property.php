@@ -374,12 +374,16 @@
 				<td><?php echo translateBuildingValue('move_in_date', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
-			<th><?php echo __('Floor Material', 'realty')?></th>
-			<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('oa_type', $building, $floor, $single_property_id);?></td>
+				<th><?php echo __('Floor Material', 'realty')?></th>
+				<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('oa_type', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
-			<th><?php echo __('Ceiling Height', 'realty')?></th>
-			<td data-th="<?php echo __('Ceiling Height', 'realty')?>"><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
+				<th><?php echo __('Floor Height', 'realty')?></th>
+				<td data-th="<?php echo __('Floor Height', 'realty')?>"><?php echo translateBuildingValue('oa_height', $building, $floor, $single_property_id);?></td>
+			</tr>
+			<tr>
+				<th><?php echo __('Ceiling Height', 'realty')?></th>
+				<td data-th="<?php echo __('Ceiling Height', 'realty')?>"><?php echo translateBuildingValue('ceiling_height', $building, $floor, $single_property_id);?></td>
 			</tr>
 		</tbody>
 	</table>
@@ -450,7 +454,9 @@
 			</tr>
 			<tr>
 			<th><?php echo __('Total Area', 'realty')?></th>
-			<td data-th="<?php echo __('Total Area', 'realty')?>"><!--show total_rent_space_unit--></td>
+			<td data-th="<?php echo __('Total Area', 'realty')?>">
+				<?php echo translateBuildingValue('total_rent_space_unit', $building, $floor, $single_property_id);?>
+			</td>
 			<th><?php echo __('Typical floor area', 'realty')?></th>
 			<td data-th="<?php echo __('Typical floor area', 'realty')?>"><?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?></td>
 			</tr>

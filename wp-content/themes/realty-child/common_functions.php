@@ -29,7 +29,15 @@ function isEnglish(){
 
 function formatNumber($number)
 {
-	return number_format($number, 0);
+	$number = str_replace(',', '', $number);
+	
+	$aNumber = explode('.', $number);
+	if (isset($aNumber[1]))
+		$decimal = strlen($aNumber[1]);
+	else 
+		$decimal = 0;
+	
+	return number_format($number, $decimal);
 }
 
 function customOtherThing(){
@@ -598,6 +606,28 @@ function translateStationLine($line)
 	return $line;
 }
 
+function explodeRangeValue($string, $subfix = ''){
+	//total_rent_space_unit
+	$aString = array();
+	
+	$string = str_replace(' ', '', $string);
+	preg_match('/[~|-|～]/u', $string, $matches);
+	
+	if (count($matches))
+	{
+		$aString = explode($matches[0], $string);
+	}else {
+		$matches[0] = '';
+		$aString[] = $string;
+	}
+	
+	foreach ($aString as &$subData)
+	{
+		$subData = formatNumber($subData) . $subfix; 
+	}
+	return implode($matches[0], $aString);
+}
+
 function translateBuildingValue($field, $building, $floor, $property_id){
 	global $wpdb;
 	$field = trim($field);
@@ -606,7 +636,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 	{
 		case "area_ping":
 			if (!$floor['area_m']) return FIELD_MISSING_VALUE;
-			return $current_lang == LANGUAGE_EN ? $floor['area_m'].AREA_M2 : $floor[$field].trans_text('tsubo');
+			return $current_lang == LANGUAGE_EN ? formatNumber($floor['area_m']).AREA_M2 : formatNumber($floor[$field]).trans_text('tsubo');
 			break;
 				
 		case 'floor_up_down' :
@@ -716,9 +746,13 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 				
 		case 'total_floor_space':
-			return $building[$field] ? formatNumber($building[$field]) . AREA_M2 : FIELD_MISSING_VALUE;
+			return $building[$field] ? explodeRangeValue($building[$field], AREA_M2) : FIELD_MISSING_VALUE;
 			break;
 				
+		case 'total_rent_space_unit':
+			return $building[$field] ? explodeRangeValue($building[$field], AREA_M2) : FIELD_MISSING_VALUE;
+			break;
+			
 		case 'earth_quake_res_std' :
 			switch ($building[$field])
 			{
@@ -856,6 +890,10 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		
 		case 'oa_type':
 			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
+			break;
+		
+		case 'oa_height':
+			return $floor[$field] ? trans_text(formatNumber($floor[$field])) . 'mm' : FIELD_MISSING_VALUE;
 			break;
 			
 		case 'ceiling_height':

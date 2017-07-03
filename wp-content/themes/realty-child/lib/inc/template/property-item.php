@@ -24,7 +24,7 @@ if ( ! tt_is_array_empty( $google_maps ) ) {
 	$address = null;
 }
 
-$size = get_post_meta( $property_id, 'estate_property_size', true );
+$size = formatNumber(get_post_meta( $property_id, 'estate_property_size', true ));
 $size_unit = get_post_meta( $property_id, 'estate_property_size_unit', true );
 $size_unit = trans_text($size_unit == 'm2' ? AREA_M2 : $size_unit);
 
@@ -37,13 +37,14 @@ if ( ! empty( $size ) ) {
 	}
 }
 
-// Get building info
 $building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
-$building = get_post_meta($property_id, BUILDING_TYPE_CONTENT, true);
+$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
+$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
+$building['stations'] = $stations;
 
 // Get Floor info
 $floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
-$floor = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
+$floor = (array)$wpdb->get_row("SELECT * FROM floor WHERE floor_id=".(int)$floor_id);
 
 $post_title = (isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all') || (isset($show_floor_title) && $show_floor_title) ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
 
