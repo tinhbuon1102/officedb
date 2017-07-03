@@ -117,23 +117,33 @@ if ( ! function_exists( 'tt_google_maps' ) ) {
 						}
 						?>
 
-						<?php if ( ! empty( $address ) ) { ?>
+						<?php if ( ! empty( $address ) || ($latitude && $longitude) ) { ?>
 
-			  		var address = "<?php echo $address; ?>";
+						<?php if ( $latitude != 0 && $longitude != 0 ) { ?>
+							var latLng = new google.maps.LatLng(<?php echo  $latitude; ?>, <?php echo $longitude; ?>);
+							map_<?php echo $id; ?>.setCenter(latLng);
+							
+						<?php } else { ?>
+							getLatLng(function(latLng) {
+								var address = "<?php echo $address; ?>";
 
-						geocoder = new google.maps.Geocoder();
+								geocoder = new google.maps.Geocoder();
 
-						geocoder.geocode( { "address": address}, function(results, status) {
+								geocoder.geocode( { "address": address}, function(results, status) {
 
-					    if (status == google.maps.GeocoderStatus.OK) {
+								    if (status == google.maps.GeocoderStatus.OK) {
 
-					      map_<?php echo $id; ?>.setCenter(results[0].geometry.location);
-
-								<?php if ( $latitude && $longitude ) { ?>
-							  	var latLng = new google.maps.LatLng(<?php echo  $latitude; ?>, <?php echo $longitude; ?>);
-							  <?php } else { ?>
-							  	var latLng = results[0].geometry.location;
-							  <?php } ?>
+							    	  var latLng = results[0].geometry.location;
+								      map_<?php echo $id; ?>.setCenter(latLng);
+								    }
+								    else {
+								    	alert("Geocode was not successful for the following reason: " + status);
+									}
+							    });
+								map_<?php echo $id; ?>.setCenter(latLng);
+							});
+						<?php } ?>
+						
 
 					      var marker = new google.maps.Marker({
 				          map: map_<?php echo $id; ?>,
@@ -181,7 +191,7 @@ if ( ! function_exists( 'tt_google_maps' ) ) {
 
 									// Show infobox initially
 								  infobox.open(map_<?php echo $id; ?>, marker);
-								  map_<?php echo $id; ?>.panTo(results[0].geometry.location);
+								  map_<?php echo $id; ?>.panTo(latLng);
 
 								  <?php if ( $i == $count_addresses ) { ?>
 										infobox.show();
@@ -200,11 +210,6 @@ if ( ! function_exists( 'tt_google_maps' ) ) {
 
 						  	}
 
-					    } else {
-					      alert("Geocode was not successful for the following reason: " + status);
-					    }
-
-					  }); // geocode
 
 						i++;
 
@@ -245,9 +250,6 @@ if ( ! function_exists( 'tt_google_maps' ) ) {
 			<?php } ?>
 
 			<div class="google-map" id="map_<?php echo $id; ?>" style="width: 100%; height: <?php echo $height . 'px'; ?>"></div>
-				<div class="loader-container">
-					<div class="svg-loader"></div>
-				</div>
 			</div>
 
 		</div>

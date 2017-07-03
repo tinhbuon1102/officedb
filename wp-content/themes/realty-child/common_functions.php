@@ -853,6 +853,10 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'floor_material':
 			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
 			break;
+		
+		case 'oa_type':
+			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
+			break;
 			
 		case 'ceiling_height':
 			return $floor[$field] ? trans_text(formatNumber($floor[$field])) . 'mm' : FIELD_MISSING_VALUE;
