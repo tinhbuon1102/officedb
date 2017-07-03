@@ -394,17 +394,16 @@
 	</div>
 	<p class="note-rate">※<?php echo __('1坪辺りの共益費込み賃料の目安', 'realty')?></p>
 	</section>
-	<section id="property-detail">
+	<section id="property-details">
 	<h3 class="section-title"><span><?php echo __('Property details', 'realty')?></span></h3>
-	<!--<h3 class="section-title"><span><?php //echo __('Property Summary', 'realty')?></span></h3>-->
-	<table id="bldsummary" class="basic-table-style">
+	<table class="fixTable">
 		<tbody>
-			<tr>
-				<th><?php echo __('Address', 'realty')?></th><td><?php echo $google_maps['address']?></td>
+		<tr>
+				<th colspan="1"><?php echo __('Address', 'realty')?></th><td data-th="<?php echo __('Address', 'realty')?>" colspan="3"><?php echo $google_maps['address']?></td>
 			</tr>
 			<tr>
-				<th><?php echo __('Traffic', 'realty')?></th>
-				<td>
+				<th colspan="1"><?php echo __('Traffic', 'realty')?></th>
+				<td data-th="<?php echo __('Traffic', 'realty')?>" colspan="3">
 					<?php 
 					if ($building['stations']) {
 					$i = 0;
@@ -429,27 +428,31 @@
 					?>
 				</td>
 			<tr>
-				<th><?php echo __('Structure', 'realty')?></th>
-				<td>
+				<th colspan="1"><?php echo __('Structure', 'realty')?></th>
+				<td data-th="<?php echo __('Structure', 'realty')?>" colspan="3">
 				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
 					<?php echo translateBuildingValue('construction_type_name', $building, $floor, $single_property_id)?>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="1"><?php echo __('Scale', 'realty')?></th>
+				<td data-th="<?php echo __('Scale', 'realty')?>" colspan="3">
+				<?php $scaleFloor = explode('-', $building['floor_scale']);?>
 					<?php echo sprintf(trans_text('below ground %s'),(isset($scaleFloor[1]) && $scaleFloor[1]) ? $scaleFloor[1] : '-');?>
 					<?php echo FIELD_MISSING_VALUE . ' ' . sprintf(trans_text('above ground %s'),(isset($scaleFloor[0]) && $scaleFloor[0]) ? $scaleFloor[0] : '-');?>
 				</td>
 			</tr>
-			</tr>
-		</tbody>
-	</table>
-	</section>
-	<section id="property-details">
-	<!--<h3 class="section-title"><span><?php //echo __('Property details', 'realty')?></span></h3>-->
-	<table class="fixTable">
-		<tbody>
 			<tr>
 			<th><?php echo __('Established', 'realty')?></th>
 			<td data-th="<?php echo __('Established', 'realty')?>"><?php echo translateBuildingValue('built_year', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Gross floor area', 'realty')?></th>
 			<td data-th="<?php echo __('Gross floor area', 'realty')?>"><?php echo translateBuildingValue('total_floor_space', $building, $floor, $single_property_id);?></td>
+			</tr>
+			<tr>
+			<th><?php echo __('Total Area', 'realty')?></th>
+			<td data-th="<?php echo __('Total Area', 'realty')?>"><!--show total_rent_space_unit--></td>
+			<th><?php echo __('Typical floor area', 'realty')?></th>
+			<td data-th="<?php echo __('Typical floor area', 'realty')?>"><?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 			<th><?php echo __('Earthquake proof', 'realty')?></th>
@@ -460,12 +463,6 @@
 			<tr>
 			<th><?php echo __('Parking', 'realty')?></th>
 			<td data-th="<?php echo __('Parking', 'realty')?>"><?php echo translateBuildingValue('parking_unit_no', $building, $floor, $single_property_id);?></td>
-			<th><?php echo __('Optical cable', 'realty')?></th>
-			<td data-th="<?php echo __('Optical cable', 'realty')?>"><?php echo translateBuildingValue('opticle_cable', $building, $floor, $single_property_id);?></td>
-			</tr>
-			<tr>
-			<th><?php echo __('Typical floor area', 'realty')?></th>
-			<td data-th="<?php echo __('Typical floor area', 'realty')?>"><?php echo translateBuildingValue('std_floor_space', $building, $floor, $single_property_id);?></td>
 			<th><?php echo __('Security', 'realty')?></th>
 			<td data-th="<?php echo __('Security', 'realty')?>"><?php echo translateBuildingValue('security_id', $building, $floor, $single_property_id);?></td>
 			</tr>

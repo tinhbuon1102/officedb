@@ -875,7 +875,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					$construction = $building[$field];
 				}
 			}
-			return $construction ? $construction . ' / ' : '';
+			return $construction ? $construction . '' : '';
 			break;
 			
 		default :
