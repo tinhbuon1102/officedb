@@ -79,6 +79,9 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 function getHomeFeaturedCol($col)
 {
 	global $post;
+	$google_maps = get_post_meta( get_the_ID(), 'estate_property_google_maps', true );
+	$building = getBuilding(get_the_ID());
+	
 	switch($col)
 	{
 		case 1:
@@ -117,8 +120,20 @@ function getHomeFeaturedCol($col)
 									
 										<?php echo realty_excerpt(PROPERTY_HOME_FEATURE_CONTENT_LIMIT);?>
 										<ul class="locate-info">
-											<li class="addr">show address here</li>
-											<li class="station">show nearest station and min by foot here</li>
+											<li class="addr"><?php echo $google_maps['address']?></li>
+											<li class="station">
+												<?php 
+												if ($building['stations']) {
+													foreach ($building['stations'] as $station)
+													{
+														$station_name = isEnglish() ? $station['name_en'] : $station['name'];
+														echo sprintf(trans_text('%s by foot : %sminutes'),trans_text($station_name), $station['time']);
+														
+														break;
+													}
+												}
+												?>
+											</li>
 										</ul>
 									
 									<p class="read_more">

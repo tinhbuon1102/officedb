@@ -97,14 +97,10 @@
 
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 		// Get building info
-		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
-		$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
-		$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
-		$building['stations'] = $stations;
+		$building = getBuilding($single_property_id);
 		
-		// Get Floor info
-		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
-		$floor = (array)$wpdb->get_row("SELECT * FROM floor WHERE floor_id=".(int)$floor_id);
+		//Get floor info
+		$floor = getFloor($single_property_id);
 		
 		// Get Plan
 		$planPictureResults = $wpdb->get_results("SELECT * FROM plan_picture WHERE building_id=".(int)$building_id . ' AND plan_picture_id=' . (int)$building['plan_standard_id']);
@@ -375,7 +371,11 @@
 			</tr>
 			<tr>
 				<th><?php echo __('Floor Material', 'realty')?></th>
-				<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('oa_type', $building, $floor, $single_property_id);?>&nbsp;<?php echo translateBuildingValue('oa_height', $building, $floor, $single_property_id);?></td>
+				<td data-th="<?php echo __('Floor Material', 'realty')?>"><?php echo translateBuildingValue('oa_type', $building, $floor, $single_property_id);?></td>
+			</tr>
+			<tr>
+				<th><?php echo __('Floor Height', 'realty')?></th>
+				<td data-th="<?php echo __('Floor Height', 'realty')?>"><?php echo translateBuildingValue('oa_height', $building, $floor, $single_property_id);?></td>
 			</tr>
 			<tr>
 				<th><?php echo __('Ceiling Height', 'realty')?></th>

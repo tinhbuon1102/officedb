@@ -628,6 +628,23 @@ function explodeRangeValue($string, $subfix = ''){
 	return implode($matches[0], $aString);
 }
 
+function getBuilding($single_property_id) {
+	global $wpdb;
+	$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
+	$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
+	$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
+	$building['stations'] = $stations;
+	return $building;
+}
+
+function getFloor($single_property_id)
+{
+	global $wpdb;
+	$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
+	$floor = (array)$wpdb->get_row("SELECT * FROM floor WHERE floor_id=".(int)$floor_id);
+	return $floor;
+}
+
 function translateBuildingValue($field, $building, $floor, $property_id){
 	global $wpdb;
 	$field = trim($field);
