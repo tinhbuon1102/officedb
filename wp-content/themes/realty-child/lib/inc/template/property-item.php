@@ -37,14 +37,12 @@ if ( ! empty( $size ) ) {
 	}
 }
 
-$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
-$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
-$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
-$building['stations'] = $stations;
+// Get building info
+$building = getBuilding($property_id);
+$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
 
 // Get Floor info
-$floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
-$floor = (array)$wpdb->get_row("SELECT * FROM floor WHERE floor_id=".(int)$floor_id);
+$floor = getFloor($property_id);
 
 $post_title = (isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all') || (isset($show_floor_title) && $show_floor_title) ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
 
