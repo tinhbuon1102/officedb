@@ -953,6 +953,7 @@ body.ja .joinms h2.section-title {
     padding-top: 30px;
 	letter-spacing: 2px;
 }
+/*home news new*/
 .homenews-list li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -965,6 +966,30 @@ body.ja .joinms h2.section-title {
 }
 .homenews-list .cat-label {
     display: inline-block;
+}
+ul.locate-info {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+ul.locate-info li:before {
+    content: "";
+	display: inline-block;
+    font-family: 'iconmoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+ul.locate-info li.addr:before {
+	content: "\e903";
+}
+ul.locate-info li.station:before {
+	content: "\e535";
 }
 /* home slider*/
 .main-slider {
