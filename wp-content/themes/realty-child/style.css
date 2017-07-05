@@ -456,7 +456,7 @@ iframe#customer-chat-iframe {
     z-index: 999 !important;
 }
 .letter-home-word {
-	display: block;
+	margin-right: 5px;
 }
 
 section#feature .wpb_single_image .imgfit{
