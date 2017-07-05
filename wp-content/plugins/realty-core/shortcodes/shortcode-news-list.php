@@ -6,16 +6,20 @@
 if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 	function tt_realty_news_listing( $atts ) {
 
+		global $wpdb;
 		extract( shortcode_atts( array(
 			'sort_by'                  => 'date',
 			'per_page'                 => 4,
 		), $atts ) );
 
-		$recent_posts = wp_get_recent_posts(array(
-			'post_type' => 'news',
-			'posts_per_page' => $per_page,
-			'orderby' => array( 'post_modified' => 'DESC' )
-		));
+		$recent_posts = $wpdb->get_results("
+			SELECT *
+			FROM $wpdb->posts p
+			WHERE p.post_type = 'news' and p.post_status = 'publish'
+			GROUP by p.pinged
+			ORDER by post_modified DESC
+			LIMIT $per_page
+				" );
 		
 		if (!count($recent_posts)) return '';
 		
