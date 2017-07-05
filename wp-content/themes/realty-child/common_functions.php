@@ -846,7 +846,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'parking_unit_no' :
 			$parkingUnitNo = explode('-', $building['parking_unit_no']);
 			if($parkingUnitNo[0] == 1){
-				return ($parkingUnitNo[1] != "" ? $parkingUnitNo[1] : trans_text('Exists'));
+				return ($parkingUnitNo[1] != "" ? $parkingUnitNo[1] . (!isEnglish() ? '台' : '') : trans_text('Exists'));
 			}else if($parkingUnitNo[0] == 2){
 				return trans_text('No exists');
 			}else if($parkingUnitNo[0] == 3){
