@@ -27,6 +27,10 @@ function isEnglish(){
 	return pll_current_language() == LANGUAGE_EN;
 }
 
+function getLanguageID() {
+	return isEnglish() ? SITE_LANGUAGE_EN : SITE_LANGUAGE_JA;
+}
+
 function formatNumber($number)
 {
 	$number = str_replace(',', '', $number);

@@ -12,10 +12,17 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			'per_page'                 => 4,
 		), $atts ) );
 
+		$term_langID = getLanguageID();
 		$recent_posts = $wpdb->get_results("
 			SELECT *
 			FROM $wpdb->posts p
-			WHERE p.post_type = 'news' and p.post_status = 'publish'
+			INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
+			LEFT JOIN wp_term_relationships tr ON (p.ID = tr.object_id) 
+			WHERE 
+				p.post_type = 'news' 
+				AND p.post_status = 'publish'
+				AND pm.post_status = 'publish'
+				AND tr.term_taxonomy_id IN ($term_langID)
 			GROUP by p.pinged
 			ORDER by post_modified DESC
 			LIMIT $per_page ", ARRAY_A );

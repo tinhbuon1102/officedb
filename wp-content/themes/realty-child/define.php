@@ -5,6 +5,8 @@ define('BUILDING_TYPE_CONTENT', 'jpdb_building_content');
 define('FLOOR_TYPE_CONTENT', 'jpdb_floor_content');
 define('FLOOR_BUILDING_TYPE', 'jpdb_floor_building_id');
 define('FLOOOR_BUILDING_PARENT', 1111111111);
+define('SITE_LANGUAGE_JA', 34);
+define('SITE_LANGUAGE_EN', 37);
 
 define('SITE_DATE_FORMAT', 'Y/m/d');
 define('SITE_TIME_FORMAT', 'G:i');
