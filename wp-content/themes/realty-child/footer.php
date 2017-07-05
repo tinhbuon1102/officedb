@@ -20,19 +20,19 @@
           <?php
 	          // Check for Footer Column 1
 	          if ( is_active_sidebar( 'sidebar_footer_1' ) ) {
-	            echo '<div class="col-sm-3"><ul class="list-unstyled">';
+	            echo '<div class="col-sm-7"><ul class="list-unstyled">';
 	            dynamic_sidebar( 'sidebar_footer_1' );
 	            echo '</ul></div>';
 	          }
 	          // Check for Footer Column 2
 	          if ( is_active_sidebar( 'sidebar_footer_2' ) ) {
-	            echo '<div class="col-sm-4"><ul class="list-unstyled">';
+	            echo '<div class="col-sm-5"><ul class="list-unstyled">';
 	            dynamic_sidebar( 'sidebar_footer_2' );
 	            echo '</ul></div>';
 	          }
 	          // Check for Footer Column 3
 	          if ( is_active_sidebar( 'sidebar_footer_3' ) ) {
-	            echo '<div class="col-sm-5"><ul class="list-unstyled">';
+	            echo '<div class="col-sm-4"><ul class="list-unstyled">';
 	            dynamic_sidebar( 'sidebar_footer_3' );
 	            echo '</ul></div>';
 	          }
@@ -57,9 +57,9 @@
 						}
 
 						if ( is_active_sidebar( 'sidebar_footer_bottom_left' ) && is_active_sidebar( 'sidebar_footer_bottom_center' ) && is_active_sidebar( 'sidebar_footer_bottom_right' ) ) {
-							$class_columns_left = 'col-sm-3';
+							$class_columns_left = 'col-sm-4';
 							$class_columns_center = 'col-sm-4';
-							$class_columns_right = 'col-sm-5';
+							$class_columns_right = 'col-sm-4';
 						}
 					?>
 

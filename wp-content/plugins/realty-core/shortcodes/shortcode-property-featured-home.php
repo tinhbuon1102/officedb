@@ -8,7 +8,7 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 
 		extract( shortcode_atts( array(
 			'sort_by'                  => 'date',
-			'per_page'                 => 3,
+			'per_page'                 => 4,
 			'view'                     => 'grid-view',
 		), $atts ) );
 
@@ -37,27 +37,23 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 		ob_start();
 		if ( $the_query->have_posts() ) : ?>
 	  	<div id="property-items-featured" class="property-items-featured">
-	  		<style>
-	  			#property-items-featured h3 {
-	  				line-height: 1; text-align: left; font-family: PT Serif; font-weight: 400; font-style: italic
-	  			}
-	  		</style>
+	  	<div class="container">
+	  	<div class="row">
 	  		<?php 
 	  		$count_featured = 0;
 	  		while ( $the_query->have_posts() ) : $the_query->the_post();
 		  		global $post;
 		  		$count_featured++;
 		  		$building = get_post_meta($post->ID, BUILDING_TYPE_CONTENT, true);
-		  		$post->post_title = $building['name_en'] ? $building['name_en'] : $post->post_title;
+		  		$post->post_title = $building['name_ja'] ? $building['name_en'] : $post->post_title;
 	  		
 	  		?>
+	  		<div class="col-sm-6">
 				<div class="container vc_row wpb_row vc_inner vc_row-fluid feature_row sm-flex ">
 					<?php if ($count_featured % 2 != 0) {
-						getHomeFeaturedCol(2);
-						getHomeFeaturedCol(3);
 						getHomeFeaturedCol(1);
+						getHomeFeaturedCol(2);
 					}else {
-						getHomeFeaturedCol(3);
 						getHomeFeaturedCol(1);
 						getHomeFeaturedCol(2);
 					}
@@ -65,9 +61,12 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 					
 					
 				</div>
+				</div>
 	<?php 
 	  		endwhile;
 	  		?>
+	  		</div><!--/.row-->
+	  		</div><!--/.container-->
 		</div><!-- .property-items -->
 		<?php endif;?>
 		<?php
@@ -88,8 +87,8 @@ function getHomeFeaturedCol($col)
 				<div class="vc_column-inner ">
 					<div class="wpb_wrapper">
 						<div class="wpb_single_image wpb_content_element vc_align_left">
-							<figure class="wpb_wrapper vc_figure">
-								<a href="<?php the_permalink()?>" target="_self" class="vc_single_image-wrapper   vc_box_border_grey">
+							<figure class="wpb_wrapper vc_figure imgfit">
+								<a href="<?php the_permalink()?>" target="_self" class="vc_single_image-wrapper vc_box_border_grey">
 									<?php the_post_thumbnail()?>
 								</a>
 							</figure>
@@ -103,17 +102,29 @@ function getHomeFeaturedCol($col)
 		case 2:
 			$aProperty_title = explode(' ', get_the_title());
 			?>
-			<div class="order2 wpb_column vc_column_container vc_col-sm-4">
+			<div class="order2 wpb_column vc_column_container vc_col-sm-8">
 				<div class="vc_column-inner ">
 					<div class="wpb_wrapper">
-						<h3 class="vc_custom_heading fontbig spancount-<?php echo count($aProperty_title)?>">
+						<h3 class="vc_custom_heading feature-name">
 							<?php 
 							foreach ($aProperty_title as $property_title)
 							{
-								echo '<span class="letter-home-word letters-'. strlen($property_title) .'">'.$property_title.'</span>';
+								echo '<span class="letter-home-word">'.$property_title.'</span>';
 							}
 							?>
 						</h3>
+						<div class="feature-desc txt-col">
+									
+										<?php echo realty_excerpt(PROPERTY_HOME_FEATURE_CONTENT_LIMIT);?>
+										<ul class="locate-info">
+											<li class="addr">show address here</li>
+											<li class="station">show nearest station and min by foot here</li>
+										</ul>
+									
+									<p class="read_more">
+										<a href="<?php the_permalink()?>">&gt; <?php echo trans_text('More Info')?></a>
+									</p>
+								</div>
 					</div>
 				</div>
 			</div>
@@ -127,14 +138,7 @@ function getHomeFeaturedCol($col)
 					<div class="wpb_wrapper">
 						<div class="wpb_raw_code wpb_content_element wpb_raw_html">
 							<div class="wpb_wrapper">
-								<div class="s1 txt-col">
-									<p class="font_8">
-										<?php echo realty_excerpt(PROPERTY_HOME_FEATURE_CONTENT_LIMIT);?>
-									</p>
-									<p class="read_more">
-										<a href="<?php the_permalink()?>">&gt; <?php echo trans_text('More Info')?></a>
-									</p>
-								</div>
+								
 							</div>
 						</div>
 					</div>

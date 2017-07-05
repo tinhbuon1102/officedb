@@ -13,7 +13,7 @@ define('LANGUAGE_JA', 'ja');
 define('FIELD_MISSING_VALUE', '-');
 define('AREA_M2', 'm&sup2;');
 define('PROPERTY_VIEWED_LIMIT', 3);
-define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 96);
+define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 48);
 
 define('FLOOR_UNIT_OPTION_UNDECIDED', -1);
 define('FLOOR_UNIT_OPTION_ASK', -2);

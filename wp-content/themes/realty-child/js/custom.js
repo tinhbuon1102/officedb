@@ -55,10 +55,19 @@ jQuery(document).ready(function($){
 		}
 	});
 	$(window).on('load resize', function(){
+		$('.imgfit a').imagefit({
+        mode: 'inside', //指定サイズの中に入れるかはみ出させるかの指定: 'inside' or 'outside'.
+    halign : 'center', //指定サイズのブロックに対する画像の配置横位置: 'left', 'center' or 'right'
+    valign : 'middle' , //指定サイズのブロックに対する画像の配置縦位置: 'top', 'middle' or 'bottom'
+        force : false //画像のサイズが指定サイズより小さい場合もリサイズするかどうか:true or false 
+        });
 		//var sqgridH = $('.column_grid_square.square_filled').innerHeight();
 		//$('.column_grid_square.square_filled > .wpb_column > .vc_column-inner').css('height', sqgridH + 'px');
-		var fImgW = $('section#feature .wpb_single_image .vc_figure').width();
-		$('section#feature .wpb_single_image .vc_figure').css('height', fImgW + 'px');
+		var fImgW = $('section#feature .wpb_single_image .vc_figure img').width();
+		var fImgH = $('section#feature .wpb_single_image .vc_figure img').height();
+		console.log('feature img w：' + fImgW + 'px');
+		console.log('feature img h：' + fImgH + 'px');
+		//$('section#feature .wpb_single_image .vc_figure').css('height', fImgW + 'px');
 		var windowWidth = $(window).width();
 		
 		if ($(".entry-content .container").length)
