@@ -18,7 +18,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			WHERE p.post_type = 'news' and p.post_status = 'publish'
 			GROUP by p.pinged
 			ORDER by post_modified DESC
-			LIMIT $per_page " );
+			LIMIT $per_page ", ARRAY_A );
 		
 		if (!count($recent_posts)) return '';
 		
