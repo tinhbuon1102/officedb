@@ -103,7 +103,9 @@ function getHomeFeaturedCol($col)
 			break;
 			
 		case 2:
-			$aProperty_title = explode(' ', get_the_title());
+			$post_title = get_post_meta(get_the_ID(), 'post_title_building', true);
+			
+			$aProperty_title = explode(' ', $post_title);
 			?>
 			<div class="order2 wpb_column vc_column_container vc_col-sm-8">
 				<div class="vc_column-inner ">
