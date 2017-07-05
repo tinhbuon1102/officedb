@@ -110,7 +110,7 @@ jQuery(document).ready(function($){
 		$('.imgfit').imagefit({
 	        mode: 'inside', //指定サイズの中に入れるかはみ出させるかの指定: 'inside' or 'outside'.
 		    halign : 'center', //指定サイズのブロックに対する画像の配置横位置: 'left', 'center' or 'right'
-		    valign : 'middle' , //指定サイズのブロックに対する画像の配置縦位置: 'top', 'middle' or 'bottom'
+		    valign : 'top' , //指定サイズのブロックに対する画像の配置縦位置: 'top', 'middle' or 'bottom'
 	        force : false, //画像のサイズが指定サイズより小さい場合もリサイズするかどうか:true or false 
 	        onStart: function(){}
         });

@@ -460,8 +460,8 @@ iframe#customer-chat-iframe {
 }
 
 section#feature .wpb_single_image .imgfit{
-    width: 180px;
-    height: 180px;
+    width: 100%;
+    height: 200px;
     padding: 0;
     margin: 0px;
     display: inline-block;
