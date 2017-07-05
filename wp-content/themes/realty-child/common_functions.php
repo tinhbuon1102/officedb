@@ -412,6 +412,21 @@ function get_image_id($image_url, $post_id) {
 	return $attachment;
 }
 
+add_action( 'wp_insert_post', 'realty_insert_post', 10, 3 );
+function realty_insert_post($post_ID, $post, $update)
+{
+	if ($post->post_type == 'news' && !$post->pinged)
+	{
+		$my_post = array(
+			'ID'           => $post_ID,
+			'pinged' => $post_ID,
+		);
+		// Update the post into the database
+		wp_update_post( $my_post );
+	}
+}
+
+
 add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
 function realty_posts_orderby_request( $orderby, &$query )
 {
