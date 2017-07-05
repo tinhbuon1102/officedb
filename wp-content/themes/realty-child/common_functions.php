@@ -466,6 +466,11 @@ function realty_posts_request ($request, $query)
 	{
 		$request = 'SELECT wp_posts.ID, price FROM wp_posts INNER JOIN ('. $request . ') as t ON wp_posts.ID = t.ID GROUP BY wp_posts.pinged ' . $query->property_limit;
 	}
+	
+	elseif ($query->query['post_type'] == 'news')
+	{
+		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+	}
 
 	return $request;
 }

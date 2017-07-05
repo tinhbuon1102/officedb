@@ -12,19 +12,13 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			'per_page'                 => 4,
 		), $atts ) );
 
-		$term_langID = isEnglish() ? 37 : 34;
-		$recent_posts = $wpdb->get_results("
-			SELECT *
-			FROM $wpdb->posts p
-			INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
-			LEFT JOIN wp_term_relationships tr ON (p.ID = tr.object_id) 
-			WHERE 
-				p.post_type = 'news' 
-				AND p.post_status = 'publish'
-				AND tr.term_taxonomy_id IN ($term_langID)
-			GROUP by p.pinged
-			ORDER by post_modified DESC
-			LIMIT $per_page ", ARRAY_A );
+		$args = array(
+			'post_type' => 'news',
+			'posts_per_page' => $per_page,
+			'orderby' => array( 'post_modified' => 'DESC' )
+		);
+		$query_search_results = new WP_Query( $args );
+		$recent_posts = $query_search_results->get_posts();
 		
 		if (!count($recent_posts)) return '';
 		
@@ -33,6 +27,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 		echo '<ul class="homenews-list">';
 		foreach ( $recent_posts as $recent )
 		{
+			$recent = (array)$recent;
 			$floor_vacancy = get_post_meta($recent['ID'], 'floor_vacancy', true);
 			if ($floor_vacancy)
 			{
