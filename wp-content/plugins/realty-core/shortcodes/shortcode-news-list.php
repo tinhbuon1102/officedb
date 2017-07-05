@@ -12,7 +12,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			'per_page'                 => 4,
 		), $atts ) );
 
-		$term_langID = getLanguageID();
+		$term_langID = isEnglish() ? 37 : 34;
 		$recent_posts = $wpdb->get_results("
 			SELECT *
 			FROM $wpdb->posts p
@@ -21,7 +21,6 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			WHERE 
 				p.post_type = 'news' 
 				AND p.post_status = 'publish'
-				AND pm.post_status = 'publish'
 				AND tr.term_taxonomy_id IN ($term_langID)
 			GROUP by p.pinged
 			ORDER by post_modified DESC
