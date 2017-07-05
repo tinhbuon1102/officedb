@@ -96,7 +96,7 @@ add_shortcode( 'news_listing', 'tt_realty_news_listing' );
 // Visual Composer Map
 function tt_vc_news_listing() {
 	vc_map( array(
-		'name' => esc_html__( 'News Listing', 'realty' ),
+		'name' => esc_html__( 'Home News Listing', 'realty' ),
 		'base' => 'news_listing',
 		'class' => '',
 		'category' => esc_html__( 'Realty Theme', 'realty' ),
