@@ -485,6 +485,10 @@ ul.homenews-list {
     overflow: scroll;
     height: 336px;
 }
+.property-items {
+	opacity: 1 !important;
+}
+
 @media (min-width: 992px) {
 	.property-meta.custom-meta-list {
     min-height: 50px;
