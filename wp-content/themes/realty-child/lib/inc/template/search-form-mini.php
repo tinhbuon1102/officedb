@@ -807,7 +807,7 @@
 
 	<?php } ?>
 
-	<input type="hidden" name="pageid" value="<?php echo $post ? $post->ID : ''; ?>" />
+	<input type="hidden" name="pageid" value="<?php echo isset($post) ? $post->ID : ''; ?>" />
 
   <?php if ( get_query_var( 'property_search_id' ) ) { ?>
     <input type="hidden" name="searchid" value="<?php echo get_query_var('property_search_id'); ?>" />
