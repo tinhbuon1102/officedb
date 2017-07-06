@@ -157,7 +157,7 @@ if ( ! function_exists( 'tt_acf_fields_name' ) ) {
 
 	 					 	$my_post_language_details = apply_filters( 'wpml_post_language_details', NULL, $field_post->post_parent ) ;
 	 					 	$my_current_lang = apply_filters( 'wpml_current_language', NULL );
-	 						if( stristr( $acf_field['name'], 'additional_' ) && $my_post_language_details['language_code'] == $my_current_lang ) {
+	 						if( stristr( $acf_field['name'], 'additional_' ) && isset($my_post_language_details['language_code']) && $my_post_language_details['language_code'] == $my_current_lang ) {
 	 							 $acf_field_name[] = $acf_field['name'];
 	 						}
 
@@ -233,7 +233,7 @@ if ( ! function_exists( 'tt_acf_fields_label' ) ) {
 
 						$my_post_language_details = apply_filters( 'wpml_post_language_details', NULL, $field_post->post_parent ) ;
 	          $my_current_lang = apply_filters( 'wpml_current_language', NULL );
-	          if ( stristr( $acf_field['name'], 'additional_' )  && $my_post_language_details['language_code'] == $my_current_lang ) {
+	          if ( stristr( $acf_field['name'], 'additional_' )  && isset($my_post_language_details['language_code']) && $my_post_language_details['language_code'] == $my_current_lang ) {
 
 	              $acf_field_label[] = $field_name;
 	          }
