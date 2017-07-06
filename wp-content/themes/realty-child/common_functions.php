@@ -415,7 +415,7 @@ function get_image_id($image_url, $post_id) {
 add_action( 'wp_insert_post', 'realty_insert_post', 10, 3 );
 function realty_insert_post($post_ID, $post, $update)
 {
-	if ($post->post_type == 'news' && !$post->pinged)
+	if (isset($query->query['post_type']) && $post->post_type == 'news' && !$post->pinged)
 	{
 		$my_post = array(
 			'ID'           => $post_ID,
@@ -431,7 +431,7 @@ add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
 function realty_posts_orderby_request( $orderby, &$query )
 {
 	global $wpdb;
-	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
 		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
 	}
 	else if (isset($query->query['is_similar']) && $query->query['is_similar'])
@@ -439,7 +439,7 @@ function realty_posts_orderby_request( $orderby, &$query )
 		$orderby = "ABS (CAST(wp_postmeta.meta_value AS CHAR) - ".$query->query['similar_size'].") " . $query->query['orderby']['size_clause'];
 	}
 	
-	if ($query->query['post_type'] == 'news') {
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'news') {
 		$orderby = "post_modified DESC";
 	}
 	return $orderby;
@@ -450,7 +450,7 @@ add_filter('posts_fields', 'realty_posts_fields', 10, 2);
 function realty_posts_fields( $fields, $query )
 {
 	global $wpdb;
-	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
 		$fields = "$wpdb->posts.ID, wp_postmeta.meta_value  as price";
 	}
 	return $fields;
@@ -460,7 +460,7 @@ add_filter('post_limits_request', 'realty_post_limits_request', 10, 2);
 function realty_post_limits_request( $limits, &$query )
 {
 	global $wpdb;
-	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
 		$query->property_limit = '';
 		$limits = '';
 	}
@@ -472,17 +472,17 @@ add_filter( 'posts_request', 'realty_posts_request', 10 ,2 );
 function realty_posts_request ($request, $query)
 {
 	global $wpdb;
-	if ($query->query['post_type'] == 'property' && $query->query['property_query_listing_request'] == 1)
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
 		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
 
 	}
-	elseif ($query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1)
+	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1)
 	{
 		$request = 'SELECT wp_posts.ID, price FROM wp_posts INNER JOIN ('. $request . ') as t ON wp_posts.ID = t.ID GROUP BY wp_posts.pinged ' . $query->property_limit;
 	}
 	
-	elseif ($query->query['post_type'] == 'news')
+	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
 	}
