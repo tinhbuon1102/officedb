@@ -803,7 +803,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				{
 					$building[$field] = date($dateFormat, strtotime(implode('-', $aExplodeDate)));
 				}else {
-					$building[$field] = implode('-', $aExplodeDate);
+					$building[$field] = date('Y年m月', strtotime(implode('-', $aExplodeDate)));
 				}
 			}
 			
