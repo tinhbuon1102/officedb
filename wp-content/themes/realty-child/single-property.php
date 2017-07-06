@@ -98,6 +98,7 @@
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 		// Get building info
 		$building = getBuilding($single_property_id);
+		$building_id = $building['building_id'];
 		
 		//Get floor info
 		$floor = getFloor($single_property_id);
