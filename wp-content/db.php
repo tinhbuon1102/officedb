@@ -1,0 +1,1 @@
+/var/www/front.office-jpdb.com/wp-content/plugins/query-monitor/wp-content/db.php
