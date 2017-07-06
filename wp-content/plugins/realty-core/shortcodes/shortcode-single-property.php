@@ -72,4 +72,4 @@ function tt_vc_map_realty_single_property() {
 		)
 	) );
 }
-add_action( 'vc_before_init', 'tt_vc_map_realty_single_property' );
+// add_action( 'vc_before_init', 'tt_vc_map_realty_single_property' );
