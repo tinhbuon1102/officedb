@@ -8,7 +8,7 @@ Author URI: http://themetrai1l.com
 Version: 1231231.0
 */
 
-if (!is_admin()) {
+if (true) {
 	define( 'REALTY_CORE_PLUGIN_DIR_URL', plugin_dir_path( __FILE__ ) );
 	
 	// Deactivate old "Custom Post Types & Taxonomies" and "Memebership Packages" plugins
