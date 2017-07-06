@@ -69,7 +69,7 @@
 		// Check if subscriber has any pending/published properties
 		$user_published_properties_args = array(
 			'post_type' 				=> 'property',
-			'posts_per_page' 		=> -1,
+			'posts_per_page' 		=> 1,
 			'author' 						=> $current_user->ID,
 			'post_status'				=> array( 'publish', 'pending' )
 		);

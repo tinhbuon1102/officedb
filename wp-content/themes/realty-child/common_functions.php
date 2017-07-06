@@ -474,8 +474,8 @@ function realty_posts_request ($request, $query)
 	global $wpdb;
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
-		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
-
+		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+// 		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
 	}
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1)
 	{
@@ -508,20 +508,20 @@ function buildSearchArgs($search_results_args){
 		return $search_results_args;
 	}
 
-	$custom_query_args_group['post_type'] = 'property';
-	$custom_query_args_group['posts_per_page'] = -1;
-	$custom_query_args_group['order'] = !isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
-	$custom_query_args_group['property_query_listing'] = true;
-	$custom_query_args_group['meta_query'] = array(array(
-		'key'     => 'estate_property_price',
-		'value'   => '',
-		'compare' => '!='
+// 	$custom_query_args_group['post_type'] = 'property';
+// 	$custom_query_args_group['posts_per_page'] = -1;
+// 	$custom_query_args_group['order'] = !isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
+// 	$custom_query_args_group['property_query_listing'] = true;
+// 	$custom_query_args_group['meta_query'] = array(array(
+// 		'key'     => 'estate_property_price',
+// 		'value'   => '',
+// 		'compare' => '!='
 
-	));
+// 	));
 
-	$custom_query_group = new WP_Query( $custom_query_args_group );
+// 	$custom_query_group = new WP_Query( $custom_query_args_group );
 	$search_results_args['property_query_listing_request'] = 1;
-	$search_results_args['custom_inner_join'] = $custom_query_group->request;
+// 	$search_results_args['custom_inner_join'] = $custom_query_group->request;
 
 	return $search_results_args;
 }
