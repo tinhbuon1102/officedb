@@ -431,10 +431,7 @@ add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
 function realty_posts_orderby_request( $orderby, &$query )
 {
 	global $wpdb;
-	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
-		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
-	}
-	else if (isset($query->query['is_similar']) && $query->query['is_similar'])
+	if (isset($query->query['is_similar']) && $query->query['is_similar'])
 	{
 		$orderby = "ABS (CAST(wp_postmeta.meta_value AS CHAR) - ".$query->query['similar_size'].") " . $query->query['orderby']['size_clause'];
 	}
@@ -446,28 +443,6 @@ function realty_posts_orderby_request( $orderby, &$query )
 }
 
 
-add_filter('posts_fields', 'realty_posts_fields', 10, 2);
-function realty_posts_fields( $fields, $query )
-{
-	global $wpdb;
-	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
-		$fields = "$wpdb->posts.ID, wp_postmeta.meta_value  as price";
-	}
-	return $fields;
-}
-
-add_filter('post_limits_request', 'realty_post_limits_request', 10, 2);
-function realty_post_limits_request( $limits, &$query )
-{
-	global $wpdb;
-	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
-		$query->property_limit = '';
-		$limits = '';
-	}
-	return $limits;
-}
-
-
 add_filter( 'posts_request', 'realty_posts_request', 10 ,2 );
 function realty_posts_request ($request, $query)
 {
@@ -475,11 +450,6 @@ function realty_posts_request ($request, $query)
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
-// 		$request = str_replace('FROM wp_posts', 'FROM wp_posts INNER JOIN ('.$query->query['custom_inner_join'].') as t1 ON wp_posts.ID = t1.ID ', $request);
-	}
-	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1)
-	{
-		$request = 'SELECT wp_posts.ID, price FROM wp_posts INNER JOIN ('. $request . ') as t ON wp_posts.ID = t.ID GROUP BY wp_posts.pinged ' . $query->property_limit;
 	}
 	
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
@@ -508,20 +478,7 @@ function buildSearchArgs($search_results_args){
 		return $search_results_args;
 	}
 
-// 	$custom_query_args_group['post_type'] = 'property';
-// 	$custom_query_args_group['posts_per_page'] = -1;
-// 	$custom_query_args_group['order'] = !isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
-// 	$custom_query_args_group['property_query_listing'] = true;
-// 	$custom_query_args_group['meta_query'] = array(array(
-// 		'key'     => 'estate_property_price',
-// 		'value'   => '',
-// 		'compare' => '!='
-
-// 	));
-
-// 	$custom_query_group = new WP_Query( $custom_query_args_group );
 	$search_results_args['property_query_listing_request'] = 1;
-// 	$search_results_args['custom_inner_join'] = $custom_query_group->request;
 
 	return $search_results_args;
 }
