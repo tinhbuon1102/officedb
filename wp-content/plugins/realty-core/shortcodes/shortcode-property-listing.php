@@ -55,6 +55,7 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 				} else {
 					$custom_query_args['posts_per_page'] = 9;
 				}
+				
 
 				/**
 				 * Tax Queries
@@ -219,6 +220,13 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 				}
 				
 
+				if (is_front_page())
+				{
+					$custom_query_args['order'] = 'DESC';
+					$custom_query_args['meta_key'] = 'estate_property_views_count';
+					$custom_query_args['orderby'] = 'meta_value_num';
+				}
+				
 				if (!$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')) ) 
 				{
 					$custom_query_args = buildSearchArgs($custom_query_args);

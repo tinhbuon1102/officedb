@@ -1032,9 +1032,10 @@ function getBuildingPDF($building_id)
 	return $pdfUrl;
 }
 
-function getListBestPropertyViewed() {
+function getListBestPropertyViewed($post_per_page = 0) {
+	$post_per_page = $post_per_page ? $post_per_page : PROPERTY_VIEWED_LIMIT; 
 	$query_args['post_type'] = 'property';
-	$query_args['posts_per_page'] = PROPERTY_VIEWED_LIMIT;
+	$query_args['posts_per_page'] = $post_per_page;
 	$query_args['order'] = 'DESC';
 	$query_args['meta_key'] = 'estate_property_views_count';
 	$query_args['orderby'] = 'meta_value_num';
