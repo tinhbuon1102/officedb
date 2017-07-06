@@ -783,7 +783,31 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			
 			break;
 		case 'built_year' :
-			return ($building[$field] && trim($building[$field]) != '-') ? trans_text($building[$field]) : FIELD_MISSING_VALUE;
+			$aExplodeDate = explode('-', $building[$field]);
+			
+			if (trim($building[$field]) == '-')
+			{
+				$building[$field] = FIELD_MISSING_VALUE;
+			}
+			else {
+				if ((count($aExplodeDate) == 2 && !$aExplodeDate[1]) || count($aExplodeDate)  == 1)
+				{
+					$aExplodeDate[1] = 1;
+					$dateFormat = 'Y';
+				}
+				else{
+					$dateFormat = 'M.Y';
+				}
+				
+				if (isEnglish())
+				{
+					$building[$field] = date($dateFormat, strtotime(implode('-', $aExplodeDate)));
+				}else {
+					$building[$field] = implode('-', $aExplodeDate);
+				}
+			}
+			
+			return $building[$field];
 			break;
 				
 		case 'total_floor_space':
