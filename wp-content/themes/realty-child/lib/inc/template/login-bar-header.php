@@ -48,7 +48,7 @@
 
 	<?php if ( ! $realty_theme_option['property-favorites-disabled'] ) { ?>
 
-	<a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>">
+	<a href="<?php echo isEnglish() ? site_url('favorite-properties') : site_url('favorites'); ?>">
 		<span class="desktop"><i class="fa fa-star" aria-hidden="true"></i><?php esc_html_e( 'Favorites', 'realty' ); ?> (<span><?php echo $number_of_favorites; ?></span>)</span>
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Favorites', 'realty' ); ?>"><i class="fa fa-star" aria-hidden="true"></i></span>
 	</a>
@@ -87,7 +87,7 @@
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Contact List', 'realty' ); ?>"><i class="<?php echo CONTACT_ICON_EXIST?>"></i></span>
 	</a>
 	
-	<a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>" class="hidden-xs">
+	<a href="<?php echo isEnglish() ? site_url('myaccount-en') : site_url('myaccount'); ?>" class="hidden-xs">
 		<span class="desktop"><i class="fa fa-user-circle" aria-hidden="true"></i><?php esc_html_e( 'My Account', 'realty' ); ?></span>
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php //esc_html_e( 'My Account', 'realty' ); ?>"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
 	</a>
