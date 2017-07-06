@@ -274,13 +274,13 @@ body.ja {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 }
 body.en {
-    font-family: 'Playfair Display',Times,serif;
+    font-family: "proxima-nova","Helvetica Neue",Arial,Helvetica,sans-serif;
 }
 body.ja #header {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 }
 body.en #header {
-	font-family: "brandon-grotesque",sans-serif;
+	font-family: "proxima-nova","Helvetica Neue",Arial,Helvetica,sans-serif;
 }
 body.ja h1, body.ja h2, body.ja h3, body.ja h4, body.ja h5, body.ja h6 {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
@@ -1255,6 +1255,9 @@ ul.typeahead__list .result-column {
     font-size: 1.2em;
 	font-family: a-otf-ryumin-pr6n,"Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
+body.en .property-item .property-title .title {
+	font-family: "adobe-caslon-pro",Times,serif;
+}
 .property-item .property-title h3.title {
     min-height: 42px;
 }
@@ -1329,6 +1332,10 @@ a#contact_agent_button, a#contact_list_button {
 section#property-content p {
     line-height: 1.8;
 }
+body.en section#property-content p, body.en #single_property_wraper table, body.en #single_property_wraper table.fixTable td, body.en #single_property_wraper table.fixTable th {
+    -moz-osx-font-smoothing: greyscale;
+    -webkit-font-smoothing: antialiased;
+}
 @media (min-width: 768px) {
 	body.en section#property-content p, body.en #single_property_wraper table, body.en  #single_property_wraper table.fixTable td, body.en  #single_property_wraper table.fixTable th {
     font-size: 16px;
@@ -1361,7 +1368,7 @@ body.single-property div#links {
 	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 body.en .head-single h1.bld-title {
-    font-family: 'Playfair Display',Times,serif;
+    font-family: "adobe-caslon-pro",Times,serif;
 }
 .head-single {
     margin-bottom: 1.8em;
@@ -1377,18 +1384,21 @@ body.en .head-single h1.bld-title {
 }
 body.en.single-property h3.section-title {
     letter-spacing: 0px;
-	font-family: 'Playfair Display',Times,serif !important;
+	font-family: "adobe-caslon-pro",Times,serif !important;
+	font-size: 1.6em;
+    font-style: italic;
 }
 section#similar-properties h3.section-title {
     font-family: "futura-pt",sans-serif !important;
     font-weight: 100;
+	font-style: normal;
     font-size: 26px;
     font-size: 1.8em;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 body.ja section#similar-properties h3.section-title span:after {
-    content: "類似する空き物件";
+    content: "当物件に類似する空室情報";
     display: block;
     font-family: 游ゴシック, YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, sans-serif;
     font-size: 14px;
@@ -1530,6 +1540,10 @@ input#lang {
 }
 section#acbuttons {
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+body.en section#acbuttons {
+    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-style: italic;
 }
 #acbuttons .contact-argent {
 	margin-bottom: 10px;
@@ -1702,6 +1716,10 @@ section#links {
 }
 .secpad {
 	padding: 60px 0;
+}
+#hometoplinks #links {
+    background: none;
+    padding: 20px 0;
 }
 /*search result*/
 .search-result-container .page-title, .col-md-4.search-container h2 {
