@@ -431,7 +431,7 @@ add_filter('posts_orderby_request', 'realty_posts_orderby_request', 10, 2);
 function realty_posts_orderby_request( $orderby, &$query )
 {
 	global $wpdb;
-	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && $query->query['property_query_listing'] == 1) {
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing']) && $query->query['property_query_listing'] == 1) {
 		$orderby = "wp_postmeta.meta_value + 0 " . $query->query['order'];
 	}
 	else if (isset($query->query['is_similar']) && $query->query['is_similar'])
@@ -510,7 +510,7 @@ function buildSearchArgs($search_results_args){
 
 	$custom_query_args_group['post_type'] = 'property';
 	$custom_query_args_group['posts_per_page'] = -1;
-	$custom_query_args_group['order'] = !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
+	$custom_query_args_group['order'] = !isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] ? 'ASC' : $search_results_args['order'];
 	$custom_query_args_group['property_query_listing'] = true;
 	$custom_query_args_group['meta_query'] = array(array(
 		'key'     => 'estate_property_price',

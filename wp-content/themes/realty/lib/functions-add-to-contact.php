@@ -187,7 +187,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 	function tt_contact_script() {
 
 		global $realty_theme_option;
-		$add_contact_temporary = $realty_theme_option['property-contact-temporary'];
+		$add_contact_temporary = isset($realty_theme_option['property-contact-temporary']) ? $realty_theme_option['property-contact-temporary'] : '';
 		?>
 
 		<script>
