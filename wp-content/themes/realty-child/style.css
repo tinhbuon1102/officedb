@@ -274,7 +274,7 @@ body.ja {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
 }
 body.en {
-	font-family: "brandon-grotesque",sans-serif;
+    font-family: 'Playfair Display',Times,serif;
 }
 body.ja #header {
 	font-family: "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", sans-serif;
@@ -470,8 +470,21 @@ section#feature .wpb_single_image .imgfit{
 
 .news-thumbnail {
 	max-width: 50px;
+	display: inline-block;
+    margin: 0 10px 0 0;
 }
-
+.post_info a.title {
+    font-size: 14px;
+    font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+    padding: 3px 0;
+    line-height: 24px;
+}
+ul.homenews-list {
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    height: 336px;
+}
 @media (min-width: 992px) {
 	.property-meta.custom-meta-list {
     min-height: 50px;
@@ -1316,6 +1329,12 @@ a#contact_agent_button, a#contact_list_button {
 section#property-content p {
     line-height: 1.8;
 }
+@media (min-width: 768px) {
+	body.en section#property-content p, body.en #single_property_wraper table, body.en  #single_property_wraper table.fixTable td, body.en  #single_property_wraper table.fixTable th {
+    font-size: 16px;
+	}
+}
+
 body.single-property div#content {
     margin-bottom: 0px;
 }
@@ -1341,6 +1360,9 @@ body.single-property div#links {
     line-height: 1;
 	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
+body.en .head-single h1.bld-title {
+    font-family: 'Playfair Display',Times,serif;
+}
 .head-single {
     margin-bottom: 1.8em;
 }
@@ -1355,6 +1377,7 @@ body.single-property div#links {
 }
 body.en.single-property h3.section-title {
     letter-spacing: 0px;
+	font-family: 'Playfair Display',Times,serif !important;
 }
 section#similar-properties h3.section-title {
     font-family: "futura-pt",sans-serif !important;

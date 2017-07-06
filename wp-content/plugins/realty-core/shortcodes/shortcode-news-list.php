@@ -76,12 +76,10 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 				<span class="news-thumbnail">
 					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo get_the_post_thumbnail($recent['ID'], 'thumbnail');?></a>
 				</span>
-				<span class="added-info-ja cat-label">
-					<?php echo $cat_name; ?>
-				</span>
+				
 				<div class="post_info">
 					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo $recent["post_title"]?></a>
-					<div class="post-meta"><?php echo renderJapaneseDate($recent['post_modified'])?></div>
+					<div class="post-meta"><?php echo renderJapaneseDate($recent['post_modified'])?> | <span class="added-info-ja"><?php echo $cat_name; ?></span></div>
 				</div>
 			</li>
 			
