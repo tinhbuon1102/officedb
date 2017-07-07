@@ -103,7 +103,7 @@ jQuery(document).ready(function($){
 		var featureHeight = [];
 		$('.vc_figure.imgfit').each(function(){
 			var img = $(this).find('img'); 
-			featureHeight.push(img.height());
+			featureHeight.push(img.attr('height'));
 		});
 		featureHeight.sort();
 		$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
