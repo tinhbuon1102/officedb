@@ -41,6 +41,8 @@ function formatNumber($number)
 	else 
 		$decimal = 0;
 	
+	$number = $number ? $number : 0;
+	
 	return number_format($number, $decimal);
 }
 
@@ -1002,11 +1004,11 @@ function getListBestPropertyViewed($post_per_page = 0) {
 function renderPropertyPrice($property_id, $building, $floor)
 {
 	$property_price = doubleval( get_post_meta( $property_id, 'estate_property_price', true ) );
-	$price = tt_property_price( $property_id );
 	if ($property_price <= 0)
 	{
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
+	$price = renderPrice($property_price);
 	return $price . '/' . trans_text('tsubo');
 }
 

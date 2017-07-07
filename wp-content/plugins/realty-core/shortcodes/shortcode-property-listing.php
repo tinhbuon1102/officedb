@@ -254,7 +254,13 @@ if ( ! function_exists( 'tt_realty_property_listing' ) ) {
 								echo '<li class="col-md-4 col-md-6">'; // Default: 3 columns
 							}
 
-							get_template_part( 'lib/inc/template/property', 'item' );
+							if (is_front_page())
+							{
+								get_template_part( 'lib/inc/template/property', 'item-ranking' );
+							}
+							else {
+								get_template_part( 'lib/inc/template/property', 'item' );
+							}
 
 							echo '</li>';
 
