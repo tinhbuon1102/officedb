@@ -75,7 +75,7 @@ jQuery(document).ready(function($){
 	if ($('#property-items li').length)
 	{
 		//latest office grid
-		$('#latestoffice #property-items li').removeClass('col-lg-4');
+		/*$('#latestoffice #property-items li').removeClass('col-lg-4');
 		$('#latestoffice #property-items li').addClass('col-lg-6');
 		$('#latestoffice #property-items li:first-child').removeClass('col-lg-6');
 		$('#latestoffice #property-items li:first-child').addClass('col-lg-5 biglist');
@@ -88,7 +88,7 @@ jQuery(document).ready(function($){
 		var replaceWidth = 768;
 		if(windowWidth > replaceWidth) {
 		$('div#property-items li.col-lg-7 > ul > li > div > a > .property-thumbnail').css('height', (lgHeight / 2 - minConHeight - 7) + 'px');
-		}
+		}*/
 	}
 	
 	if ($('img.floor-plan').length)
@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
 		});
 	}
 	
-	if ($('.imgfit').length){
+	/*if ($('.imgfit').length){
 		var featureHeight = [];
 		$('.vc_figure.imgfit').each(function(){
 			var img = $(this).find('img'); 
@@ -115,7 +115,7 @@ jQuery(document).ready(function($){
 	        force : false, //画像のサイズが指定サイズより小さい場合もリサイズするかどうか:true or false 
 	        onStart: function(){}
         });
-	}
+	}*/
 	
 		function initTypeHead() {
 		$.typeahead({

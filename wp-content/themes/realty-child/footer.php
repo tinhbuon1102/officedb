@@ -1,4 +1,7 @@
 </div><!-- #content -->
+<?php if( is_front_page() || is_home() ) { ?>
+
+<?php } else { ?>
 <div id="links" class="common-links bg-ltgray">
 	<div class="container">
 		<div class="row link-list">
@@ -9,6 +12,7 @@
 		</div>
 	</div>
 </div>
+<?php } ?>
 
 
 <footer class="site-footer" id="footer">

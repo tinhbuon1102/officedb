@@ -48,7 +48,7 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 		  		$post->post_title = $building['name_ja'] ? $building['name_en'] : $post->post_title;
 	  		
 	  		?>
-	  		<div class="col-sm-6">
+	  		<div class="col-sm-12 col-md-6 col-lg-6">
 				<div class="container vc_row wpb_row vc_inner vc_row-fluid feature_row sm-flex ">
 					<?php if ($count_featured % 2 != 0) {
 						getHomeFeaturedCol(1);
@@ -109,7 +109,8 @@ function getHomeFeaturedCol($col)
 			?>
 			<div class="order2 wpb_column vc_column_container vc_col-sm-8">
 				<div class="vc_column-inner ">
-					<div class="wpb_wrapper">
+					<div class="wpb_wrapper table-wrap">
+					<div class="bldg-name table-cell">
 						<h3 class="vc_custom_heading feature-name">
 							<?php 
 							foreach ($aProperty_title as $property_title)
@@ -118,7 +119,8 @@ function getHomeFeaturedCol($col)
 							}
 							?>
 						</h3>
-						<div class="feature-desc txt-col">
+						</div>
+						<div class="feature-desc txt-col table-cell">
 									
 										<?php echo realty_excerpt(PROPERTY_HOME_FEATURE_CONTENT_LIMIT);?>
 										<ul class="locate-info">
@@ -138,10 +140,13 @@ function getHomeFeaturedCol($col)
 											</li>
 										</ul>
 									
+									
+								</div>
+								<div class="more-col table-cell">
 									<p class="read_more">
 										<a href="<?php the_permalink()?>">&gt; <?php echo trans_text('More Info')?></a>
 									</p>
-								</div>
+									</div>
 					</div>
 				</div>
 			</div>

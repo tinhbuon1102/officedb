@@ -1721,10 +1721,64 @@ section#links {
 .secpad {
 	padding: 60px 0;
 }
+.joinms {
+    text-align: center;
+}
 #hometoplinks #links {
     background: none;
     padding: 20px 0;
 }
+#hometoplinks .wpb_content_element.wpb_raw_html {
+    margin: 0;
+}
+#property-items-featured .wpb_single_image.wpb_content_element {
+    margin-bottom: 0;
+}
+#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row {
+    background: #FFF;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+	padding: 0;
+}
+#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div {
+    float: none;
+    vertical-align: middle;
+}
+.feature_row .more-col {
+    padding: 0 20px;
+}
+.property-items-featured h3.feature-name {
+    font-weight: 500;
+    font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+#latestoffice #property-items .property-item {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    background: #FFF;
+}
+@media (min-width: 992px) {
+	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order1, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order1 {
+		-webkit-box-ordinal-group: 1;
+    -ms-flex-order: 1;
+    -webkit-order: 1;
+    order: 1;
+	}
+	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order2, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order2 {
+		-webkit-box-ordinal-group: 0;
+    -ms-flex-order: 0;
+    -webkit-order: 0;
+    order: 0;
+	}
+}
+
 /*search result*/
 .search-result-container .page-title, .col-md-4.search-container h2 {
     font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;

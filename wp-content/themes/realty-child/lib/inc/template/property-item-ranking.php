@@ -60,7 +60,7 @@ $classes = join( ' ', $classes );
 $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 ?>
 
-<div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
+<div class="property-ranking <?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 <div class="thum-element">
 	<a href="<?php echo get_permalink( $post ); ?>">
 		<figure class="property-thumbnail">
