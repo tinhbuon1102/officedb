@@ -657,7 +657,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			else{
 				if ($floor['floor_down'] != '')
 				{
-					$floor_down = abs($floor['floor_down']);
+					$floor_down = str_replace('-', '', $floor['floor_down']);
 					if (strpos($floor['floor_down'], '-') !== false)
 					{
 						// underground
@@ -670,7 +670,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				}
 				if ($floor['floor_up'] != '')
 				{
-					$floor_up = abs($floor['floor_up']);
+					$floor_up = str_replace('-', '', $floor['floor_up']);
 					if (strpos($floor['floor_up'], '-') !== false)
 					{
 						// underground
