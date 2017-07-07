@@ -4291,7 +4291,7 @@ article.type-post.border-box .header-media {
   position: relative;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: 50%;
 }
 

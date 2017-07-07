@@ -109,9 +109,51 @@ jQuery(document).ready(function($){
 			featureHeight.sort();
 			$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
 			console.log('minimum height：' + featureHeight[0] + 'px');
-		}, 500)
+		}, 500);
 		
 	}
+	if ($('.thum-element').length){
+		setTimeout(function(){
+			var rankingHeight = [];
+			$('.thum-element').each(function(){
+				var img = $(this).find('img'); 
+				rankingHeight.push(img.height());
+			});
+			rankingHeight.sort();
+			$('.thum-element').css('height', rankingHeight[0] + 'px');
+			console.log('minimum height2：' + rankingHeight[0] + 'px');
+		}, 500);
+		
+	}
+	if ($('.fit-height').length){
+		setTimeout(function(){
+			var fitHeight = [];
+			$('.fit-height').each(function(){
+				var img = $(this).find('img'); 
+				fitHeight.push(img.height());
+			});
+			fitHeight.sort();
+			$('.fit-height').css('height', fitHeight[0] + 'px');
+			console.log('minimum height3：' + fitHeight[0] + 'px');
+		}, 500);
+		
+	}
+	var maxsameHeight = 0;
+//もしdivがmaxHeightの値より大きい場合はdivの高さを全部合わせる
+$("div.same-height").each(function(){
+   if ($(this).height() > maxsameHeight) { maxsameHeight = $(this).height(); }
+});
+//divの高さを取得する
+$("div.same-height").height(maxsameHeight);
+
+var maxpickHeight = 0;
+//もしdivがmaxHeightの値より大きい場合はdivの高さを全部合わせる
+$("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner > .table-wrap").each(function(){
+   if ($(this).height() > maxpickHeight) { maxpickHeight = $(this).height(); }
+});
+//divの高さを取得する
+$("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner > .table-wrap").height(maxpickHeight);
+	
 	
 		function initTypeHead() {
 		$.typeahead({

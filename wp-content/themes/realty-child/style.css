@@ -848,14 +848,13 @@ section#feature .wpb_single_image .vc_figure {
 }
 .link-items {
     background: #FFF;
-    padding-bottom: 10px;
 	border: 1px solid #eeeeee;
 }
 
 #links h4 {
     color: #000;
-    margin: 10px 0;
-	padding: 0 15px;
+    margin: 0;
+	padding: 10px 15px;
     font-size: 14px;
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
@@ -934,6 +933,11 @@ h2.section-title, body.ja h2.section-title {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+h2.section-title, body.home h2.section-title {
+    font-family: "adobe-caslon-pro",Times,serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 .section-title.style2::after {
 	display: none;
 }
@@ -948,12 +952,64 @@ section#joinms {
     padding: 110px 0 80px;
 	text-align: center;
 }
-body.ja .joinms h2.section-title {
+body.ja .joinms h2.section-title, body.en .page.type-page .entry-content .joinms h2.section-title {
+	margin-top: 40px;
 	margin-bottom: 10px;
     text-align: center;
     font-size: 3.5em;
 	text-transform: uppercase;
     font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+}
+a.btn-ql {
+    color: #383838;
+    margin: 1.25rem 0;
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 0.85714285714286em 2.14285714285714em;
+    -webkit-transition: translate 100ms ease-in-out, opacity 200ms ease-in-out;
+    -o-transition: translate 100ms ease-in-out, opacity 200ms ease-in-out;
+    transition: translate 100ms ease-in-out, opacity 200ms ease-in-out;
+    -webkit-transition: all 200ms;
+    -o-transition: all 200ms;
+    transition: all 200ms;
+    position: relative;
+}
+.btn-ql::before, .btn-ql:hover::before, .btn-ql:active::before, .btn-ql::after, .btn-ql:hover::after, .btn-ql:active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 20px;
+    -webkit-transition: all 300ms;
+    -o-transition: all 300ms;
+    transition: all 300ms;
+    -webkit-transform: translate(0, 50%);
+    -ms-transform: translate(0, 50%);
+    -o-transform: translate(0, 50%);
+    transform: translate(0, 50%);
+    background-color: #000;
+}
+.btn-ql:hover, .btn-ql:hover:hover, .btn-ql:active:hover {
+    text-decoration: none;
+}
+.btn-ql::after, .btn-ql:hover::after, .btn-ql:active::after {
+    right: -5px;
+}
+.btn-ql::before, .btn-ql:hover::before, .btn-ql:active::before {
+    left: -5px;
+}
+.btn-ql:hover::before, .btn-ql:hover:hover::before, .btn-ql:active:hover::before {
+    left: 5px;
+}
+.btn-ql:hover::after, .btn-ql:hover:hover::after, .btn-ql:active:hover::after {
+    right: 5px;
+}
+.btn-ql.serif-font {
+    font-family: "futura-pt", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 .joinms h4.section-title {
 	font-size: 18px;
@@ -970,9 +1026,80 @@ body.ja .joinms h2.section-title {
     font-weight: 500;
     -webkit-font-smoothing: antialiased;
 }
+body.en .joinms .btn-lg {
+    min-width: 260px;
+    font-size: 1.3em;
+    letter-spacing: 3px;
+    font-family: "adobe-caslon-pro",Times,serif;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+	height: 60px;
+    line-height: 65px;
+    text-align: center;
+	text-transform: uppercase;
+}
 .joinms .wpb_text_column {
     padding-top: 30px;
 	letter-spacing: 2px;
+}
+#memnews > .container > .vc_row {
+    background: #FFF;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+}
+#memnews >.container > .vc_row > .joinms > div {
+    margin: 5%;
+    width: auto;
+    padding: 20px;
+	position: relative;
+}
+#memnews >.container > .vc_row > .joinms > div:before {
+	content: "";
+    display: block;
+    position: absolute;
+    top: -25px;
+    left: -15px;
+    width: 1px;
+    height: 90%;
+    background-color: #000;
+    z-index: 1;
+}
+#memnews >.container > .vc_row > .joinms > div:after {
+	content: "";
+    display: block;
+    position: absolute;
+    top: -15px;
+    left: -25px;
+    height: 1px;
+    width: 90%;
+    background-color: #000;
+    z-index: 1;
+}
+#memnews >.container > .vc_row > .joinms > div > .wpb_wrapper:before {
+	content: "";
+    display: block;
+    position: absolute;
+    bottom: -25px;
+    right: -15px;
+    width: 1px;
+    height: 90%;
+    background-color: #000;
+    z-index: 1;
+}
+#memnews >.container > .vc_row > .joinms > div > .wpb_wrapper:after {
+	content: "";
+    display: block;
+    position: absolute;
+    bottom: -15px;
+    right: -25px;
+    height: 1px;
+    width: 90%;
+    background-color: #000;
+    z-index: 1;
 }
 /*home news new*/
 .homenews-list li {
@@ -1150,6 +1277,9 @@ ul.locate-info li.station:before {
 .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row .vc_column_container:last-child>.vc_column-inner {
 	padding-right: 0;
 }*/
+.align-center {
+    text-align: center;
+}
 .feature_row {
     margin-bottom: 80px;
 }
@@ -1166,11 +1296,11 @@ h3.feature-name {
 	font-weight: 100;
     color: #2F2E2E;
 }
+
 h3.fontbig {
     font-size: 60px;
 	line-height: 1.2 !important;
     margin: 0;
-    line-height: normal;
 	text-transform: uppercase;
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
 }
@@ -1724,12 +1854,22 @@ section#links {
 .joinms {
     text-align: center;
 }
+body.en .hide-en {
+	display: none;
+}
+body.ja hide-ja {
+	display: none;
+}
 #hometoplinks #links {
     background: none;
     padding: 20px 0;
 }
 #hometoplinks .wpb_content_element.wpb_raw_html {
     margin: 0;
+}
+.thum-links {
+    height: 120px;
+    overflow: hidden;
 }
 #property-items-featured .wpb_single_image.wpb_content_element {
     margin-bottom: 0;
@@ -1755,6 +1895,15 @@ section#links {
     font-weight: 500;
     font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
+h2.section-title.text-center {
+    text-align: center;
+}
+.page.type-page #latestoffice h2.section-title {
+    margin-bottom: 40px;
+}
+#latestoffice #property-items {
+    margin: 0;
+}
 #latestoffice #property-items .property-item {
     display: -webkit-flex;
     display: -moz-flex;
@@ -1764,17 +1913,36 @@ section#links {
     align-items: center;
     background: #FFF;
 }
+section#latestoffice div#property-items > ul {
+    text-align: center;
+	margin-left: -15px;
+    margin-right: -15px;
+}
+section#latestoffice div#property-items li {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+	padding-left: 15px;
+    padding-right: 15px;
+	margin-bottom: 30px;
+}
+.property-ranking .thum-element {
+    width: 160px;
+    overflow: hidden;
+}
 .property-ranking h3 {
     margin: 0;
     background: #FFF;
 	font-size: 18px;
     line-height: 34px;
 	position: relative;
+	padding-left: 40px;
+	text-align: left;
 }
 .property-ranking h3:before {
 	content: "";
     position: absolute;
-    left: 0;
+    left: 10px;
     top: 50%;
     margin-top: -9px;
     color: #FFF;
@@ -1784,10 +1952,13 @@ section#links {
     text-align: center;
     z-index: 2;
 }
+body.en .property-ranking h3:before {
+    margin-top: -6px;
+}
 .property-ranking h3:after {
 	content: "";
     position: absolute;
-    left: 0;
+    left: 10px;
     top: 50%;
     margin-top: -9px;
     background: #000;
@@ -1801,6 +1972,31 @@ section#links {
 }
 body.ja .property-ranking h3 {
     font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	padding-top: 5px;
+    padding-bottom: 5px;
+}
+body.en .property-ranking h3 {
+    font-family: "adobe-caslon-pro",Times,serif;
+	padding-top: 10px
+}
+div#property-items li:nth-child(1) h3:before {
+    content: "1";
+}
+div#property-items li:nth-child(2) h3:before {
+    content: "2";
+}
+div#property-items li:nth-child(3) h3:before {
+    content: "3";
+}
+div#property-items li:nth-child(4) h3:before {
+    content: "4";
+}
+div#property-items li:nth-child(5) h3:before {
+    content: "5";
+}
+.property-items li.col-lg-4 .property-ranking .property-item .property-content .property-meta.custom-meta-list > div {
+    width: 100%;
+    margin: 0;
 }
 @media (min-width: 992px) {
 	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order1, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order1 {
@@ -1815,6 +2011,7 @@ body.ja .property-ranking h3 {
     -webkit-order: 0;
     order: 0;
 	}
+	
 	
 }
 
@@ -1832,7 +2029,7 @@ body.ja .property-ranking h3 {
     font-size: 1em;
 }
 .property-item .property-thumbnail {
-    max-height: 200px;
+    
 }
 #latestoffice .property-item .property-thumbnail {
     max-height: none;
@@ -2431,6 +2628,17 @@ body.en .page.type-page .entry-content h2.section-title {
     font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2em;
 }
+body.en.home .page.type-page .entry-content section h2.section-title {
+	 font-family: "adobe-caslon-pro",Times,serif;
+	 letter-spacing: 2px;
+}
+body.en .page.type-page .entry-content section .joinms h2.section-title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 3.5em;
+    text-transform: uppercase;
+    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+}
 .page.type-page h2.section-title {
 	margin-bottom: 20px;
 }
@@ -2622,8 +2830,13 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 .service-flow.last-child .list-inner {
     margin-bottom: 0;
 }
-
+#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner {
+	padding: 20px 0;
+	}
 @media (max-width: 991px) {
+	#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner {
+	padding: 20px 0;
+	}
 	.slider-searchbox .container {
     max-width: 90%;
 	}
@@ -2764,7 +2977,32 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 #property-items-featured h3 .letters-8, #property-items-featured h3 .letters-9 {
     font-size: .8em;
 	}
+@media (min-width: 768px) {
+	.latest-news-block h2.section-title {
+    padding-left: 20px;
+	}
+}
+@media (max-width: 864px) {
+	body.ja .joinms h2.section-title, body.en .page.type-page .entry-content .joinms h2.section-title {
+    font-size: 2.5em;
+	}
+}
 @media (max-width: 767px) {
+	
+	#memnews > .container > .vc_row {
+    display: block;
+	}
+	#memnews .joinms {
+    margin-bottom: 120px;
+	}
+	.news-thumbnail {
+    max-width: 100px;
+    display: inline-block;
+    margin: 0 10px 0 0;
+	}
+	.homenews-list li {
+    padding: 15px 0px;
+	}
 	.flex-sm {
 	display: -webkit-box;
     display: -webkit-flex;
@@ -2790,7 +3028,8 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     width: 100%;
 	}
 	#property-items-featured h3 {
-    font-size: 52px;
+    font-size: 18px;
+	padding-top: 20px;
 	}
 	#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row {
     margin-left: 0;
@@ -2995,6 +3234,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	.news .entry-title {
     font-size: 1.2em;
 	}
+	
 }
 @media (min-width: 768px) {
 	.sp-fixfooter {
@@ -3174,7 +3414,67 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     width: 100%;
 	}
 }
+.show-xs {
+		display: none;
+	}
 @media (max-width: 480px) {
+	.show-xs {
+		display: block;
+	}
+	#memnews >.container > .vc_row > .joinms > div {
+    padding: 20px 0;
+	}
+	.property-ranking h3:before {
+	font-size: 1.4em;
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -15px;
+    top: -15px;
+    margin-top: 0;
+    color: #FFF;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    z-index: 2;
+	}
+	.property-ranking h3:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: -15px;
+    top: -15px;
+    margin-top: 0;
+    background: #000;
+    width: 30px;
+    height: 30px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+	}
+	.property-ranking h3 {
+    font-size: 16px;
+    padding-left: 15px;
+	}
+	body.ja .property-ranking h3, body.en .property-ranking h3 {
+    padding-top: 25px;
+	}
+	.property-item .property-price .price-tag, .property-item .property-price .property-icons {
+    display: block;
+    float: none;
+	}
+	.property-item .property-price .property-icons {
+    
+	}
+	.property-item .property-price .property-icons > span, .property-item .property-price .property-icons i {
+    margin-right: 10px;
+	}
+	.property-item .property-price .property-icons i:last-child {
+    margin-right: 0px;
+	}
 	table.fixTable td {
 		display: block;
 		position: relative;

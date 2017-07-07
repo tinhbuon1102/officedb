@@ -55,7 +55,7 @@ jQuery(window).load(function() {
 						<ul class="row list-unstyled">
 							<?php $property_counter = 0; // Required for map marker sync ?>
 							<?php while ( $query_search_results->have_posts() ) : $query_search_results->the_post(); ?>
-								<li class="col-md-4 col-sm-6">
+								<li class="col-md-4 col-sm-4 col-xs-6">
 									<?php
 										$property_id = get_the_id();
 										include( locate_template( 'lib/inc/template/property-item-custom.php' ) );

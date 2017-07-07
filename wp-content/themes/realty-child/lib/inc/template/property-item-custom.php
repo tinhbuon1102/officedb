@@ -62,7 +62,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 <div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 
 	<a href="<?php echo get_permalink( $post ); ?>">
-		<figure class="property-thumbnail">
+		<figure class="property-thumbnail fit-height">
 			<?php
 				if ( has_post_thumbnail() ) {
 					$thumbnail_classes = array();
@@ -103,6 +103,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 	</a>
 
 	<div class="property-content content">
+	<div class="same-height">
 		<div class="property-title">
 			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php echo $post_title; ?></h3></a>
 		</div>
@@ -184,7 +185,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 				<?php }	?>
 			</div>
 		<?php }	?>
-
+</div>
 		<div class="property-price">
 
 			<div class="price-tag">

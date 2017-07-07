@@ -48,7 +48,7 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 		  		$post->post_title = $building['name_ja'] ? $building['name_en'] : $post->post_title;
 	  		
 	  		?>
-	  		<div class="col-sm-12 col-md-6 col-lg-6">
+	  		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 				<div class="container vc_row wpb_row vc_inner vc_row-fluid feature_row sm-flex ">
 					<?php if ($count_featured % 2 != 0) {
 						getHomeFeaturedCol(1);
