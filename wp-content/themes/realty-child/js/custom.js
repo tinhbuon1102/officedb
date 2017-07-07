@@ -107,6 +107,7 @@ jQuery(document).ready(function($){
 		});
 		featureHeight.sort();
 		$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
+		console.log('minimum height：' + featureHeight[0] + 'px');
 		
 //		$('.vc_figure.imgfit').imagefit({
 //	        mode: 'outside', //指定サイズの中に入れるかはみ出させるかの指定: 'inside' or 'outside'.

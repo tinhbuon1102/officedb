@@ -1767,6 +1767,37 @@ section#links {
 .property-ranking h3 {
     margin: 0;
     background: #FFF;
+	font-size: 18px;
+    line-height: 34px;
+	position: relative;
+}
+.property-ranking h3:before {
+	content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
+    color: #FFF;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    z-index: 2;
+}
+.property-ranking h3:after {
+	content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -9px;
+    background: #000;
+    width: 18px;
+    height: 18px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 body.ja .property-ranking h3 {
     font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
