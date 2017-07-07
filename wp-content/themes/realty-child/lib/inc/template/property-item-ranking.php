@@ -59,8 +59,12 @@ $classes = join( ' ', $classes );
 
 $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 ?>
+<div class="property-ranking">
+<div class="property-title">
+			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php echo $post_title; ?></h3></a>
+		</div>
+<div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 
-<div class="property-ranking <?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 <div class="thum-element">
 	<a href="<?php echo get_permalink( $post ); ?>">
 		<figure class="property-thumbnail">
@@ -105,9 +109,7 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 	</div>
 
 	<div class="property-content content">
-		<div class="property-title">
-			<a href="<?php echo get_permalink( $post ); ?>"><h3 class="title"><?php echo $post_title; ?></h3></a>
-		</div>
+		
 		<?php if ( $realty_theme_option['property-listing-type'] != 'custom' ) { // Default Listing Fields ?>
 			<div class="property-meta custom-meta-list clearfix">
 					<div>
@@ -278,3 +280,4 @@ $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 	<?php } ?>
 
 </div><!-- .property-item -->
+</div>

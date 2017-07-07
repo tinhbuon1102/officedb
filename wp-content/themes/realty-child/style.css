@@ -1764,6 +1764,13 @@ section#links {
     align-items: center;
     background: #FFF;
 }
+.property-ranking h3 {
+    margin: 0;
+    background: #FFF;
+}
+body.ja .property-ranking h3 {
+    font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
 @media (min-width: 992px) {
 	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order1, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order1 {
 		-webkit-box-ordinal-group: 1;
@@ -1777,6 +1784,7 @@ section#links {
     -webkit-order: 0;
     order: 0;
 	}
+	
 }
 
 /*search result*/
