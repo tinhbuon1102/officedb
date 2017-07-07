@@ -99,7 +99,7 @@ jQuery(document).ready(function($){
 		});
 	}
 	
-	/*if ($('.imgfit').length){
+	if ($('.imgfit').length){
 		var featureHeight = [];
 		$('.vc_figure.imgfit').each(function(){
 			var img = $(this).find('img'); 
@@ -108,14 +108,14 @@ jQuery(document).ready(function($){
 		featureHeight.sort();
 		$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
 		
-		$('.vc_figure.imgfit').imagefit({
-	        mode: 'outside', //指定サイズの中に入れるかはみ出させるかの指定: 'inside' or 'outside'.
-		    halign : 'center', //指定サイズのブロックに対する画像の配置横位置: 'left', 'center' or 'right'
-		    valign : 'top' , //指定サイズのブロックに対する画像の配置縦位置: 'top', 'middle' or 'bottom'
-	        force : false, //画像のサイズが指定サイズより小さい場合もリサイズするかどうか:true or false 
-	        onStart: function(){}
-        });
-	}*/
+//		$('.vc_figure.imgfit').imagefit({
+//	        mode: 'outside', //指定サイズの中に入れるかはみ出させるかの指定: 'inside' or 'outside'.
+//		    halign : 'center', //指定サイズのブロックに対する画像の配置横位置: 'left', 'center' or 'right'
+//		    valign : 'top' , //指定サイズのブロックに対する画像の配置縦位置: 'top', 'middle' or 'bottom'
+//	        force : false, //画像のサイズが指定サイズより小さい場合もリサイズするかどうか:true or false 
+//	        onStart: function(){}
+//        });
+	}
 	
 		function initTypeHead() {
 		$.typeahead({
