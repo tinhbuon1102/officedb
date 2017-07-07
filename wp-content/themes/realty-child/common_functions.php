@@ -1009,7 +1009,8 @@ function renderPropertyPrice($property_id, $building, $floor)
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
 	$price = renderPrice($property_price);
-	var_dump($price);
+	
+	
 	return $price . '/' . trans_text('tsubo');
 }
 
