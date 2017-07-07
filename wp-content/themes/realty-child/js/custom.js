@@ -109,7 +109,7 @@ jQuery(document).ready(function($){
 			featureHeight.sort();
 			$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
 			console.log('minimum height：' + featureHeight[0] + 'px');
-		}, 1000)
+		}, 500)
 		
 	}
 	
