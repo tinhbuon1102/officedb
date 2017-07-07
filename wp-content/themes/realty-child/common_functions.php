@@ -33,11 +33,19 @@ function getLanguageID() {
 
 function formatNumber($number)
 {
-	$number = str_replace(',', '', $number);
+	if (strpos($number, ',') !== false && strpos($number, '.') !== false)
+	{
+		$number = str_replace(',', '', $number);
+	}
+	elseif (strpos($number, ',') !== false)
+	{
+		$number = str_replace(',', '.', $number);
+	}
+	
 	
 	$aNumber = explode('.', $number);
 	if (isset($aNumber[1]))
-		$decimal = strlen($aNumber[1]);
+		$decimal = strlen($aNumber[1]) >= 2 ? 2 : strlen($aNumber[1]);
 	else 
 		$decimal = 0;
 	
@@ -950,7 +958,7 @@ function renderPrice($price) {
 	$price = str_replace(',', '.', $price);
 	if ($price)
 	{
-		$price = strpos($price, '.') === false ? number_format($price, 0) : $price;
+		$price = formatNumber($price, 0);
 		return '<span class="price_currency">¥</span><span class="price">'.str_replace('.', ',', $price).'</span>';
 	}
 	else {
