@@ -88,7 +88,11 @@
 	</footer>
 
 <?php } ?>
-
+<script>
+$('.main-slider .property-search-form').wrap('<div class="col-sm-6 slider-col search-col"><div class="slider-searchbox"></div></div>');
+ $('.main-slider .map-select').wrap('<div class="col-sm-6 slider-col map-col"></div>');
+ $('.main-slider .search-col, .main-slider .map-col').warapAll('<div class="container"><div class="row"></div></div>');
+</script>
 <?php wp_footer(); ?>
 
 </body>

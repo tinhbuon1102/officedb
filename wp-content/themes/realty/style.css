@@ -4291,10 +4291,18 @@ article.type-post.border-box .header-media {
   position: relative;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: auto;
   background-position: 50%;
 }
-
+.property-image.zoom.slick-slide.slick-current img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+	vertical-align: middle;
+    display: table-cell !important;
+}
 .property-image-container .property-image.zoom {
   cursor: url("lib/images/plus_cursor.png") 25 25, auto;
 }

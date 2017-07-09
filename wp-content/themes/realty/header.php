@@ -17,6 +17,7 @@
 <script type="text/javascript">
 	var message_no_result = '<?php echo trans_text('No result for "{{query}}"')?>';
 </script>
+
 </head>
 
 <body <?php body_class(); ?>>

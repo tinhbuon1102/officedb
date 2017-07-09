@@ -76,7 +76,9 @@
 			<?php 
 			if (!empty($buildingFloorPictures)) {
 				foreach ( $buildingFloorPictures as $attachment_url ) { ?>
-					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#"></div>
+					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>" style="background-image: url(<?php //echo esc_attr( $attachment_url ); ?>)" data-image="<?php echo esc_attr( $attachment_url ); ?>" data-mfp-src="<?php echo esc_attr( $attachment_url ); ?>" class="property-image <?php echo esc_attr( $property_zoom ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#">
+					<img src="<?php echo esc_attr( $attachment_url ); ?>"/>
+					</div>
 				<?php }	
 			}?>
 

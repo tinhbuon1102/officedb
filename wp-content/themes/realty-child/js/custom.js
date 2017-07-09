@@ -27,7 +27,10 @@ jQuery(document).ready(function($){
     radioClass: 'iradio_square',
     increaseArea: '20%' // optional
 	});
-	$('.main-slider .property-search-form').wrap('<div class="slider-searchbox"><div class="container"></div></div>');
+	$('.main-slider .property-search-form').wrap('<div class="col-sm-6 slider-col search-col"><div class="slider-searchbox"></div></div>');
+	$('.main-slider .map-select').wrap('<div class="col-sm-6 slider-col map-col"></div>');
+	$('.main-slider .search-col, .main-slider .map-col').wrapAll('<div class="slider-content"><div class="container"><div class="row"></div></div></div>');
+	
 	$('a img').hover(function(){
         $(this).attr('src', $(this).attr('src').replace('_off', '_on'));
         if ($(this).attr('srcset'))
@@ -55,14 +58,17 @@ jQuery(document).ready(function($){
 		}
 	});
 	$(window).on('load resize', function(){
+		var slconHeight = $(".slider-content").height();
+		$('.main-slider .slider-content').css('margin-top', '-' + (slconHeight/2) + 'px');
+		
 		var windowWidth = $(window).width();
 		
 		if ($(".entry-content .container").length)
 		{
-			var containerLeft = $(".entry-content .container").offset().left;
+			//var containerLeft = $(".entry-content .container").offset().left;
 			//var ssearchHeight = $(".main-slider .slider-searchbox .property-search-form").outerHeight();
-			$('.main-slider .slider-searchbox').css('margin-left', '-' + containerLeft + 'px');
-			$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
+			//$('.main-slider .slider-searchbox').css('margin-left', '-' + containerLeft + 'px');
+			//$('.main-slider .slider-searchbox').css('width', windowWidth + 'px');
 			//$('.main-slider .slider-searchbox').css('margin-top', '-' + ssearchHeight + 'px');
 		}
 		var windowHeight = $(window).height();
