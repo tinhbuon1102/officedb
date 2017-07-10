@@ -108,11 +108,11 @@ function changeNewsTitle(){
 function importLocationFromPrefecture () {
 	global $wpdb;
 	
-// 	$terms = $wpdb->get_results('SELECT * FROM wp_term_taxonomy where taxonomy = "term_translations" AND description LIKE "%a:1:{s:2%" AND term_id > 2585', ARRAY_A);
-// 	foreach ($terms as $term)
-// 	{
-// 		wp_delete_term($term['term_id'], $term['taxonomy']);
-// 	}
+	$terms = $wpdb->get_results('SELECT * FROM wp_term_taxonomy where taxonomy = "term_translations" AND description LIKE "%a:1:{s:2%" AND term_id > 2585', ARRAY_A);
+	foreach ($terms as $term)
+	{
+		wp_delete_term($term['term_id'], $term['taxonomy']);
+	}
 	
 	
 	// Delete old location;
