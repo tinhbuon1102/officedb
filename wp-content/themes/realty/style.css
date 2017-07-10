@@ -3567,7 +3567,7 @@ cite:before {
 }
 
 .main-navigation {
-  opacity: 0;
+  opacity: 1;
   min-width: 270px;
   max-width: 80%;
   position: fixed;

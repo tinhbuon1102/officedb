@@ -20,7 +20,9 @@
 <script type="text/javascript">
 	var message_no_result = '<?php echo trans_text('No result for "{{query}}"')?>';
 </script>
- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<?php $pid=get_the_ID();
+if($pid==286){
+ echo "<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>"; } ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.3.1/jquery.maphilight.min.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -134,6 +136,7 @@
   </div>
 
 </header>
+   <div class="single-search">search form</div>
     <?php
 	   if(function_exists('bcn_display') && !is_front_page()) {
 		   echo '<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">';
