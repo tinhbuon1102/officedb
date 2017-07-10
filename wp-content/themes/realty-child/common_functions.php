@@ -107,21 +107,24 @@ function changeNewsTitle(){
 
 function importLocationFromPrefecture () {
 	global $wpdb;
+	
+// 	$terms = $wpdb->get_results('SELECT * FROM wp_term_taxonomy where taxonomy = "term_translations" AND description LIKE "%a:1:{s:2%" AND term_id > 2585', ARRAY_A);
+// 	foreach ($terms as $term)
+// 	{
+// 		wp_delete_term($term['term_id'], $term['taxonomy']);
+// 	}
+	
+	
 	// Delete old location;
 	$terms = $wpdb->get_results(
 			"SELECT  t.*, tt.*
 			FROM wp_terms AS t
 			INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
-			WHERE tt.taxonomy IN ('property-location','property-type','property-status') ORDER BY t.name ASC ");
+			WHERE tt.taxonomy IN ('property-location','property-type','property-status','category') ORDER BY t.name ASC ");
 
 	$terms = array();
 	if (!empty($terms))
 	{
-		// Don't reimport
-		//@TODO uncomment
-		if (count($terms) >= 50) return;
-
-
 		foreach ($terms as $term)
 		{
 			wp_delete_term($term->term_id, $term->taxonomy);
@@ -143,7 +146,8 @@ function importLocationFromPrefecture () {
 	$cities = getAvailableCities();
 	$types = getAvaileableTypes();
 	$statuses = getAvaileableStatuses();
-
+	$news = getAvaileableNews();
+	
 	foreach ($cities as $en => $jp)
 	{
 		insertTermTranslation($en, $jp, 'property-location');
@@ -157,6 +161,11 @@ function importLocationFromPrefecture () {
 	foreach ($statuses as $en => $jp)
 	{
 		insertTermTranslation($en, $jp, 'property-status');
+	}
+	
+	foreach ($news as $en => $jp)
+	{
+		insertTermTranslation($en, $jp, 'category');
 	}
 
 	pr('done');die;
@@ -186,7 +195,9 @@ function getAvaileableTypes(){
 function getAvaileableStatuses(){
 	return array('For Rent' => '賃貸用', 'For Sale' => '販売用');
 }
-
+function getAvaileableNews(){
+	return array('Added Info' => '追加情報', 'Vacancy Info' => '空室情報');
+}
 
 function getSearchingCities(){
 	$cities = array();
@@ -275,16 +286,11 @@ function insertTermTranslation($tran_en, $tran_jp, $term_name){
 	$term_jp = (array)get_term_by('name', $tran_jp, $term_name);
 	$term_en = (array)get_term_by('name', $tran_en, $term_name);
 	
-	if (!$term_jp)
+	if (!$term_jp || !isset($term_jp['term_id']))
 	{
 		$term_jp = (array)wp_insert_term( $tran_jp, $term_name);
 		$term_en = (array)wp_insert_term( $tran_en, $term_name);
 	}
-		
-	wp_update_term($term_jp->term_id, $term_name, array(
-		'name' => 'Non Catégorisé',
-	));
-	
 		
 	$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
 	

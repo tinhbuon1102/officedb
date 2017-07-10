@@ -136,7 +136,14 @@ if($pid==286){
   </div>
 
 </header>
-   <div class="single-search">search form</div>
+   <div class="single-search">
+   		<?php 
+   		if (is_singular('property'))
+   		{
+   			echo do_shortcode('[property_search_form search_form_columns="3" search_type="mini"]');
+   		}
+   		?>
+   </div>
     <?php
 	   if(function_exists('bcn_display') && !is_front_page()) {
 		   echo '<div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">';
