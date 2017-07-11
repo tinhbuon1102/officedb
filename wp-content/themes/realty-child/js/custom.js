@@ -136,7 +136,10 @@ jQuery(document).ready(function($){
 			var fitHeight = [];
 			$('.fit-height').each(function(){
 				var img = $(this).find('img'); 
-				fitHeight.push(img.height());
+				if (img.height() > 0)
+				{
+					fitHeight.push(img.height());
+				}
 			});
 			fitHeight.sort();
 			$('.fit-height').css('height', fitHeight[0] + 'px');
