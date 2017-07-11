@@ -229,7 +229,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 						'<span class="col-xs-4 col-sm-4 col-md-4 result-column"><span class="building-logo">' +
 					            '<img src="{{image_url}}">' +
 					        '</span></span>' +
-					        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
+					        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span><span class="address">{{address}}</span>' +
 					    '</span>',
 					ajax : function(query){
 						$('input[name="keyword"]').val(query);
