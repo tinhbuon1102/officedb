@@ -177,8 +177,16 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			templateValue: '{{name}}',
 			emptyTemplate: message_no_result,
 		    correlativeTemplate: true,
-			group: true,
 		    maxItemPerGroup: 10,
+			group : {
+				key : "group_name",
+				template : function(item) {
+					var group = item.group_name;
+					group = group.toUpperCase();
+					return group;
+				}
+			},
+
 			source : {
 				station : {
 					display: 'name',

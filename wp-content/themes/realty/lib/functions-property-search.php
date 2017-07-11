@@ -636,7 +636,7 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 						if (!in_array($station, $aStation))
 						{
 							$url = getSearchUrl() . '?search_type=station&keyword=' . $station;
-							$stations[] = array('name' => $station, 'url' => $url);
+							$stations[] = array('name' => $station, 'url' => $url, 'group_name' => trans_text('Stations'));
 							$aStation[] = $station;
 						}
 					}
@@ -648,7 +648,11 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 							$district = $locations[0]->name;
 							if (!in_array($district, $aDistrict))
 							{
-								$addresses[] = array('name' => $district, 'url' => get_term_link($locations[0]->term_id, 'property-location'));
+								$addresses[] = array(
+									'name' => $district, 
+									'url' => get_term_link($locations[0]->term_id, 'property-location'),
+									'group_name' => trans_text('Addresses')
+								);
 								$aDistrict[] = $district;
 							}
 						}
@@ -659,7 +663,8 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 						'name' => (string)$post_title . '<span style="display:none">'.$_GET['keyword'].'</span>',
 						'image_url' => (string)get_the_post_thumbnail_url(),
 						'url' => (string)get_permalink(),
-						'address' => (string)$google_maps['address']
+						'address' => (string)$google_maps['address'],
+						'group_name' => trans_text('Floors')
 					);
 					$count ++;
 				endwhile;
