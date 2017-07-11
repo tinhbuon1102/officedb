@@ -1594,7 +1594,7 @@ p.note-rate {
     position: relative;
     float: left;
     width: 40%;
-    background: #000;
+    background: none;
     overflow: hidden;
     border-radius: 3px;
 }
@@ -2029,6 +2029,11 @@ div#property-items li:nth-child(5) h3:before {
     width: 100%;
     margin: 0;
 }
+@media (max-width: 1199px) and (min-width: 768px) {
+	#property-search-results .property-item .property-price .price-tag, #property-search-results .property-item .property-price .property-icons {
+    float: none;
+	}
+}
 @media (min-width: 992px) {
 	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order1, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order1 {
 		-webkit-box-ordinal-group: 1;
@@ -2069,6 +2074,10 @@ div#property-items li:nth-child(5) h3:before {
     width: auto;
     margin-right: 10px;
 }
+body.en .property-item .property-meta.custom-meta-list > div, #similar-properties .property-items .property-item .property-meta > div {
+	float: none;
+	width: 100%;
+}
 .property-item .property-meta.custom-meta-list > div:last-child, #similar-properties .property-items .property-item .property-meta > div:last-child {
     margin-right: 0px;
 }
@@ -2091,6 +2100,7 @@ div#property-items li:nth-child(5) h3:before {
 .property-meta.custom-meta-list {
     padding: 0 15px;
 	color: #000;
+	text-align: left;
 }
 .property-item .property-price .price-tag {
     color: #000;
@@ -2864,7 +2874,32 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 #property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner {
 	padding: 20px 0;
 	}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+	#viewed_property_box .property-item .property-meta.custom-meta-list > div {
+    display: block;
+    float: none;
+	margin: 0;
+	}
+	div#viewed_property_box > ul > li {
+    border-bottom: none;
+    margin-bottom: 0px;
+	}
+	#viewed_property_box .widget_view_listing_image {
+    width: 35%;
+	}
+	#viewed_property_box .listing_name_right {
+    width: 65%;
+    padding-left: 10px;
+	}
+	#viewed_property_box .property-item .property-price .price-tag {
+    float: none;
+	}
+	#viewed_property_box .property-item .property-price .property-icons {
+    float: none;
+	}
+}
 @media (max-width: 991px) {
+	
 	#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feature_row > div.order2 > .vc_column-inner {
 	padding: 20px 0;
 	}
@@ -3008,10 +3043,20 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 #property-items-featured h3 .letters-8, #property-items-featured h3 .letters-9 {
     font-size: .8em;
 	}
+.single-search .property-search-form.border-box {
+    box-shadow: 0px 0px 0px transparent;
+    margin: 0;
+	background: none;
+}
+.single-search {
+    background: rgba(245,245,245,1);
+    border-bottom: 1px solid #eeeeee;
+}
 @media (min-width: 768px) {
 	.latest-news-block h2.section-title {
     padding-left: 20px;
 	}
+	
 }
 @media (max-width: 864px) {
 	body.ja .joinms h2.section-title, body.en .page.type-page .entry-content .joinms h2.section-title {
@@ -3249,6 +3294,39 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 .type-news {
     text-align: left;
 	}
+@media only screen and (max-width: 767px) and (min-width: 500px) {
+	#viewed_property_box .widget_view_listing_image {
+    width: 100%;
+	}
+	#viewed_property_box .listing_name_right {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+	}
+	#viewed_property_box .property-meta.custom-meta-list {
+    padding: 0;
+	text-align: left;
+	}
+	#viewed_property_box .property-item .property-meta.custom-meta-list > div {
+    display: block;
+    float: none;
+	margin: 0;
+	}
+	#viewed_property_box .property-item .property-price {
+    padding: 0;
+	}
+	#viewed_property_box .property-item .property-price .price-tag {
+    float: none;
+	}
+	#viewed_property_box .property-item .property-price .property-icons {
+    float: none;
+	}
+}
+@media only screen and (max-width: 499px) {
+	.col-ss-12 {
+		width: 100%;
+	}
+}
 @media (max-width: 345px) {
 	#footer .textwidget .list-info {
     font-size: 1.6em;

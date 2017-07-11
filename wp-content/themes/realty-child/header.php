@@ -1,11 +1,22 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html <?php language_attributes(); ?>>
+
 <head>
+ <?php $pid=get_the_ID();
+if($pid==286)
+{
+ echo "<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>";
+ } ?>
+  
+
+
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
+ 
 <?php wp_head(); ?>
 
 <!--[if lt IE 9]>
@@ -20,15 +31,36 @@
 <script type="text/javascript">
 	var message_no_result = '<?php echo trans_text('No result for "{{query}}"')?>';
 </script>
-<?php $pid=get_the_ID();
-if($pid==286){
- echo "<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>"; } ?>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.3.1/jquery.maphilight.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('.mapss').maphilight();
-        });
-    </script>
+  
+
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+        var  ratio,
+		
+        mapsterConfigured = function () {
+           
+           
+        },
+        default_options =
+        { 
+		    boundList: null,
+            fillOpacity: 1,
+			isDeselectable:false,
+			isLink: true,
+			isSelectable:false,
+			 clickNavigate: true,
+            render_highlight: {
+                stroke: true,
+				strokeColor: '000000',
+                altImage: 'http://front.office-jpdb.com/wp-content/uploads/2015/10/map_on.png',		  
+			},
+		};
+        $statelist = false;
+        
+        jQuery('#usa_image').mapster(default_options);
+    });
+</script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -137,12 +169,14 @@ if($pid==286){
 
 </header>
    <div class="single-search">
+  		<div class="container">
    		<?php 
    		if (is_singular('property'))
    		{
    			echo do_shortcode('[property_search_form search_form_columns="3" search_type="mini"]');
    		}
    		?>
+   		</div>
    </div>
     <?php
 	   if(function_exists('bcn_display') && !is_front_page()) {

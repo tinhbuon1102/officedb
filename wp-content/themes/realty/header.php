@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
+<script type="text/javascript" src="http://www.outsharked.com/scripts/jquery.imagemapster.js"></script>
+ <?php $pid=get_the_ID();
+if($pid==286)
+{
+ echo "<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>"; } ?>
+  
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $usamap, ratio,
+        mapsterConfigured = function () {
+            //var opts = $usamap.mapster('get_options', null, false);
+           
+        },
+        default_options =
+        { 
+		    boundList: null,
+            fillOpacity: 1,
+			isDeselectable:false,
+			isLink: true,
+			isSelectable:false,
+			 clickNavigate: true,
+            render_highlight: {
+                stroke: true,
+				strokeColor: '000000',
+                altImage: 'http://front.office-jpdb.com/wp-content/uploads/2015/10/map_on.png',		  
+			},
+		};
+        $statelist = false;
+        $usamap = $('#usa_image');
+        $usamap.mapster(default_options);
+    });
+</script>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">

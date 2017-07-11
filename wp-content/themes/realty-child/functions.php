@@ -96,6 +96,8 @@ function icheck_scripts ()
 
 function custom_scripts ()
 {
+   wp_enqueue_script('imagemap_js', get_stylesheet_directory_uri() . '/js/jquery.imagemapster.js', array('jquery'));
+	
 	wp_enqueue_script('imgfit_js', get_stylesheet_directory_uri() . '/js/jquery.imagefit.min.js', array('jquery'));
 	wp_enqueue_script('custom_js', get_stylesheet_directory_uri() . '/js/custom.js', array('jquery'));
 	wp_enqueue_script('typehead', get_stylesheet_directory_uri() . '/js/typehead/jquery.typeahead.js', array('jquery'));
