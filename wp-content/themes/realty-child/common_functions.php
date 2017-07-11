@@ -477,10 +477,16 @@ function realty_posts_request ($request, $query)
 			$request = str_replace("wp_posts.post_title LIKE '%".$query->query['s']."%'", $text_search, $request);
 		}
 	}
-	
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+	}
+	
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['s']) && $query->query['s'])
+	{
+		$text_search = "OR (wp_posts.post_excerpt LIKE '%".$query->query['s']."%') OR (wp_posts.post_content LIKE '%".$query->query['s']."%')";
+		$request = str_replace($text_search, '', $request);
+		pr($request);die;
 	}
 
 	return $request;

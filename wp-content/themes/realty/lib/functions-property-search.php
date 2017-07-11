@@ -624,7 +624,6 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 		{
 			$floors = $stations = array();
 			$aStation = $aDistrict = array();
-// 			pr($query_search_results->request);die;
 			if ( $query_search_results->have_posts() ) {
 				$count = 1;
 				while ( $query_search_results->have_posts() ) : $query_search_results->the_post();
