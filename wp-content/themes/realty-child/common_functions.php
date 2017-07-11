@@ -473,8 +473,10 @@ function realty_posts_request ($request, $query)
 			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' ) 
     OR 
     ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
+			
+			$text_filter = "wp_posts.post_title LIKE '%".$query->query['s']."%'";
 			$request = str_replace($text_search, ' 1=1 ', $request);
-			$request = str_replace("wp_posts.post_title LIKE '%".$query->query['s']."%'", $text_search, $request);
+			$request = str_replace($text_filter, $text_filter . ' OR ' . $text_search, $request);
 		}
 	}
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
