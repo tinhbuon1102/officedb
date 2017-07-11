@@ -36,23 +36,58 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 					break;
 				}
 				// Check If Key Has A Value
-				if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && $search_key != "order-by" && $search_key != "pageid" && $search_key != "searchid" ) {
+				if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && 
+						$search_key != "order-by" && 
+						$search_key != "action" &&
+						$search_key != "response" &&
+						$search_key != "search_type" &&
+						$search_key != "pageid" && 
+						$search_key != "searchid" ) {
 					$search_fields[] = $search_key;
 					$search_parameters[] = $search_key;
 				}
 			}
 		}
-
-		$searching_fields = array();
-		foreach ( $_GET as $search_key => $search_value ) {
-
-			// Exclude all nonproperty seach parameters
-			if ( $search_key == "order-by" || $search_key == "pageid" || $search_key == "login" || $search_key == "user" || $search_key == "sign-user" || $search_key == "user-register" ) {
-				break;
+		
+		$custom_search = $_GET['keyword'];
+		$search_type = isset($_GET['search_type']) ? $_GET['search_type'] : '';
+		if (isset($_GET['search_type']))
+		{
+			switch ($_GET['search_type'])
+			{
+				case 'station':
+				case 'address':
+					unset($_GET['keyword']);
+					unset($realty_theme_option['property-search-parameter'][0]);
+					unset($realty_theme_option['property-search-field'][0]);
+					unset($realty_theme_option['property-search-compare'][0]);
+					break;
 			}
-
+		}
+		$searching_fields = array();
+		$defaultParams = array(
+			'keyword' => '',
+			'location' => 'all',
+			'size' => 'all',
+		);
+		$_GET = array_merge($defaultParams, $_GET);
+		
+		foreach ( $_GET as $search_key => $search_value ) {
+			// Exclude all nonproperty seach parameters
+			if ( 
+					$search_key == "action" || 
+					$search_key == "response" ||
+					$search_key == "search_type" ||
+					$search_key == "order-by" || 
+					$search_key == "pageid" || 
+					$search_key == "login" || 
+					$search_key == "user" || 
+					$search_key == "sign-user" || 
+					$search_key == "user-register" ) {
+				continue;
+			}
 			// Check If Key Has A Value
-			$aExcludeSearchKey = array('order-by', 'pagenumber', 'pageid', 'page_id', 'searchid');
+			$aExcludeSearchKey = array('order-by', 'pagenumber', 'pageid', 'page_id', 'searchid', 'search_type');
 			if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && !in_array($search_key, $aExcludeSearchKey) ) {
 
 				// Search Form Mini
@@ -100,8 +135,18 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 					$search_position = array_search( $search_key, $search_parameters );
 					$search_compare = $realty_theme_option['property-search-compare'][$search_position];
 					$search_field = $search_fields[$search_position];
-					$search_fields[$i]= $search_field;
 				}
+				
+				if ( $search_type == 'station' ) {
+					$search_field = 'estate_property_station';
+					$search_fields[$i] = $search_field;
+					$search_value = $custom_search;
+				}
+				elseif ( $search_type == 'address' ) {
+					$search_field = 'estate_property_google_maps';
+					$search_fields[$i] = $search_field;
+					$search_value = $custom_search;
+				} 
 
 				$search_field = trim($search_field);
 				$searching_fields[$search_key] = $search_field;
@@ -126,9 +171,11 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 					'estate_property_bedrooms',
 					'estate_property_bathrooms',
 					'estate_property_garages',
-					'estate_property_available_from'
+					'estate_property_available_from',
+					'estate_property_station',
+					'estate_property_google_maps'
 				);
-
+				
 				// Default Fields
 				if ( isset( $search_fields[$i] ) && in_array( $search_fields[$i], $default_search_fields_array ) ) {
 
@@ -137,7 +184,43 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 						// Keyword Search
 						case 'estate_search_by_keyword' :
 							$search_results_args['s'] = $search_value;
+							
+							if (isset($_GET['search_type']) && $_GET['search_type'] == 'floor')
+							{
+								$meta_query[] = array(
+									'relation' => 'OR',
+									array(
+										'key' 			=> 'estate_property_station',
+										'value' 		=> $search_value,
+										'compare' 	=> 'LIKE',
+									),
+									array(
+										'key' 			=> 'estate_property_google_maps',
+										'value' 		=> $search_value,
+										'compare' 	=> 'LIKE'
+									),
+								);
+							}
+							
 						break;
+						
+						case 'estate_property_station' :
+							$search_results_args['posts_per_page'] = 5;
+							$meta_query[] = array(
+								'key' 			=> 'estate_property_station',
+								'value' 		=> $search_value,
+								'compare' 	=> 'LIKE'
+							);
+							break;
+							
+						case 'estate_property_google_maps' :
+							$search_results_args['posts_per_page'] = 5;
+							$meta_query[] = array(
+							'key' 			=> 'estate_property_google_maps',
+							'value' 		=> $search_value,
+							'compare' 	=> 'LIKE'
+									);
+							break;
 
 						case 'estate_property_id' :
 							if ( $realty_theme_option['property-id-type'] == "post_id" ) {
@@ -539,24 +622,61 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 
 		if ((isset($_GET['response']) && $_GET['response'] == 'json'))
 		{
-			$response = array();
+			$floors = $stations = array();
+			$aStation = $aDistrict = array();
+// 			pr($query_search_results->request);die;
 			if ( $query_search_results->have_posts() ) {
 				$count = 1;
 				while ( $query_search_results->have_posts() ) : $query_search_results->the_post();
 					$google_maps = get_post_meta( get_the_ID(), 'estate_property_google_maps', true );
 					$post_title = isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all' ? get_the_title() : get_post_meta(get_the_ID(), 'post_title_building', true);
 					
-					$response[] = array(
+					if ($_REQUEST['search_type'] == 'station')
+					{
+						$station = get_post_meta(get_the_ID(), 'estate_property_station', true);
+						if (!in_array($station, $aStation))
+						{
+							$url = getSearchUrl() . '?search_type=station&keyword=' . $station;
+							$stations[] = array('name' => $station, 'url' => $url);
+							$aStation[] = $station;
+						}
+					}
+					elseif ($_REQUEST['search_type'] == 'address')
+					{
+						$locations = wp_get_post_terms( get_the_ID(), 'property-location');
+						if (!empty($locations))
+						{
+							$district = $locations[0]->name;
+							if (!in_array($district, $aDistrict))
+							{
+								$addresses[] = array('name' => $district, 'url' => get_term_link($locations[0]->term_id, 'property-location'));
+								$aDistrict[] = $district;
+							}
+						}
+					}
+					$floors[] = array(
 						'id' => get_the_ID(),
 						'id_str' => (string)get_the_ID(),
-						'name' => (string)$post_title,
+						'name' => (string)$post_title . '<span style="display:none">'.$_GET['keyword'].'</span>',
 						'image_url' => (string)get_the_post_thumbnail_url(),
+						'url' => (string)get_permalink(),
 						'address' => (string)$google_maps['address']
 					);
 					$count ++;
 				endwhile;
 			}
-			echo json_encode(array('data' => array('floor' => $response)));
+			
+			if ($_REQUEST['search_type'] == 'station')
+			{
+				echo json_encode(array('data' => array('station' => $stations,'floor' => $floors)));
+			}
+			elseif ($_REQUEST['search_type'] == 'address')
+			{
+				echo json_encode(array('data' => array('address' => $addresses)));
+			}
+			else {
+				echo json_encode(array('data' => array('floor' => $floors)));
+			}
 			die;
 		}
 		

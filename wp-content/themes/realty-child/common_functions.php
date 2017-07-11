@@ -27,6 +27,11 @@ function isEnglish(){
 	return pll_current_language() == LANGUAGE_EN;
 }
 
+function getSearchUrl()
+{
+	return get_option('siteurl') . '/' . (isEnglish() ? 'search-properties-2' : 'search-properties');
+}
+
 function getLanguageID() {
 	return isEnglish() ? SITE_LANGUAGE_EN : SITE_LANGUAGE_JA;
 }
@@ -54,7 +59,7 @@ function formatNumber($number)
 	return number_format($number, $decimal);
 }
 
-function customOtherThing(){
+function updateFloorPrice(){
 	global $wpdb;
 	// Custom Price
 	$offset = (int)$_GET['offset'];
@@ -64,7 +69,7 @@ function customOtherThing(){
 	
 	foreach ($floors as $floor)
 	{
-		$floorContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_value LIKE '%floor_id\";s:". strlen($floor->floor_id) .":\"". $floor->floor_id ."\"%'");
+		$floorContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='".FLOOR_TYPE_CONTENT."' AND meta_value LIKE '%floor_id\";s:". strlen($floor->floor_id) .":\"". $floor->floor_id ."\"%'");
 		if (!empty($floorContents))
 		{
 			foreach ($floorContents as $floorContent)
@@ -73,6 +78,28 @@ function customOtherThing(){
 			}
 		}
 	}
+	die('updateFloorPrice');
+}
+
+function updateStation() {
+	global $wpdb;
+	// Custom Price
+	$offset = (int)$_GET['offset'];
+	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 500;
+	
+	$stations = $wpdb->get_results("SELECT  * FROM building_station where building_id=830 GROUP BY building_id ORDER BY time ASC LIMIT $offset, $limit ");
+	foreach ($stations as $station)
+	{
+		$buildingContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='jpdb_floor_building_id_en' AND meta_value=" . (int)$station->building_id . ' LIMIT 1');
+		if (!empty($buildingContents))
+		{
+			foreach ($buildingContents as $buildingContent)
+			{
+				update_post_meta($buildingContent->post_id, 'estate_property_station', $station->name_en);
+			}
+		}
+	}
+	die('updateStation');
 }
 
 function changeNewsTitle(){
@@ -121,27 +148,6 @@ function importLocationFromPrefecture () {
 			FROM wp_terms AS t
 			INNER JOIN wp_term_taxonomy AS tt ON t.term_id = tt.term_id
 			WHERE tt.taxonomy IN ('property-location','property-type','property-status','category') ORDER BY t.name ASC ");
-
-	$terms = array();
-	if (!empty($terms))
-	{
-		foreach ($terms as $term)
-		{
-			wp_delete_term($term->term_id, $term->taxonomy);
-			wp_remove_object_terms($term->term_id, $term->term_taxonomy_id, 'term_translations');
-
-			$objectTerms = wp_get_object_terms(array($term->term_id), 'term_translations');
-			if (!empty($objectTerms))
-			{
-				wp_delete_term($objectTerms[0]->term_id, $objectTerms[0]->taxonomy);
-				wp_remove_object_terms($objectTerms[0]->term_id, $objectTerms[0]->term_taxonomy_id, 'term_translations');
-
-				//
-				wp_remove_object_terms($objectTerms[0]->term_id, 38, 'term_language');
-				wp_remove_object_terms($objectTerms[0]->term_id, 35, 'term_language');
-			}
-		}
-	}
 
 	$cities = getAvailableCities();
 	$types = getAvaileableTypes();
@@ -347,9 +353,14 @@ function realty_theme_init()
 		importLocationFromPrefecture ();
 	}
 
-	if (isset($_GET['custom_other_thing']))
+	if (isset($_GET['update_floor_price']))
 	{
-		customOtherThing();
+		updateFloorPrice();
+	}
+	
+	if (isset($_GET['update_station']))
+	{
+		updateStation();
 	}
 	
 	if (isset($_GET['change_news_title']))
@@ -451,6 +462,20 @@ function realty_posts_request ($request, $query)
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+		
+		if (isset($query->query['meta_query']) && 
+			isset($query->query['meta_query'][0]) &&
+			isset($query->query['meta_query'][0][0]) && 
+			$query->query['meta_query'][0][0]['key'] == 'estate_property_station' &&
+			isset($query->query['meta_query'][0][1]) &&
+			$query->query['meta_query'][0][1]['key'] == 'estate_property_google_maps')
+		{
+			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' ) 
+    OR 
+    ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
+			$request = str_replace($text_search, ' 1=1 ', $request);
+			$request = str_replace("wp_posts.post_title LIKE '%".$query->query['s']."%'", $text_search, $request);
+		}
 	}
 	
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')

@@ -168,7 +168,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			maxItem : 15,
 			order : "asc",
 			accent: true,
-			highlight: true,
+			highlight: 'any',
 //			display: ["name", "description"],
 			maxItemPerGroup : 5,
 			backdropOnFocus: true,
@@ -176,18 +176,68 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			dynamic: true,
 			templateValue: '{{name}}',
 			emptyTemplate: message_no_result,
-		    template: '<span>' +
-				'<span class="col-xs-4 col-sm-4 col-md-4 result-column"><span class="building-logo">' +
-		            '<img src="{{image_url}}">' +
-		        '</span></span>' +
-		        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
-		    '</span>',
 		    correlativeTemplate: true,
+			group: true,
+		    maxItemPerGroup: 10,
 			source : {
-				floor : {
+				station : {
 					display: 'name',
+					href: '{{url}}',
+					template: '<span>' +
+					        '<span class="col-md-12 result-column"><span class="name">{{name}}</span>' +
+					    '</span>',
 					ajax : function(query){
 						$('input[name="keyword"]').val(query);
+						if (!$('.property-search-form:eq(0)').find('#search_type').length)
+						{
+							$('.property-search-form:eq(0)').append('<input type="hidden" name="search_type" id="search_type" />');
+						}
+						$('#search_type').val('station');
+						return {
+							type: 'GET',
+							data: $('.property-search-form:eq(0)').serialize(),
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
+							path : "data.station"
+						}
+					}
+				},
+				address : {
+					display: 'name',
+					href: '{{url}}',
+					template: '<span>' +
+					        '<span class="col-md-12 result-column"><span class="name">{{name}}</span>' +
+					    '</span>',
+					ajax : function(query){
+						$('input[name="keyword"]').val(query);
+						if (!$('.property-search-form:eq(0)').find('#search_type').length)
+						{
+							$('.property-search-form:eq(0)').append('<input type="hidden" name="search_type" id="search_type" />');
+						}
+						$('#search_type').val('address');
+						return {
+							type: 'GET',
+							data: $('.property-search-form:eq(0)').serialize(),
+							url : ajax_object.ajax_url + "?action=tt_ajax_search&response=json" ,
+							path : "data.address"
+						}
+					}
+				},
+				floor : {
+					display: 'name',
+					href: '{{url}}',
+					template: '<span>' +
+						'<span class="col-xs-4 col-sm-4 col-md-4 result-column"><span class="building-logo">' +
+					            '<img src="{{image_url}}">' +
+					        '</span></span>' +
+					        '<span class="col-xs-8 col-sm-8 col-md-8 result-column"><span class="name">{{name}}</span>' +
+					    '</span>',
+					ajax : function(query){
+						$('input[name="keyword"]').val(query);
+						if (!$('.property-search-form:eq(0)').find('#search_type').length)
+						{
+							$('.property-search-form:eq(0)').append('<input type="hidden" name="search_type" id="search_type" />');
+						}
+						$('#search_type').val('floor');
 						return {
 							type: 'GET',
 							data: $('.property-search-form:eq(0)').serialize(),
