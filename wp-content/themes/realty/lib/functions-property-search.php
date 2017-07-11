@@ -636,7 +636,7 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 						if (!in_array($station, $aStation))
 						{
 							$url = getSearchUrl() . '?search_type=station&keyword=' . $station;
-							$stations[] = array('name' => $station, 'url' => $url, 'group_name' => trans_text('Stations'));
+							$stations[] = array('name' => $station, 'title' => $station, 'url' => $url, 'group_name' => trans_text('Stations'));
 							$aStation[] = $station;
 						}
 					}
@@ -650,6 +650,7 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 							{
 								$addresses[] = array(
 									'name' => $district, 
+									'title' => $district,
 									'url' => get_term_link($locations[0]->term_id, 'property-location'),
 									'group_name' => trans_text('Addresses')
 								);
