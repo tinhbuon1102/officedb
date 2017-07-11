@@ -486,7 +486,6 @@ function realty_posts_request ($request, $query)
 	{
 		$text_search = "OR (wp_posts.post_excerpt LIKE '%".$query->query['s']."%') OR (wp_posts.post_content LIKE '%".$query->query['s']."%')";
 		$request = str_replace($text_search, '', $request);
-		pr($request);die;
 	}
 
 	return $request;
