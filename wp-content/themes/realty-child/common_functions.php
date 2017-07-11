@@ -91,7 +91,6 @@ function updateStation() {
 	foreach ($stations as $station)
 	{
 		$buildingContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='jpdb_floor_building_id_en' AND meta_value=" . (int)$station->building_id . ' LIMIT 1');
-		pr($buildingContents);die;
 		if (!empty($buildingContents))
 		{
 			foreach ($buildingContents as $buildingContent)
