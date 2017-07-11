@@ -496,7 +496,7 @@ function buildSearchArgs($search_results_args){
 	{
 		foreach ($search_results_args['meta_query'] as $meta_field)
 		{
-			if ($meta_field['key'] == 'estate_property_size')
+			if (isset($meta_field['key']) && $meta_field['key'] == 'estate_property_size')
 			{
 				// Don't group floor if has size in Search
 				return $search_results_args;

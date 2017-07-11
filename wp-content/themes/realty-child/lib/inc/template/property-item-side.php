@@ -11,7 +11,6 @@ $property_location = get_the_terms( $property_id, 'property-location' );
 $property_featured = get_post_meta( $property_id, 'estate_property_featured', true );
 $property_status_update = get_post_meta( $property_id, 'estate_property_status_update', true );
 $estate_property_station = get_post_meta( $property_id, 'estate_property_station', true );
-$estate_property_station = str_replace('Station', '', $estate_property_station);
 
 $estate_property_prefecture = get_post_meta( $property_id, 'estate_property_prefecture', true );
 $estate_property_district = get_post_meta( $property_id, 'estate_property_district', true );
