@@ -172,6 +172,9 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 //			display: ["name", "description"],
 			maxItemPerGroup : 5,
 			backdropOnFocus: true,
+			backdrop: {
+		        "background-color": "#fff"
+		    },
 			dropdownFilter : false,
 			dynamic: true,
 			templateValue: '{{name}}',
