@@ -87,7 +87,7 @@ function updateStation() {
 	$offset = (int)$_GET['offset'];
 	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 500;
 	
-	$stations = $wpdb->get_results("SELECT  * FROM building_station where building_id=830 GROUP BY building_id ORDER BY time ASC LIMIT $offset, $limit ");
+	$stations = $wpdb->get_results("SELECT  * FROM building_station GROUP BY building_id ORDER BY time ASC LIMIT $offset, $limit ");
 	foreach ($stations as $station)
 	{
 		$buildingContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='jpdb_floor_building_id_en' AND meta_value=" . (int)$station->building_id . ' LIMIT 1');
