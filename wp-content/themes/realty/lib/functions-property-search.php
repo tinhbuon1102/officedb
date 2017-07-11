@@ -661,6 +661,7 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 						'id' => get_the_ID(),
 						'id_str' => (string)get_the_ID(),
 						'name' => (string)$post_title . '<span style="display:none">'.$_GET['keyword'].'</span>',
+						'title' => (string)$post_title,
 						'image_url' => (string)get_the_post_thumbnail_url(),
 						'url' => (string)get_permalink(),
 						'address' => (string)$google_maps['address'],
