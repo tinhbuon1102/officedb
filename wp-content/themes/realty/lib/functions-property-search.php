@@ -205,7 +205,10 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 						break;
 						
 						case 'estate_property_station' :
-							$search_results_args['posts_per_page'] = 5;
+							if (defined('DOING_AJAX') && DOING_AJAX) {
+								$search_results_args['posts_per_page'] = 5;
+							}
+								
 							$meta_query[] = array(
 								'key' 			=> 'estate_property_station',
 								'value' 		=> $search_value,
@@ -214,7 +217,9 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 							break;
 							
 						case 'estate_property_google_maps' :
-							$search_results_args['posts_per_page'] = 5;
+							if (defined('DOING_AJAX') && DOING_AJAX) {
+								$search_results_args['posts_per_page'] = 5;
+							}
 							$meta_query[] = array(
 							'key' 			=> 'estate_property_google_maps',
 							'value' 		=> $search_value,
