@@ -25,28 +25,6 @@
 </script>
   
 
-  <script type="text/javascript">
-
-    jQuery(document).ready(function ($) {
-        default_options =
-        { 
-		    boundList: null,
-            fillOpacity: 1,
-			isDeselectable:false,
-			isLink: true,
-			isSelectable:false,
-			 clickNavigate: true,
-            render_highlight: {
-                stroke: true,
-				strokeColor: '000000',
-                altImage: '<?php echo site_url()?>/wp-content/uploads/2015/10/map_on.png',		  
-			},
-		};
-        $statelist = false;
-        
-        jQuery('#usa_image').mapster(default_options);
-    });
-</script>
 </head>
 
 <body <?php body_class(); ?>>
