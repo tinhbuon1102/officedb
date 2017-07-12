@@ -2,14 +2,6 @@
 <html <?php language_attributes(); ?>>
 
 <head>
- <?php $pid=get_the_ID();
-if($pid==286)
-{
- echo "<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>";
- } ?>
-  
-
-
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,13 +27,7 @@ if($pid==286)
 
   <script type="text/javascript">
 
-    $(document).ready(function () {
-        var  ratio,
-		
-        mapsterConfigured = function () {
-           
-           
-        },
+    jQuery(document).ready(function ($) {
         default_options =
         { 
 		    boundList: null,
@@ -53,7 +39,7 @@ if($pid==286)
             render_highlight: {
                 stroke: true,
 				strokeColor: '000000',
-                altImage: 'http://front.office-jpdb.com/wp-content/uploads/2015/10/map_on.png',		  
+                altImage: '<?php echo site_url()?>/wp-content/uploads/2015/10/map_on.png',		  
 			},
 		};
         $statelist = false;
