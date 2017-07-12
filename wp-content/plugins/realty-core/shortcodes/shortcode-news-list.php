@@ -24,7 +24,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 		
 		ob_start();
 		
-		echo '<ul class="homenews-list">';
+		echo '<div class="homenews-list scroll_bar_wraper">';
 		foreach ( $recent_posts as $recent )
 		{
 			$recent = (array)$recent;
@@ -72,7 +72,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			}
 			$news_url = isset($new_property) ? get_permalink($new_property->ID) : get_permalink($recent['ID']);
 			?>
-			<li>
+			<div class="item">
 				<span class="news-thumbnail">
 					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo get_the_post_thumbnail($recent['ID'], 'thumbnail');?></a>
 				</span>
@@ -81,12 +81,12 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo $recent["post_title"]?></a>
 					<div class="post-meta"><?php echo renderJapaneseDate($recent['post_modified'])?> | <span class="added-info-ja"><?php echo $cat_name; ?></span></div>
 				</div>
-			</li>
+			</div>
 			
 			<?php
 			}
 			?>
-		</ul>
+		</div>
 		<?php
 		wp_reset_query();
 		return ob_get_clean();

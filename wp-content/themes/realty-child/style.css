@@ -479,10 +479,10 @@ section#feature .wpb_single_image .imgfit{
     padding: 3px 0;
     line-height: 24px;
 }
-ul.homenews-list {
+.homenews-list {
     padding: 0;
     margin: 0;
-    overflow: scroll;
+    overflow: auto;
     height: 336px;
 }
 .property-items {
@@ -1102,7 +1102,7 @@ body.en .joinms .btn-lg {
     z-index: 1;
 }
 /*home news new*/
-.homenews-list li {
+.homenews-list div.item {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3076,7 +3076,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     display: inline-block;
     margin: 0 10px 0 0;
 	}
-	.homenews-list li {
+	.homenews-list div.item {
     padding: 15px 0px;
 	}
 	.flex-sm {

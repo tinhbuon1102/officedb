@@ -110,7 +110,10 @@ jQuery(document).ready(function($){
 			var featureHeight = [];
 			$('.vc_figure.imgfit').each(function(){
 				var img = $(this).find('img'); 
-				featureHeight.push(img.height());
+				if (img.height() > 0)
+				{
+					featureHeight.push(img.height());
+				}
 			});
 			featureHeight.sort();
 			$('.vc_figure.imgfit').css('height', featureHeight[0] + 'px');
@@ -123,7 +126,10 @@ jQuery(document).ready(function($){
 			var rankingHeight = [];
 			$('.thum-element').each(function(){
 				var img = $(this).find('img'); 
-				rankingHeight.push(img.height());
+				if (img.height() > 0)
+				{
+					rankingHeight.push(img.height());
+				}
 			});
 			rankingHeight.sort();
 			$('.thum-element').css('height', rankingHeight[0] + 'px');
@@ -343,6 +349,17 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         }
 	}
 	
+	function initScrollBar(){
+		if ($.fn.mCustomScrollbar != undefined && $(".scroll_bar_wraper").length)
+		{
+			$(".scroll_bar_wraper").mCustomScrollbar({
+				scrollButtons:{
+					enable:true
+				}
+			});
+		}
+	}
+	
 	// Add keyword field for mobile in all page
 	var searchElementWraper = $('#menu-item-1175');
 	if(searchElementWraper.length)
@@ -350,6 +367,8 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 		searchElementWraper.prepend($('#temporary_search_block_wraper').html());
 	}
 	
+	
+	initScrollBar();
 	initTypeHead();
 	initLoginRegisterForm();
 	$.fn.autoKana('#user_name', '#user_name_kana', {katakana:true});
