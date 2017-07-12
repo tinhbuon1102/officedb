@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-07-05 07:28+0900\n"
+"PO-Revision-Date: 2017-07-12 00:42+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -3434,10 +3434,6 @@ msgstr ""
 msgid "Enter one longitude per line. Visit <a href=\"http://mondeca.com/index.php/en/any-place-en\" target=\"_blank\">http://mondeca.com/index.php/en/any-place-en</a> to retrieve coordinate of any address."
 msgstr ""
 
-#: realty-core/shortcodes/shortcode-google-maps.php:274
-msgid "Addresses"
-msgstr ""
-
 #: realty-core/shortcodes/shortcode-google-maps.php:277
 msgid "Multiple locations supported. Enter one address per line (same for logo, phone, mobile, email."
 msgstr ""
@@ -4886,3 +4882,12 @@ msgstr "総貸室面積"
 
 msgid "has new vacancy"
 msgstr "に新しい空室が出ました。"
+
+msgid "Stations"
+msgstr "駅名"
+
+msgid "Addresses"
+msgstr "区名"
+
+msgid "Floors"
+msgstr "物件名"
