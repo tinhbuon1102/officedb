@@ -498,8 +498,8 @@ section#feature .wpb_single_image .imgfit{
 
 .property-image-container .property-image.zoom {
     cursor: url(lib/images/plus_cursor.png) 25 25, auto;
-    display: flex;
     display: -webkit-box;
+    display: flex;
 	 display: -webkit-flex;
 	 display: -ms-flexbox;
 }
