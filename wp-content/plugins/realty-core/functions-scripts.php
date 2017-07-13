@@ -135,7 +135,7 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 				      rtl: true,
 				      <?php } ?>
 							asNavFor: '#<?php echo $slider_params['id']; ?>',
-						  slidesToShow: 6,
+						  slidesToShow: 4,
 						  slidesToScroll: 1,
 						  //centerMode: true,
 						  centerPadding: '0px',
