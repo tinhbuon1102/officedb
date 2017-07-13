@@ -1162,6 +1162,7 @@ ul.locate-info li.station:before {
     position: absolute;
     top: 50%;
     margin-top: -279px;
+	width: 100%;
 }
 .slider-col .map-select {
     margin-bottom: 0px;
