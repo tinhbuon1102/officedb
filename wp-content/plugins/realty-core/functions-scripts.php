@@ -81,19 +81,19 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 			          {
 			            breakpoint: 591,
 			            settings: {
-			              slidesToShow: 2,
+			              slidesToShow: 1,
 			            }
 			          },
 			          {
 			            breakpoint: 992,
 			            settings: {
-			              slidesToShow: 3,
+			              slidesToShow: 1,
 			            }
 			          },
 			          {
 			            breakpoint: 1200,
 			            settings: {
-			              slidesToShow: <?php echo $slider_params['images_to_show_lg']; ?>,
+			              slidesToShow: 1,
 			            }
 			          },
 			        ],
