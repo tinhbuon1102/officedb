@@ -144,21 +144,21 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 							nextArrow: '<i class="icon-arrow-right"></i>',
 			        responsive: [
 			          {
-			            breakpoint: 768,
+			            breakpoint: 591,
 			            settings: {
 			              slidesToShow: 3,
 			            }
 			          },
 			          {
-			            breakpoint: 992,
+			            breakpoint: 768,
 			            settings: {
-			              slidesToShow: 3,
+			              slidesToShow: 6,
 			            }
 			          },
 			          {
 			            breakpoint: 1200,
 			            settings: {
-			              slidesToShow: 3,
+			              slidesToShow: 4,
 			            }
 			          },
 			        ],
