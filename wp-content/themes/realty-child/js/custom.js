@@ -27,8 +27,8 @@ jQuery(document).ready(function($){
     radioClass: 'iradio_square',
     increaseArea: '20%' // optional
 	});
-	$('.main-slider .property-search-form').wrap('<div class="col-sm-6 slider-col search-col"><div class="slider-searchbox"></div></div>');
-	$('.main-slider .map-select').wrap('<div class="col-sm-6 slider-col map-col"></div>');
+	$('.main-slider .property-search-form').wrap('<div class="col-sm-12 slider-col search-col"><div class="slider-searchbox"></div></div>');
+	//$('.main-slider .map-select').wrap('<div class="col-sm-6 slider-col map-col"></div>');
 	$('.main-slider .search-col, .main-slider .map-col').wrapAll('<div class="slider-content"><div class="container"><div class="row"></div></div></div>');
 	
 	$('a img').hover(function(){
