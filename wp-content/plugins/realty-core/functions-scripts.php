@@ -146,19 +146,19 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 			          {
 			            breakpoint: 591,
 			            settings: {
-			              slidesToShow: 3,
+			              slidesToShow: $('#property-thumbnails img').length >= 3 ? 3 : $('#property-thumbnails img').length,
 			            }
 			          },
 			          {
 			            breakpoint: 768,
 			            settings: {
-			              slidesToShow: 6,
+			              slidesToShow: $('#property-thumbnails img').length >= 6 ? 6 : $('#property-thumbnails img').length,
 			            }
 			          },
 			          {
 			            breakpoint: 1200,
 			            settings: {
-			              slidesToShow: 4,
+			              slidesToShow: $('#property-thumbnails img').length >= 4 ? 4 : $('#property-thumbnails img').length,
 			            }
 			          },
 			        ],
