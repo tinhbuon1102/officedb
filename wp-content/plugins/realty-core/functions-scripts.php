@@ -72,16 +72,22 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 			        },
 			        <?php } ?>
 			        responsive: [
+			        	{
+				            breakpoint: 481,
+				            settings: {
+				              slidesToShow: 1,
+				            }
+				          },
 			          {
-			            breakpoint: 768,
+			            breakpoint: 591,
 			            settings: {
-			              slidesToShow: <?php echo $slider_params['images_to_show_sm']; ?>,
+			              slidesToShow: 2,
 			            }
 			          },
 			          {
 			            breakpoint: 992,
 			            settings: {
-			              slidesToShow: <?php echo $slider_params['images_to_show_md']; ?>,
+			              slidesToShow: 3,
 			            }
 			          },
 			          {
