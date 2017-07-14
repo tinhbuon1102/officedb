@@ -359,10 +359,6 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 				var sliderHeight = (windowHeight - (headerH + fixFooterHeight)) + 'px';
 			}
 			
-			if (windowWidth < 768)
-			{
-			}
-			
 			$('.main-slider').css('height', sliderHeight);
 			$('.n2-ss-slider').css('height', sliderHeight);
 			$('.n2-ss-slider-1').css('height', sliderHeight);
