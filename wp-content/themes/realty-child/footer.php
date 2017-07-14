@@ -125,6 +125,7 @@ if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
 		</div>
 	</div>
 </div>
+</div><!--/viewwrap-->
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js"></script>
 </body>
 </html>

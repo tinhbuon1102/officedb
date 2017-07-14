@@ -653,9 +653,29 @@ nav#navigation .primary-menu li.menu-clist a span:before {
     top: 20px;
 }
 }
-
-header#header {
+.viewwrap {
     position: relative;
+}
+@media (min-width: 992px) {
+	.viewwrap {
+		padding-top: 106px;
+	}
+}
+@media (max-width: 991px) {
+	.viewwrap {
+		padding-top: 146px;
+	}
+}
+@media (max-width: 767px) {
+	.viewwrap {
+		padding-top: 140px;
+	}
+}
+header#header {
+    /*position: relative;*/
+	position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
 	box-shadow: none;
     border-bottom: 1px solid #eeeeee;
@@ -1707,7 +1727,7 @@ h1 span.labeled .btn {
 }
 #property-thumbnails .slick-slide {
     margin: 0 5px 0;
-	max-height: 80px;
+	max-height: 48px;
 }
 #property-thumbnails.slick-slider .slick-list {
     margin: 0 -2.5px;
@@ -2934,6 +2954,10 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	padding: 20px 0;
 	}
 @media only screen and (max-width: 991px) and (min-width: 768px) {
+	#links h4 {
+    padding: 10px 10px;
+    font-size: 13px;
+	}
 	#viewed_property_box .property-item .property-meta.custom-meta-list > div {
     display: block;
     float: none;

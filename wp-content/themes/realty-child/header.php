@@ -52,7 +52,7 @@
 <body <?php body_class(); ?>>
 
 <?php global $realty_theme_option; ?>
-
+<div class="viewwrap">
 <header id="header"<?php if ( $realty_theme_option['header-layout'] == 'default' ) { echo esc_attr( ' class=nav-below' ); } ?>>
 
 	<?php global $realty_theme_option; ?>
