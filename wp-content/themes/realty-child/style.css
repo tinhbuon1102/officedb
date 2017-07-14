@@ -2780,6 +2780,11 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 	position: relative;
 	margin-bottom: 29px;
 }
+
+.n2-ss-slide-background img {
+	width: 100% !important;
+	margin-left: 0 !important;
+}
 /*hexagon*/
 @media (max-width: 1160px) {
 	.nextend-arrow {
