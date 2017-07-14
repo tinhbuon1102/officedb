@@ -359,6 +359,10 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 				var sliderHeight = (windowHeight - (headerH + fixFooterHeight)) + 'px';
 			}
 			
+			if (windowWidth < 768)
+			{
+			}
+			
 			$('.main-slider').css('height', sliderHeight);
 			$('.n2-ss-slider').css('height', sliderHeight);
 			$('.n2-ss-slider-1').css('height', sliderHeight);
@@ -368,7 +372,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			var slconHeight = $(".slider-content").height();
 			var mainSliderTop = $('.main-slider').offset().top;
 			var mainSliderHeight = $('.main-slider').height();
-			$('.main-slider .slider-content').css('top', (mainSliderHeight/2 - (slconHeight/2)) + 'px');
+			$('.main-slider .slider-content').css('top', (mainSliderHeight/2 - (slconHeight/2) + 8) + 'px');
 			$('.main-slider .slider-content').show();
 		}
 		

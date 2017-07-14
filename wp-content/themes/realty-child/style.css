@@ -2781,6 +2781,12 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 	margin-bottom: 29px;
 }
 /*hexagon*/
+@media (max-width: 1160px) {
+	.nextend-arrow {
+		bottom: 40px;
+		top: inherit !important;
+	}
+}}
 @media (min-width: 992px) {
 .container.square_diamond > .wpb_column {
 	min-height: 300px;
@@ -3790,3 +3796,4 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     width: 110px;
 	}
 }
+
