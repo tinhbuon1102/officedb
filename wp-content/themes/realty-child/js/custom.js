@@ -342,15 +342,6 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			var fixFooterHeight = $('.sp-fixfooter').height();
 			var bannerHeight = $('#hometoplinks').height();
 			
-			// If window height >= 768
-			realty_debuging('windowHeight: ' + windowHeight);
-			realty_debuging('headerH: ' + headerH);
-			realty_debuging('bannerHeight: ' + bannerHeight);
-			realty_debuging('fixFooterHeight: ' + fixFooterHeight);
-			realty_debuging('windowHeight - headerH: ' + (windowHeight - (headerH + bannerHeight)));
-			realty_debuging('windowHeight - (headerH + bannerHeight): ' + (windowHeight - (headerH + bannerHeight)));
-			realty_debuging('windowHeight - (headerH + fixFooterHeight): ' + (windowHeight - (headerH + fixFooterHeight)));
-			
 			if (windowWidth >= 768)
 			{
 				var sliderHeight = (windowHeight - (headerH + bannerHeight)) + 'px';
