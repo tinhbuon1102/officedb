@@ -8,20 +8,21 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 				$medium = 2;
 				$large = 3;
 				$huge = 4;
+				$very_huge = 5;
 				break;
 		
 			case 'property_image_slider':
 				$small = 1;
 				$medium = 1;
 				$large = 1;
-				$huge = 1;
+				$very_huge = $huge = 1;
 				break;
 				
 			default:
 				$small = $slider_params['images_to_show_sm'];
 				$medium = $slider_params['images_to_show_md'];
 				$large = $slider_params['images_to_show_lg'];
-				$huge = $slider_params['images_to_show_lg'];
+				$very_huge = $huge = $slider_params['images_to_show_lg'];
 				break;
 		}
 		?>
@@ -117,6 +118,12 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 			            breakpoint: 1200,
 			            settings: {
 			              slidesToShow: <?php echo $huge; ?>,
+			            }
+			          },
+			          {
+			            breakpoint: 2000,
+			            settings: {
+			              slidesToShow: <?php echo $very_huge; ?>,
 			            }
 			          },
 			        ],
