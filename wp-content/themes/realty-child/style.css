@@ -1195,8 +1195,8 @@ ul.locate-info li.station:before {
 .slider-content {
     position: absolute;
     top: 50%;
-    margin-top: -279px;
 	width: 100%;
+	display: none;
 }
 .slider-col .map-select {
     margin-bottom: 0px;
