@@ -2,6 +2,7 @@ jQuery(document).ready(function($){
 	function realty_debuging($data){
 		console.log($data);
 	}
+	//$(".n2-ss-layers-container").wrapAll('<div class="n2-wrap"></div>');
 	
 	//scroll map
 	$(window).bind("scroll", function() {
