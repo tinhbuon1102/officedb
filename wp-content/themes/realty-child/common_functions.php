@@ -982,7 +982,7 @@ function renderPrice($price) {
 	if ($price)
 	{
 		$price = formatNumber($price, 0);
-		return '<span class="price_currency">¥</span><span class="price">'.str_replace('.', ',', $price).'</span>';
+		return '<span class="price_currency">¥</span><span class="price">'.$price.'</span>';
 	}
 	else {
 		return FIELD_MISSING_VALUE;
