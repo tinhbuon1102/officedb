@@ -2782,7 +2782,7 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 	margin-bottom: 29px;
 }
 
-.n2-ss-layers-container {
+.n2-ss-layers-container, .n2-ss-layer {
 	width: 100% !important;
 	left: 0 !important;
 }
