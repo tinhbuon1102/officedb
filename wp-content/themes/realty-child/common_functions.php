@@ -981,6 +981,7 @@ function renderPrice($price) {
 	$price = str_replace(',', '', $price);
 	if ($price)
 	{
+		$price = ceil($price);
 		$price = formatNumber($price, 0);
 		return '<span class="price_currency">¥</span><span class="price">'.$price.'</span>';
 	}
