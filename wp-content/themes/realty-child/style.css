@@ -2782,6 +2782,11 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 	margin-bottom: 29px;
 }
 
+.n2-ss-layers-container {
+	width: 100% !important;
+	left: 0 !important;
+}
+
 .n2-ss-slide-background img {
 	width: 100% !important;
 	margin-left: 0 !important;
