@@ -44,7 +44,7 @@ function formatNumber($number)
 	}
 	elseif (strpos($number, ',') !== false)
 	{
-		$number = str_replace(',', '.', $number);
+		$number = str_replace(',', '', $number);
 	}
 	
 	
@@ -74,7 +74,7 @@ function updateFloorPrice(){
 		{
 			foreach ($floorContents as $floorContent)
 			{
-				update_post_meta($floorContent->post_id, 'estate_property_price', (float)str_replace(',', '.', $floor->rent_unit_price));
+				update_post_meta($floorContent->post_id, 'estate_property_price', (float)str_replace(',', '', $floor->rent_unit_price));
 			}
 		}
 	}
