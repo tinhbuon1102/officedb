@@ -402,6 +402,19 @@ body.en nav#navigation .primary-menu a {
     font-size: 1.2em;
     font-style: italic;
 }
+@media all and (-ms-high-contrast:none) {
+	body.en nav#navigation .primary-menu a {
+    font-family: "adobe-caslon-pro",Times,serif;
+	}
+}
+@media all and (-ms-high-contrast:none) {
+    *::-ms-backdrop,body.en nav#navigation .primary-menu a {
+    font-family: "adobe-caslon-pro",Times,serif;
+	}
+}
+_:-ms-lang(x), _::-webkit-meter-bar,body.en nav#navigation .primary-menu a {
+    font-family: "adobe-caslon-pro",Times,serif;
+	}
 nav#navigation .primary-menu a:hover {
     border-bottom: 2px solid #000;
 }
