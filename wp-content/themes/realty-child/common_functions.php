@@ -74,6 +74,10 @@ function updateFloorKana(){
 			foreach ($buildingContents as $buildingContent)
 			{
 				update_post_meta($buildingContent->post_id, 'estate_property_kana_name', $building->name_kana);
+				
+				$search_text = $building->name . ' ' . $building->name_en;
+				$search_text .= $building->name_kana . ' ' . $building->search_keywords_ja . ' ' . $building->search_keywords_en;
+				update_post_meta($buildingContent->post_id, 'estate_property_search', $search_text);
 			}
 		}
 	}
