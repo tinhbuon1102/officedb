@@ -59,6 +59,27 @@ function formatNumber($number)
 	return number_format($number, $decimal);
 }
 
+function updateFloorKana(){
+	global $wpdb;
+	// Custom Price
+	$offset = (int)$_GET['offset'];
+	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 100;
+
+	$buildings = $wpdb->get_results("SELECT  * FROM building LIMIT $offset, $limit");
+	foreach ($buildings as $building)
+	{
+		$buildingContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='".BUILDING_TYPE_CONTENT."' AND meta_value LIKE '%building_id\";s:". strlen($building->building_id) .":\"". $building->building_id ."\"%'");
+		if (!empty($buildingContents))
+		{
+			foreach ($buildingContents as $buildingContent)
+			{
+				update_post_meta($buildingContent->post_id, 'estate_property_kana_name', $building->name_kana);
+			}
+		}
+	}
+	die('updateFloorPrice');
+}
+
 function updateFloorPrice(){
 	global $wpdb;
 	// Custom Price
@@ -358,6 +379,11 @@ function realty_theme_init()
 		updateFloorPrice();
 	}
 	
+	if (isset($_GET['update_kana']))
+	{
+		updateFloorKana();
+	}
+	
 	if (isset($_GET['update_station']))
 	{
 		updateStation();
@@ -475,8 +501,10 @@ function realty_posts_request ($request, $query)
     ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
 			
 			$text_filter = "wp_posts.post_title LIKE '%".$query->query['s']."%'";
+			$text_name_kana = "(wp_postmeta.meta_key = 'estate_property_kana_name' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
+			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search_keywords' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			$request = str_replace($text_search, ' 1=1 ', $request);
-			$request = str_replace($text_filter, $text_filter . ' OR ' . $text_search, $request);
+			$request = str_replace($text_filter, '('.$text_filter . ' OR ' . $text_name_kana . ' OR ' . $text_keyword . ' OR ' . $text_search.')', $request);
 		}
 	}
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
