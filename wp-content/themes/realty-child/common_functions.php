@@ -677,6 +677,12 @@ function explodeRangeValue($string, $subfix = ''){
 	return implode($matches[0], $aString);
 }
 
+function convertDateFormat($date)
+{
+	$date = str_replace('Sep', 'Sept', $date);
+	return $date;
+}
+
 function getBuilding($single_property_id) {
 	global $wpdb;
 	$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
@@ -800,6 +806,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					}
 				}
 				
+				convertDateFormat($floor[$field]);
 				return trans_text($floor[$field]);
 			}
 			else {
@@ -832,6 +839,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				}
 			}
 			
+			convertDateFormat($floor[$field]);
 			return $building[$field];
 			break;
 				
