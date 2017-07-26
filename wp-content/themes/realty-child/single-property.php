@@ -130,6 +130,19 @@
 					'key' => FLOOR_BUILDING_TYPE,
 					'value' => $building_id,
 					'compare' => '=',
+				),
+				array(
+					'relation' => 'AND',
+					'floor_down' => array(
+						'key'       => 'estate_property_floor_down',
+						'compare'   => 'EXISTS',
+						'type'      => 'numeric'
+					),
+					'floor_up' => array(
+						'key'       => 'estate_property_floor_up',
+						'compare'   => 'EXISTS',
+						'type'      => 'numeric'
+					),
 				)
 			),
 			'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
