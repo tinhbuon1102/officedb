@@ -276,7 +276,7 @@
 						</span>
 						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i><br><span class="title_inner"><?php echo __('View map', 'realty')?></span></a></span>
 						
-						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?><br>		
+						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?><br>		
 			<?php 
 		    if ( is_user_logged_in() ) {
 			$user_id = get_current_user_id();

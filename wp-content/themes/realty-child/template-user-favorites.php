@@ -60,7 +60,7 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 									<?php if ( $columns_theme_option == "col-md-6" ) { ?>
 										<li class="col-md-4 col-sm-6">
 									<?php }	else if ( $columns_theme_option == "col-lg-4 col-md-6" ) { ?>
-										<li class="col-lg-4 col-md-6">
+										<li class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
 									<?php }	else if ( $columns_theme_option == "col-lg-3 col-md-6" ) { ?>
 										<li class="col-lg-3 col-md-6">
 									<?php } ?>
