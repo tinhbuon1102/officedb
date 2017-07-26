@@ -90,11 +90,11 @@ if ( ! function_exists( 'tt_follow_script' ) ) {
 			<?php if ( is_user_logged_in() ) { // Logged-In User ?>
 
 					// Toggle Follow Tooltips
-					if ( jQuery(this).hasClass('icon-email-1') ) {
+					if ( jQuery(this).hasClass('icon-email') ) {
 						jQuery(this).attr('data-original-title', '<?php esc_html_e( 'Unsubscribe From Email Updates', 'realty' ); ?>');
 					}
 
-					if ( jQuery(this).hasClass('icon-email') ) {
+					if ( jQuery(this).hasClass('icon-email-1') ) {
 						jQuery(this).attr('data-original-title', '<?php esc_html_e( 'Subscribe To Email Updates', 'realty' ); ?>');
 					}
 
