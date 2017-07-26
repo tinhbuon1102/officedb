@@ -839,7 +839,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				}
 			}
 			
-			$floor[$field] = convertDateFormat($floor[$field]);
+			$building[$field] = convertDateFormat($building[$field]);
 			return $building[$field];
 			break;
 				
