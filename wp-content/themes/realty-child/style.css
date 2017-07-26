@@ -1446,6 +1446,12 @@ body.page-template-template-search {
 ul.typeahead__list .result-column {
     line-height: 1.4;
 }
+.property-search-form .result-column .name {
+    display: block;
+}
+.property-search-form .result-column .address {
+    font-size: .7em;
+}
 .property-search-form input[type="submit"] {
     font-weight: bold;
     font-size: 14px;
