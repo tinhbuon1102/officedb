@@ -1774,31 +1774,6 @@ div#property_thumbnails {
     margin: 0 0 5px 0;
     padding: 10px 10px;
 }
-@media(min-width:768px){
-#property_thumbnails .property-image{clear:both;}
-div#property_thumbnails img {
-    max-height: 100px !important;
-    display: block;
-}
-#property_thumbnails .property-image {
-    margin: 0 0 5px 0;
-    max-height: 100px !important;
-	width: 100% !important;
-	height: auto !important;
-}
-div#property_thumbnails {
-    position: absolute;
-    top: 0;
-    max-width: 95px;
-    z-index: 9;
-    background: #f5f5f5;
-    /* bottom: 149px; */
-    margin: 0;
-    padding: 0;
-    height: 295px;
-    overflow: auto;
-}
-}
 span.title_inner {
     color: #000 !important;
     font-size: 12px !important;
@@ -3886,8 +3861,9 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     margin: 0;
 }
 #single_property_wraper .property-image-container.custom {
-    width: 200px;
-	margin-left: 10px;
+    width: 195px;
+	margin-left: 5px;
+	float: left;
 }
 .property-image.zoom.slick-slide.slick-current img {
     width: auto;
@@ -3909,6 +3885,90 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 #single_property_wraper .property-image-container.custom {
     height: auto;
 }
+.ac-cell span.title_inner {
+    max-width: 120px;
+}
+@media (min-width: 1200px) {
+	#property-layout-full-width .property-header-container {
+    width: 42%;
+}
+#property-layout-full-width .property-header-container .property-header {
+    padding-left: 10px;
+}
+}
+@media(min-width:928px){
+	#single_property_wraper .property-image-container.custom {
+    margin-right: 5px;
+}
+.property-header-container {
+	width: 100%;
+    max-width: 26%;
+	max-width: -webkit-calc(100% - 275px);
+    max-width: calc(100% - 275px);
+}
+.property-header span.ac-icon-list {
+    width: 100%;
+}
+}
+.property-header span.ac-icon-list {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000;
+	display: table;
+}
+.property-header span.ac-icon-list > .ac-cell {
+    display: table-cell;
+    vertical-align: middle;
+	padding: 0 10px;
+}
+.property-header-container {
+	width: 100%;
+}
+@media(min-width:768px){
+#property_thumbnails .property-image{clear:both;}
+div#property_thumbnails img {
+    max-height: 100px !important;
+    display: block;
+}
+#property_thumbnails .property-image {
+    margin: 0 0 5px 0;
+    max-height: 100px !important;
+	width: 100% !important;
+	height: auto !important;
+}
+div#property_thumbnails {
+    float: left;
+    max-width: 70px;
+    margin: 0;
+    padding: 0;
+    height: 295px;
+    overflow: auto;
+}
+	div#property_thumbnails {
+		overflow-y: auto;
+	}
+	.property-slider-wrap {
+    margin-bottom: 10px;
+	}
+div#property-layout-full-width {
+    /*max-width: 79%;
+	max-width: -webkit-calc(100% - 95px);
+    max-width: calc(100% - 95px);
+    float: right;*/
+    width: 100%;
+}
+	.property-header span.ac-icon-list.middle {
+		margin: 5px 0;
+	}
+.property-header .title span i {
+    color: inherit;
+    opacity: 1;
+    font-size: 0.6em;
+}
+#property-layout-full-width .property-header .title {
+	width: 100%;
+}
+}
 @media (max-width: 345px) {
 	.top-header-sidebar {
     font-size: 12px;
@@ -3925,48 +3985,4 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	table#vacantfloors th.th_dateoccupancy {
     width: 110px;
 	}
-}
-@media(min-width:768px){
-	div#property_thumbnails {
-		overflow-y: auto;
-	}
-	.property-slider-wrap {
-    margin-bottom: 10px;
-	}
-div#property-layout-full-width {
-    max-width: 79%;
-	max-width: -webkit-calc(100% - 95px);
-    max-width: calc(100% - 95px);
-    float: right;
-    width: 100%;
-}
-#property-layout-full-width .property-header-container {
-    width: 42%;
-}
-#property-layout-full-width .property-header-container .property-header {
-    padding-left: 10px;
-}
-.property-header span.ac-icon-list {
-    padding: 0;
-    margin: 0;
-    border: 1px solid #000;
-    display: table;
-    width: 100%;
-}
-	.property-header span.ac-icon-list.middle {
-		margin: 5px 0;
-	}
-.property-header span.ac-icon-list > .ac-cell {
-    display: table-cell;
-    vertical-align: middle;
-	padding: 0 10px;
-}
-.property-header .title span i {
-    color: inherit;
-    opacity: 1;
-    font-size: 0.6em;
-}
-#property-layout-full-width .property-header .title {
-	width: 100%;
-}
 }
