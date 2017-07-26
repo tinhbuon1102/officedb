@@ -31,6 +31,8 @@ if ( ! function_exists('tt_ajax_add_remove_follow') ) {
 				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 			}
 		}
+		
+		die('processed');
 
 	}
 }
@@ -68,7 +70,6 @@ if ( ! function_exists( 'tt_add_remove_follow' ) ) {
 			// Not Logged-In Visitor
 			$favicon = '<i class="add-to-follow icon-email" data-fol-id="' . $property_id . '" data-toggle="tooltip" title="' . esc_html__( 'Subscribe To Email Updates', 'realty' ) . '"></i>';
 		}
-
 		return $favicon;
 
 	}
