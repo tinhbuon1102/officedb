@@ -248,15 +248,9 @@
 				$user_id = get_current_user_id();
 				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
-				// Check For Favorites
-				if ( ! $get_user_meta_favorites ) {
-					$number_of_favorites = 0;
-				} else {
-					$number_of_favorites = count( $get_user_meta_favorites[0] );
-				}
 			?>
 
-			<?php if ( $number_of_favorites > 0 ) { ?>
+			<?php if ( ! empty( $get_user_meta_favorites ) && in_array( $single_property_id, $get_user_meta_favorites[0] ) ) { ?>
 						<span class="title_inner" id="single_favorite_text"><?php echo __('Remove From Favorites', 'realty')?></span>
 						<?php } else { ?>
 						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
@@ -275,7 +269,7 @@
 			$user_id = get_current_user_id();
 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', true );
 
-			if ( $get_user_meta_follow ) {
+			if ( ! empty( $get_user_meta_follow ) && in_array( $single_property_id, $get_user_meta_follow[0] ) ) {
 				?>
 						<span class="title_inner" id="single_subscribe_text"><?php echo __('Unsubscribe From Email Updates', 'realty')?></span>
 						<?php } else { ?>
