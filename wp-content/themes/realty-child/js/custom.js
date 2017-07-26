@@ -3,7 +3,11 @@ jQuery(document).ready(function($){
 		console.log($data);
 	}
 	//$(".n2-ss-layers-container").wrapAll('<div class="n2-wrap"></div>');
-	
+	$(window).on('load resize', function(){
+			var MainImageH = $("#single_property_wraper .property-image-container.custom").height();
+			$("#property_thumbnails").css('height', MainImageH + 'px');
+			$(".property-header-container .property-header span.ac-icon-list").css('height', ((MainImageH - 10) /3) + 'px');
+		});
 	//scroll map
 	$(window).bind("scroll", function() {
 	// ドキュメントの高さ

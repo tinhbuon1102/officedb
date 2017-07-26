@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-07-12 00:42+0900\n"
+"PO-Revision-Date: 2017-07-25 14:58+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -4891,3 +4891,12 @@ msgstr "区名"
 
 msgid "Floors"
 msgstr "物件名"
+
+msgid "Add to favourite"
+msgstr "お気に入り追加"
+
+msgid "View map"
+msgstr "地図を見る"
+
+msgid "Subscribe for update"
+msgstr "更新情報の通知"

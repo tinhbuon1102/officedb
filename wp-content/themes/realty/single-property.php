@@ -147,12 +147,12 @@
 		  include get_template_directory() . '/lib/inc/template/single-property-slideshow.php';
 		?>
 
-		<div class="property-header-container">
+		<div class="property-header-container col-sm-3">
 
 			<?php if ( $layout == "full-width" ) { ?>
 				<div class="container">
 			<?php } ?>
-
+				<div class="row">
 				<div class="property-header">
 					<h1 class="title">
 						<span><?php echo get_the_title( $single_property_id ); ?></span>
@@ -172,8 +172,9 @@
 						<div class="btn btn-dark btn-sm status-update"><?php echo $property_status_update; ?></div>
 					<?php } ?>
 				</div>
-
+				</div>
 			<?php if ( $layout == "full-width" ) { ?>
+				
 				</div>
 			<?php } ?>
 

@@ -23,7 +23,7 @@
 	
 ?>
 
-<div class="<?php echo esc_attr( $classes_property_image_container ); ?>">
+<div class="<?php echo esc_attr( $classes_property_image_container ); ?> col-sm-9">
 	<div class="hide-initially" id="<?php echo esc_attr( $image_slider_id ); ?>">
 
 		<?php if ( ! tt_is_array_empty( $property_images ) || !empty($buildingFloorPictures)) { // Gallery Images ?>

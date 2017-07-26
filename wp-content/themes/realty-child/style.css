@@ -516,6 +516,7 @@ section#feature .wpb_single_image .imgfit{
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	transition: inherit !important;
+	max-height: 300px;
 }
 
 section#floorPlan {
@@ -1468,8 +1469,8 @@ body.en .property-item .property-title .title {
 }
 /*single property*/
 #single_property_wraper .property-image-container.custom {
-    background-color: #f5f5f5;
-    border: 1px solid #dcdcdc;
+    /*background-color: #f5f5f5;
+    border: 1px solid #dcdcdc;*/
 }
 .single-property #main-content.similar-wrap {
     padding-left: 0;
@@ -1515,10 +1516,14 @@ table.fixTable th {
 	.property-header i {
     line-height: 1;
 	}
-	.property-header span {
-    vertical-align: top;
+.property-header span {
+    vertical-align: middle;
     line-height: inherit;
-	}
+    width: 100%;
+    color: #000;
+    text-align: center;
+    /* height: 100px; */
+}
 	.slider-content > .container > .row {
     /*display: table;
      width: 100%; */
@@ -1730,7 +1735,7 @@ div#viewed_property_box > ul > li:nth-child(3) h3:before {
 .row #property-layout-full-width {
     margin-top: 0px;
 }
-#property-thumbnails {
+#property_thumbnails {
     margin: 15px 0;
 }
 h1 span.labeled .btn {
@@ -1739,12 +1744,81 @@ h1 span.labeled .btn {
     line-height: 2.1em;
     vertical-align: middle;
 }
-#property-thumbnails .slick-slide {
+#property_thumbnails .slick-slide {
     margin: 0 5px 0;
 	max-height: 48px;
 }
-#property-thumbnails.slick-slider .slick-list {
+#property_thumbnails.slick-slider .slick-list {
     margin: 0 -2.5px;
+}
+div#property_thumbnails img {
+    max-height: 100px !important;
+    display: block;
+	width:100%;
+}
+#property_thumbnails .property-image{float:left;height:100%;min-height:1px;}
+#property_thumbnails .property-image {
+    margin: 0;
+    max-height: 41px !important;
+    width: 21% !important;
+    height: 100% !important;
+}
+div#property_thumbnails {
+    background: #f5f5f5;
+    margin: 0 0 5px 0;
+    padding: 10px 10px;
+}
+@media(min-width:768px){
+#property_thumbnails .property-image{clear:both;}
+div#property_thumbnails img {
+    max-height: 100px !important;
+    display: block;
+}
+#property_thumbnails .property-image {
+    margin: 0 0 5px 0;
+    max-height: 100px !important;
+	width: 100% !important;
+	height: auto !important;
+}
+div#property_thumbnails {
+    position: absolute;
+    top: 0;
+    max-width: 95px;
+    z-index: 9;
+    background: #f5f5f5;
+    /* bottom: 149px; */
+    margin: 0;
+    padding: 0;
+    height: 295px;
+    overflow: auto;
+}
+}
+span.title_inner {
+    color: #000 !important;
+    font-size: 12px !important;
+    padding: 3px 0 !important;
+    word-wrap: break-word;
+	border:none !important;
+}
+.slick-list:after {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+	top:inherit !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    content: "";
+    height: 20px;
+}
+.slick-list:before {
+    position: absolute;
+    z-index: 1;
+    top: 0 !important;
+    left: 0;
+    bottom: inherit !important;
+    width: 100% !important;
+    content: "";
+    height: 20px;
 }
 .single-property .head-single .property-meta {
     margin: 0;
@@ -3802,7 +3876,33 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     border-top: none;
 	}
 }
-
+.property-image-container .slick-slide {
+    margin: 0;
+}
+#single_property_wraper .property-image-container.custom {
+    width: 200px;
+	margin-left: 10px;
+}
+.property-image.zoom.slick-slide.slick-current img {
+    width: auto;
+    max-width: initial;
+    height: 100%;
+    margin: 0;
+    vertical-align: middle;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+#property_image_slider .slick-dots {
+    display: none !important;
+}
+#single_property_wraper .property-image-container.custom {
+    height: auto;
+}
 @media (max-width: 345px) {
 	.top-header-sidebar {
     font-size: 12px;
@@ -3820,4 +3920,47 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     width: 110px;
 	}
 }
-
+@media(min-width:768px){
+	div#property_thumbnails {
+		overflow-y: auto;
+	}
+	.property-slider-wrap {
+    margin-bottom: 10px;
+	}
+div#property-layout-full-width {
+    max-width: 79%;
+	max-width: -webkit-calc(100% - 95px);
+    max-width: calc(100% - 95px);
+    float: right;
+    width: 100%;
+}
+#property-layout-full-width .property-header-container {
+    width: 42%;
+}
+#property-layout-full-width .property-header-container .property-header {
+    padding-left: 10px;
+}
+.property-header span.ac-icon-list {
+    padding: 0;
+    margin: 0;
+    border: 1px solid #000;
+    display: table;
+    width: 100%;
+}
+	.property-header span.ac-icon-list.middle {
+		margin: 5px 0;
+	}
+.property-header span.ac-icon-list > .ac-cell {
+    display: table-cell;
+    vertical-align: middle;
+	padding: 0 10px;
+}
+.property-header .title span i {
+    color: inherit;
+    opacity: 1;
+    font-size: 0.6em;
+}
+#property-layout-full-width .property-header .title {
+	width: 100%;
+}
+}

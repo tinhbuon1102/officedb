@@ -18,7 +18,11 @@
 		$single_property_id = $post->ID;
 	}
 ?>
-
+<style>
+.property-image-container, .property-image-container .property-item, .property-image-container .loader-container {
+    height: 305px;
+}
+</style>
 <?php if ( $show_property ) { ?>
 
 	<?php
@@ -219,7 +223,7 @@
 	</div><!-- .head-single -->
 	<div class="row"  id="single_property_wraper">
 	<div class="col-sm-5">
-
+<div class="property-slider-wrap clearfix">
 	<div id="property-layout-<?php echo $layout; ?>">
 
 		<?php
@@ -230,15 +234,63 @@
 		<div class="property-header-container">
 
 			<?php if ( $layout == "full-width" ) { ?>
-				<div class="container">
 			<?php } ?>
 
 				<div class="property-header">
 					<h1 class="title">
 						<div class="clearfix mobile"></div>
-						<span><?php echo tt_add_remove_favorites( $single_property_id ); ?></span>
-						<span><a href="#location_map"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
-						<span><?php echo tt_add_remove_follow( $single_property_id ); ?></span>
+						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_favorites( $single_property_id ); ?><br>
+						
+						
+						<?php if ( is_user_logged_in() ) { ?>
+
+			<?php
+				$user_id = get_current_user_id();
+				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
+
+				// Check For Favorites
+				if ( ! $get_user_meta_favorites ) {
+					$number_of_favorites = 0;
+				} else {
+					$number_of_favorites = count( $get_user_meta_favorites[0] );
+				}
+			?>
+
+			<?php if ( $number_of_favorites > 0 ) { ?>
+						
+						
+						
+						
+						
+						
+						<span class="title_inner"><?php echo __('Remove from favourite', 'realty')?></span>
+						<?php } else { ?>
+						<span class="title_inner"><?php echo __('Add to favourite', 'realty')?></span>
+						<?php }  ?>
+						<?php } else { ?>
+						<span class="title_inner"><?php echo __('Add to favourite', 'realty')?></span>
+						<?php } ?>
+						</span>
+						</span>
+						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i><br><span class="title_inner"><?php echo __('View map', 'realty')?></span></a></span>
+						
+						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?><br>
+						
+					<?php 
+		    if ( is_user_logged_in() ) {
+			$user_id = get_current_user_id();
+			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', true );
+
+			if ( $get_user_meta_follow ) {
+				?>
+						<span class="title_inner"><?php echo __('UnSubscribe for update', 'realty')?></span>
+						<?php } else { ?>
+						<span class="title_inner"><?php echo __('Subscribe for update', 'realty')?></span>
+						<?php } ?>
+						<?php } else { ?>
+						<span class="title_inner"><?php echo __('Subscribelllfor update', 'realty')?></span>
+						<?php } ?>
+						</span></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
 					</h1>
 					<div class="clearfix"></div>
@@ -246,7 +298,6 @@
 				</div>
 
 			<?php if ( $layout == "full-width" ) { ?>
-				</div>
 			<?php } ?>
 
 		</div><!-- .property-header-container -->
@@ -260,6 +311,7 @@
 		<!--</div>-->
 	<?php } ?>
 	<!-- section action buttons -->
+		</div><!--/property-slider-wrap-->
 		<section id="acbuttons">
 			
 			<?php if ( !is_user_logged_in() ) { ?>

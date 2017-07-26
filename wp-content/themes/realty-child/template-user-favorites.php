@@ -19,7 +19,7 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 
 			<?php
 				$user_id = get_current_user_id();
-				$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
+				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
 				// Check For Favorites
 				if ( ! $get_user_meta_favorites ) {
