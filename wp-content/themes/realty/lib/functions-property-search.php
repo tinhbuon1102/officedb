@@ -50,7 +50,9 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 		}
 		
 		$custom_search = $_GET['keyword'];
-		$search_type = isset($_GET['search_type']) ? $_GET['search_type'] : '';
+		$_GET['search_type'] = isset($_GET['search_type']) ? $_GET['search_type'] : 'floor';
+		$search_type = $_GET['search_type'];
+		
 		if (isset($_GET['search_type']))
 		{
 			switch ($_GET['search_type'])
