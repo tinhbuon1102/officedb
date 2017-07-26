@@ -267,7 +267,7 @@
 					<?php 
 		    if ( is_user_logged_in() ) {
 			$user_id = get_current_user_id();
-			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', true );
+			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false );
 
 			if ( ! empty( $get_user_meta_follow ) && in_array( $single_property_id, $get_user_meta_follow[0] ) ) {
 				?>
