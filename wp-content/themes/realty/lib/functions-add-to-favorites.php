@@ -165,6 +165,8 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					single_wraper.find('i.add-to-favorites.origin').attr('data-original-title', title);
 					single_wraper.find('a.add-to-favorites_wraper span').text(title);
 					single_wraper.find('a.add-to-favorites_wraper').attr('title', title);
+
+					jQuery('#single_favorite_text').text(title);
 				}
 				else {
 					if (jQuery(this).hasClass('custom-fav'))

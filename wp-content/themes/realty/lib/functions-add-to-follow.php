@@ -98,6 +98,9 @@ if ( ! function_exists( 'tt_follow_script' ) ) {
 						jQuery(this).attr('data-original-title', '<?php esc_html_e( 'Subscribe To Email Updates', 'realty' ); ?>');
 					}
 
+					if (jQuery('#single_subscribe_text').length)
+						jQuery('#single_subscribe_text').text(jQuery(this).attr('data-original-title'));
+
 					jQuery(this).find('i').toggleClass('icon-email icon-email-1');
 					jQuery(this).closest('i').toggleClass('icon-email icon-email-1');
 

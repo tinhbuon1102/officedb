@@ -257,18 +257,12 @@
 			?>
 
 			<?php if ( $number_of_favorites > 0 ) { ?>
-						
-						
-						
-						
-						
-						
-						<span class="title_inner"><?php echo __('Remove from favourite', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Remove From Favorites', 'realty')?></span>
 						<?php } else { ?>
-						<span class="title_inner"><?php echo __('Add to favourite', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
 						<?php }  ?>
 						<?php } else { ?>
-						<span class="title_inner"><?php echo __('Add to favourite', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
 						<?php } ?>
 						</span>
 						</span>
@@ -283,12 +277,12 @@
 
 			if ( $get_user_meta_follow ) {
 				?>
-						<span class="title_inner"><?php echo __('UnSubscribe for update', 'realty')?></span>
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Unsubscribe From Email Updates', 'realty')?></span>
 						<?php } else { ?>
-						<span class="title_inner"><?php echo __('Subscribe for update', 'realty')?></span>
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
 						<?php } ?>
 						<?php } else { ?>
-						<span class="title_inner"><?php echo __('Subscribelllfor update', 'realty')?></span>
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
 						<?php } ?>
 						</span></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
