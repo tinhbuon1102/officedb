@@ -806,7 +806,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					}
 				}
 				
-				convertDateFormat($floor[$field]);
+				$floor[$field] = convertDateFormat($floor[$field]);
 				return trans_text($floor[$field]);
 			}
 			else {
@@ -839,7 +839,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				}
 			}
 			
-			convertDateFormat($floor[$field]);
+			$floor[$field] = convertDateFormat($floor[$field]);
 			return $building[$field];
 			break;
 				
