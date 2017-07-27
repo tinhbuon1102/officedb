@@ -309,7 +309,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 								$aSizes = explode('-', $search_value); 
 								$meta_query[] = array(
 									'key' 			=> 'estate_property_size',
-									'value' 		=> array((float)($aSizes[0] ? $aSizes[0] : 1), (float)$aSizes[1]),
+									'value' 		=> array((float)($aSizes[0] ? $aSizes[0] : 1), (float)($aSizes[1] ? $aSizes[1] : 100000000)),
 									'type' 			=> 'NUMERIC',
 							    	'compare' 	=> 'BETWEEN'
 								);
