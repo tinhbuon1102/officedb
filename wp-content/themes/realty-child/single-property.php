@@ -258,6 +258,7 @@
 				<div class="property-header">
 					<h1 class="title">
 						<div class="clearfix mobile"></div>
+						<div class="acicon-wrap">
 						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_favorites( $single_property_id ); ?><br>		
 			<?php if ( is_user_logged_in() ) { ?>
 			<?php
@@ -293,6 +294,7 @@
 						<?php } ?>
 						</span></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
+						</div><!--/acicon-wrap-->
 					</h1>
 					<div class="clearfix"></div>
 				</div>
