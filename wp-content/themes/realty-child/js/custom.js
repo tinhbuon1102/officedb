@@ -1,7 +1,13 @@
 jQuery(document).ready(function($){
 	$('body').on('click' , 'input#keyword', function() {
 		var formOffsetTop = $('#content form.property-search-form:visible:eq(0)').offset().top - 5;
-		var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+		if ($('body').hasClass('home'))
+		{
+			var formScrollTop = formOffsetTop;
+		}
+		else {
+			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+		}
 		$("html,body").animate({
 			scrollTop: formScrollTop
 		});
