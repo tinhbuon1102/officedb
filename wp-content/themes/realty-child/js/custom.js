@@ -1,6 +1,6 @@
 jQuery(document).ready(function($){
 	$('body').on('click' , 'input#keyword', function() {
-		var formOffsetTop = $('#content .search-container form.property-search-form').offset().top;
+		var formOffsetTop = $('#content .search-container form.property-search-form').offset().top - 20;
 		var formScrollTop = formOffsetTop - $('#header .site-branding').outerHeight();
 		$("html,body").animate({
 			scrollTop: formScrollTop
