@@ -1,12 +1,14 @@
 jQuery(document).ready(function($){
 	$('body').on('click' , 'input#keyword', function() {
 		var formOffsetTop = $('#content form.property-search-form:visible:eq(0)').offset().top - 5;
-		if ($('body').hasClass('home'))
-		{
-			var formScrollTop = formOffsetTop;
-		}
-		else {
+		var windowWidth = $(window).width();
+		var replaceWidth = 768;
+		if ($formOffsetTop > 97 && windowWidth > replaceWidth) {
 			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+		} else if ($formOffsetTop > 430 && windowWidth < replaceWidth) {
+			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+		} else {
+			var formScrollTop = formOffsetTop;
 		}
 		$("html,body").animate({
 			scrollTop: formScrollTop
