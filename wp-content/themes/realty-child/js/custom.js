@@ -1,4 +1,7 @@
 jQuery(document).ready(function($){
+	$('input#keyword').on('click', function() {
+		$("html,body").animate({scrollTop:$('form.property-search-form').offset().top});
+	});
 	function realty_debuging($data){
 		console.log($data);
 	}

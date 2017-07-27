@@ -3396,7 +3396,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     overflow-x: hidden;
 	}
 	body.home .entry-content > .container {
-    overflow: hidden;
+    overflow: visible;
     width: 100%;
 	}
 	.nextend-bullet-bar-horizontal {
