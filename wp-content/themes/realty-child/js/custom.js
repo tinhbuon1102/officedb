@@ -3,9 +3,9 @@ jQuery(document).ready(function($){
 		var formOffsetTop = $('#content form.property-search-form:visible:eq(0)').offset().top - 5;
 		var windowWidth = $(window).width();
 		var replaceWidth = 768;
-		if ($formOffsetTop > 97 && windowWidth > replaceWidth) {
+		if (formOffsetTop > 97 && windowWidth > replaceWidth) {
 			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
-		} else if ($formOffsetTop > 430 && windowWidth < replaceWidth) {
+		} else if (formOffsetTop > 430 && windowWidth < replaceWidth) {
 			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
 		} else {
 			var formScrollTop = formOffsetTop;
