@@ -1,6 +1,10 @@
 jQuery(document).ready(function($){
-	$('input#keyword').on('click', function() {
-		$("html,body").animate({scrollTop:$('form.property-search-form').offset().top});
+	$('body').on('click' , 'input#keyword', function() {
+		var formOffsetTop = $('#content .search-container form.property-search-form').offset().top;
+		var formScrollTop = formOffsetTop - $('#header .site-branding').outerHeight();
+		$("html,body").animate({
+			scrollTop: formScrollTop
+		});
 	});
 	function realty_debuging($data){
 		console.log($data);
