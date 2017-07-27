@@ -680,6 +680,8 @@ function explodeRangeValue($string, $subfix = ''){
 function convertDateFormat($date)
 {
 	$date = str_replace('Sep', 'Sept', $date);
+	$date = str_replace('Jun', 'June', $date);
+	$date = str_replace('Jul', 'July', $date);
 	return $date;
 }
 
