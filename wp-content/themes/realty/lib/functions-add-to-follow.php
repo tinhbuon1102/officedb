@@ -211,8 +211,8 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			$headers[] = "From: $user->display_name <$user->user_email>";
 			$headers[] = "Content-Type: text/html; charset=UTF-8";
 			add_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
+			
 			// Send email to user.
-			pr($message);die;
 			wp_mail( $user->user_email, $subject, $message, $headers );
 			
 			remove_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
