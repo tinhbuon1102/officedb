@@ -148,40 +148,34 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			return;
 		}
 
-		$users = get_users( 'meta_key=realty_user_follow' );
-
+		global $wpdb, $post;
+		$users = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_value LIKE '%\"". $post_id ."\"%' AND meta_key = 'realty_user_follow' GROUP BY user_id");
 		foreach ( $users as $user ) {
-			$follows = get_user_meta( $user->ID, 'realty_user_follow', true );
-
-			foreach ( $follows as $follow ) {
-				if( $post_id == $follow ) {
-
-					$post_title = get_the_title();
-					$post_url = get_permalink();
-					$subject = esc_html__( 'A property that you follow has been updated', 'realty' ) . ' | ' . get_bloginfo( 'name' );
-
-					$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
-
-					if ( has_post_thumbnail() ) {
-						$message .=  '<a href="' . $post_url . '">' . wp_get_attachment_image( get_post_thumbnail_id(), 'thumbnail' ) . '</a>';
-					}
-
-					$message .= '<p><a href="' . $post_url . '">' . $post_url  . '</a></p>';
-					$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
-					$message .= '<p style="color: #999">' . esc_html__( 'TpTo unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty' ) . '</p>';
-
-					$headers[] = "From: $user->display_name <$user->user_email>";
-					$headers[] = "Content-Type: text/html; charset=UTF-8";
-					add_filter( 'wp_mail_content_type', 'tt_set_html_content_type_plugin' );
-					// Send email to user.
-					// wp_mail( $user->user_email, $subject, $message, $headers );
-					wp_mail( $user->user_email, $subject, $message, $headers );
-
-					remove_filter( 'wp_mail_content_type', 'tt_set_html_content_type_plugin' );
-
-				}
+			$user = get_user_by('ID', $user->user_id);
+			$post = get_post($post_id);
+			
+			$post_title = get_the_title();
+			$post_url = get_permalink();
+			$subject = esc_html__('A property that you follow has been updated', 'realty') . ' | ' . get_bloginfo('name');
+			
+			$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
+			
+			if ( has_post_thumbnail() )
+			{
+				$message .= '<a href="' . $post_url . '">' . wp_get_attachment_image(get_post_thumbnail_id(), 'thumbnail') . '</a>';
 			}
-
+			
+			$message .= '<p><a href="' . $post_url . '">' . $post_url . '</a></p>';
+			$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
+			$message .= '<p style="color: #999">' . esc_html__('TpTo unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty') . '</p>';
+			
+			$headers[] = "From: $user->display_name <$user->user_email>";
+			$headers[] = "Content-Type: text/html; charset=UTF-8";
+			add_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
+			// Send email to user.
+			wp_mail( $user->user_email, $subject, $message, $headers );
+			
+			remove_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
 		}
 
 	}

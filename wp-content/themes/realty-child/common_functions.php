@@ -427,6 +427,34 @@ function realty_theme_init()
 			}
 		}
 	}
+	
+	if (isset($_GET['api_send_follow_email']))
+	{
+		$floor_id = (int)$_GET['api_send_follow_email'];
+		
+		// Get property by news
+		$new_args = array(
+			'post_type' => 'property',
+			'posts_per_page' => 2,
+			'meta_query' => array(
+				array(
+					'key' => FLOOR_TYPE,
+					'value' => $floor_id,
+				)
+			)
+		);
+		$the_news_query = new WP_Query( $new_args );
+		if ( $the_news_query->have_posts() )
+		{
+			while ( $the_news_query->have_posts() ) {
+				$the_news_query->the_post();
+				global $post;
+				tt_property_updated_send_email( get_the_ID() );
+			}
+		
+		}
+		echo json_encode(array('success' => 1)); die;
+	}
 }
 
 function attachImageToProduct ($filename, $post_id)
