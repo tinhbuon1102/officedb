@@ -1,4 +1,12 @@
 <?php
+// *** CAN MODIFY ****
+define('PROPERTY_VIEWED_LIMIT', 3);
+define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 48);
+define('PROPERTY_MAIL_TESTING', true);
+define('PROPERTY_MAIL_CC', 'kyoko@heart-hunger.com');
+define('PROPERTY_MAIL_BCC', 'quocthang.2001@gmail.com');
+
+// *** DO NOT MODIFY BELOW ****
 define('BUILDING_TYPE', 'jpdb_building_id');
 define('FLOOR_TYPE', 'jpdb_floor_id');
 define('BUILDING_TYPE_CONTENT', 'jpdb_building_content');
@@ -14,8 +22,6 @@ define('LANGUAGE_EN', 'en');
 define('LANGUAGE_JA', 'ja');
 define('FIELD_MISSING_VALUE', '-');
 define('AREA_M2', 'm&sup2;');
-define('PROPERTY_VIEWED_LIMIT', 3);
-define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 48);
 
 define('FLOOR_UNIT_OPTION_UNDECIDED', -1);
 define('FLOOR_UNIT_OPTION_ASK', -2);

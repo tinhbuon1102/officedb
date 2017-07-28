@@ -25,7 +25,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			'required_namekana'	 => true,//added kyoko
 			'required_phone'  	 => false,
 			'disable_recaptcha'  => false,
-			'submit_text'        => esc_html__( 'Submit', 'realty' ),
+			'submit_text'        => esc_html__( 'Send', 'realty' ),
 		), $atts) );
 
 		global $realty_theme_option;

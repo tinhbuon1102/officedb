@@ -371,7 +371,7 @@ function renderJapaneseDate($date, $hasTime = false)
 	return date(getDateFormat($hasTime), strtotime($date));
 }
 
-add_action('init', 'realty_theme_init', 10, 3);
+add_action('get_header', 'realty_theme_init', 10, 3);
 function realty_theme_init()
 {
 	// Import new location
@@ -431,14 +431,21 @@ function realty_theme_init()
 	if (isset($_GET['api_send_follow_email']))
 	{
 		$floor_id = (int)$_GET['api_send_follow_email'];
+		$lang = $_GET['lang'];
 		
 		// Get property by news
 		$new_args = array(
 			'post_type' => 'property',
-			'posts_per_page' => 2,
+			'posts_per_page' => 1,
+			'post_status' => 'publish',
 			'meta_query' => array(
+				'relation' => 'AND',
 				array(
 					'key' => FLOOR_TYPE,
+					'value' => $floor_id,
+				),
+				array(
+					'key' => FLOOR_TYPE . '_' . $lang,
 					'value' => $floor_id,
 				)
 			)
@@ -1279,3 +1286,13 @@ function realty_post_type_link($permalink, $post, $leavename)
 	return $permalink;
 }
 
+add_filter( 'wp_mail', 'realty_wp_mail', 10, 1 );
+function realty_wp_mail ($atts)
+{
+	if(defined('PROPERTY_MAIL_TESTING') && PROPERTY_MAIL_TESTING == true)
+	{
+		$atts['headers'] .= 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
+		$atts['headers'] .= 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+	}
+	return $atts;
+}
