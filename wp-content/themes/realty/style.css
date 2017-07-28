@@ -3711,6 +3711,8 @@ cite:before {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -o-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
 }
 
 .show-nav .primary-menu a {
@@ -3746,6 +3748,7 @@ cite:before {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -o-transform: translateX(0);
+  -ms-transform: translateX(0);
   }
   .primary-menu {
     margin: 0 -15px;
@@ -3789,9 +3792,10 @@ cite:before {
     left: 0;
     background-color: #262626;
     transform: translateY(10px);
-  -webkit-transform: translateX(10px);
-  -moz-transform: translateX(10px);
-  -o-transform: translateX(10px);
+  -webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -o-transform: translateY(10px);
+  -ms-transform: translateY(10px);
   }
   .sub-menu li {
     margin: 0;
@@ -3805,6 +3809,10 @@ cite:before {
     top: 0;
     left: 100%;
     transform: translateX(0) translateY(10px);
+    -webkit-transform: translateX(0) translateY(10px);
+  -moz-transform: translateX(0) translateY(10px);
+  -o-transform: translateX(0) translateY(10px);
+  -ms-transform: translateX(0) translateY(10px);
   }
   .menu-item-has-children:hover > .sub-menu {
     visibility: visible;
