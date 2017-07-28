@@ -3973,7 +3973,10 @@ div#property_thumbnails {
 }
 }
 .slick-list {
-    height: 340px !important;
+    height: auto !important;
+}
+#acbuttons .buttons-group.row .col-sm-12 {
+    padding: 0 5px;
 }
 
 @media(min-width:768px){
