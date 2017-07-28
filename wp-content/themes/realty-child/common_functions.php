@@ -806,6 +806,9 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				case FLOOR_UNIT_CONDO_FEE_INCLUDED:
 					return trans_text('Included');
 					break;
+				default: 
+					return FIELD_MISSING_VALUE;
+					break;
 			}
 			break;
 				
@@ -1049,6 +1052,10 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				}
 			}
 			return $construction ? $construction . '' : '';
+			break;
+		
+		case 'vacancy_info':
+			return $floor[$field] ? trans_text('Avaiable') : trans_text('Full');
 			break;
 			
 		default :

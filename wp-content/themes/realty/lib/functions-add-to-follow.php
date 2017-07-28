@@ -156,6 +156,44 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			
 			$post_title = get_the_title();
 			$post_url = get_permalink();
+			
+			
+			// Get Floor Content
+			$building = getBuilding($post_id);
+			$floor = getFloor($post_id);
+			
+			$styleTable = 'table-layout: fixed;width: 100%;word-break: break-all;border-collapse: collapse;border-left: 1px solid #e5e5e5;border-right: 1px solid #e5e5e5;';
+			$styleTdTh = 'text-align: left;font-weight: normal;border-bottom: 1px solid #e5e5e5;padding: 8px 10px;font-size: 13px;-moz-osx-font-smoothing: greyscale;-webkit-font-smoothing: antialiased;';
+			$styleTh = 'font-size: 16px;background: #f5f5f5;width: 30%';
+			$styleTd = '';
+			$floorContent = 
+				'<table width="100%" border="0" style="'.$styleTable.'">
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.';border-top: 1px solid #e5e5e5;">'. trans_text('Vacancy') .'</th>
+						<td style="'.$styleTdTh.$styleTd.';border-top: 1px solid #e5e5e5;">'. translateBuildingValue('vacancy_info', $building, $floor, $post_id) .'</td>
+					</tr>	
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.'">'. trans_text('Area') .'</th>
+						<td style="'.$styleTdTh.$styleTd.'">'. translateBuildingValue('area_ping', $building, $floor, $post_id) .'</td>
+					</tr>
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.'">'. trans_text('Rent') .'</th>
+						<td style="'.$styleTdTh.$styleTd.'">'. translateBuildingValue('rent_unit_price_opt', $building, $floor, $post_id) .'</td>
+					</tr>
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.'">'. trans_text('Common service') .'</th>
+						<td style="'.$styleTdTh.$styleTd.'">'. translateBuildingValue('unit_condo_fee_opt', $building, $floor, $post_id) .'</td>
+					</tr>
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.'">'. trans_text('Total deposit') .'</th>
+						<td style="'.$styleTdTh.$styleTd.'">'. renderPrice($floor['total_deposit']) .'</td>
+					</tr>
+					<tr>
+						<th style="'.$styleTdTh.$styleTh.'">'. trans_text('Date of occupancy') .'</th>
+						<td style="'.$styleTdTh.$styleTd.'">'. translateBuildingValue('move_in_date', $building, $floor, $post_id) .'</td>
+					</tr>
+				</table>';
+			
 			$subject = esc_html__('A property that you follow has been updated', 'realty') . ' | ' . get_bloginfo('name');
 			
 			$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
@@ -166,6 +204,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			}
 			
 			$message .= '<p><a href="' . $post_url . '">' . $post_url . '</a></p>';
+			$message .= $floorContent;
 			$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
 			$message .= '<p style="color: #999">' . esc_html__('To unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty') . '</p>';
 			
@@ -173,6 +212,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			$headers[] = "Content-Type: text/html; charset=UTF-8";
 			add_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
 			// Send email to user.
+			pr($message);die;
 			wp_mail( $user->user_email, $subject, $message, $headers );
 			
 			remove_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
