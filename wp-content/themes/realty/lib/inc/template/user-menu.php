@@ -22,11 +22,18 @@ if ( wp_basename( get_page_template() ) == 'template-user-favorites.php' ) {
 } else {
 	$favorites_active = null;
 }
+
+if ( wp_basename( get_page_template() ) == 'template-user-follow.php' ) {
+	$follow_active = ' class="active"';
+} else {
+	$follow_active = null;
+}
 ?>
 
 <ul class="widget-user-menu border-box list-unstyled">
 	<li<?php echo $profile_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>"><i class="icon-account"></i> <?php _e( 'My Account', 'realty' ); ?></a></li>
 	<li<?php echo $favorites_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Favorites', 'realty' ); ?></a></li>
+	<li<?php echo $follow_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_follow() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Follows', 'realty' ); ?></a></li>
 	<li><a href="<?php echo wp_logout_url( site_url('/') ); ?>"><i class="icon-logout"></i> <?php _e( 'Logout', 'realty' ); ?></a></li>
 </ul>
 

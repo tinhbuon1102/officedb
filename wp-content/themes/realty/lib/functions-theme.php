@@ -394,6 +394,25 @@ if ( ! function_exists( 'tt_page_id_user_favorites' ) ) {
 	}
 }
 
+if ( ! function_exists( 'tt_page_id_user_follow' ) ) {
+	function tt_page_id_user_follow() {
+
+		$template_user_follow_page_id = null;
+		$template_user_follow_array = get_pages( array (
+			'meta_key'   => '_wp_page_template',
+			'meta_value' => 'template-user-follow.php'
+		) );
+
+		if ( $template_user_follow_array ) {
+			$template_user_follow_page_id = $template_user_follow_array[0]->ID;
+		}
+
+		return $template_user_follow_page_id;
+
+	}
+}
+
+
 /**
  * Get page ID set to "Property Submit" Page Template
  *

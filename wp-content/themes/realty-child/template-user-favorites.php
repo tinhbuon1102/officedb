@@ -12,7 +12,7 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 	<?php tt_page_banner();	?>
 
 	<div id="page-user-favorites" class="container">
-
+		<h1><?php the_title()?></h1>
 		<?php the_content(); ?>
 
 		<?php if ( is_user_logged_in() ) { ?>
@@ -36,6 +36,7 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 		        'post_type' => 'property',
 		        'post__in' => $get_user_meta_favorites[0],
 		        'posts_per_page' => $number_of_favorites,
+				'post_status' => 'publish',
 		        'orderby' => 'post__in'
 		      );
 
