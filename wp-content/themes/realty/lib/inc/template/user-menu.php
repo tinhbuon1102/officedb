@@ -29,3 +29,14 @@ if ( wp_basename( get_page_template() ) == 'template-user-favorites.php' ) {
 	<li<?php echo $favorites_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Favorites', 'realty' ); ?></a></li>
 	<li><a href="<?php echo wp_logout_url( site_url('/') ); ?>"><i class="icon-logout"></i> <?php _e( 'Logout', 'realty' ); ?></a></li>
 </ul>
+
+
+<?php 
+$user_id = get_current_user_id();
+$user = get_user_by('ID', $user_id);
+if (in_array('customer', $user->roles))
+{
+?>
+<a href="javascript:void(0)" id="delete_user" data-user-id="<?php echo $user_id?>"><i class="icon-close"></i> <?php _e( 'Unregister Membership', 'realty' ); ?></a>s
+<?php 
+}?>

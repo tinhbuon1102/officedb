@@ -170,6 +170,39 @@ Template Name: User - Profile
 	  });
 
 	});
+
+	var delete_user_text1 = '<?php echo trans_text('Are you sure to unregister from membership ?')?>';
+	var delete_user_text2 = '<?php echo trans_text('Your account will be deleted and can not be undone ?')?>';
+	var delete_user_success = '<?php echo trans_text('Your account are deleted')?>';
+	
+	jQuery('body').on('click', '#delete_user', function(){
+		if (confirm(delete_user_text1)) {
+			if (confirm(delete_user_text2)) {
+				jQuery('body').LoadingOverlay("show");
+				jQuery.ajax({
+				    type: 'POST',
+				    url: ajax_object.ajax_url,
+				    dataType: 'json',
+				    data: {
+					    'action':   'tt_ajax_delete_user_profile', // WP Function
+					    'user_id':   jQuery(this).attr('data-user-id')
+				    },
+				    success: function (response) {
+				    	jQuery('body').LoadingOverlay("hide");
+					    if (response.success)
+					    {
+					    	alert(delete_user_success);
+					    	location.href = response.redirect;
+					    }
+				    },
+				    error: function (response) {
+				    	// Error Message
+				    	jQuery('body').LoadingOverlay("hide");
+				    }
+				});
+			}
+		}
+	});
 	</script>
 
 <?php endwhile; ?>

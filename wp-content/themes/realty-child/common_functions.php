@@ -1293,6 +1293,24 @@ function realty_post_type_link($permalink, $post, $leavename)
 	return $permalink;
 }
 
+if ( ! function_exists( 'tt_ajax_delete_user_profile_function' ) ) {
+	function tt_ajax_delete_user_profile_function() {
+		$user_id = $_POST['user_id'];
+		$user = get_user_by('ID', $user_id);
+		$deleted = 0;
+		if (in_array('customer', $user->roles))
+		{
+			$deleted = wp_delete_user($user_id);
+		}
+		ob_start();
+		wp_logout();
+		ob_end_clean();
+		
+		echo json_encode(array('success' => $deleted, 'redirect' => get_option('siteurl'))); die;
+	}
+}
+add_action( 'wp_ajax_tt_ajax_delete_user_profile', 'tt_ajax_delete_user_profile_function' );
+
 add_filter( 'wp_mail', 'realty_wp_mail', 10, 1 );
 function realty_wp_mail ($atts)
 {
