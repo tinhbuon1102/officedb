@@ -194,7 +194,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 					</tr>
 				</table>';
 			
-			$subject = esc_html__('A property that you follow has been updated', 'realty') . ' | ' . get_bloginfo('name');
+			$subject = esc_html__('A property that you follow has been updated | Premium Office Search', 'realty');
 			
 			$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
 			
