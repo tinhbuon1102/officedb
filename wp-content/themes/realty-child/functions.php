@@ -2,6 +2,106 @@
 include 'define.php';
 include 'common_functions.php';
 
+add_action( 'personal_options', array ( 'T5_Hide_Profile_Bio_Box', 'start' ) );
+
+/**
+ * Captures the part with the biobox in an output buffer and removes it.
+ *
+ * @author Thomas Scholz, <info@toscho.de>
+ *
+ */
+class T5_Hide_Profile_Bio_Box
+{
+    /**
+     * Called on 'personal_options'.
+     *
+     * @return void
+     */
+    public static function start()
+    {
+        $action = ( IS_PROFILE_PAGE ? 'show' : 'edit' ) . '_user_profile';
+        add_action( $action, array ( __CLASS__, 'stop' ) );
+        ob_start();
+    }
+
+    /**
+     * Strips the bio box from the buffered content.
+     *
+     * @return void
+     */
+    public static function stop()
+    {
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        // remove the headline
+        $headline = __( IS_PROFILE_PAGE ? 'About Yourself' : 'About the user' );
+        $html = str_replace( '<h2>' . $headline . '</h2>', '', $html );
+
+        // remove the table row
+        $html = preg_replace( '~<tr>\s*<th><label for="description".*</tr>~imsUu', '', $html );
+        print $html;
+    }
+}
+/*
+ * Let Editors manage users, and run this only once.
+ */
+function isa_editor_manage_users() {
+ 
+    if ( get_option( 'isa_add_cap_editor_once' ) != 'done' ) {
+     
+        // let editor manage users
+ 
+        $edit_editor = get_role('editor'); // Get the user role
+        $edit_editor->add_cap('edit_users');
+        $edit_editor->add_cap('list_users');
+        $edit_editor->add_cap('promote_users');
+        $edit_editor->add_cap('create_users');
+        $edit_editor->add_cap('add_users');
+        $edit_editor->add_cap('delete_users');
+ 
+        update_option( 'isa_add_cap_editor_once', 'done' );
+    }
+ 
+}
+add_action( 'init', 'isa_editor_manage_users' );
+
+/*function hide_personal_options(){
+echo "\n" . '<script type="text/javascript">jQuery(document).ready(function($) { $(\'form#your-profile > h3:first\').hide(); $(\'form#your-profile > table:first\').hide(); $(\'form#your-profile\').show(); });</script>' . "\n";
+}
+add_action('admin_head','hide_personal_options');*/
+
+/*****************************************************
+    ユーザー一覧に表示フィールドを追加する
+*****************************************************/
+ 
+add_action('manage_users_columns','manage_users_columns');
+add_action('manage_users_custom_column','custom_manage_users_custom_column',10,3);
+ 
+function manage_users_columns($column_headers) {
+    $column_headers['user_company'] = 'Company Name';
+    return $column_headers;
+}
+ 
+function custom_manage_users_custom_column($custom_column,$column_name,$user_id) {
+ 
+    $user_info = get_userdata($user_id);
+ 
+    ${$column_name} = $user_info->$column_name;
+    $custom_column = "\t".${$column_name}."\n";
+ 
+    return $custom_column;
+}
+
+add_filter('manage_users_columns','remove_users_columns');
+function remove_users_columns($column_headers) {
+    if (current_user_can('moderator')) {
+      unset($column_headers['posts']);
+    }
+ 
+    return $column_headers;
+}
+
 add_action('init', 'realty_init');
 function realty_init() {
 	if (!session_id()) session_start();
