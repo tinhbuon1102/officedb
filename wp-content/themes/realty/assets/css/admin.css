@@ -70,6 +70,7 @@
 .user-edit-php .user-comment-shortcuts-wrap,
 .user-edit-php .user-admin-bar-front-wrap,
 .user-edit-php .user-first-name-wrap,
-.user-edit-php .user-last-name-wrap {
+.user-edit-php .user-last-name-wrap,
+.user-edit-php .user-description-wrap {
 	display: none;
 }
