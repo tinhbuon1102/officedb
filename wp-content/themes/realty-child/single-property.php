@@ -326,14 +326,14 @@
 			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
 			</div>
 			<?php } else { ?>
-			<div class="col-sm-6">
-			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
-			</div>
+			<!--<div class="col-sm-6">
+			<?php //echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
+			</div>-->
 			<?php }?>
 			
 			
 			<?php if ($pdfUrl) {?>
-			<div class="col-sm-6">
+			<div class="<?php if ( !is_user_logged_in() ) { ?>col-sm-6<?php } else { ?>col-sm-12<?php }?>">
 				<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border pdf-button"><i class="fa fa-file-pdf-o"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php else : ?>
