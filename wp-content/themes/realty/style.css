@@ -3708,6 +3708,9 @@ cite:before {
 
 .show-nav .main-navigation {
   transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
 }
 
 .show-nav .primary-menu a {
@@ -3740,6 +3743,9 @@ cite:before {
     background-color: transparent;
     transition: all 0s;
     transform: translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -o-transform: translateX(0);
   }
   .primary-menu {
     margin: 0 -15px;
@@ -3783,6 +3789,9 @@ cite:before {
     left: 0;
     background-color: #262626;
     transform: translateY(10px);
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -o-transform: translateX(10px);
   }
   .sub-menu li {
     margin: 0;
