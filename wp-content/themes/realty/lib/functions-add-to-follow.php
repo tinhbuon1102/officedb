@@ -150,6 +150,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 
 		global $wpdb, $post;
 		$users = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_value LIKE '%\"". $post_id ."\"%' AND meta_key = 'realty_user_follow' GROUP BY user_id");
+		pr($users);die;
 		foreach ( $users as $user ) {
 			$user = get_user_by('ID', $user->user_id);
 			$post = get_post($post_id);
@@ -195,9 +196,9 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 				</table>';
 			
 			$subject = esc_html__('A property that you follow has been updated | Premium Office Search', 'realty');
-			$message .= '<p>'. trans_text('Below floor has been updated.') .'</p>';
+			$message = '<p>'. trans_text('Below floor has been updated.') .'</p>';
 			
-			$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
+			$message .= '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
 			
 			if ( has_post_thumbnail() )
 			{
