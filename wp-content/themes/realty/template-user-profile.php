@@ -172,7 +172,7 @@ Template Name: User - Profile
 	});
 
 	var delete_user_text1 = '<?php echo trans_text('Are you sure to unregister from membership ?')?>';
-	var delete_user_text2 = '<?php echo trans_text('Your account will be deleted and can not be undone ?')?>';
+	var delete_user_text2 = '<?php echo trans_text('Your account will be deleted and can not be undone')?>';
 	var delete_user_success = '<?php echo trans_text('Your account are deleted')?>';
 	
 	jQuery('body').on('click', '#delete_user', function(){
