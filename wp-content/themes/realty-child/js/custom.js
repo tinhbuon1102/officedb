@@ -18,7 +18,7 @@ jQuery(document).ready(function($){
 		console.log($data);
 	}
 	//$(".n2-ss-layers-container").wrapAll('<div class="n2-wrap"></div>');
-	$(window).on('load resize', function(){
+	/*$(window).on('load resize', function(){
 		var w = $(window).width();
 		var x = 400;
 		var MainImageH = $("#single_property_wraper .property-image-container.custom").height();
@@ -26,7 +26,7 @@ jQuery(document).ready(function($){
 		if (x <= w) {
 			$(".property-header-container .property-header span.ac-icon-list").css('height', ((MainImageH - 8) /3) + 'px');
 		}
-		});
+		});*/
 	//scroll map
 	$(window).bind("scroll", function() {
 	// ドキュメントの高さ

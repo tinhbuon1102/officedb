@@ -237,20 +237,7 @@
 	<div class="row"  id="single_property_wraper">
 	<div class="col-sm-5">
 <div class="property-slider-wrap clearfix">
-	<div id="property-layout-<?php echo $layout; ?>">
-		<?php if ( $realty_theme_option['property-slideshow-navigation-type'] == 'thumbnail' ) { ?>
-		<!--<div class="container">-->
-			<?php include get_template_directory() . '/lib/inc/template/single-property-slideshow-thumbnails.php'; ?>
-		<!--</div>-->
-	<?php } ?>
-
-		<?php
-			$image_slider_id = 'property_image_slider';
-		  include get_template_directory() . '/lib/inc/template/single-property-slideshow.php';
-		?>
-		
-
-		<div class="property-header-container">
+<div class="property-header-container">
 
 			<?php if ( $layout == "full-width" ) { ?>
 			<?php } ?>
@@ -302,6 +289,20 @@
 			<?php } ?>
 
 		</div><!-- .property-header-container -->
+	<div id="property-layout-<?php echo $layout; ?>">
+		<?php if ( $realty_theme_option['property-slideshow-navigation-type'] == 'thumbnail' ) { ?>
+		<!--<div class="container">-->
+			<?php include get_template_directory() . '/lib/inc/template/single-property-slideshow-thumbnails.php'; ?>
+		<!--</div>-->
+	<?php } ?>
+
+		<?php
+			$image_slider_id = 'property_image_slider';
+		  include get_template_directory() . '/lib/inc/template/single-property-slideshow.php';
+		?>
+		
+
+		
 
 	</div>
 

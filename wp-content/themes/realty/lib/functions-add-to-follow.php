@@ -195,6 +195,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 				</table>';
 			
 			$subject = esc_html__('A property that you follow has been updated | Premium Office Search', 'realty');
+			$message .= '<p>'. trans_text('Below floor has been updated.') .'</p>';
 			
 			$message = '<h2 style="margin-bottom: 0.5em">' . $post_title . '</h2>';
 			
