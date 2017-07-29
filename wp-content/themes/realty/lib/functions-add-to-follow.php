@@ -222,4 +222,4 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 
 	}
 }
-add_action( 'save_post', 'tt_property_updated_send_email' );
+// add_action( 'save_post', 'tt_property_updated_send_email' );
