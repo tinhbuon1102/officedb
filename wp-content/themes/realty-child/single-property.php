@@ -243,7 +243,7 @@
 			<?php } ?>
 
 				<div class="property-header">
-					<h1 class="title">
+					
 						<div class="clearfix mobile"></div>
 						<div class="acicon-wrap">
 						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_favorites( $single_property_id ); ?><br>		
@@ -253,18 +253,18 @@
 				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 			?>
 			<?php if ( ! empty( $get_user_meta_favorites ) && in_array( $single_property_id, $get_user_meta_favorites[0] ) ) { ?>
-						<span class="title_inner" id="single_favorite_text"><?php echo __('Remove From Favorites', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"></span>
 						<?php } else { ?>
-						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"></span>
 						<?php }  ?>
 						<?php } else { ?>
-						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
+						<span class="title_inner" id="single_favorite_text"></span>
 						<?php } ?>
 						</span>
 						</span>
-						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i><br><span class="title_inner"><?php echo __('View map', 'realty')?></span></a></span>
+						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
 						
-						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?><br>		
+						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?>		
 			<?php 
 		    if ( is_user_logged_in() ) {
 			$user_id = get_current_user_id();
@@ -272,17 +272,17 @@
 
 			if ( ! empty( $get_user_meta_follow ) && in_array( $single_property_id, $get_user_meta_follow[0] ) ) {
 			?>
-						<span class="title_inner" id="single_subscribe_text"><?php echo __('Unsubscribe From Email Updates', 'realty')?></span>
+						
 						<?php } else { ?>
-						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
+						
 						<?php } ?>
 						<?php } else { ?>
-						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
+						
 						<?php } ?>
 						</span></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
 						</div><!--/acicon-wrap-->
-					</h1>
+					
 					<div class="clearfix"></div>
 				</div>
 			<?php if ( $layout == "full-width" ) { ?>
