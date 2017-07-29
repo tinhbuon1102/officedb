@@ -6,7 +6,6 @@
 
 if ( ! function_exists( 'realty_contact_form' ) ) {
 	function realty_contact_form( $atts ) {
-		var_dump(trans_text('Submit'));die;
 		extract( shortcode_atts( array(
 			'id'                 => rand(),
 			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
@@ -26,7 +25,6 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			'required_namekana'	 => true,//added kyoko
 			'required_phone'  	 => false,
 			'disable_recaptcha'  => false,
-			'submit_text'        => esc_html__( 'Send', 'realty' ),
 		), $atts) );
 
 		global $realty_theme_option;
@@ -108,7 +106,7 @@ if ( ! function_exists( 'realty_contact_form' ) ) {
 			<input type="hidden" name="send_multiple" value="1"/>
 			<?php echo buildListContactProperty(true);?>
 			<p>
-				<input class="submit" id="contact_submit_btn" type="submit" value="<?php echo esc_attr( $submit_text ); ?>">
+				<input class="submit" id="contact_submit_btn" type="submit" value="<?php echo esc_html__( 'Send', 'realty' ); ?>">
 			</p>
 
 			<input type="hidden" name="subject" value="<?php echo $subject; ?>" />
