@@ -44,6 +44,6 @@ $user = get_user_by('ID', $user_id);
 if (in_array('customer', $user->roles))
 {
 ?>
-<a href="javascript:void(0)" id="delete_user" data-user-id="<?php echo $user_id?>"><i class="icon-close"></i> <?php _e( 'Unregister Membership', 'realty' ); ?></a>s
+<a href="javascript:void(0)" id="delete_user" data-user-id="<?php echo $user_id?>"><i class="icon-close"></i> <?php _e( 'Unregister Membership', 'realty' ); ?></a>
 <?php 
 }?>

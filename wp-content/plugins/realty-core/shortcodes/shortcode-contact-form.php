@@ -6,6 +6,7 @@
 
 if ( ! function_exists( 'realty_contact_form' ) ) {
 	function realty_contact_form( $atts ) {
+		var_dump(trans_text('Submit'));die;
 		extract( shortcode_atts( array(
 			'id'                 => rand(),
 			'subject'            => esc_html__( 'Contact Form Request', 'realty' ),
