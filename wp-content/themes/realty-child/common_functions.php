@@ -1055,7 +1055,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 		
 		case 'vacancy_info':
-			return $floor[$field] ? trans_text('Avaiable') : trans_text('Full');
+			return $floor[$field] ? trans_text('Avaiable') : trans_text('Not Available');
 			break;
 			
 		default :
