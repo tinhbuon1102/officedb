@@ -150,7 +150,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 
 		global $wpdb, $post;
 		$users = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_value LIKE '%\"". $post_id ."\"%' AND meta_key = 'realty_user_follow' GROUP BY user_id");
-		pr($users);die;
+		
 		foreach ( $users as $user ) {
 			$user = get_user_by('ID', $user->user_id);
 			$post = get_post($post_id);
@@ -210,7 +210,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 			$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
 			$message .= '<p style="color: #999">' . esc_html__('To unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty') . '</p>';
 			
-			$headers[] = "From: $user->display_name <$user->user_email>";
+			$headers[] = "From: Premium Office Search | 高級オフィス検索 <".get_option('admin_email').">";
 			$headers[] = "Content-Type: text/html; charset=UTF-8";
 			add_filter('wp_mail_content_type', 'tt_set_html_content_type_plugin');
 			
