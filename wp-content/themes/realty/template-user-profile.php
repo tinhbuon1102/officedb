@@ -202,7 +202,7 @@ Template Name: User - Profile
 					    }
 					});
 				}
-			}, 400)
+			}, 1000)
 		}
 	});
 	</script>
