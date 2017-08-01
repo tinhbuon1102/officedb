@@ -205,7 +205,7 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 				$message .= '<a href="' . $post_url . '">' . wp_get_attachment_image(get_post_thumbnail_id(), 'thumbnail') . '</a>';
 			}
 			
-			$message .= '<p><a href="' . $post_url . '">' . $post_url . '</a></p>';
+			$message .= '<p>'. trans_text('Property Page:') .'<a href="' . $post_url . '">' . $post_url . '</a></p>';
 			$message .= $floorContent;
 			$message .= '<div style="height:1px; margin: 1em 0; background-color:#eee"></div>';
 			$message .= '<p style="color: #999">' . esc_html__('To unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title.', 'realty') . '</p>';

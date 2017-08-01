@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-07-29 18:00+0900\n"
+"PO-Revision-Date: 2017-07-29 20:16+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -4910,5 +4910,32 @@ msgstr "物件更新のお知らせ | 高級オフィス検索"
 msgid "Unregister Membership"
 msgstr "会員から退会する"
 
-msgid "Are you sure to unregister from membership?"
-msgstr "本当に会員から退会しますか？(退会後の操作は取り消せません)"
+msgid "Are you sure to unregister from membership ?"
+msgstr "本当に会員から退会しますか？"
+
+msgid "Your account will be deleted and can not be undone"
+msgstr "退会後の操作は取り消せません。"
+
+msgid "Your account are deleted"
+msgstr "アカウントが削除されました。"
+
+msgid "Below floor has been updated."
+msgstr "下記の物件が更新されました。"
+
+msgid "Vacancy"
+msgstr "空き情報"
+
+msgid "Avaiable"
+msgstr "空"
+
+msgid "Not Available"
+msgstr "満"
+
+msgid "Property Page:"
+msgstr "物件ページ："
+
+msgid "To unsubscribe from update notifications about this property please follow the link above, then click the envelope icon next to the property title."
+msgstr "更新情報通知をとめるには、物件ページのメールアイコン（この物件の更新情報をメールで受け取るのをやめる）をクリックしてください。"
+
+msgid "Subscribed properties"
+msgstr "更新情報配信物件"
