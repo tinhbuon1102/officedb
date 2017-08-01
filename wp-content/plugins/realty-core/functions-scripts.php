@@ -45,9 +45,11 @@ if ( ! function_exists( 'tt_script_slick_slider' ) ) {
 						<?php if ( $slider_params['property_slider_height'] == 'custom' && $slider_params['property_slider_custom_height'] ) { ?>
 							var sliderHeight = <?php echo $slider_params['property_slider_custom_height'] ?>;
 							$('#<?php echo $slider_params['id']; ?> .property-image').css( 'height', sliderHeight );
+							$('#<?php echo $slider_params['id']; ?> .property-image img').css( 'height', sliderHeight );
 						<?php } ?>
 						<?php if ( $slider_params['property_slider_height'] != 'original' ) { ?>
 							$('#<?php echo $slider_params['id']; ?> .property-image').css( 'height', sliderHeight );
+							$('#<?php echo $slider_params['id']; ?> .property-image img').css( 'height', sliderHeight );
 						<?php } ?>
 					<?php } ?>
 
