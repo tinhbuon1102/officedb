@@ -371,7 +371,7 @@ function renderJapaneseDate($date, $hasTime = false)
 	return date(getDateFormat($hasTime), strtotime($date));
 }
 
-add_action('get_header', 'realty_theme_init', 10, 3);
+add_action('wp_loaded', 'realty_theme_init', 10, 3);
 function realty_theme_init()
 {
 	// Import new location
@@ -379,7 +379,7 @@ function realty_theme_init()
 	{
 		importLocationFromPrefecture ();
 	}
-
+	
 	if (isset($_GET['update_floor_price']))
 	{
 		updateFloorPrice();
@@ -399,27 +399,27 @@ function realty_theme_init()
 	{
 		changeNewsTitle();
 	}
-
+	
 	if (isset($_GET['api_add_image']))
 	{
 		$image_url = $_GET['api_add_image'];
 		$post_id = $_GET['post_id'];
 		$building_id = $_GET['building_id'];
-
+	
 		$image = $building_id . basename($image_url);
 		$upload_dir = wp_upload_dir();
 		$temp_folder = $upload_dir['basedir'] . '/temp/';
 		$filename = $temp_folder . $image;
 		$image_file = file_get_contents($image_url);
-		
+	
 		if ($image_file)
 		{
 			file_put_contents($filename, file_get_contents($image_url));
 		}
-
+	
 		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
 		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
-		
+	
 		foreach ($aPostId as $post_id)
 		{
 			$attach = get_image_id($image, $post_id);
@@ -438,7 +438,11 @@ function realty_theme_init()
 			}
 		}
 	}
-	
+}
+
+add_action('get_header', 'realty_theme_init_header', 10, 3);
+function realty_theme_init_header()
+{
 	if (isset($_GET['api_send_follow_email']))
 	{
 		$floor_id = (int)$_GET['api_send_follow_email'];
