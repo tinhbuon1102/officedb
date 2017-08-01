@@ -427,16 +427,15 @@ function realty_theme_init()
 			{
 				// Generate the metadata for the attachment, and update the database record.
 				set_post_thumbnail( $post_id, $attach->ID );
-				die('done set_post_thumbnail');
 			}
 			else {
 				if ($image_file)
 				{
 					$attach_id = attachImageToProduct($filename, $post_id, true);
-					die('done attach_id = ' . $attach_id);
 				}
 			}
 		}
+		die('done');
 	}
 }
 
