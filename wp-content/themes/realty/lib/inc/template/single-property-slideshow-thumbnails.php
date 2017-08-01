@@ -5,7 +5,7 @@ if (!isset($buildingFloorPictures))
 }
 
 if ( $property_images || ( $property_video_provider && $property_video_id && has_post_thumbnail() ) || !empty($buildingFloorPictures)) { ?>
-	<div id="property_thumbnails"><!--property-thumbnails-->
+	<div id="property-thumbnails">
 		<?php
 			if ( $property_images || !empty($buildingFloorPictures)) {
 				if ($property_images) {
@@ -19,14 +19,11 @@ if ( $property_images || ( $property_video_provider && $property_video_id && has
 				
 				if (!empty($buildingFloorPictures)) {
 					// Gallery Images
-					foreach ( $buildingFloorPictures as $image_url ) { ?>
-						
-					<div class="property-image <?php echo esc_attr( $property_zoom ); ?>"  data-image="<?php echo esc_attr ( $image_url ); ?>" data-mfp-src="<?php echo esc_attr( $image_url ); ?>" title="<?php echo esc_attr( $slide->post_title ); ?>" data-title="<?php echo esc_attr( $slide->post_title ); ?>" data-hash="#" style="width:100%;">
-						<img src="<?php echo esc_attr ( $image_url ); ?>" alt=" " />
-					</div>
-					<?php }
-				} ?>
-			<?php } else {
+					foreach ( $buildingFloorPictures as $image_url ) {
+						echo '<div><a href="#"><img src="' . $image_url . '" alt="" /></a></div>';
+					}
+				}
+			} else {
 				// Featured Image Only
 				$thumbnail_attr = array(
 					'title' => wp_get_attachment_meta_data_title(),

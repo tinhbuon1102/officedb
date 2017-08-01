@@ -237,13 +237,21 @@
 	<div class="row"  id="single_property_wraper">
 	<div class="col-sm-5">
 <div class="property-slider-wrap clearfix">
-<div class="property-header-container">
+	<div id="property-layout-<?php echo $layout; ?>">
+
+		<?php
+			$image_slider_id = 'property_image_slider';
+		  include get_template_directory() . '/lib/inc/template/single-property-slideshow.php';
+		?>
+		
+
+		<div class="property-header-container">
 
 			<?php if ( $layout == "full-width" ) { ?>
 			<?php } ?>
 
 				<div class="property-header">
-					
+					<h1 class="title">
 						<div class="clearfix mobile"></div>
 						<div class="acicon-wrap">
 						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_favorites( $single_property_id ); ?><br>		
@@ -253,18 +261,18 @@
 				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 			?>
 			<?php if ( ! empty( $get_user_meta_favorites ) && in_array( $single_property_id, $get_user_meta_favorites[0] ) ) { ?>
-						<span class="title_inner" id="single_favorite_text"></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Remove From Favorites', 'realty')?></span>
 						<?php } else { ?>
-						<span class="title_inner" id="single_favorite_text"></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
 						<?php }  ?>
 						<?php } else { ?>
-						<span class="title_inner" id="single_favorite_text"></span>
+						<span class="title_inner" id="single_favorite_text"><?php echo __('Add To Favorites', 'realty')?></span>
 						<?php } ?>
 						</span>
 						</span>
-						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
+						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i><br><span class="title_inner"><?php echo __('View map', 'realty')?></span></a></span>
 						
-						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?>		
+						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?><br>		
 			<?php 
 		    if ( is_user_logged_in() ) {
 			$user_id = get_current_user_id();
@@ -272,42 +280,32 @@
 
 			if ( ! empty( $get_user_meta_follow ) && in_array( $single_property_id, $get_user_meta_follow[0] ) ) {
 			?>
-						
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Unsubscribe From Email Updates', 'realty')?></span>
 						<?php } else { ?>
-						
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
 						<?php } ?>
 						<?php } else { ?>
-						
+						<span class="title_inner" id="single_subscribe_text"><?php echo __('Subscribe To Email Updates', 'realty')?></span>
 						<?php } ?>
 						</span></span>
 						<?php echo tt_icon_property_video( $single_property_id ); ?>
 						</div><!--/acicon-wrap-->
-					
+					</h1>
 					<div class="clearfix"></div>
 				</div>
 			<?php if ( $layout == "full-width" ) { ?>
 			<?php } ?>
 
 		</div><!-- .property-header-container -->
-	<div id="property-layout-<?php echo $layout; ?>">
-		<?php if ( $realty_theme_option['property-slideshow-navigation-type'] == 'thumbnail' ) { ?>
-		<!--<div class="container">-->
-			<?php include get_template_directory() . '/lib/inc/template/single-property-slideshow-thumbnails.php'; ?>
-		<!--</div>-->
-	<?php } ?>
-
-		<?php
-			$image_slider_id = 'property_image_slider';
-		  include get_template_directory() . '/lib/inc/template/single-property-slideshow.php';
-		?>
-		
-
-		
 
 	</div>
 
 
-	
+	<?php if ( $realty_theme_option['property-slideshow-navigation-type'] == 'thumbnail' ) { ?>
+		<!--<div class="container">-->
+			<?php include get_template_directory() . '/lib/inc/template/single-property-slideshow-thumbnails.php'; ?>
+		<!--</div>-->
+	<?php } ?>
 	<!-- section action buttons -->
 		</div><!--/property-slider-wrap-->
 		<section id="acbuttons">
@@ -327,14 +325,14 @@
 			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
 			</div>
 			<?php } else { ?>
-			<!--<div class="col-sm-6">
-			<?php //echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
-			</div>-->
+			<div class="col-sm-6">
+			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
+			</div>
 			<?php }?>
 			
 			
 			<?php if ($pdfUrl) {?>
-			<div class="<?php if ( !is_user_logged_in() ) { ?>col-sm-6<?php } else { ?>col-sm-12<?php }?>">
+			<div class="col-sm-6">
 				<?php if ( is_user_logged_in() ) : ?>
 				<a href="<?php echo $pdfUrl ? $pdfUrl : '#'?>" target="_blank" class="btn btn-primary btn-square btn-line-border pdf-button"><i class="fa fa-file-pdf-o"></i><span><?php echo __('View PDF', 'realty')?></span></a>
 				<?php else : ?>
@@ -737,11 +735,11 @@
 					'images_to_show_sm'             => 1,
 					'autoplay'                      => $autoplay,
 					'autoplay_speed'                => 5000,
-					'fade'                          => $fade,
-					'infinite'                      => false,
-					'show_arrows'                   => false,
+					'fade'                          => false,
+					'infinite'                      => true,
+					'show_arrows'                   => true,
 					'show_arrows_below'             => false,
-					'show_dots'                     => true, //$show_dots,
+					'show_dots'                     => false, //$show_dots,
 					'show_dots_below'               => false,
 					'property_slider_height'        => $realty_theme_option['property-image-height'],
 					'property_slider_custom_height' => $realty_theme_option['property-image-custom-height'],

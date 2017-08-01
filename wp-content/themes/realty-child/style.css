@@ -511,11 +511,11 @@ section#feature .wpb_single_image .imgfit{
 
 .property-image-container .property-image.zoom {
 	cursor: url(lib/images/plus_cursor.png) 25 25, auto;
-	display: -webkit-box;
+	/* display: -webkit-box;
 	display: flex;
 	display: -webkit-flex;
 	display: -ms-flexbox;
-	transition: inherit !important;
+	transition: inherit !important; */
 	max-height: 340px;
 }
 
@@ -3861,23 +3861,11 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     margin: 0;
 }
 #single_property_wraper .property-image-container.custom {
-    width: 225px;
+	width: 100%;
 	margin-left: 5px;
-	float: left;
 }
-.property-image.zoom.slick-slide.slick-current img {
-    width: auto;
-    max-width: initial;
-    height: 100%;
-    margin: 0;
-    vertical-align: middle;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#single_property_wraper .property-image-container.custom img{
+	width: 100%;
 }
 #property_image_slider .slick-dots {
     display: none !important;
