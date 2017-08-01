@@ -502,7 +502,7 @@ function attachImageToProduct ($filename, $post_id)
 function get_image_id($image_url, $post_id) {
 	global $wpdb;
 	$aExplode = explode('.', $image_url);
-	$attachment = $wpdb->get_row($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid LIKE '%s';",'%' . $aExplode[0] . '%' ));
+	$attachment = $wpdb->get_row($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_parent=".$post_id." guid LIKE '%s';",'%' . $aExplode[0] . '%' ));
 	return $attachment;
 }
 
