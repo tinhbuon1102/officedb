@@ -516,7 +516,6 @@ section#feature .wpb_single_image .imgfit{
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	transition: inherit !important; 
-	max-height: 340px;
 }
 
 section#floorPlan {
