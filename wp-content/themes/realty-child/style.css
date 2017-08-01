@@ -511,6 +511,7 @@ section#feature .wpb_single_image .imgfit{
 
 .property-image-container .property-image.zoom {
 	cursor: url(lib/images/plus_cursor.png) 25 25, auto;
+	overflow: hidden;
 }
 
 section#floorPlan {
@@ -3858,7 +3859,6 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	width: 100%;
 	margin-left: 5px;
 	height: 100% !important;
-	overflow: hidden;
 }
 #single_property_wraper .property-image-container.custom img{
 	width: auto;
