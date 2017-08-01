@@ -410,20 +410,30 @@ function realty_theme_init()
 		$upload_dir = wp_upload_dir();
 		$temp_folder = $upload_dir['basedir'] . '/temp/';
 		$filename = $temp_folder . $image;
-
-		$attach = get_image_id($image, $post_id);
-		if ($attach)
+		$image_file = file_get_contents($image_url);
+		
+		if ($image_file)
 		{
-			// Generate the metadata for the attachment, and update the database record.
-			set_post_thumbnail( $post_id, $attach->ID );
+			file_put_contents($filename, file_get_contents($image_url));
 		}
-		else {
-			$image_file = file_get_contents($image_url);
-			if ($image_file)
+
+		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
+		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
+		
+		foreach ($aPostId as $post_id)
+		{
+			$attach = get_image_id($image, $post_id);
+			if ($attach)
 			{
-				file_put_contents($filename, file_get_contents($image_url));
-				$attach_id = attachImageToProduct($filename, $post_id, true);
-				die('done attach_id = ' . $attach_id);
+				// Generate the metadata for the attachment, and update the database record.
+				set_post_thumbnail( $post_id, $attach->ID );
+			}
+			else {
+				if ($image_file)
+				{
+					$attach_id = attachImageToProduct($filename, $post_id, true);
+					die('done attach_id = ' . $attach_id);
+				}
 			}
 		}
 	}
