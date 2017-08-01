@@ -511,11 +511,6 @@ section#feature .wpb_single_image .imgfit{
 
 .property-image-container .property-image.zoom {
 	cursor: url(lib/images/plus_cursor.png) 25 25, auto;
-	display: -webkit-box;
-	display: flex;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	transition: inherit !important; 
 }
 
 section#floorPlan {
@@ -3866,6 +3861,7 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 }
 #single_property_wraper .property-image-container.custom img{
 	width: auto;
+	margin: auto;
 }
 #property_image_slider .slick-dots {
     display: none !important;
