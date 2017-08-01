@@ -3858,10 +3858,12 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 	width: 100%;
 	margin-left: 5px;
 	height: 100% !important;
+	overflow: hidden;
 }
 #single_property_wraper .property-image-container.custom img{
 	width: auto;
 	margin: auto;
+	max-width: inherit;
 }
 #property_image_slider .slick-dots {
     display: none !important;
@@ -3977,7 +3979,6 @@ div#property_thumbnails {
 	}*/
 }
 .slick-list {
-    height: auto !important;
 }
 #acbuttons .buttons-group.row .col-sm-12 {
     padding: 0 5px;
