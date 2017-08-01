@@ -46,17 +46,17 @@ function formatNumber($number)
 	{
 		$number = str_replace(',', '', $number);
 	}
-	
-	
+
+
 	$aNumber = explode('.', $number);
 	if (isset($aNumber[1]))
 		$decimal = strlen($aNumber[1]) >= 2 ? 2 : strlen($aNumber[1]);
-	else 
-		$decimal = 0;
-	
-	$number = $number ? $number : 0;
-	
-	return number_format($number, $decimal);
+		else
+			$decimal = 0;
+
+			$number = $number ? $number : 0;
+
+			return number_format($number, $decimal);
 }
 
 function updateFloorKana(){
@@ -74,7 +74,7 @@ function updateFloorKana(){
 			foreach ($buildingContents as $buildingContent)
 			{
 				update_post_meta($buildingContent->post_id, 'estate_property_kana_name', $building->name_kana);
-				
+
 				$search_text = $building->name . ' ' . $building->name_en;
 				$search_text .= $building->name_kana . ' ' . $building->search_keywords_ja . ' ' . $building->search_keywords_en;
 				update_post_meta($buildingContent->post_id, 'estate_property_search', $search_text);
@@ -89,9 +89,9 @@ function updateFloorPrice(){
 	// Custom Price
 	$offset = (int)$_GET['offset'];
 	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 100;
-	
+
 	$floors = $wpdb->get_results("SELECT  * FROM floor LIMIT $offset, $limit");
-	
+
 	foreach ($floors as $floor)
 	{
 		$floorContents = $wpdb->get_results("SELECT  * FROM wp_postmeta WHERE meta_key='".FLOOR_TYPE_CONTENT."' AND meta_value LIKE '%floor_id\";s:". strlen($floor->floor_id) .":\"". $floor->floor_id ."\"%'");
@@ -113,7 +113,7 @@ function updateStation() {
 	// Custom Price
 	$offset = (int)$_GET['offset'];
 	$limit = $_GET['limit'] ? (int)$_GET['limit'] : 500;
-	
+
 	$stations = $wpdb->get_results("SELECT  * FROM building_station GROUP BY building_id ORDER BY time ASC LIMIT $offset, $limit ");
 	foreach ($stations as $station)
 	{
@@ -143,7 +143,7 @@ function changeNewsTitle(){
 		);
 		wp_update_post( $my_post );
 	}
-	
+
 	$recent_posts = wp_get_recent_posts(array(
 		'post_type' => 'news',
 		'posts_per_page' => -1,
@@ -161,14 +161,14 @@ function changeNewsTitle(){
 
 function importLocationFromPrefecture () {
 	global $wpdb;
-	
+
 	$terms = $wpdb->get_results('SELECT * FROM wp_term_taxonomy where taxonomy = "term_translations" AND description LIKE "%a:1:{s:2%" AND term_id > 2585', ARRAY_A);
 	foreach ($terms as $term)
 	{
 		wp_delete_term($term['term_id'], $term['taxonomy']);
 	}
-	
-	
+
+
 	// Delete old location;
 	$terms = $wpdb->get_results(
 			"SELECT  t.*, tt.*
@@ -180,7 +180,7 @@ function importLocationFromPrefecture () {
 	$types = getAvaileableTypes();
 	$statuses = getAvaileableStatuses();
 	$news = getAvaileableNews();
-	
+
 	foreach ($cities as $en => $jp)
 	{
 		insertTermTranslation($en, $jp, 'property-location');
@@ -195,7 +195,7 @@ function importLocationFromPrefecture () {
 	{
 		insertTermTranslation($en, $jp, 'property-status');
 	}
-	
+
 	foreach ($news as $en => $jp)
 	{
 		insertTermTranslation($en, $jp, 'category');
@@ -322,15 +322,15 @@ function insertTermTranslation($tran_en, $tran_jp, $term_name){
 	{
 		$term_en = (array)get_term_by('slug', str_replace(' ', '-', strtolower($tran_en)), $term_name);
 	}
-	
+
 	if (!$term_jp || !isset($term_jp['term_id']))
 	{
 		$term_jp = (array)wp_insert_term( $tran_jp, $term_name);
 		$term_en = (array)wp_insert_term( $tran_en, $term_name);
 	}
-		
+
 	$term_trans = array(LANGUAGE_JA => $term_jp['term_id'], LANGUAGE_EN => $term_en['term_id']);
-	
+
 	if (function_exists('pll_save_term_translations'))
 	{
 		// Make 2 post with same group
@@ -379,47 +379,42 @@ function realty_theme_init()
 	{
 		importLocationFromPrefecture ();
 	}
-	
+
 	if (isset($_GET['update_floor_price']))
 	{
 		updateFloorPrice();
 	}
-	
+
 	if (isset($_GET['update_kana']))
 	{
 		updateFloorKana();
 	}
-	
+
 	if (isset($_GET['update_station']))
 	{
 		updateStation();
 	}
-	
+
 	if (isset($_GET['change_news_title']))
 	{
 		changeNewsTitle();
 	}
-	
+
 	if (isset($_GET['api_add_image']))
 	{
 		$image_url = $_GET['api_add_image'];
 		$post_id = $_GET['post_id'];
 		$building_id = $_GET['building_id'];
-	
+
 		$image = $building_id . basename($image_url);
 		$upload_dir = wp_upload_dir();
 		$temp_folder = $upload_dir['basedir'] . '/temp/';
 		$filename = $temp_folder . $image;
-		$image_file = file_get_contents($image_url);
-	
-		if ($image_file)
-		{
-			file_put_contents($filename, file_get_contents($image_url));
-		}
-	
+
+
 		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
 		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
-	
+
 		foreach ($aPostId as $post_id)
 		{
 			$attach = get_image_id($image, $post_id);
@@ -429,8 +424,10 @@ function realty_theme_init()
 				set_post_thumbnail( $post_id, $attach->ID );
 			}
 			else {
+				$image_file = file_get_contents($image_url);
 				if ($image_file)
 				{
+					file_put_contents($filename, file_get_contents($image_url));
 					$attach_id = attachImageToProduct($filename, $post_id, true);
 				}
 			}
@@ -446,7 +443,7 @@ function realty_theme_init_header()
 	{
 		$floor_id = (int)$_GET['api_send_follow_email'];
 		$lang = $_GET['lang'];
-		
+
 		// Get property by news
 		$new_args = array(
 			'post_type' => 'property',
@@ -472,7 +469,7 @@ function realty_theme_init_header()
 				global $post;
 				tt_property_updated_send_email( get_the_ID() );
 			}
-		
+
 		}
 		echo json_encode(array('success' => 1)); die;
 	}
@@ -528,7 +525,7 @@ function realty_posts_orderby_request( $orderby, &$query )
 	{
 		$orderby = "ABS (CAST(wp_postmeta.meta_value AS CHAR) - ".$query->query['similar_size'].") " . $query->query['orderby']['size_clause'];
 	}
-	
+
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'news') {
 		$orderby = "post_modified DESC";
 	}
@@ -543,21 +540,21 @@ function realty_posts_request ($request, $query)
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
-		
-		if (isset($query->query['meta_query']) && 
-			isset($query->query['meta_query'][0]) &&
-			isset($query->query['meta_query'][0][0]) && 
-			$query->query['meta_query'][0][0]['key'] == 'estate_property_station' &&
-			isset($query->query['meta_query'][0][1]) &&
-			$query->query['meta_query'][0][1]['key'] == 'estate_property_google_maps')
+
+		if (isset($query->query['meta_query']) &&
+				isset($query->query['meta_query'][0]) &&
+				isset($query->query['meta_query'][0][0]) &&
+				$query->query['meta_query'][0][0]['key'] == 'estate_property_station' &&
+				isset($query->query['meta_query'][0][1]) &&
+				$query->query['meta_query'][0][1]['key'] == 'estate_property_google_maps')
 		{
-			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' ) 
-    OR 
+			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )
+    OR
     ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
-			
+				
 			$text_filter = "wp_posts.post_title LIKE '%".$query->query['s']."%'";
-// 			$text_name_kana = "(wp_postmeta.meta_key = 'estate_property_kana_name' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
-// 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search_keywords' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
+			// 			$text_name_kana = "(wp_postmeta.meta_key = 'estate_property_kana_name' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
+			// 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search_keywords' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			$request = str_replace($text_search, ' 1=1 ', $request);
 			$request = str_replace($text_filter, '('.$text_filter . ' OR ' . $text_keyword . ' OR ' . $text_search.')', $request);
@@ -567,7 +564,7 @@ function realty_posts_request ($request, $query)
 	{
 		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
 	}
-	
+
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['s']) && $query->query['s'])
 	{
 		$text_search = "OR (wp_posts.post_excerpt LIKE '%".$query->query['s']."%') OR (wp_posts.post_content LIKE '%".$query->query['s']."%')";
@@ -589,7 +586,7 @@ function buildSearchArgs($search_results_args){
 			}
 		}
 	}
-	
+
 	if (isset($search_results_args['is_single']) && $search_results_args['is_single'])
 	{
 		return $search_results_args;
@@ -707,10 +704,10 @@ function translateStationLine($line)
 function explodeRangeValue($string, $subfix = ''){
 	//total_rent_space_unit
 	$aString = array();
-	
+
 	$string = str_replace(' ', '', $string);
 	preg_match('/[~|-|～]/u', $string, $matches);
-	
+
 	if (count($matches))
 	{
 		$aString = explode($matches[0], $string);
@@ -718,10 +715,10 @@ function explodeRangeValue($string, $subfix = ''){
 		$matches[0] = '';
 		$aString[] = $string;
 	}
-	
+
 	foreach ($aString as &$subData)
 	{
-		$subData = formatNumber($subData) . $subfix; 
+		$subData = formatNumber($subData) . $subfix;
 	}
 	return implode($matches[0], $aString);
 }
@@ -761,11 +758,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			if (!$floor['area_m']) return FIELD_MISSING_VALUE;
 			return $current_lang == LANGUAGE_EN ? formatNumber($floor['area_m']).AREA_M2 : formatNumber($floor[$field]).trans_text('tsubo');
 			break;
-				
+
 		case 'floor_up_down' :
 			$floor['floor_down'] = str_replace(' ', '', $floor['floor_down']);
 			$floor['floor_up'] = str_replace(' ', '', $floor['floor_up']);
-				
+
 			if (!$floor['floor_down'] && !$floor['floor_up']){
 				return FIELD_MISSING_VALUE;
 			}
@@ -796,15 +793,15 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					}
 					$floorLevel[] = $floor_up;
 				}
-				
+
 				return implode(FIELD_MISSING_VALUE, $floorLevel);
 			}
 			break;
-				
+
 		case "rent_unit_price_opt":
 			return $floor[$field] == FLOOR_UNIT_OPTION_UNDECIDED ? trans_text('Undecided') : trans_text('Ask');
 			break;
-				
+
 		case "unit_condo_fee_opt":
 			switch ($floor[$field])
 			{
@@ -820,24 +817,24 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				case FLOOR_UNIT_CONDO_FEE_INCLUDED:
 					return trans_text('Included');
 					break;
-				default: 
+				default:
 					return FIELD_MISSING_VALUE;
 					break;
 			}
 			break;
-				
+
 		case 'move_in_date' :
 			if ($floor[$field])
 			{
 				if ($current_lang == LANGUAGE_EN)
 				{
 					$aExplodeDate = explode('/', $floor[$field]);
-					$szDate = isset($aExplodeDate[2]) ? $aExplodeDate[2] : ''; 
+					$szDate = isset($aExplodeDate[2]) ? $aExplodeDate[2] : '';
 					unset($aExplodeDate[2]);
 					$move_date = strtotime(implode('-', $aExplodeDate));
 					$dateFormatWithoutDate = 'M.Y';
 					$dateFormatWithDate = 'M.d,Y';
-					
+						
 					if (strpos($szDate, '月内') !== false)
 					{
 						$floor[$field] = date($dateFormatWithoutDate, $move_date);
@@ -859,18 +856,18 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 						$floor[$field] = date($dateFormatWithDate, $move_date);
 					}
 				}
-				
+
 				$floor[$field] = convertDateFormat($floor[$field]);
 				return trans_text($floor[$field]);
 			}
 			else {
 				return FIELD_MISSING_VALUE;
 			}
-			
+				
 			break;
 		case 'built_year' :
 			$aExplodeDate = explode('-', $building[$field]);
-			
+				
 			if (trim($building[$field]) == '-')
 			{
 				$building[$field] = FIELD_MISSING_VALUE;
@@ -884,7 +881,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				else{
 					$dateFormat = 'M.Y';
 				}
-				
+
 				if (isEnglish())
 				{
 					$building[$field] = date($dateFormat, strtotime(implode('-', $aExplodeDate)));
@@ -892,19 +889,19 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					$building[$field] = date('Y年m月', strtotime(implode('-', $aExplodeDate)));
 				}
 			}
-			
+				
 			$building[$field] = convertDateFormat($building[$field]);
 			return $building[$field];
 			break;
-				
+
 		case 'total_floor_space':
 			return $building[$field] ? explodeRangeValue($building[$field], AREA_M2) : FIELD_MISSING_VALUE;
 			break;
-				
+
 		case 'total_rent_space_unit':
 			return $building[$field] ? explodeRangeValue($building[$field], AREA_M2) : FIELD_MISSING_VALUE;
 			break;
-			
+				
 		case 'earth_quake_res_std' :
 			switch ($building[$field])
 			{
@@ -931,19 +928,19 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 					break;
 			}
 			break;
-				
+
 		case 'elevator' :
 			$elevatorExp = explode('-',$building['elevator']);
 			$return = '';
 			if($elevatorExp[0] == 1){
 				if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "")
-// 					$return .= '(';
+				// 					$return .= '(';
 					$return .= isset($elevatorExp[1]) && $elevatorExp[1] != "" ? $elevatorExp[1].trans_text('ELV(s)') : trans_text('Exists');
-// 					$return .= isset($elevatorExp[2]) && $elevatorExp[2] != "" ? '/'.$elevatorExp[2].trans_text('Human power') : "";
-// 					$return .= isset($elevatorExp[3]) && $elevatorExp[3] != "" ? $elevatorExp[3].trans_text('For basic loading') : "";
-// 					$return .= isset($elevatorExp[4]) && $elevatorExp[4] != "" ? $elevatorExp[4].trans_text('Human power') : "";
-// 					$return .= isset($elevatorExp[5]) && $elevatorExp[5] != "" ? $elevatorExp[5]. trans_text('Group') : "";
-// 					if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "") $return .= ')';
+					// 					$return .= isset($elevatorExp[2]) && $elevatorExp[2] != "" ? '/'.$elevatorExp[2].trans_text('Human power') : "";
+					// 					$return .= isset($elevatorExp[3]) && $elevatorExp[3] != "" ? $elevatorExp[3].trans_text('For basic loading') : "";
+					// 					$return .= isset($elevatorExp[4]) && $elevatorExp[4] != "" ? $elevatorExp[4].trans_text('Human power') : "";
+					// 					$return .= isset($elevatorExp[5]) && $elevatorExp[5] != "" ? $elevatorExp[5]. trans_text('Group') : "";
+					// 					if($elevatorExp[1] != "" || $elevatorExp[2] != "" || $elevatorExp[3] != "" || $elevatorExp[4] != "" || $elevatorExp[5] != "") $return .= ')';
 			}else if($elevatorExp[0] == -2){
 				$return .= trans_text('Unknown');
 			}else if($elevatorExp[0] == 2){
@@ -953,7 +950,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			return $return;
 			break;
-				
+
 		case 'parking_unit_no' :
 			$parkingUnitNo = explode('-', $building['parking_unit_no']);
 			if($parkingUnitNo[0] == 1){
@@ -964,7 +961,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				return trans_text('Exist but unknown unit number');
 			}
 			break;
-				
+
 		case 'opticle_cable' :
 			if($building['opticle_cable'] == 0){
 				return trans_text('Unknown');
@@ -976,20 +973,20 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				return FIELD_MISSING_VALUE;
 			}
 			break;
-				
+
 		case 'std_floor_space' :
 			return $building['std_floor_space'] != "" ? $building['std_floor_space'].' ' . trans_text('tsubo') : FIELD_MISSING_VALUE;
 			break;
-				
+
 		case 'security_id':
 			$securityDetails = $wpdb->get_row("SELECT * FROM `security` WHERE security_id=" . (int)$building['security_id']);
 			return $securityDetails ? trans_text($securityDetails->security_name) : FIELD_MISSING_VALUE;
 			break;
-				
+
 		case 'renewal_data':
 			return $building[$field] ? (isEnglish() ? trans_text($building['renewal_data_en']) : trans_text($building[$field])) : FIELD_MISSING_VALUE;
 			break;
-				
+
 		case 'avg_neighbor_fee':
 			if (!$building['avg_neighbor_fee_min'] && !$building['avg_neighbor_fee_max']){
 				$return = FIELD_MISSING_VALUE;
@@ -1008,11 +1005,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			return implode(',', $typeOfUse);
 			break;
-			
+				
 		case 'contract_period_duration' :
 			return $floor[$field] ? trans_text($floor[$field]) . trans_text('年') : FIELD_MISSING_VALUE;
 			break;
-			
+				
 		case 'contract_period':
 			$return = '';
 			if(isset($floor['contract_period_opt']) && $floor['contract_period_opt'] != ""){
@@ -1028,30 +1025,30 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}else{
 				$return .=  FIELD_MISSING_VALUE;
 			}
-				
+
 			if(isset($floor['contract_period_optchk']) && $floor['contract_period_optchk'] == 1){
 				$return .=  trans_text('<br>年数相談');
 			}
-				
+
 			return $return;
 			break;
-			
+				
 		case 'floor_material':
 			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
 			break;
-		
+
 		case 'oa_type':
 			return $floor[$field] ? trans_text($floor[$field]) : FIELD_MISSING_VALUE;
 			break;
-		
+
 		case 'oa_height':
 			return $floor[$field] ? trans_text(formatNumber($floor[$field])) . 'mm' : FIELD_MISSING_VALUE;
 			break;
-			
+				
 		case 'ceiling_height':
 			return $floor[$field] ? trans_text(formatNumber($floor[$field])) . 'mm' : FIELD_MISSING_VALUE;
 			break;
-		
+
 		case 'construction_type_name':
 			if (!$building['construction_type_name_en'])
 			{
@@ -1067,13 +1064,13 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			return $construction ? $construction . '' : '';
 			break;
-		
+
 		case 'vacancy_info':
 			return $floor[$field] ? trans_text('Avaiable') : trans_text('Not Available');
 			break;
-			
+				
 		default :
-			
+				
 			break;
 	}
 }
@@ -1116,16 +1113,16 @@ function getBuildingPDF($building_id)
 	{
 		$folder = OFFICE_DB_SITE_URL . '/buildingPdfUploads/';
 		$pdfUrl = $folder . $Pdf->file_name;
-// 		if (!is_url_exist($pdfUrl))
-// 		{
-// 			$pdfUrl = '';
-// 		}
-	}
-	return $pdfUrl;
+		// 		if (!is_url_exist($pdfUrl))
+			// 		{
+			// 			$pdfUrl = '';
+			// 		}
+			}
+			return $pdfUrl;
 }
 
 function getListBestPropertyViewed($post_per_page = 0) {
-	$post_per_page = $post_per_page ? $post_per_page : PROPERTY_VIEWED_LIMIT; 
+	$post_per_page = $post_per_page ? $post_per_page : PROPERTY_VIEWED_LIMIT;
 	$query_args['post_type'] = 'property';
 	$query_args['posts_per_page'] = $post_per_page;
 	$query_args['order'] = 'DESC';
@@ -1150,17 +1147,17 @@ function getBuildingFloorPicUrl($type_images, $type) {
 		'building_front' => '/buildingPictures/front/',
 		'building_entrance' => '/buildingPictures/entrance/',
 		'building_infront' => '/buildingPictures/inFront/',
-		
+
 		'floor_bathroom' => '/floorPictures/bathroom/',
 		'floor_indoor' => '/floorPictures/indoor/',
 		'floor_kitchen' => '/floorPictures/kitchen/',
 		'floor_other' => '/floorPictures/other/',
 		'floor_prospect' => '/floorPictures/prospect/',
 		'floor_tenant' => '/floorPictures/tenant/',
-		
+
 		'plan' => '/planPictures/',
 	);
-	
+
 	$images = array();
 	foreach ($type_images as $image)
 	{
@@ -1183,13 +1180,13 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 	global $wpdb, $main_image;
 	$building_id = $building['building_id'];
 	$floor_id = $floor['floor_id'];
-	
+
 	if ( has_post_thumbnail( $property_id ) ) {
 		$thumbnail_id = get_post_thumbnail_id($property_id);
 		$thumbnail_url_array = wp_get_attachment_image_src($thumbnail_id, $property_image_width, true);
 		$thumbnail_url = $thumbnail_url_array[0];
 	}
-	
+
 	// Get gallery from building and floor
 	$buildingPictureRow = $wpdb->get_row("SELECT * FROM building_pictures WHERE building_id=".(int)$building_id);
 	$all_images = array();
@@ -1197,17 +1194,17 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 	{
 		$thumbnail_name = basename($thumbnail_url);
 		$main_image = array($buildingPictureRow->main_image, substr($thumbnail_name, strlen($building['building_id'])));
-		
+
 		$front_images = array_filter(explode(',' , $buildingPictureRow->front_images), 'realty_array_filter');
 		$entrance_images = array_filter(explode(',' , $buildingPictureRow->entrance_images), 'realty_array_filter');
 		$in_front_images = array_filter(explode(',' , $buildingPictureRow->in_front_building_images), 'realty_array_filter');
-		
+
 		// get image urls
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($front_images, 'building_front'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($entrance_images, 'building_entrance'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($in_front_images, 'building_infront'));
 	}
-	
+
 	$floorPictureRow = $wpdb->get_row("SELECT * FROM floor_pictures WHERE floor_id=".(int)$floor_id . " AND building_id=".(int)$building_id);
 	if ($floorPictureRow)
 	{
@@ -1217,7 +1214,7 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 		$prospect_images = explode(',', $floorPictureRow->prospect_image);
 		$other_images = explode(',', $floorPictureRow->other_image);
 		$tenant_list_images = explode(',', $floorPictureRow->tenant_list_image);
-		
+
 		// get image urls
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($indoor_images, 'floor_indoor'));
 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($kitchen_images, 'floor_kitchen'));
@@ -1234,10 +1231,10 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 		{
 			$plan_images[] = $planPictureResult->name;
 		}
-		
-// 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
+
+		// 		$all_images = array_merge($all_images, getBuildingFloorPicUrl($plan_images, 'plan'));
 	}
-	
+
 	if ($thumbnail_url)
 	{
 		array_unshift($all_images, $thumbnail_url);
@@ -1257,14 +1254,14 @@ function realty_excerpt($limit) {
 	$content = preg_replace('/\[.+\]/','', $content);
 	$content = apply_filters('the_content', $content);
 	$content = str_replace(']]>', ']]&gt;', $content);
-	
+
 	$content = mb_substr($content, 0, $limit);
 	if ($content < $limit) {
 		$content = $content.'...';
 	} else {
 		$content = $content;
 	}
-	
+
 	return $content;
 }
 
@@ -1295,10 +1292,10 @@ function realty_post_type_link($permalink, $post, $leavename)
 					global $post;
 					$new_property = $post;
 				}
-		
+
 			}
 		}
-		
+
 		if (isset($new_property))
 		{
 			$permalink = get_permalink($new_property);
@@ -1319,7 +1316,7 @@ if ( ! function_exists( 'tt_ajax_delete_user_profile_function' ) ) {
 		ob_start();
 		wp_logout();
 		ob_end_clean();
-		
+
 		echo json_encode(array('success' => $deleted, 'redirect' => get_option('siteurl'))); die;
 	}
 }
