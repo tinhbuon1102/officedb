@@ -192,7 +192,7 @@ final class ja_disable_users {
 		    <span id="filter_disabled_wrap">
 			    <select name="<?php echo $field_name?>" id="filter_disabled">
 			    	<option value=""><?php _e('All Users', 'realty'); ?></option>
-			    	<option value="1" <?php echo (isset($_REQUEST[$field_name]) && $_REQUEST[$field_name] == '1') ? 'selected' : '';?>><?php _e('Disabled', 'realty'); ?></option>
+			    	<option value="1" <?php echo (isset($_REQUEST[$field_name]) && $_REQUEST[$field_name] == '1') ? 'selected' : '';?>><?php _e('Unregistered', 'realty'); ?></option>
 			    </select>
 			</span>
 			<script type="text/javascript">
