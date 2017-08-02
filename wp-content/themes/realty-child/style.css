@@ -402,6 +402,11 @@ body.en nav#navigation .primary-menu a {
     font-size: 1.2em;
     font-style: italic;
 }
+
+.tooltip {
+	z-index: 99999;
+}
+
 @media all and (-ms-high-contrast:none) {
 	body.en nav#navigation .primary-menu a {
     font-family: "adobe-caslon-pro",Times,serif;

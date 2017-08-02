@@ -1,29 +1,29 @@
 <?php
 /**
  * Plugin Name: Disable Users
- * Plugin URI:  http://wordpress.org/extend/disable-users
- * Description: This plugin provides the ability to disable specific user accounts.
- * Version:     1.0.5
- * Author:      Jared Atchison
- * Author URI:  http://jaredatchison.com 
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * @author     Jared Atchison
- * @version    1.0.5
- * @package    JA_DisableUsers
- * @copyright  Copyright (c) 2015, Jared Atchison
- * @link       http://jaredatchison.com
- * @license    http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- */
+* Plugin URI:  http://wordpress.org/extend/disable-users
+* Description: This plugin provides the ability to disable specific user accounts.
+* Version:     1.0.5
+* Author:      Jared Atchison
+* Author URI:  http://jaredatchison.com
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* @author     Jared Atchison
+* @version    1231.0.5
+* @package    JA_DisableUsers
+* @copyright  Copyright (c) 2015, Jared Atchison
+* @link       http://jaredatchison.com
+* @license    http://www.gnu.org1/licenses/old-licenses/gpl-2.0.html
+*/
 
 final class ja_disable_users {
 
@@ -43,6 +43,8 @@ final class ja_disable_users {
 		add_action( 'wp_login',                   array( $this, 'user_login'                  ), 10, 2 );
 		add_action( 'manage_users_custom_column', array( $this, 'manage_users_column_content' ), 10, 3 );
 		add_action( 'admin_footer-users.php',	  array( $this, 'manage_users_css'            )        );
+		add_action( 'restrict_manage_users', array( $this, 'user_filter_in_order' ), 50  );
+		add_action( 'pre_get_users', array( $this, 'filter_users_by_disabled' ));
 		
 		// Filters
 		add_filter( 'login_message',              array( $this, 'user_login_message'          )        );
@@ -72,7 +74,7 @@ final class ja_disable_users {
 		// Only show this option to users who can delete other users
 		if ( !current_user_can( 'edit_users' ) )
 			return;
-		?>
+			?>
 		<table class="form-table">
 			<tbody>
 				<tr>
@@ -119,6 +121,8 @@ final class ja_disable_users {
 	 */
 	public function user_login( $user_login, $user = null ) {
 
+		global $realty_user;
+		
 		if ( !$user ) {
 			$user = get_user_by('login', $user_login);
 		}
@@ -128,18 +132,29 @@ final class ja_disable_users {
 		}
 		// Get user meta
 		$disabled = get_user_meta( $user->ID, 'ja_disable_user', true );
-		
 		// Is the use logging in disabled?
 		if ( $disabled == '1' ) {
 			// Clear cookies, a.k.a log user out
 			wp_clear_auth_cookie();
 
-			// Build login URL and then redirect
-			$login_url = site_url( 'wp-login.php', 'login' );
-			$login_url = add_query_arg( 'disabled', '1', $login_url );
-			wp_redirect( $login_url );
-			exit;
+			if (!(defined('DOING_AJAX') && DOING_AJAX)) {
+				// Build login URL and then redirect
+				$login_url = site_url( 'wp-login.php', 'login' );
+				$login_url = add_query_arg( 'disabled', '1', $login_url );
+				wp_redirect( $login_url );
+				exit;
+			}
+			$user = new WP_Error( 'invalid_username',
+			__( '<strong>ERROR</strong>: Invalid username.' ) .
+			' <a href="' . wp_lostpassword_url() . '">' .
+			__( 'Lost your password?' ) .
+			'</a>'
+			);
+			
 		}
+		
+		$realty_user = $user;
+		return $realty_user;
 	}
 
 	/**
@@ -167,10 +182,43 @@ final class ja_disable_users {
 	 */
 	public function manage_users_columns( $defaults ) {
 
-		$defaults['ja_user_disabled'] = __( 'Disabled', 'ja_disable_users' );
+		$defaults['ja_user_disabled'] = trans_text( 'Disabled');
 		return $defaults;
 	}
 
+	public function user_filter_in_order($position) {
+		$field_name = $position == 'bottom' ? 'filter_disabled2' : 'filter_disabled';
+		?>
+		    <span id="filter_disabled_wrap">
+			    <select name="<?php echo $field_name?>" id="filter_disabled">
+			    	<option value=""><?php _e('All Users', 'realty'); ?></option>
+			    	<option value="1" <?php echo (isset($_REQUEST[$field_name]) && $_REQUEST[$field_name] == '1') ? 'selected' : '';?>><?php _e('Disabled', 'realty'); ?></option>
+			    </select>
+			</span>
+			<script type="text/javascript">
+				jQuery('body').on('change', '#filter_disabled', function(){
+					location.href = '<?php echo get_option('siteurl') . '/wp-admin/users.php?filter_disabled='?>' + jQuery(this).val();
+				});
+			</script>
+		    <?php
+	}
+	
+	public function filter_users_by_disabled($query){
+		global $pagenow, $wpdb;
+		
+		if ( is_admin() && 'users.php' == $pagenow && isset($_GET['filter_disabled']) && ! empty($_GET['filter_disabled']) )
+		{
+			$disabled = $_GET[ 'filter_disabled' ];
+			$meta_query = array(
+				array(
+					'key'   => 'ja_disable_user',
+					'value' => $disabled
+				)
+			);
+			$query->set( 'meta_key', 'ja_disable_user' );
+			$query->set( 'meta_query', $meta_query );
+		}
+	}
 	/**
 	 * Set content of disabled users column
 	 *
@@ -184,7 +232,7 @@ final class ja_disable_users {
 
 		if ( $column_name == 'ja_user_disabled' ) {
 			if ( get_the_author_meta( 'ja_disable_user', $user_ID )	== 1 ) {
-				return __( 'Disabled', 'ja_disable_users' );
+				return trans_text( 'Disabled');
 			}
 		}
 	}

@@ -1311,8 +1311,15 @@ if ( ! function_exists( 'tt_ajax_delete_user_profile_function' ) ) {
 		$deleted = 0;
 		if (in_array('customer', $user->roles))
 		{
-			$deleted = wp_delete_user($user_id);
+			//$deleted = wp_delete_user($user_id);
+			update_user_meta( $user_id, 'ja_disable_user', 1 );
+			// Delete all user meta
+			delete_user_meta($user_id, 'realty_user_follow');
+			delete_user_meta($user_id, 'realty_user_contact');
+			delete_user_meta($user_id, 'realty_user_favorites');
+			$deleted = 1;
 		}
+		
 		ob_start();
 		wp_logout();
 		ob_end_clean();

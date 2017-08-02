@@ -152,10 +152,18 @@ class LoginWithAjax {
 
 	// Reads ajax login creds via POSt, calls the login script and interprets the result
 	public static function login(){
+		global $realty_user;
 		$return = array(); //What we send back
+		
 		if( !empty($_REQUEST['log']) && !empty($_REQUEST['pwd']) && trim($_REQUEST['log']) != '' && trim($_REQUEST['pwd'] != '') ){
 			$credentials = array('user_login' => $_REQUEST['log'], 'user_password'=> $_REQUEST['pwd'], 'remember' => !empty($_REQUEST['rememberme']));
 			$loginResult = wp_signon($credentials);
+			
+			if ($realty_user)
+			{
+				$loginResult = $realty_user;
+			}
+			
 			$user_role = 'null';
 			if ( strtolower(get_class($loginResult)) == 'wp_user' ) {
 				//User login successful

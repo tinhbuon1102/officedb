@@ -79,16 +79,17 @@ add_action('manage_users_columns','manage_users_columns');
 add_action('manage_users_custom_column','custom_manage_users_custom_column',10,3);
  
 function manage_users_columns($column_headers) {
-    $column_headers['user_company'] = 'Company Name';
+    $column_headers['user_company'] = trans_text('Company Name');
     return $column_headers;
 }
  
 function custom_manage_users_custom_column($custom_column,$column_name,$user_id) {
- 
-    $user_info = get_userdata($user_id);
- 
-    ${$column_name} = $user_info->$column_name;
-    $custom_column = "\t".${$column_name}."\n";
+    if ( $column_name == 'user_company' ) {
+    	$user_info = get_userdata($user_id);
+    	
+    	${$column_name} = $user_info->$column_name;
+    	$custom_column = "\t".${$column_name}."\n";
+    }
  
     return $custom_column;
 }
@@ -239,18 +240,23 @@ function hide_plugin_order_by_product ()
 	$hidearr = array(
 		'login-with-ajax/login-with-ajax.php',
 		'profile-builder-pro/index.php',
-		'smart-slider-3/library/smartslider/smartslider3.php'
+		'smart-slider-3/smart-slider-3.php',
+		'redux-framework/redux-framework.php',
+		'realty-core/realty-core.php',
+		'disable-users/init.php'
 	);
+	$active_plugins = get_option('active_plugins');
+	
 	$myplugins = $wp_list_table->items;
 	foreach ( $myplugins as $key => $val )
 	{
-		if ( in_array($key, $hidearr) )
+		if ( in_array($key, $hidearr) && in_array($key, $active_plugins))
 		{
 			unset($wp_list_table->items[$key]);
 		}
 	}
 }
-// add_action('pre_current_active_plugins', 'hide_plugin_order_by_product');
+add_action('pre_current_active_plugins', 'hide_plugin_order_by_product');
 
 add_action( 'lwa_register_form', 'realty_register_form' );
 function realty_register_form(){

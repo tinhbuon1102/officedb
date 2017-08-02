@@ -74,3 +74,7 @@
 .user-edit-php .user-description-wrap {
 	display: none;
 }
+
+.wp-admin.users-php .tablenav.bottom {
+	display: none;
+}
