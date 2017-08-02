@@ -176,6 +176,7 @@ Template Name: User - Profile
 	var delete_user_success = '<?php echo trans_text('Your account are deleted')?>';
 	
 	jQuery('body').on('click', '#delete_user', function(){
+		var user_id = jQuery(this).attr('data-user-id');
 		if (confirm(delete_user_text1)) {
 			setTimeout(function(){
 				if (confirm(delete_user_text2)) {
@@ -186,7 +187,7 @@ Template Name: User - Profile
 					    dataType: 'json',
 					    data: {
 						    'action':   'tt_ajax_delete_user_profile', // WP Function
-						    'user_id':   jQuery(this).attr('data-user-id')
+						    'user_id':   user_id
 					    },
 					    success: function (response) {
 					    	jQuery('body').LoadingOverlay("hide");
