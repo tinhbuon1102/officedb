@@ -17,43 +17,28 @@ jQuery(document).ready(function($){
 	function realty_debuging($data){
 		console.log($data);
 	}
-	function getImgSize(imgSrc) {
-    var newImg = new Image();
-
-    newImg.onload = function() {
-      var height = newImg.height;
-      var width = newImg.width;
-      $('#property_image_slider .property-image img').css('max-height', height + 'px');
-	  $('#property_image_slider .property-image img').css('max-width', width + 'px');
-    };
-
-    newImg.src = imgSrc; 
+	function getImgSize(img) {
+	    var newImg = new Image();
+	
+	    newImg.onload = function() {
+	      var height = newImg.height;
+	      var width = newImg.width;
+	      
+	      if (width > height)
+	    	  img.closest('.slick-slide').css('max-width', width + 'px');
+	      else
+	    	  img.closest('.slick-slide').css('max-height', height + 'px');
+	      
+	      img.css('max-height', height + 'px');
+		  img.css('max-width', width + 'px');
+	    };
+	
+	    newImg.src = img.attr('src'); 
 	}
 	$('#property_image_slider .property-image img').each(function(index, element){
-		/*if ( $(element).width() < $(element).height()) {
-			//$(element).css('width', 100 + '%');
-			//$(element).css('height', 'auto');
-		}*/
-		if ($(element).width() > $(element).height()){
-        //it's a landscape
-        $(element).addClass("landscape");
-    } else if ( $(element).width() < $(element).height()){
-        //it's a portrait
-        $(element).addClass("portrait");
-    } else {
-        $(element).addClass("canttell");
-    }
-		});
-	//$(".n2-ss-layers-container").wrapAll('<div class="n2-wrap"></div>');
-	/*$(window).on('load resize', function(){
-		var w = $(window).width();
-		var x = 400;
-		var MainImageH = $("#single_property_wraper .property-image-container.custom").height();
-		$("#property_thumbnails").css('height', MainImageH + 'px');
-		if (x <= w) {
-			$(".property-header-container .property-header span.ac-icon-list").css('height', ((MainImageH - 8) /3) + 'px');
-		}
-		});*/
+		getImgSize($(this));
+	});
+	
 	//scroll map
 	$(window).bind("scroll", function() {
 	// ドキュメントの高さ
@@ -455,7 +440,13 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 		$(window).on('resize', function(){
 			setTimeout(function(){
 				resizeMainSlider();
-			}, 500)
+				
+				$('#property_image_slider .property-image img').each(function(index, element){
+					getImgSize($(this));
+				});
+				
+			}, 500);
+			
 		});
 		
 	}
