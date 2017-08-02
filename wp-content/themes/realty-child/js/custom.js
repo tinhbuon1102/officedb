@@ -17,6 +17,33 @@ jQuery(document).ready(function($){
 	function realty_debuging($data){
 		console.log($data);
 	}
+	function getImgSize(imgSrc) {
+    var newImg = new Image();
+
+    newImg.onload = function() {
+      var height = newImg.height;
+      var width = newImg.width;
+      $('#property_image_slider .property-image img').css('max-height', height + 'px');
+	  $('#property_image_slider .property-image img').css('max-width', width + 'px');
+    };
+
+    newImg.src = imgSrc; 
+	}
+	$('#property_image_slider .property-image img').each(function(index, element){
+		/*if ( $(element).width() < $(element).height()) {
+			//$(element).css('width', 100 + '%');
+			//$(element).css('height', 'auto');
+		}*/
+		if ($(element).width() > $(element).height()){
+        //it's a landscape
+        $(element).addClass("landscape");
+    } else if ( $(element).width() < $(element).height()){
+        //it's a portrait
+        $(element).addClass("portrait");
+    } else {
+        $(element).addClass("canttell");
+    }
+		});
 	//$(".n2-ss-layers-container").wrapAll('<div class="n2-wrap"></div>');
 	/*$(window).on('load resize', function(){
 		var w = $(window).width();
