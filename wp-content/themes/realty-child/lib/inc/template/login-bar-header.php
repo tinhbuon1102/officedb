@@ -28,19 +28,31 @@
 <?php } else { // Logged-In User ?>
 
 	<?php
+		global $number_of_favorites, $number_of_follows;
+	
 		$current_user = wp_get_current_user();
 		$current_user_role = $current_user->roles[0];
 
 		$user_id = get_current_user_id();
 
 		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false );
+		$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 
 		$number_of_favorites = 0;
+		$number_of_follows = 0;
 
 		if ( $get_user_meta_favorites ) {
 			foreach ( $get_user_meta_favorites[0] as $favorite ) {
 				if ( get_post_status( $favorite ) == 'publish' ) {
 					$number_of_favorites++;
+				}
+			}
+		}
+		
+		if ( $get_user_meta_follow ) {
+			foreach ( $get_user_meta_follow[0] as $follow ) {
+				if ( get_post_status( $follow ) == 'publish' ) {
+					$number_of_follows++;
 				}
 			}
 		}

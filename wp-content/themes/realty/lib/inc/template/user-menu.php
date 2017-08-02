@@ -29,14 +29,13 @@ if ( wp_basename( get_page_template() ) == 'template-user-follow.php' ) {
 	$follow_active = null;
 }
 $user_id = get_current_user_id();
-$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+global $number_of_favorites, $number_of_follows;
 ?>
 
 <ul class="widget-user-menu border-box list-unstyled">
 	<li<?php echo $profile_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_profile() ); ?>"><i class="icon-account"></i> <?php _e( 'My Account', 'realty' ); ?></a></li>
-	<li<?php echo $favorites_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Favorites', 'realty' ); ?> (<?php echo $get_user_meta_favorites ? count($get_user_meta_favorites[0]) : 0 ?>)</a></li>
-	<li<?php echo $follow_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_follow() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Subscribed properties', 'realty' ); ?> (<?php echo $get_user_meta_follow ? count($get_user_meta_follow[0]) : 0 ?>)</a></li>
+	<li<?php echo $favorites_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_favorites() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Favorites', 'realty' ); ?> (<?php echo $number_of_favorites ?>)</a></li>
+	<li<?php echo $follow_active; ?>><a href="<?php echo get_permalink( tt_page_id_user_follow() ); ?>"><i class="fa fa-star"></i> <?php _e( 'Subscribed properties', 'realty' ); ?> (<?php echo $number_of_follows ?>)</a></li>
 	<li><a href="<?php echo wp_logout_url( site_url('/') ); ?>"><i class="icon-logout"></i> <?php _e( 'Logout', 'realty' ); ?></a></li>
 </ul>
 
