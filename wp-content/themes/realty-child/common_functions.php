@@ -551,7 +551,14 @@ function realty_posts_request ($request, $query)
 			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )
     OR
     ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
+			
+			$request = str_replace(PHP_EOL, ' ', $request);
+			$request = preg_replace('!\s+!', ' ', $request);
 				
+			$text_search = str_replace(PHP_EOL, ' ', $text_search);
+			$text_search = preg_replace('!\s+!', ' ', $text_search);
+				
+			
 			$text_filter = "wp_posts.post_title LIKE '%".$query->query['s']."%'";
 			// 			$text_name_kana = "(wp_postmeta.meta_key = 'estate_property_kana_name' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			// 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search_keywords' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
