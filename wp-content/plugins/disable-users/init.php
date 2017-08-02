@@ -168,7 +168,7 @@ final class ja_disable_users {
 
 		// Show the error message if it seems to be a disabled user
 		if ( isset( $_GET['disabled'] ) && $_GET['disabled'] == 1 ) 
-			$message =  '<div id="login_error">' . apply_filters( 'ja_disable_users_notice', __( 'Account disabled', 'ja_disable_users' ) ) . '</div>';
+			$message =  '<div id="login_error">' . apply_filters( 'ja_disable_users_notice', __( 'Account Unregister', 'realty' ) ) . '</div>';
 
 		return $message;
 	}
@@ -182,7 +182,7 @@ final class ja_disable_users {
 	 */
 	public function manage_users_columns( $defaults ) {
 
-		$defaults['ja_user_disabled'] = trans_text( 'Disabled');
+		$defaults['ja_user_disabled'] = trans_text( 'Unregistered');
 		return $defaults;
 	}
 
@@ -232,7 +232,7 @@ final class ja_disable_users {
 
 		if ( $column_name == 'ja_user_disabled' ) {
 			if ( get_the_author_meta( 'ja_disable_user', $user_ID )	== 1 ) {
-				return trans_text( 'Disabled');
+				return trans_text( 'Unregistered');
 			}
 		}
 	}
