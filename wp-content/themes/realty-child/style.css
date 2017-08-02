@@ -1786,16 +1786,6 @@ span.title_inner {
     content: "";
     height: 20px;
 }
-.slick-list:before {
-    position: absolute;
-    z-index: 1;
-    top: 0 !important;
-    left: 0;
-    bottom: inherit !important;
-    width: 100% !important;
-    content: "";
-    height: 20px;
-}
 .single-property .head-single .property-meta {
     margin: 0;
     padding: 0;
