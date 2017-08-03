@@ -1789,7 +1789,7 @@ span.title_inner {
     bottom: 0 !important;
     width: 100% !important;
     content: "";
-    height: 20px;
+    height: 0;
 }
 .single-property .head-single .property-meta {
     margin: 0;
