@@ -46,7 +46,7 @@
 		}
 	?>
 	
-	<div class="demo jktCD"> <span class="jktCD-click">User Name</span>
+	<div class="demo jktCD"> <span class="jktCD-click"><?php echo get_user_meta($user_id, 'user_name', true)?></span>
 <div class="jktCD-main jktCD-style-one">
 <ul>
 
