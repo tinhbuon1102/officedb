@@ -1,4 +1,5 @@
 jQuery(document).ready(function($){
+	$('.jktCD').jktCD();
 	$('body').on('click' , 'input#keyword', function() {
 		var formOffsetTop = $('#content form.property-search-form:visible:eq(0)').offset().top - 5;
 		var windowWidth = $(window).width();
@@ -380,10 +381,12 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			
 			if (windowWidth >= 768)
 			{
-				var sliderHeight = (windowHeight - (headerH + bannerHeight)) + 'px';
+				//var sliderHeight = (windowHeight - (headerH + bannerHeight)) + 'px';
+				var sliderHeight = windowHeight + 'px';
 			}
 			else {
-				var sliderHeight = (windowHeight - (headerH + fixFooterHeight)) + 'px';
+				//var sliderHeight = (windowHeight - (headerH + fixFooterHeight)) + 'px';
+				var sliderHeight = windowHeight + 'px';
 			}
 			
 			$('.main-slider').css('height', sliderHeight);

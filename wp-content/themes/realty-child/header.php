@@ -62,21 +62,24 @@
 			<div class="top-header-sidebar">
 					<?php esc_html_e( '東京都内の厳選された高級オフィス検索サイト', 'realty' ); ?>
 				</div>
+				<?php if ( is_active_sidebar( 'sidebar_header' ) ) { ?>
+				<div class="top-header-sidebar lang-switch">
+					<?php dynamic_sidebar( 'sidebar_header' ); ?>
+				</div>
+			<?php } ?>
 
 			<?php if ( ! $realty_theme_option['disable-header-login-register-bar'] ) { ?>
 				<div class="top-header-links primary-tooltips hidden-sm">
 					<?php get_template_part( 'lib/inc/template/login-bar-header' ); ?>
 				</div>
 		  <?php } ?>
-		  <?php if ( is_active_sidebar( 'sidebar_header' ) ) { ?>
-				<div class="top-header-sidebar lang-switch">
-					<?php dynamic_sidebar( 'sidebar_header' ); ?>
-				</div>
-			<?php } ?>
+		  
 		</div>
 	</div>
-
+  
+<div class="header-navi-wrap">
   <div class="container">
+  <div class="inline-container clearfix">
 		<div class="site-branding">
 			<?php
 		  	if ( ! empty( $realty_theme_option['logo-url'] ) ) {
@@ -147,10 +150,12 @@
 		
 		<div class="calling-info">
 			<div class="calling-content">
-				<i class="topicon-icon-topnav03"></i>
+				<!--<i class="topicon-icon-topnav03"></i>-->
 				<div class="calling-desc"><span class="jat"><?php esc_html_e( '平日', 'realty' ); ?></span>9:00~18:00<br/><span><a href="tel:03-5411-7500">03-5411-7500</a></span></div>
 			</div>
 		</div>
+	</div><!--/inline-container-->
+  </div>
   </div>
 
 </header>

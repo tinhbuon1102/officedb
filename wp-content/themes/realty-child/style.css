@@ -288,6 +288,15 @@ body.ja h1, body.ja h2, body.ja h3, body.ja h4, body.ja h5, body.ja h6 {
 body.en .top-header-links {
     text-transform: uppercase;
 }
+#header {
+    background-color: transparent !important;
+}
+.top-header {
+    background-color: transparent;
+}
+body.home .viewwrap {
+    padding-top: 0;
+}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -364,7 +373,15 @@ body.en .calling-info .calling-desc .jat {
 	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
 	letter-spacing: 2px;
 }
-.top-header-sidebar.lang-switch ul:before {
+#header .calling-info .calling-desc span a {
+    font-size: 1.45em;
+}
+#header .calling-info {
+    float: left;
+    padding: 0 30px;
+    min-width: initial;
+}
+/*.top-header-sidebar.lang-switch ul:before {
     display: inline-block;
     vertical-align: middle;
     content: "\e900";
@@ -378,11 +395,31 @@ body.en .calling-info .calling-desc .jat {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}*/
+.jktCD-style-one:after {
+    left: 20%;
+    top: -10px;
+}
+.jktCD-main li {
+    width: 180px;
+}
+.jktCD-main li > a {
+    padding: 5px 10px;
+    display: block;
+}
+.jktCD-main li > a:hover, .jktCD-main li > a:focus {
+    color: #FFF;
+    background: #000;
 }
 .top-header a:hover, .top-header a:focus, .breadcrumbs a:hover, .breadcrumbs a:focus, .top-header .lang-item a:hover, .top-header .lang-item a:focus {
     color: #000;
 }
-
+.main-navigation {
+    z-index: 4000;
+}
+.sticky .main-navigation {
+    z-index: 9000;
+}
 nav#navigation .primary-menu a {
 	border-bottom: 2px solid transparent;
 	padding: 0 15px;
@@ -522,8 +559,15 @@ section#feature .wpb_single_image .imgfit{
 section#floorPlan {
 	cursor: pointer;
 }
-
+.inline-container > div, .inline-container > nav {
+    background: #FFF;
+}
 @media (min-width: 992px) {
+	#header .container {
+    position: relative;
+    width: 100%;
+    padding: 0;
+	}
 	.property-meta.custom-meta-list {
     min-height: 50px;
 	}
@@ -533,15 +577,30 @@ section#floorPlan {
 	}
 	.top-header-sidebar.lang-switch {
 	float: right;
-	padding-right: 20px;
-	} 
+	/*padding-right: 20px;*/
+	background: #000;
+	}
+	#header .top-header .lang-item.current-lang a {
+    color: #FFF;
+	}
+	#header .top-header .lang-item a:hover {
+    color: #FFF;
+	}
+	#header .top-header-links {
+    float: left;
+	margin: 0 0 0 60px;
+	}
 	.site-branding {
-    max-width: 50px;
-    padding: 5px 0;
+    max-width: 70px;
+    padding: 0 0 0 20px;
+    display: table;
+	}
+	.top-header {
+    padding: 0 20px;
 	}
 	nav#navigation {
     float: left;
-    margin-left: 5%;
+    padding-left: 5%;
 	}
 	.primary-menu li {
     float: left;
@@ -564,6 +623,9 @@ section#floorPlan {
 @media (min-width: 992px) {
 	.site-title {
     width: auto;
+	display: table-cell;
+    height: 65px;
+    vertical-align: middle
 	}
 }
 @media only screen and (max-width: 991px) {
@@ -692,7 +754,7 @@ header#header {
     left: 0;
     width: 100%;
 	box-shadow: none;
-    border-bottom: 1px solid #eeeeee;
+    /*border-bottom: 1px solid #eeeeee;*/
 }
 header#header.sticky {
     position: fixed;
@@ -1571,7 +1633,7 @@ body.en section#property-content p, body.en #single_property_wraper table, body.
 }
 @media (min-width: 768px) {
 	body.en section#property-content p, body.en #single_property_wraper table, body.en  #single_property_wraper table.fixTable td, body.en  #single_property_wraper table.fixTable th {
-    font-size: 16px;
+    font-size: 14px;
 	}
 }
 
@@ -2848,6 +2910,7 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 .n2-ss-slide-background img {
 	width: 100% !important;
 	margin-left: 0 !important;
+	margin-top: 0 !important;
 }
 /*hexagon*/
 @media (max-width: 1160px) {
