@@ -5,9 +5,9 @@ jQuery(document).ready(function($){
 		var windowWidth = $(window).width();
 		var replaceWidth = 768;
 		if (formOffsetTop > 97 && windowWidth > replaceWidth) {
-			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+			var formScrollTop = formOffsetTop - $('#header div.container').outerHeight();
 		} else if (formOffsetTop > 430 && windowWidth < replaceWidth) {
-			var formScrollTop = formOffsetTop - $('#header > div.container').outerHeight();
+			var formScrollTop = formOffsetTop - $('#header div.container').outerHeight();
 		} else {
 			var formScrollTop = formOffsetTop;
 		}
