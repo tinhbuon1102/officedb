@@ -1377,7 +1377,6 @@ ul.locate-info li.station:before {
 .n2-ss-slider .n2-ss-layer > div > .sword-wrap {
 	position: relative;
 	line-height: 60px;
-	opacity: 0;
 	-webkit-transition: opacity 0.3s ease-in-out  !important;
     -moz-transition: opacity 0.3s ease-in-out  !important;
     transition: opacity 0.3s ease-in-out !important;
