@@ -59,7 +59,7 @@
 
 	<div class="top-header">
 		<div class="container">
-			<div class="top-header-sidebar">
+			<div class="top-header-sidebar site-desc">
 					<?php esc_html_e( '東京都内の厳選された高級オフィス検索サイト', 'realty' ); ?>
 				</div>
 				<?php if ( is_active_sidebar( 'sidebar_header' ) ) { ?>
