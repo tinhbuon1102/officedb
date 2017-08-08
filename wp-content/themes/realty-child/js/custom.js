@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
 		}
 	});
 	//scroll map
-	$('div#n2-ss-3 .n2-ss-layer > div').wrapInner('<div class="sword-wrap"></div>');
+	$('div#n2-ss-3 .n2-ss-layer > div').wrapInner('<div class="sword-wrap container"></div>');
 	$('input').iCheck({
     checkboxClass: 'icheckbox_square',
     radioClass: 'iradio_square',
