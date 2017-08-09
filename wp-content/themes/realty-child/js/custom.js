@@ -120,9 +120,12 @@ jQuery(document).ready(function($){
 			var featureHeight = [];
 			$('.vc_figure.imgfit').each(function(){
 				var img = $(this).find('img'); 
-				if (img.height() > 0)
+				if (img.height() > 0 && img.height() > img.width())
 				{
 					featureHeight.push(img.height());
+				}
+				else if (img.height() > 0 && img.height() < img.width()) {
+					$(this).addClass('landscape');
 				}
 			});
 			featureHeight.sort();
