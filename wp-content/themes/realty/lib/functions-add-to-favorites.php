@@ -9,6 +9,17 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 		$user_id = $_GET['user'];
 		$property_id = $_GET['property'];
 
+		$property_translations = pll_get_post_translations( $property_id );
+		
+		$sync_property_id = 0;
+		foreach ($property_translations as $property_lang_id) {
+			if ($property_lang_id != $property_id)
+			{
+				$sync_property_id = $property_lang_id;
+				break;
+			}
+		}
+		
 		// Get Favorites Meta Data
 		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
@@ -18,14 +29,24 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 			add_user_meta( $user_id, 'realty_user_favorites', $create_favorites );
 		} else {
 			// Meta Data Found -> Update Data
-			if ( ! in_array( $property_id, $get_user_meta_favorites[0] ) ) {
+			if ( ! in_array( $property_id, $get_user_meta_favorites[0] ) && ! in_array( $sync_property_id, $get_user_meta_favorites[0] ) ) {
 				// Add New Favorite
 				array_unshift( $get_user_meta_favorites[0], $property_id ); // Add To Beginning Of Favorites Array
+				array_unshift( $get_user_meta_favorites[0], $sync_property_id ); // Add To Beginning Of Favorites Array
 				update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 			} else {
 				// Remove Favorite
 				$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_favorites[0] );
-				unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
+				$removeFavoriteFromPositionSync = array_search( $sync_property_id, $get_user_meta_favorites[0] );
+				
+				if ($removeFavoriteFromPosition !== false)
+				{
+					unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
+				}
+				if ($removeFavoriteFromPositionSync !== false)
+				{
+					unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
+				}
 				update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 			}
 		}
