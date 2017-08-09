@@ -19,13 +19,12 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 				break;
 			}
 		}
-		
 		// Get Favorites Meta Data
 		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
 		if ( ! $get_user_meta_favorites ) {
 			// No User Meta Data Favorites Found -> Add Data
-			$create_favorites = array($property_id);
+			$create_favorites = array($property_id, $sync_property_id);
 			add_user_meta( $user_id, 'realty_user_favorites', $create_favorites );
 		} else {
 			// Meta Data Found -> Update Data
