@@ -44,6 +44,8 @@
 				}
 			}
 		}
+		
+		$number_of_favorites = $number_of_favorites / 2;
 	?>
 	
 	<div class="demo jktCD"> <span class="jktCD-click"><?php echo get_user_meta($user_id, 'user_name', true)?></span>
