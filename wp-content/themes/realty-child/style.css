@@ -457,12 +457,15 @@ body.en nav#navigation .primary-menu a {
 	z-index: 99999;
 }
 
+.imgfit.landscape {
+	position: relative;
+}
 .imgfit.landscape img{
     position: absolute;
     display: block;
     height: 100%;
     max-width: none;
-    width: auto;
+    width: auto !important;
 }
 @media all and (-ms-high-contrast:none) {
 	body.en nav#navigation .primary-menu a {
