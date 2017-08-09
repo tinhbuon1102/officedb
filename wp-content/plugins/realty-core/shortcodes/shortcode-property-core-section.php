@@ -156,7 +156,7 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 							} else if ( isset( $columns ) && $columns == 2 ) {
 								echo '<li class="col-md-6">';
 							} else if ( isset( $columns ) && $columns == 3 ) {
-								echo '<li class="col-lg-4 col-md-6">';
+								echo '<li class="col-lg-3 col-md-3 col-sm-4">';
 							} else if ( isset( $columns ) && $columns == 4 ) {
 								echo '<li class="col-lg-3 col-md-6">';
 							} else {

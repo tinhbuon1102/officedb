@@ -378,8 +378,11 @@ body.en .calling-info .calling-desc .jat {
 }
 #header .calling-info {
     float: left;
-    padding: 0 30px;
+    padding: 0 20px;
     min-width: initial;
+}
+.top-header-sidebar.lang-switch {
+	line-height: 30px;
 }
 /*.top-header-sidebar.lang-switch ul:before {
     display: inline-block;
@@ -573,6 +576,15 @@ section#floorPlan {
     background: #FFF;
 }
 @media (min-width: 992px) {
+	.top-header {
+    line-height: 35px;
+	}
+	nav#navigation .primary-menu li#menu-item-1175 a {
+    padding: 0;
+	}
+	nav#navigation .primary-menu li#menu-item-1421 a {
+    padding-left: 0;
+	}
 	#header .container {
     position: relative;
     width: 100%;
@@ -610,7 +622,7 @@ section#floorPlan {
 	}
 	nav#navigation {
     float: left;
-    padding-left: 5%;
+    padding-left: 4%;
 	}
 	.primary-menu li {
     float: left;
@@ -1347,7 +1359,7 @@ ul.locate-info li.station:before {
 .n2-ss-slider .n2-ss-layer {
     /*bottom: 15px !important;*/
 	/*right: 0px !important;*/
-	width: 100% !important;
+	/*width: 100% !important;*/
     
 }
 /*slider caption*/
@@ -2245,6 +2257,14 @@ div#property-items li:nth-child(5) h3:before {
 .sword-wrap {
     text-transform: initial;
 }
+/*small space*/
+body.en h2.page-title {
+    color: #000;
+    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+.has-post-thumbnail .post-date {
+    color: #000;
+}
 @media (max-width: 1199px) and (min-width: 768px) {
 	#property-search-results .property-item .property-price .price-tag, #property-search-results .property-item .property-price .property-icons {
     float: none;
@@ -2262,7 +2282,7 @@ div#property-items li:nth-child(5) h3:before {
     line-height: 38px;
 	}
 	section#latestoffice div#property-items li {
-		width: 50%;
+		width: 33.333%;
 	}
 	#property-items-featured > .container > .row > div:nth-child(3) > .sm-flex > .order1, #property-items-featured > .container > .row > div:last-child > .sm-flex > .order1 {
 		-webkit-box-ordinal-group: 1;
@@ -2955,7 +2975,7 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
 }
 
 .n2-ss-layers-container, .n2-ss-layer {
-	width: 100% !important;
+	/*width: 100% !important;*/
 	/*left: 0 !important;*/
 }
 
