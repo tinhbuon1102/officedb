@@ -455,6 +455,10 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			
 		});
 		
+		$('body').on('click', '.contact-list-header', function(){
+			jQuery('#contact-multiple-modal').modal('toggle');
+		});
+		
 	}
 	
 	initScrollBar();
