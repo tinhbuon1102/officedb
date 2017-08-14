@@ -63,6 +63,7 @@ jQuery(document).ready(function($){
 	});
 	//scroll map
 	$('div#n2-ss-3 .n2-ss-layer > div').wrapInner('<div class="sword-wrap container"></div>');
+	//$('div.sword').wrapAll('<div class="sword-wrap container"></div>');
 	$('input').iCheck({
     checkboxClass: 'icheckbox_square',
     radioClass: 'iradio_square',
@@ -393,6 +394,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			}
 			
 			$('.main-slider').css('height', sliderHeight);
+			$('#slidersec .crellyslider-slider').css('height', sliderHeight);
 			$('.n2-ss-slider').css('height', sliderHeight);
 			$('.n2-ss-slider-1').css('height', sliderHeight);
 			$('.n2-ss-slide').css('height', sliderHeight);

@@ -288,3 +288,53 @@
   content: "\e925";
 }
 
+@font-face {
+  font-family: 'arrowicons';
+  src:  url('fonts/arrowicons.eot?kuidn5');
+  src:  url('fonts/arrowicons.eot?kuidn5#iefix') format('embedded-opentype'),
+    url('fonts/arrowicons.ttf?kuidn5') format('truetype'),
+    url('fonts/arrowicons.woff?kuidn5') format('woff'),
+    url('fonts/arrowicons.svg?kuidn5#arrowicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="arrowicons-"], [class*=" arrowicons-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'arrowicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.arrowicons-paper-plane-o:before {
+  content: "\e905";
+}
+.arrowicons-paper-plane:before {
+  content: "\e906";
+}
+.arrowicons-triangle-down:before {
+  content: "\e904";
+}
+.arrowicons-chevron-down:before {
+  content: "\e901";
+}
+.arrowicons-chevron-up:before {
+  content: "\e900";
+}
+.arrowicons-chevron-down:before {
+  content: "\e901";
+}
+.arrowicons-chevron-left:before {
+  content: "\e902";
+}
+.arrowicons-chevron-right:before {
+  content: "\e903";
+}

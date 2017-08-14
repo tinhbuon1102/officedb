@@ -542,6 +542,120 @@ iframe#customer-chat-iframe {
 /*.letter-home-word {
 	margin-right: 5px;
 }*/
+.top-header-links .jktCD-click:after {
+    content: "\e904";
+    display: inline-block;
+    font-family: 'arrowicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    padding-left: 4px;
+}
+/*crellyslider*/
+.full-width > #slidersec > .wpb_column > .vc_column-inner > .wpb_wrapper > .container {
+    width: 100%;
+    margin: 0;
+}
+.crellyslider, .crellyslider > .cs-slides > .cs-slide {
+    height: 100% !important;
+}
+.cs-slide > .sword-wrap.container {
+    /*display: block !important;*/
+    top: initial !important;
+    left: initial !important;
+    height: 100%;
+    position: relative !important;
+}
+#content .wpb_text_column .crellyslider > .cs-navigation > .cs-slide-link, #content .wpb_text_column .crellyslider > .cs-navigation > .cs-slide-link:last-child {
+    margin: 6px;
+}
+.cs-slide.active-slide > .sword-wrap.container {
+	display: block !important;
+}
+.crellyslider .non-top {
+	top: initial !important;
+}
+.crellyslider .non-left {
+	left:  initial !important;
+}
+.crellyslider .sl02 {
+	top: 22% !important;
+}
+.crellyslider .sl04 {
+	top: 22% !important;
+}
+@media (min-width: 1200px) {
+	.crellyslider .sl03 {
+    left: -20px !important;
+	}
+	.crellyslider .sl03-2 {
+    left: 160px !important;
+	}
+}
+
+.sword-wrap .sword {
+    position: absolute;
+}
+.sword.center-cap {
+    width: 100%;
+    text-align: center;
+	left: 0 !important;
+}
+.adobe-calson {
+	font-family: "adobe-caslon-pro", Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+}
+.ja-txt {
+	font-size: 26px;
+	font-family: "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+	font-weight: normal;
+	letter-spacing: 4px;
+}
+/*slider arrows*/
+.crellyslider > .cs-controls > .cs-previous, .crellyslider > .cs-controls > .cs-next {
+    display: block;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0px 0px rgba(0,0,0,0), 0 0px 0px rgba(0,0,0,0);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 0;
+    border-radius: 0;
+}
+.crellyslider > .cs-controls > .cs-next, .crellyslider > .cs-controls > .cs-previous {
+    background-image: none;
+	font-family: 'arrowicons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	color: #FFF;
+    font-size: 30px;
+    line-height: 60px;
+}
+.crellyslider > .cs-controls > .cs-previous:before {
+	 content: "\e902";
+	 width: 60px;
+	text-align: center;
+	display: block;
+	
+}
+.crellyslider > .cs-controls > .cs-next:before {
+	 content: "\e903";
+	 width: 60px;
+	text-align: center;
+	display: block;
+}
+
 
 section#feature .wpb_single_image .imgfit{
     width: 100%;
@@ -550,6 +664,16 @@ section#feature .wpb_single_image .imgfit{
     margin: 0px;
     display: inline-block;
     vertical-align: top;
+	position: relative;
+}
+section#feature .imgfit.landscape img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 100%;
 }
 
 .news-thumbnail {
@@ -1034,7 +1158,7 @@ section#feature .wpb_single_image .vc_figure {
     padding: 5px 0;
 	}
 	#toggle-navigation {
-    top: 17px;
+    top: 12px;
 	}
 	.header-navi-wrap {
     background: #FFF;
@@ -1048,11 +1172,12 @@ section#feature .wpb_single_image .vc_figure {
 	.top-header-links.primary-tooltips.hidden-pc {
     float: right;
     padding-right: 40px;
-    display: inline-block;
+    /*display: inline-block;*/
     vertical-align: middle;
     margin: 0;
     height: 43px;
     line-height: 43px;
+		display: none;
 	}
 	.top-header-links.primary-tooltips a span i {
     font-size: 24px;

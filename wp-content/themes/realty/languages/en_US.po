@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-07-06 16:11+0900\n"
+"PO-Revision-Date: 2017-08-11 02:22+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -4825,13 +4825,13 @@ msgid "above ground %s"
 msgstr "%sF"
 
 msgid "ハイグレードの小さな区画"
-msgstr "Small Space in Grade A Bldg"
+msgstr "Small office space in Grade A building"
 
 msgid "条件絞込スマート検索"
-msgstr "Smart Searching"
+msgstr "Smart search"
 
 msgid "オフィス仲介実績"
-msgstr "Our Archivement"
+msgstr "Our achievements"
 
 msgid "オフィス情報最前線ブログ"
 msgstr "Blog"
@@ -4924,7 +4924,7 @@ msgid "Best Viewed Property"
 msgstr "Access Ranking"
 
 msgid "Ask"
-msgstr "Negotiable"
+msgstr "POA"
 
 msgid "/坪"
 msgstr "/tsubo"
@@ -4955,3 +4955,9 @@ msgstr "office"
 
 msgid "%s by foot : %sminutes"
 msgstr "%s on foot : %sminutes"
+
+msgid "is added newly"
+msgstr "has been added"
+
+msgid "Properties List"
+msgstr "Office List"
