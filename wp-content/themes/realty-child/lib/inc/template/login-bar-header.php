@@ -54,8 +54,8 @@
 
 	<?php if ( ! $realty_theme_option['property-favorites-disabled'] ) { ?>
 
-	<li class="item"><a href="<?php echo isEnglish() ? site_url('favorite-properties') : site_url('favorites'); ?>">
-		<span class="desktop"><i class="fa fa-star" aria-hidden="true"></i><?php esc_html_e( 'Favorites', 'realty' ); ?> (<span><?php echo $number_of_favorites; ?></span>)</span>
+	<li class="item favorite-header"><a href="<?php echo isEnglish() ? site_url('favorite-properties') : site_url('favorites'); ?>">
+		<span class="desktop"><i class="fa fa-star" aria-hidden="true"></i><?php esc_html_e( 'Favorites', 'realty' ); ?> (<span class="favorite-list-count"><?php echo $number_of_favorites; ?></span>)</span>
 		<span class="mobile" data-toggle="tooltip" data-placement="bottom" title="<?php esc_html_e( 'Favorites', 'realty' ); ?>"><i class="fa fa-star" aria-hidden="true"></i></span>
 	</a></li>
 	<?php } ?>

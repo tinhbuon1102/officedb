@@ -1,4 +1,127 @@
 <?php
+function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_favorites'){
+	$user = get_currentuserinfo();
+	$user_id = $user->ID;
+
+	$propertyIdList = get_user_meta($user_id, $meta_key, true);
+	if (!$propertyIdList) return array();
+
+	$args = array(
+		'post_type' => 'property',
+		'posts_per_page' => -1,
+		'post__in' => $propertyIdList
+	);
+
+	$properties = get_posts($args);
+
+	$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+	
+	$tableFloors = array();
+	foreach ($properties as $property_index => $property) {
+		$single_property_id = $property->ID;
+		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
+		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
+
+		$isSubcribed = in_array( $single_property_id, $get_user_meta_follow[0]);
+		$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
+		$inquiryUrl .=  '?id='. $single_property_id;
+		
+		$tableFloors[$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';
+		$tableFloors[$property_index]['name'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . $property->post_title . '</a>';
+		$tableFloors[$property_index]['size'] = translateBuildingValue('area_ping', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['address'] = $google_maps['address'];
+		$tableFloors[$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['deposit'] = renderPrice($floor['total_deposit']);
+		$tableFloors[$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
+		$tableFloors[$property_index]['property_id'] = $single_property_id;
+		
+		$tableFloors[$property_index]['subscribed'] = '<a class="btn btn-success add-to-follow-popup follow-popup '. ($isSubcribed ? ' subscribed' : '') .'" data-fav-id="'. $single_property_id .'" data-subscribe="'. trans_text('Subscribe') .'" data-unsubscribe="'. trans_text('Unsubscribe') .'"  href="javascript:void(0)">' . ($isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe')) . '</a>';
+		$tableFloors[$property_index]['contact_url'] = $inquiryUrl;
+		
+		
+		
+	}
+	
+	return $tableFloors;
+}
+
+function buildListFavoriteProperty($show_remove = false, $is_modal = false){
+	$user = get_currentuserinfo();
+	$user_id = $user->ID;
+	
+	$tableFloors = get_favorite_property_list(false, 'realty_user_favorites');
+	$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+	$tableHtml = '';
+	if (!empty($tableFloors) || $is_modal) {
+		ob_start();
+		?>
+	<h4><?php echo trans_text('With list of properties below :')?></h4>
+	<table class="favorite_list_later">
+		<thead>
+			<tr>
+				<th class="floor_checkbox" ></th>
+				<th class="floor_picture" colspan="2"><?php echo trans_text('Property Name')?></th>
+				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
+				<th class="floor_area"><?php echo trans_text('Area')?></th>
+				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
+				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
+				<?php if ($show_remove) {?>
+				<th class="floor_action_remove" colspan="3"><?php echo trans_text('Subscribe Setting')?></th>
+				<?php }?>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach ($tableFloors as $floor) {
+			$isSubcribed = in_array( $floor['property_id'], $get_user_meta_follow[0]);
+			$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
+			$inquiryUrl .=  '?id='. $floor['property_id'];
+		?>
+		<tr class="favorite_item">
+			<td class="floor_checkbox form-group checkbox"><input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="<?php echo $floor['property_id']?>"/></td>
+			<td class="floor_picture"><?php echo $floor['thumbnail']?></td>
+			<td class="floor_name"><?php echo $floor['name']?></td>
+			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
+			<td class="floor_area"><?php echo $floor['size']?></td>
+			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
+			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
+			<?php if ($show_remove) {?>
+			<td class="floor_subscribe"><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $floor['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
+			<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact')?></a></td>
+			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
+			<?php }?>
+		</tr>
+		<?php }?>
+		<tr class="favorite_item_tmp element-disable" style="display:none">
+			<td class="floor_checkbox form-group checkbox"></td>
+			<td class="floor_picture"></td>
+			<td class="floor_name"></td>
+			<td class="floor_rent"></td>
+			<td class="floor_area"></td>
+			<td class="floor_deposit"></td>
+			<td class="floor_date_move"></td>
+			<?php if ($show_remove) {?>
+			<td class="floor_subscribe"></td>
+			<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');?>"><?php echo trans_text('Contact')?></a></td>
+			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></td>
+			<?php }?>
+		</tr>
+		</tbody>
+	</table>
+	<?php if (!count($tableFloors)) {?>
+	<style>
+		.favorite_list_later, .modal-body .button_groups .btn-success {display: none;}
+	</style>
+	<p class="favorite_item no-favorite-list alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>
+	<?php }?>
+<?php 
+	$tableHtml = ob_get_contents();
+	ob_end_clean();
+	}
+	return $tableHtml;
+}
+
+
 /**
  * AJAX - Favorites
  *
@@ -49,7 +172,8 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 				update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 			}
 		}
-
+		$tableFloors = get_favorite_property_list($user_id, 'realty_user_favorites');
+		echo json_encode(array('floors' => $tableFloors)); die;
 	}
 }
 add_action( 'wp_ajax_tt_ajax_add_remove_favorites', 'tt_ajax_add_remove_favorites' );
@@ -115,6 +239,11 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 		?>
 
 		<script>
+		jQuery('body').on('click', '.favorite-header', function(e){
+			e.preventDefault();
+			jQuery('#favorite-multiple-modal').modal('show');
+		});
+		
 		<?php
 		// Temporary Favorites
 		if ( ! is_user_logged_in() && $realty_theme_option['property-favorites-temporary'] ) {
@@ -153,6 +282,54 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 		});
 		<?php } ?>
 
+
+		jQuery('body').on("click",'.add-to-follow-popup',function() {
+
+		<?php if ( is_user_logged_in() ) { // Logged-In User ?>
+
+				<?php $user_id = get_current_user_id();	?>
+				var elementCLick = jQuery(this);
+				jQuery('body').LoadingOverlay("show");
+				jQuery.ajax({
+				  type: 'GET',
+				  url: ajax_object.ajax_url,
+				  data: {
+				    'action'        :   'tt_ajax_add_remove_follow', // WP Function
+				    'user'					: 	<?php echo $user_id; ?>,
+				    'property'			: 	elementCLick.attr('data-fav-id')
+				  },
+				  success: function (response) {
+					elementCLick.toggleClass('subscribed');
+
+					if (elementCLick.hasClass('subscribed'))
+						elementCLick.text(elementCLick.attr('data-unsubscribe'));
+					else
+						elementCLick.text(elementCLick.attr('data-subscribe'));
+					
+					jQuery('body').LoadingOverlay("hide");
+				  },
+				  error: function () {
+					  jQuery('body').LoadingOverlay("hide");
+				  }
+				});
+
+			<?php }?>
+
+		});
+
+		jQuery('body').on('click', '#contact-inquiry', function(e){
+			e.preventDefault();
+			var aChecked = [];
+			jQuery('input[name="floor_checked[]"]').each(function(){
+				if (jQuery(this).is(':checked')){
+					aChecked.push(jQuery(this).val());
+				}
+			});
+			if (aChecked.length)
+			{
+				location.href = jQuery(this).attr('href') + '?id=' + aChecked.join(','); 
+			}
+		});
 		
 		jQuery('body').on("click",'.add-to-favorites_wraper',function(e) {
 			e.preventDefault();
@@ -168,19 +345,30 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 			?>
 
 				// Toggle Favorites Tooltips
-				var single_wraper = jQuery(this).closest('#single_property_wraper');
+				var elementCLick = jQuery(this);
+				var property_id = elementCLick.attr('data-fav-id');
+				var single_wraper = elementCLick.closest('#single_property_wraper');
 				var is_single = single_wraper.length;
+				var is_remove = false;
+				var show_popup = false;
 				var title;
 				
 				if (is_single)
 				{
 					single_wraper.find('i.add-to-favorites.origin').toggleClass('fa-star fa-star-o');
-					single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').toggleClass('fa-star-o fa-star');
+					jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
 
-					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star'))
+					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star') || elementCLick.hasClass('remove_property'))
+					{
 						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-remove-title');
+						show_popup = true;
+					}
 					else if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o'))
+					{
 						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-add-title');
+						show_popup = false;
+						is_remove = true;
+					}
 
 					single_wraper.find('i.add-to-favorites.origin').attr('data-original-title', title);
 					single_wraper.find('a.add-to-favorites_wraper span').text(title);
@@ -189,21 +377,27 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					jQuery('#single_favorite_text').text(title);
 				}
 				else {
-					if (jQuery(this).hasClass('custom-fav'))
+					if (elementCLick.hasClass('custom-fav'))
 					{						
-						jQuery(this).find('i').toggleClass('fa-star-o fa-star');
-						jQuery(this).closest('i').toggleClass('fa-star-o fa-star');						
+						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
 					}
 					else {
-						jQuery(this).find('i').toggleClass('fa-star fa-star-o');
-						jQuery(this).closest('i').toggleClass('fa-star fa-star-o');
+						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
 
-						var element = jQuery(this).find('i').length ? jQuery(this).find('i') : jQuery(this).closest('i');
+						var element = elementCLick.find('i').length ? elementCLick.find('i') : elementCLick.closest('i');
 						 
-						if (element.hasClass('fa-star'))
+						if (element.hasClass('fa-star')  || elementCLick.hasClass('remove_property'))
+						{
 							title = element.attr('data-remove-title');
+							show_popup = true;
+						}
+						
 						else if (element.hasClass('fa-star-o'))
+						{
 							title = element.attr('data-add-title');
+							show_popup = false;
+							is_remove = true;
+						}
 
 						element.attr('data-original-title', title);
 					}
@@ -212,16 +406,86 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 				<?php if ( is_user_logged_in() ) { ?>
 					<?php $user_id = get_current_user_id();	?>
+					if (show_popup)
+					{
+						jQuery('body').LoadingOverlay("show");
+					}
 					jQuery.ajax({
 					  type: 'GET',
 					  url: ajax_object.ajax_url,
+					  dataType: 'json',
 					  data: {
 					    'action'        :   'tt_ajax_add_remove_favorites', // WP Function
 					    'user'					: 	<?php echo $user_id; ?>,
-					    'property'			: 	jQuery(this).attr('data-fav-id')
+					    'property'			: 	elementCLick.attr('data-fav-id')
 					  },
-					  success: function (response) { },
-					  error: function () { }
+					  success: function (response) {
+
+							var floors = response.floors;
+							
+							// Update header count
+							jQuery('.favorite-list-count').html(floors.length);
+							
+							if (show_popup)
+							{
+								jQuery('body').LoadingOverlay("hide");
+								// show popup
+								jQuery('#favorite-multiple-modal').modal('show');
+								jQuery('.favorite_item').remove();
+
+								if (floors.length)
+								{
+									jQuery('.favorite_list_later').show();
+									jQuery('.modal-body .button_groups .btn-success').css('display', 'inline-block');
+									jQuery('.no-favorite-list').remove();
+									
+									jQuery.each(floors, function(floor_index, floor){
+										var floor_row = jQuery('tr.favorite_item_tmp:eq(0)').clone();
+										floor_row.removeClass('favorite_item_tmp element-disable');
+										floor_row.show();
+										floor_row.addClass('favorite_item');
+										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="'+ floor.id +'"/>');
+										floor_row.find('.floor_picture').html(floor.thumbnail);
+										floor_row.find('.floor_name').html(floor.name);
+										floor_row.find('.floor_rent').html(floor.rent_unit_price);
+										floor_row.find('.floor_area').html(floor.size);
+										floor_row.find('.floor_deposit').html(floor.deposit);
+										floor_row.find('.floor_date_move').html(floor.date_move);
+										floor_row.find('.floor_subscribe').html(floor.subscribed);
+										floor_row.find('.floor_contact a').attr('href', floor.contact_url);
+										floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
+
+										jQuery('.favorite_list_later').append(floor_row);
+									});
+								}
+								else {
+									jQuery('.favorite_list_later').hide();
+									jQuery('.modal-body .button_groups .btn-success').hide();
+									jQuery('.favorite_item').remove();
+									
+									jQuery('.favorite_list_later').before('<p class="favorite_item no-favorite-list alert alert-info"><?php esc_html_e( 'There is no added properties', 'realty' ); ?></p>');
+									jQuery('#favorite-multiple-modal').modal('hide');
+									if (elementCLick.closest('form.shortcode-form').length)
+									{
+										$('.favorite_list_later').fadeOut();
+									}
+								}
+
+								jQuery('.floor_checkbox input').iCheck({
+								    checkboxClass: 'icheckbox_square',
+								    radioClass: 'iradio_square',
+								    increaseArea: '20%' // optional
+								});
+							}
+							else{
+								if (is_remove)
+								{
+									jQuery('.remove_property.add-to-favorites[data-fav-id="'+property_id+'"]').closest('tr').remove();
+								}
+							}
+						  
+					  },
+					  error: function () { jQuery('body').LoadingOverlay("hide"); }
 					});
 
 					<?php } else if ( $add_favorites_temporary ) { ?>
@@ -244,7 +508,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						}
 
 						var getFavs = store.get('favorites');
-						var newFav = jQuery(this).attr('data-fav-id');
+						var newFav = elementCLick.attr('data-fav-id');
 
 						if ( inArray( newFav, getFavs ) ) {
 							// Remove Old Favorite
@@ -259,7 +523,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					} else {
 
 						var arrayFav = [];
-						arrayFav.push( jQuery(this).attr('data-fav-id') );
+						arrayFav.push( elementCLick.attr('data-fav-id') );
 						store.set( 'favorites', arrayFav );
 
 					}
@@ -344,3 +608,31 @@ if ( ! function_exists( 'tt_ajax_favorites_temporary' ) ) {
 }
 add_action('wp_ajax_tt_ajax_favorites_temporary', 'tt_ajax_favorites_temporary');
 add_action('wp_ajax_nopriv_tt_ajax_favorites_temporary', 'tt_ajax_favorites_temporary');
+
+
+add_action( 'wp_footer', 'tt_favorite_modal', 21 );
+function tt_favorite_modal(){
+	?>
+	<div class="modal fade modal-custom" id="favorite-multiple-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
+				<span class="linericon-cross" aria-hidden="true">X</span>
+			</button>
+			<div class="modal-header">
+				<h4 class="modal-title" ><?php echo __('favorite List', 'realty')?></h4>
+			</div>
+			<div class="modal-body">
+				<?php echo buildListFavoriteProperty(true, true);?>
+				 
+				<div class="button_groups">
+					  <a class="btn btn-success" id="contact-inquiry" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact all checked offices')?></a>
+					  <button type="button" class="btn btn-danger btn-close"  data-dismiss="modal"><?php echo trans_text('Close')?></button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+}

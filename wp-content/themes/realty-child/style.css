@@ -467,6 +467,13 @@ body.en nav#navigation .primary-menu a {
     max-width: none;
     width: auto !important;
 }
+.contact-list-header {
+	display: none !important;
+}
+#favorite-multiple-modal .modal-dialog {
+	max-width: 1000px;
+}
+
 @media all and (-ms-high-contrast:none) {
 	body.en nav#navigation .primary-menu a {
     font-family: "adobe-caslon-pro",Times,serif;

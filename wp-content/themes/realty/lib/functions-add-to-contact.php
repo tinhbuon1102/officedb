@@ -1,9 +1,17 @@
 <?php
-function get_contact_property_list($user_id = false){
+function get_contact_property_list($user_id = false, $meta_key = 'realty_user_contact'){
 	$user = get_currentuserinfo();
 	$user_id = $user->ID;
 	
-	$propertyIdList = get_user_meta($user_id, 'realty_user_contact', true);
+	if (isset($_REQUEST['id']))
+	{
+		$propertyIdList = explode(',', $_REQUEST['id']);
+	}
+	else 
+		$propertyIdList = get_user_meta($user_id, $meta_key, true);
+	
+	update_user_meta( $user_id, 'realty_user_contact', $propertyIdList );
+		
 	if (!$propertyIdList) return array();
 	
 	$args = array(
@@ -158,31 +166,33 @@ if ( !function_exists('tt_add_remove_contact') ) {
 			if ( ! empty( $get_user_meta_contact ) && in_array( $property_id, $get_user_meta_contact[0] ) ) {
 				// Property Is Already In contact
 				$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_SELECTED;
-				$text = __( 'Remove From contact', 'realty' );
+				$text = __( 'Contact This Office', 'realty' );
 			} else {
 				// Property Isn't In contact
 				$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_NOT_SELECTED;
-				$text = __( 'Add To contact', 'realty' );
+				$text = __( 'Contact This Office', 'realty' );
 			}
 		} else {
 			// Not Logged-In Visitor
 			$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_NOT_SELECTED;
-			$text = __( 'Add To contact', 'realty' );
+			$text = __( 'Contact This Office', 'realty' );
 		}
 
+		$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
+		$inquiryUrl .=  '?id='. $property_id;
+		
 		if ($is_custom){
-			$favicon = '<a href="javascript:void(0);" class="btn btn-primary btn-square btn-lg add-to-contact_wraper" id="contact_list_button">%s<span>'.$text.'</span></a>';
+			$favicon = '<a target="_blank" href="'. $inquiryUrl .'" class="btn btn-primary btn-square btn-lg add-to-contact_wraper" id="contact_list_button">%s<span>'.$text.'</span></a>';
 		}
-
-		return sprintf($favicon, '<i class="'.$class.'" data-fav-id="' . $property_id . '" data-toggle="tooltip" data-remove-title="'.__( 'Remove From contact', 'realty' ).'" data-add-title="'.__( 'Add To contact', 'realty' ).'" title="' . $text . '"></i>');
+		else{
+			$favicon = '<a target="_blank" href="'. $inquiryUrl .'" >%s</a>';
+		}
+		return sprintf($favicon, '<i class="'.$class.'" data-fav-id="' . $property_id . '" data-toggle="tooltip" data-remove-title="'.__( 'Contact This Office', 'realty' ).'" data-add-title="'.__( 'Contact This Office', 'realty' ).'" title="' . $text . '"></i>');
 
 	}
 }
 
-/**
- * contact - Script
- *
- */
+// add_action( 'wp_footer', 'tt_contact_script', 21 );
 if ( ! function_exists( 'tt_contact_script' ) ) {
 	function tt_contact_script() {
 
@@ -404,12 +414,9 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 	<?php
 	}
 }
-add_action( 'wp_footer', 'tt_contact_script', 21 );
-add_action( 'wp_footer', 'tt_contact_modal', 21 );
-/**
- * contact Temporary
- *
- */
+add_action('wp_ajax_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
+add_action('wp_ajax_nopriv_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
+
 if ( ! function_exists( 'tt_ajax_contact_temporary' ) ) {
 	function tt_ajax_contact_temporary() {
 
@@ -463,8 +470,8 @@ if ( ! function_exists( 'tt_ajax_contact_temporary' ) ) {
 
 	}
 }
-add_action('wp_ajax_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
-add_action('wp_ajax_nopriv_tt_ajax_contact_temporary', 'tt_ajax_contact_temporary');
+
+// add_action( 'wp_footer', 'tt_contact_modal', 21 );
 
 function tt_contact_modal(){
 ?>
