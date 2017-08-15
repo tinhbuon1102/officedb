@@ -233,7 +233,7 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 									$('#form-submit-success-<?php echo $required_fields['id']; ?>').removeClass('hide');
 									setTimeout(function(){
 										location.reload();
-									}, 400);
+									}, 6000);
 								}
 							},
 							error: function() {
