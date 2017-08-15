@@ -192,7 +192,7 @@ if ( !function_exists('tt_add_remove_contact') ) {
 	}
 }
 
-// add_action( 'wp_footer', 'tt_contact_script', 21 );
+add_action( 'wp_footer', 'tt_contact_script', 21 );
 if ( ! function_exists( 'tt_contact_script' ) ) {
 	function tt_contact_script() {
 
@@ -205,7 +205,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 		// Temporary contact
 		if ( ! is_user_logged_in() && $realty_theme_option['property-contact-temporary'] ) {
 		?>
-		jQuery('.add-to-contact').each(function() {
+		jQuery('.floor_action_remove .add-to-contact').each(function() {
 
 			// Check If item Already In contact Array
 			function inArray(needle, haystack) {
@@ -240,7 +240,7 @@ if ( ! function_exists( 'tt_contact_script' ) ) {
 			jQuery(this).find('.add-to-contact').click();
 		});
 		
-		jQuery('body').on("click",'.add-to-contact',function(e) {
+		jQuery('body').on("click",'.floor_action_remove .add-to-contact',function(e) {
 	        e.stopPropagation();
 	        var show_popup = false;
 	        var elementCLick = jQuery(this);
