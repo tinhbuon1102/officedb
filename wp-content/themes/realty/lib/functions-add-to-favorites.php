@@ -444,7 +444,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										floor_row.removeClass('favorite_item_tmp element-disable');
 										floor_row.show();
 										floor_row.addClass('favorite_item');
-										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="'+ floor.id +'"/>');
+										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="'+ floor.property_id +'"/>');
 										floor_row.find('.floor_picture').html(floor.thumbnail);
 										floor_row.find('.floor_name').html(floor.name);
 										floor_row.find('.floor_rent').html(floor.rent_unit_price);
