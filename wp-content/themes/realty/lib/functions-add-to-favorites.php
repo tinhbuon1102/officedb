@@ -620,7 +620,7 @@ function tt_favorite_modal(){
 				<span class="linericon-cross" aria-hidden="true">X</span>
 			</button>
 			<div class="modal-header">
-				<h4 class="modal-title" ><?php echo __('favorite List', 'realty')?></h4>
+				<h4 class="modal-title" ><?php echo __('Favorite List', 'realty')?></h4>
 			</div>
 			<div class="modal-body">
 				<?php echo buildListFavoriteProperty(true, true);?>
