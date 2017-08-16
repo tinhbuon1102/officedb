@@ -237,7 +237,7 @@
 	<div class="row"  id="single_property_wraper">
 	<div class="col-sm-5">
 <div class="property-slider-wrap clearfix">
-<div class="property-header-container">
+<div class="property-header-container hidden-pc">
 
 			<?php if ( $layout == "full-width" ) { ?>
 			<?php } ?>
@@ -246,25 +246,10 @@
 					<h1 class="title">
 						<div class="clearfix mobile"></div>
 						<div class="acicon-wrap">
-						<span class="ac-icon-list"><span class="ac-cell"><?php echo tt_add_remove_favorites( $single_property_id ); ?>		
-			<?php if ( is_user_logged_in() ) { ?>
-			<?php
-				$user_id = get_current_user_id();
-				 $get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-			?>
-			<?php if ( ! empty( $get_user_meta_favorites ) && in_array( $single_property_id, $get_user_meta_favorites[0] ) ) { ?>
-						<!--<span class="title_inner" id="single_favorite_text"><?php //echo __('Remove From Favorites', 'realty')?></span>-->
-						<?php } else { ?>
-						<!--<span class="title_inner" id="single_favorite_text"><?php //echo __('Add To Favorites', 'realty')?></span>-->
-						<?php }  ?>
-						<?php } else { ?>
-						<!--<span class="title_inner" id="single_favorite_text"><?php //echo __('Add To Favorites', 'realty')?></span>-->
-						<?php } ?>
-						</span>
-						</span>
-						<span class="ac-icon-list middle"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
 						
-						<span class="ac-icon-list last"><span class="ac-cell"><?php echo tt_add_remove_follow( $single_property_id ); ?>		
+						<span class="ac-icon-list last"><a href="#location_map" class="ac-cell"><i class="icon-pin-full" data-toggle="tooltip" title="<?php esc_html_e( 'Show Location', 'realty' );  ?>"></i></a></span>
+						
+								
 			<?php 
 		    if ( is_user_logged_in() ) {
 			$user_id = get_current_user_id();
@@ -321,15 +306,10 @@
 			</div>
 			<?php }?>
 			<div class="buttons-group row">
-			<?php if ( !is_user_logged_in() ) { ?>
-			<div class="col-sm-6">
-			<a href="#login-modal" data-toggle="modal" class="btn btn-primary btn-square btn-line-border"><i class="iconthin-icon-thinliner_register"></i><span><?php echo __('Register', 'realty')?></span></a>
-			</div>
-			<?php } else { ?>
+			
 			<div class="col-sm-6">
 			<?php echo tt_add_remove_favorites( $single_property_id, 'custom-fav' )?>
 			</div>
-			<?php }?>
 			
 			
 			<?php if ($pdfUrl) {?>
