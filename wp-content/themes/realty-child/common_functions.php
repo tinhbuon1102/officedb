@@ -1180,7 +1180,23 @@ function getBuildingFloorPicUrl($type_images, $type) {
 
 function realty_array_filter($string) {
 	global $main_image;
-	return in_array($string, $main_image) === false;
+	foreach ($main_image as $image)
+	{
+		if (strpos($image, '.') !== false)
+		{
+			$image = substr($image, 0, strlen($image) - 4);
+		}
+		if (strpos($string, '.') !== false)
+		{
+			$string = substr($string, 0, strlen($string) - 4);
+		}
+		
+		if (strpos($image, $string) !== false)
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 function getBuildingFloorPictures($building, $floor, $property_id){
