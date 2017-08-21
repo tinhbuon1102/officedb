@@ -182,7 +182,7 @@ if ( !function_exists('tt_add_remove_contact') ) {
 		$inquiryUrl .=  '?id='. $property_id;
 		
 		if ($is_custom){
-			$favicon = '<a target="_blank" href="'. $inquiryUrl .'" class="btn btn-primary btn-square btn-lg add-to-contact_wraper" id="contact_list_button">%s<span>'.$text.'</span></a>';
+			$favicon = '<a target="_blank" href="'. $inquiryUrl .'" class="btn btn-primary btn-square btn-lg add-to-contact_wraper1" id="contact_list_button">%s<span>'.$text.'</span></a>';
 		}
 		else{
 			$favicon = '<a target="_blank" href="'. $inquiryUrl .'" >%s</a>';
