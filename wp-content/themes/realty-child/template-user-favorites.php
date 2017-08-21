@@ -20,7 +20,6 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 			?>
 			<div class="button_groups">
 				<a class="btn btn-success" id="contact-inquiry" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact all checked offices')?></a>
-				<button type="button" class="btn btn-danger btn-close"  data-dismiss="modal"><?php echo trans_text('Close')?></button>
 			</div>
 		<?php }?>
 		
