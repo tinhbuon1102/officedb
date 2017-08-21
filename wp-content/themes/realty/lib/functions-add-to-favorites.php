@@ -430,7 +430,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 							{
 								jQuery('body').LoadingOverlay("hide");
 								// show popup
-								jQuery('#favorite-multiple-modal').modal('show');
+								if (elementCLick.closest('.page-user-favorites').length == 0)
+								{
+									jQuery('#favorite-multiple-modal').modal('show');
+								}
 								jQuery('.favorite_item').remove();
 
 								if (floors.length)
