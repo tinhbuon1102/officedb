@@ -80,7 +80,10 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 		<tr class="favorite_item">
 			<td class="floor_checkbox form-group checkbox"><input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="<?php echo $floor['property_id']?>"/></td>
 			<td class="floor_picture"><?php echo $floor['thumbnail']?></td>
-			<td class="floor_name"><?php echo $floor['name']?></td>
+			<td class="floor_name">
+			<p class="fl-name"><?php echo $floor['name']?></p>
+			<p class="hidden-pcmodal"><?php echo $floor['size']?>&nbsp;<?php echo $floor['rent_unit_price']?></p>
+			</td>
 			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 			<td class="floor_area"><?php echo $floor['size']?></td>
 			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
