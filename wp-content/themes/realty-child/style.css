@@ -1173,6 +1173,38 @@ a.remove_property.add-to-favorites {
 .modal .button_groups a#contact-inquiry {
     background: #000;
 }
+.favorite_item p.fl-name, .favorite_item p {
+    margin: 0;
+}
+.hidden-pcmodal {
+	display: none;
+}
+@media (max-width: 1190px) {
+	table.favorite_list_later thead th, table.favorite_list_later thead td {
+		font-size: 12px;
+	}
+	#favorite-multiple-modal .modal-dialog {
+		width: 80%;
+	}
+	#favorite-multiple-modal .btn.btn-success, #favorite-multiple-modal a.remove_property.add-to-favorites {
+    font-size: 12px;
+	}
+}
+@media (max-width: 1052px) {
+	/*table.favorite_list_later thead {
+    display: none;
+	}*/
+	table.favorite_list_later .floor_rent, table.favorite_list_later .floor_area, table.favorite_list_later .floor_deposit {
+    display: none;
+	}
+	.favorite_item p.fl-name {
+    margin: 0 0 5px 0;
+		font-weight: bold;
+	}
+	.hidden-pcmodal {
+	display: block;
+	}
+}
 @media (min-width: 992px) {
 	.hidden-pc {
 		display: none;
