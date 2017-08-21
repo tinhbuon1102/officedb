@@ -359,6 +359,7 @@ input, input[type=submit], input:focus, textarea, .chosen-container.chosen-conta
     font-size: 1em;
     line-height: 1.5em;
     font-weight: normal;
+	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
 }
 body.en .calling-info .calling-desc .jat {
     font-size: 1em;
@@ -378,7 +379,7 @@ body.en .calling-info .calling-desc .jat {
 }
 #header .calling-info {
     float: left;
-    padding: 0 20px;
+    padding: 0 40px;
     min-width: initial;
 }
 .top-header-sidebar.lang-switch {
@@ -751,7 +752,7 @@ section#floorPlan {
 	}
 	#header .top-header-links {
     float: left;
-	margin: 0 0 0 60px;
+	margin: 0 0 0 80px;
 	}
 	.site-branding {
     max-width: 70px;
@@ -1142,6 +1143,35 @@ section#feature .wpb_single_image .vc_figure {
 }
 .row.link-list .col-sm-3 {
     padding: 0 5px;
+}
+/*favorite modal*/
+table.favorite_list_later {
+    border-collapse: collapse;
+    width: 100%;
+}
+table.favorite_list_later thead th {
+    border-bottom: 1px solid #000;
+}
+table.favorite_list_later tbody tr.favorite_item td {
+    padding: 10px 5px;
+}
+.btn.add-to-follow-popup.follow-popup {
+    background: rgba(32,103,174,1);
+}
+.btn.add-to-follow-popup.follow-popup.subscribed {
+    background: rgba(131,168,204,1);
+}
+.btn.add-to-follow-popup.follow-popup:hover, .btn.add-to-follow-popup.follow-popup:active {
+	color: #FFF;
+	background: rgba(19,52,84,1);
+}
+a.remove_property.add-to-favorites {
+    background: rgba(215,215,215,1);
+    color: #FFF;
+    padding: 5px 10px;
+}
+.modal .button_groups a#contact-inquiry {
+    background: #000;
 }
 @media (min-width: 992px) {
 	.hidden-pc {

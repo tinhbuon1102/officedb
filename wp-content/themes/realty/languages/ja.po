@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-08-05 00:57+0900\n"
+"PO-Revision-Date: 2017-08-21 16:33+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -211,7 +211,7 @@ msgstr ""
 #: single-package.php:111
 #: realty-core/shortcodes/shortcode-membership-packages.php:81
 msgid "Subscribe"
-msgstr ""
+msgstr "受信する"
 
 #: single-package.php:117
 msgid "You are logged in as admin or agent. Please login as \"Subscriber\" to subscribe to this package."
@@ -4942,3 +4942,18 @@ msgstr "更新情報配信物件"
 
 msgid "Unregistered"
 msgstr "退会済"
+
+msgid "Unsubscribe"
+msgstr "配信停止"
+
+msgid "Subscribe Setting"
+msgstr "更新情報配信設定"
+
+msgid "Favorite List"
+msgstr "お気に入り一覧"
+
+msgid "Contact all checked offices"
+msgstr "チェックした物件をまとめて問い合わせる"
+
+msgid "Contact This Office"
+msgstr "この物件を問い合わせる"

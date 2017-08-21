@@ -56,7 +56,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	if (!empty($tableFloors) || $is_modal) {
 		ob_start();
 		?>
-	<h4><?php echo trans_text('With list of properties below :')?></h4>
+	<!--<h4><?php //echo trans_text('With list of properties below :')?></h4>-->
 	<table class="favorite_list_later">
 		<thead>
 			<tr>
