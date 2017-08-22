@@ -126,6 +126,19 @@ if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
 	</div>
 </div>
 </div><!--/viewwrap-->
+
+<?php 
+if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
+{
+	$thankUrl = home_url() . (isEnglish() ? '/thank-you-2/' : '/thank-you/'); 
+	?>
+	<script>
+	document.addEventListener( 'wpcf7mailsent', function( event ) {
+	    location = '<?php echo $thankUrl?>';
+	}, false );
+	</script>
+<?php 
+}?>
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js"></script>
 </body>
 </html>
