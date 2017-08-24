@@ -455,6 +455,12 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 		}
 		wp_mail( $recipient, $subject, $message, $headers );
 		
+		// Send to customer
+		$subject_customer = trans_text('Thank you for inquiring about the property | Premium Office Search');
+		$message_customer = trans_text('Thank you very much for your inquiry at the Premium Office Search this time. <br />Please wait for a while because we will contact you within 1 - 3 business days.<br />The property you are contacting is below.<br />');
+		$message_customer .= $message;
+		wp_mail( $email, $subject_customer, $message_customer, $headers );
+		
 		$thankUrl = home_url() . (isEnglish() ? '/thank-you-2/' : '/thank-you/');
 		echo json_encode(array('error' => false, 'redirect' => $thankUrl)); die;
 	}
