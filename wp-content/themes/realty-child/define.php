@@ -1,6 +1,7 @@
 <?php
 // *** CAN MODIFY ****
 define('PROPERTY_VIEWED_LIMIT', 3);
+define('OFFICE_DB_FEE_RATE', 3.30578);
 define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 48);
 define('PROPERTY_MAIL_TESTING', true);
 define('PROPERTY_MAIL_CC', 'kyoko@heart-hunger.com');
@@ -20,7 +21,7 @@ define('SITE_DATE_FORMAT', 'Y/m/d');
 define('SITE_TIME_FORMAT', 'G:i');
 define('LANGUAGE_EN', 'en');
 define('LANGUAGE_JA', 'ja');
-define('FIELD_MISSING_VALUE', '-');
+define('FIELD_MISSING_VALUE', ' - ');
 define('AREA_M2', 'm&sup2;');
 
 define('FLOOR_UNIT_OPTION_UNDECIDED', -1);
