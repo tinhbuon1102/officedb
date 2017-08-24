@@ -54,7 +54,7 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 				<th class="floor_picture" colspan="2"><?php echo trans_text('Property Name')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
-				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
+				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
 				<?php if ($show_remove) {?>
 				<th class="floor_action_remove"><?php echo trans_text('Remove')?></th>
@@ -68,7 +68,7 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 			<td class="floor_name"><?php echo $floor['name']?></td>
 			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 			<td class="floor_area"><?php echo $floor['size']?></td>
-			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
+			<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
 			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
 			<?php if ($show_remove) {?>
 			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
@@ -80,7 +80,7 @@ function buildListContactProperty($show_remove = false, $is_modal = false){
 			<td class="floor_name"></td>
 			<td class="floor_rent"></td>
 			<td class="floor_area"></td>
-			<td class="floor_deposit"></td>
+			<!--<td class="floor_deposit"></td>-->
 			<td class="floor_date_move"></td>
 			<?php if ($show_remove) {?>
 			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-contact" ><?php echo trans_text('Remove')?></a></td>

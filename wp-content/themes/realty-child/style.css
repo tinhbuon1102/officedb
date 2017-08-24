@@ -1192,9 +1192,9 @@ section#feature .wpb_single_image .vc_figure {
 .thank-content .p-con {
     padding: 20px 0;
 }
-/*contact table*/
-table.contact_list_later .floor_deposit {
-    display: none;
+/*favorite list page*/
+div#page-user-favorites {
+    margin-bottom: 60px;
 }
 /*favorite modal*/
 #favorite-multiple-modal .button_groups {
@@ -1206,6 +1206,13 @@ table.favorite_list_later {
 }
 table.favorite_list_later thead th {
     border-bottom: 1px solid #000;
+	padding: 0 5px;
+}
+table.favorite_list_later td {
+    text-align: center;
+}
+table.favorite_list_later td.floor_name {
+    text-align: left;
 }
 table.favorite_list_later tbody tr.favorite_item td {
     padding: 10px 5px;
@@ -1262,10 +1269,22 @@ a.remove_property.add-to-favorites {
 	
 }
 @media (max-width: 767px) {
+	.favorite_item .btn {
+    font-size: 13px;
+	}
 	table.favorite_list_later .floor_checkbox {
     width: 45px;
 	}
 	table.favorite_list_later tbody tr.favorite_item td.floor_picture {
+    width: 60px;
+	}
+	table.favorite_list_later tbody tr.favorite_item td.floor_action_remove {
+    width: 60px;
+	}
+	table.favorite_list_later tbody tr.favorite_item td.floor_contact {
+    width: 115px;
+	}
+	table.favorite_list_later tbody tr.favorite_item td.floor_subscribe {
     width: 90px;
 	}
 	table.favorite_list_later .floor_date_move {
@@ -1274,11 +1293,14 @@ a.remove_property.add-to-favorites {
 	.hidden-spmodal {
 	display: block;
 	}
-}
-@media (max-width: 681px) {
-	table.favorite_list_later .floor_contact, table.favorite_list_later .floor_action_remove {
+	table.favorite_list_later thead {
     display: none;
 	}
+}
+@media (max-width: 681px) {
+	/*table.favorite_list_later .floor_contact, table.favorite_list_later .floor_action_remove {
+    display: none;
+	}*/
 }
 @media (min-width: 992px) {
 	.hidden-pc {

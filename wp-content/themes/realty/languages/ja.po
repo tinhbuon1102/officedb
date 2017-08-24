@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-08-21 16:33+0900\n"
+"PO-Revision-Date: 2017-08-24 11:49+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -759,7 +759,7 @@ msgstr ""
 #: lib/functions-forms.php:52
 #: realty-core/shortcodes/shortcode-contact-form.php:356
 msgid "Sent from"
-msgstr ""
+msgstr "送信元"
 
 #: lib/functions-forms.php:114
 msgid "Property: "
@@ -3276,7 +3276,7 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-contact-form.php:11
 #: realty-core/shortcodes/shortcode-contact-form.php:218
 msgid "Contact Form Request"
-msgstr ""
+msgstr "物件お問い合わせを受け付けました | 高級オフィス検索"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:14
 #: realty-core/shortcodes/shortcode-contact-form.php:279
@@ -4957,3 +4957,9 @@ msgstr "チェックした物件をまとめて問い合わせる"
 
 msgid "Contact This Office"
 msgstr "この物件を問い合わせる"
+
+msgid "Name Kana"
+msgstr "ふりがな"
+
+msgid "Contact Type"
+msgstr "お問い合わせ種別"
