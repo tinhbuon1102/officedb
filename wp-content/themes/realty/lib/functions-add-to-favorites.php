@@ -146,6 +146,7 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 		// Get Favorites Meta Data
 		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
+		$action = '';
 		if ( ! $get_user_meta_favorites ) {
 			// No User Meta Data Favorites Found -> Add Data
 			$create_favorites = array($property_id, $sync_property_id);
@@ -157,6 +158,7 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 				array_unshift( $get_user_meta_favorites[0], $property_id ); // Add To Beginning Of Favorites Array
 				array_unshift( $get_user_meta_favorites[0], $sync_property_id ); // Add To Beginning Of Favorites Array
 				update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
+				$action = 'add_new';
 			} else {
 				// Remove Favorite
 				$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_favorites[0] );
@@ -171,10 +173,11 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 					unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
 				}
 				update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
+				$action = 'remove';
 			}
 		}
 		$tableFloors = get_favorite_property_list($user_id, 'realty_user_favorites');
-		echo json_encode(array('floors' => $tableFloors)); die;
+		echo json_encode(array('floors' => $tableFloors, 'action' => $action)); die;
 	}
 }
 add_action( 'wp_ajax_tt_ajax_add_remove_favorites', 'tt_ajax_add_remove_favorites' );
