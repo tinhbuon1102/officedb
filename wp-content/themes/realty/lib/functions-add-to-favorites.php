@@ -14,7 +14,7 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 
 	$properties = get_posts($args);
 
-	$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 	
 	$tableFloors = array();
 	foreach ($properties as $property_index => $property) {
@@ -23,7 +23,7 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 
-		$isSubcribed = in_array( $single_property_id, $get_user_meta_follow[0]);
+		$isSubcribed = count($get_user_meta_follow) ? in_array( $single_property_id, $get_user_meta_follow[0]) : false;
 		$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
 		$inquiryUrl .=  '?id='. $single_property_id;
 		
@@ -51,7 +51,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	$user_id = $user->ID;
 	
 	$tableFloors = get_favorite_property_list(false, 'realty_user_favorites');
-	$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 	$tableHtml = '';
 	if (!empty($tableFloors) || $is_modal) {
 		ob_start();
@@ -64,31 +64,26 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<th class="floor_picture" colspan="2"><?php echo trans_text('Property Name')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
-				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
+				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
 				<?php if ($show_remove) {?>
-				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
-				<th class="floor_contact"></th>
-				<th class="floor_action_remove"></th>
+				<th class="floor_action_remove" colspan="3"><?php echo trans_text('Subscribe Setting')?></th>
 				<?php }?>
 			</tr>
 		</thead>
 		<tbody>
 		<?php foreach ($tableFloors as $floor) {
-			$isSubcribed = in_array( $floor['property_id'], $get_user_meta_follow[0]);
+			$isSubcribed = count($get_user_meta_follow) ? in_array( $floor['property_id'], $get_user_meta_follow[0]) : false;
 			$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
 			$inquiryUrl .=  '?id='. $floor['property_id'];
 		?>
 		<tr class="favorite_item">
-			<td class="floor_checkbox form-group checkbox"><input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="<?php echo $floor['property_id']?>"/></td>
+			<td class="floor_checkbox form-group checkbox"><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></td>
 			<td class="floor_picture"><?php echo $floor['thumbnail']?></td>
-			<td class="floor_name">
-			<p class="fl-name"><?php echo $floor['name']?></p>
-			<p class="hidden-pcmodal"><?php echo $floor['size']?>&nbsp;<?php echo $floor['rent_unit_price']?></p>
-			</td>
+			<td class="floor_name"><?php echo $floor['name']?></td>
 			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 			<td class="floor_area"><?php echo $floor['size']?></td>
-			<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
+			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
 			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
 			<?php if ($show_remove) {?>
 			<td class="floor_subscribe"><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $floor['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
@@ -113,6 +108,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 		</tr>
 		</tbody>
 	</table>
+	<?php }?>
 	<?php if (!count($tableFloors)) {?>
 	<style>
 		.favorite_list_later, .modal-body .button_groups .btn-success {display: none;}
@@ -122,7 +118,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 <?php 
 	$tableHtml = ob_get_contents();
 	ob_end_clean();
-	}
+	
 	return $tableHtml;
 }
 
@@ -322,6 +318,26 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 		});
 
+		jQuery('input.floor_checked').on('ifChanged', function(event){
+			var checkedIds = [];
+			jQuery('input.floor_checked:visible:checked').each(function(){
+				checkedIds.push(jQuery(this).closest('tr').find('.remove_property').attr('data-fav-id'));
+			});
+			
+			jQuery('#bulk-remove').attr('data-fav-id', checkedIds.join(','));
+		});
+
+		jQuery('body').on('click', '#bulk-remove', function(e){
+			e.preventDefault();
+			var checkedIds = jQuery('#bulk-remove').attr('data-fav-id').split(',');
+			jQuery.each(checkedIds, function(index, property_id){
+				if (property_id)
+				{
+					jQuery('td.floor_action_remove a.add-to-favorites:visible[data-fav-id="'+property_id+'"]').trigger('click');
+				}
+			});
+		});
+		
 		jQuery('body').on('click', '#contact-inquiry', function(e){
 			e.preventDefault();
 			var aChecked = [];
@@ -363,12 +379,12 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					single_wraper.find('i.add-to-favorites.origin').toggleClass('fa-star fa-star-o');
 					jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
 
-					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star') || elementCLick.hasClass('remove_property'))
+					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star'))
 					{
 						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-remove-title');
 						show_popup = true;
 					}
-					else if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o'))
+					else if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o') || elementCLick.hasClass('remove_property'))
 					{
 						title = single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').attr('data-add-title');
 						show_popup = false;
@@ -391,13 +407,13 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 						var element = elementCLick.find('i').length ? elementCLick.find('i') : elementCLick.closest('i');
 						 
-						if (element.hasClass('fa-star')  || elementCLick.hasClass('remove_property'))
+						if (element.hasClass('fa-star'))
 						{
 							title = element.attr('data-remove-title');
 							show_popup = true;
 						}
 						
-						else if (element.hasClass('fa-star-o'))
+						else if (element.hasClass('fa-star-o') || elementCLick.hasClass('remove_property'))
 						{
 							title = element.attr('data-add-title');
 							show_popup = false;
@@ -411,10 +427,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 				<?php if ( is_user_logged_in() ) { ?>
 					<?php $user_id = get_current_user_id();	?>
-					if (show_popup)
-					{
-						jQuery('body').LoadingOverlay("show");
-					}
+					jQuery('body').LoadingOverlay("show");
 					jQuery.ajax({
 					  type: 'GET',
 					  url: ajax_object.ajax_url,
@@ -430,16 +443,24 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 							
 							// Update header count
 							jQuery('.favorite-list-count').html(floors.length);
-							
+
+							jQuery('body').LoadingOverlay("hide");
 							if (show_popup)
 							{
-								jQuery('body').LoadingOverlay("hide");
 								// show popup
 								if (elementCLick.closest('.page-user-favorites').length == 0)
 								{
 									jQuery('#favorite-multiple-modal').modal('show');
 								}
-								jQuery('.favorite_item').remove();
+
+								// When removing, don't remove all item, just remove selected element only
+								if (!is_remove)
+								{
+									jQuery('.favorite_item').remove();
+								}
+								else {
+									elementCLick.closest('tr').fadeOut(function(){jQuery(this).remove();});
+								}	
 
 								if (floors.length)
 								{
@@ -452,7 +473,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										floor_row.removeClass('favorite_item_tmp element-disable');
 										floor_row.show();
 										floor_row.addClass('favorite_item');
-										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select" value="'+ floor.property_id +'"/>');
+										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="'+ floor.property_id +'"/>');
 										floor_row.find('.floor_picture').html(floor.thumbnail);
 										floor_row.find('.floor_name').html(floor.name);
 										floor_row.find('.floor_rent').html(floor.rent_unit_price);
@@ -463,7 +484,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										floor_row.find('.floor_contact a').attr('href', floor.contact_url);
 										floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
-										jQuery('.favorite_list_later').append(floor_row);
+										if (!is_remove)
+										{
+											jQuery('.favorite_list_later').append(floor_row);
+										}
 									});
 								}
 								else {
