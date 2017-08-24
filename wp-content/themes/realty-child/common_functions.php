@@ -982,7 +982,13 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			break;
 
 		case 'std_floor_space' :
-			return $building['std_floor_space'] != "" ? $building['std_floor_space'].' ' . trans_text('tsubo') : FIELD_MISSING_VALUE;
+			if (isEnglish())
+			{
+				return $building['std_floor_space'] != "" ? formatNumber(str_replace(',', '', $building['std_floor_space']) * OFFICE_DB_FEE_RATE).' ' . AREA_M2 : FIELD_MISSING_VALUE;
+			}
+			else {
+				return $building['std_floor_space'] != "" ? formatNumber(str_replace(',', '', $building['std_floor_space'])) .' ' . trans_text('tsubo') : FIELD_MISSING_VALUE;
+			}
 			break;
 
 		case 'security_id':
@@ -999,8 +1005,15 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				$return = FIELD_MISSING_VALUE;
 			}
 			else{
-				$return = $building['avg_neighbor_fee_min'] ? renderPrice($building['avg_neighbor_fee_min']) : '-';
-				$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice($building['avg_neighbor_fee_max']) : FIELD_MISSING_VALUE;
+				if (isEnglish())
+				{
+					$return = $building['avg_neighbor_fee_min'] ? renderPrice(str_replace(',', '', $building['avg_neighbor_fee_min']) * OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
+					$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice(str_replace(',', '', $building['avg_neighbor_fee_max']) * OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
+				}
+				else {
+					$return = $building['avg_neighbor_fee_min'] ? renderPrice($building['avg_neighbor_fee_min']) : FIELD_MISSING_VALUE;
+					$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice($building['avg_neighbor_fee_max']) : FIELD_MISSING_VALUE;
+				}
 			}
 			return $return;
 			break;
@@ -1145,8 +1158,15 @@ function renderPropertyPrice($property_id, $building, $floor)
 	{
 		return translateBuildingValue('rent_unit_price_opt', $building, $floor, $property_id);
 	}
-	$price = renderPrice($property_price);
-	return $price . '/' . trans_text('tsubo');
+	if (isEnglish())
+	{
+		$price = renderPrice($property_price * OFFICE_DB_FEE_RATE);
+		return $price . '/' . AREA_M2;
+	}
+	else {
+		$price = renderPrice($property_price);
+		return $price . '/' . trans_text('tsubo');
+	}
 }
 
 function getBuildingFloorPicUrl($type_images, $type) {
