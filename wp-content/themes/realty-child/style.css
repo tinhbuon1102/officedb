@@ -433,7 +433,7 @@ body.en .calling-info .calling-desc .jat {
     z-index: 4000;
 }
 .sticky .main-navigation {
-    z-index: 9000;
+    z-index: 9999;
 }
 nav#navigation .primary-menu a {
 	border-bottom: 0px solid transparent;
@@ -726,6 +726,12 @@ section#floorPlan {
     background: #FFF;
 }
 @media (min-width: 992px) {
+	#singlesearchform .keyword-div {
+    width: 40%;
+	}
+	#singlesearchform .select, #singlesearchform .search-btn-div {
+    width: 20%;
+	}
 	.top-header {
     line-height: 35px;
 	}
@@ -1269,6 +1275,7 @@ a.remove_property.add-to-favorites {
 	
 }
 @media (max-width: 767px) {
+	
 	.favorite_item .btn {
     font-size: 13px;
 	}
@@ -1314,6 +1321,12 @@ a.remove_property.add-to-favorites {
 	}
 }
 @media (max-width: 991px) {
+	.sword-wrap > .sword {
+    display: none !important;
+	}
+	.top-header-sidebar.site-desc {
+    width: 100% !important;
+	}
 	.hidden-sm {
 		display: none;
 	}
@@ -4281,6 +4294,13 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
     top: 0;
     padding: 8px 10px;
 	height: 100%;
+	}
+	body.en table.fixTable td:before {
+	width: 11.5em;
+	}
+	body.en table.fixTable td {
+    padding-left: 12.5em;
+	word-break: break-word;
 	}
 	table.fixTable tr:first-child td:last-child {
     border-top: none;
