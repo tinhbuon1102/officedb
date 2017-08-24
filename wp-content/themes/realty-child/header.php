@@ -164,9 +164,7 @@
    		<?php 
    		if (is_singular('property'))
    		{
-   			echo '<div id="asldjflakjsdlfja">';
    			echo do_shortcode('[property_search_form search_form_columns="3" search_type="mini"]');
-   			echo '</div>';
    		}
    		?>
    		</div>
