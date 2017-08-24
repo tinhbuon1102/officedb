@@ -232,8 +232,14 @@ if ( ! function_exists( 'realty_script_contact_form' ) ) {
 									$('body').LoadingOverlay("hide");
 									$('#form-submit-success-<?php echo $required_fields['id']; ?>').removeClass('hide');
 									setTimeout(function(){
-										location.reload();
-									}, 6000);
+										if (response.redirect)
+										{
+											location.href = response.redirect;
+										}
+										else{
+											location.reload();
+										}
+									}, 2000);
 								}
 							},
 							error: function() {
@@ -448,7 +454,9 @@ if ( ! function_exists( 'realty_ajax_shortcode_contact_form' ) ) {
 			$recipient[] = $realty_theme_option['property-contact-form-cc-admin'];
 		}
 		wp_mail( $recipient, $subject, $message, $headers );
-		echo json_encode(array('error' => false)); die;
+		
+		$thankUrl = home_url() . (isEnglish() ? '/thank-you-2/' : '/thank-you/');
+		echo json_encode(array('error' => false, 'redirect' => $thankUrl)); die;
 	}
 }
 add_action( 'wp_ajax_realty_ajax_shortcode_contact_form', 'realty_ajax_shortcode_contact_form' );
