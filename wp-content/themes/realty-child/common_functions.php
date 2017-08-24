@@ -1368,10 +1368,5 @@ function realty_wp_mail ($atts)
 		}
 	}
 	
-	$user = get_currentuserinfo();
-	if ($user->data->user_email == 'quocthang.2001@gmail.com')
-	{
-		var_dump($atts);die;
-	}
 	return $atts;
 }
