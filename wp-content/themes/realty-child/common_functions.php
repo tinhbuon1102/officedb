@@ -1363,8 +1363,8 @@ function realty_wp_mail ($atts)
 			$atts['headers'] .= 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
 		}
 		else {
-			$atts['headers'] = 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
-			$atts['headers'] = 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+			$atts['headers'][] = 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
+			$atts['headers'][] = 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
 		}
 	}
 	
