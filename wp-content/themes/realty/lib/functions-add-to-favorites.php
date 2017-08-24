@@ -321,15 +321,19 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 		});
 
-		jQuery('input.floor_checked').on('ifChanged', function(event){
-			var checkedIds = [];
-			jQuery('input.floor_checked:visible:checked').each(function(){
-				checkedIds.push(jQuery(this).closest('tr').find('.remove_property').attr('data-fav-id'));
+		function checkboxFavoriteInitial(){
+			jQuery('#bulk-remove').attr('data-fav-id', '');
+			jQuery('input.floor_checked').on('ifChanged', function(event){
+				var checkedIds = [];
+				jQuery('input.floor_checked:visible:checked').each(function(){
+					checkedIds.push(jQuery(this).closest('tr').find('.remove_property').attr('data-fav-id'));
+				});
+				
+				jQuery('#bulk-remove').attr('data-fav-id', checkedIds.join(','));
 			});
-			
-			jQuery('#bulk-remove').attr('data-fav-id', checkedIds.join(','));
-		});
-
+		}
+		checkboxFavoriteInitial();
+		
 		jQuery('body').on('click', '#contact-inquiry', function(e){
 			e.preventDefault();
 			var aChecked = [];
@@ -449,18 +453,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 									jQuery('#favorite-multiple-modal').modal('show');
 								}
 
-								// When removing, don't remove all item, just remove selected element only
-								if (!is_remove)
-								{
-									jQuery('.favorite_item').remove();
-								}
-								else {
-									var checkedIds = elementCLick.attr('data-fav-id').split(',');
-									jQuery.each(checkedIds, function(index, property_id){
-										var rowRemoved = jQuery('a[data-fav-id="'+property_id+'"]');
-										rowRemoved.closest('tr').fadeOut(function(){jQuery(this).remove();});
-									});
-								}	
+								jQuery('.favorite_item').remove();	
 
 								if (floors.length)
 								{
@@ -484,10 +477,9 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										floor_row.find('.floor_contact a').attr('href', floor.contact_url);
 										floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
-										if (!is_remove)
-										{
-											jQuery('.favorite_list_later').append(floor_row);
-										}
+										jQuery('.favorite_list_later').append(floor_row);
+
+										checkboxFavoriteInitial();
 									});
 								}
 								else {
