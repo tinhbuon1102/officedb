@@ -64,10 +64,12 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<th class="floor_picture" colspan="2"><?php echo trans_text('Property Name')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
-				<th class="floor_deposit"><?php echo trans_text('Total deposit')?></th>
+				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
 				<?php if ($show_remove) {?>
-				<th class="floor_action_remove" colspan="3"><?php echo trans_text('Subscribe Setting')?></th>
+				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
+				<th class="floor_contact"></th>
+				<th class="floor_action_remove"></th>
 				<?php }?>
 			</tr>
 		</thead>
@@ -86,7 +88,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			</td>
 			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 			<td class="floor_area"><?php echo $floor['size']?></td>
-			<td class="floor_deposit"><?php echo $floor['deposit']?></td>
+			<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
 			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
 			<?php if ($show_remove) {?>
 			<td class="floor_subscribe"><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $floor['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>

@@ -48,7 +48,7 @@
 		$number_of_favorites = $number_of_favorites / 2;
 	?>
 	
-	<div class="demo jktCD"> <span class="jktCD-click"><?php echo get_user_meta($user_id, 'user_name', true)?></span>
+	<div class="demo jktCD"> <span class="jktCD-click"><?php echo isEnglish() ? 'For' : ''; ?> <?php echo get_user_meta($user_id, 'user_name', true)?><?php echo isEnglish() ? '' : '様'; ?></span>
 <div class="jktCD-main jktCD-style-one">
 <ul>
 

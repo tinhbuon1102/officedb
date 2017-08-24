@@ -1,4 +1,15 @@
 jQuery(document).ready(function($){
+	$(window).on('load resize', function(){
+		var windowWidth = $(window).width();
+	var headlogo =$('.header-navi-wrap .site-branding').innerWidth();
+	var headnavi =$('.header-navi-wrap .main-navigation').innerWidth();
+	var callinfo =$('.header-navi-wrap .calling-info').innerWidth();
+	var tooltip =$('.top-header-links.primary-tooltips').width();
+	if (windowWidth > 992) {
+		$(".site-desc").css('min-width', ((headlogo + headnavi + callinfo) - tooltip - 20) + 'px');
+	}
+});
+	
 	$('.jktCD').jktCD();
 	$('body').on('click' , 'input#keyword', function() {
 		var formOffsetTop = $('#content form.property-search-form:visible:eq(0)').offset().top - 5;

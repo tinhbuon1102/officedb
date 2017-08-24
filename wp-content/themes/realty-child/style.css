@@ -403,6 +403,7 @@ body.en .calling-info .calling-desc .jat {
 .top-header-links .jktCD-click {
     color: #000;
     text-decoration: underline;
+	text-transform: initial;
 }
 .top-header-links .jktCD-main {
 	-webkit-box-shadow: 3px 3px 15px 0px rgba(0,0,0,0.75);
@@ -435,7 +436,7 @@ body.en .calling-info .calling-desc .jat {
     z-index: 9000;
 }
 nav#navigation .primary-menu a {
-	border-bottom: 2px solid transparent;
+	border-bottom: 0px solid transparent;
 	padding: 0 15px;
     line-height: inherit !important;
 	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
@@ -611,6 +612,13 @@ iframe#customer-chat-iframe {
     text-align: center;
 	left: 0 !important;
 }
+.sword.non-ls {
+	letter-spacing: 0px !important;
+	font-size: 30px !important;
+}
+.sword.little-ls {
+	letter-spacing: 2px !important;
+}
 .adobe-calson {
 	font-family: "adobe-caslon-pro", Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
@@ -752,7 +760,10 @@ section#floorPlan {
 	}
 	#header .top-header-links {
     float: left;
-	margin: 0 0 0 80px;
+	margin: 0 0 0 0px;
+	}
+	#header .top-header-links a {
+		margin: 0;
 	}
 	.site-branding {
     max-width: 70px;
@@ -791,6 +802,10 @@ section#floorPlan {
     height: 65px;
     vertical-align: middle
 	}
+	body.en nav#navigation .primary-menu a {
+		padding: 0 15px;
+		letter-spacing: 0px;
+	}
 }
 @media only screen and (max-width: 991px) {
 	.calling-info {
@@ -809,6 +824,7 @@ section#floorPlan {
     border-bottom: 1px solid #eeeeee;
 	text-transform: initial;
 	}
+	
 	body.en nav#navigation .sp-second-menu a, body.en .ask-staff .btn {
 	font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
 	}
@@ -1144,7 +1160,46 @@ section#feature .wpb_single_image .vc_figure {
 .row.link-list .col-sm-3 {
     padding: 0 5px;
 }
+/*Thanks Contact*/
+.container.thank-content {
+    max-width: 800px;
+}
+.entry-content .black-h1 {
+    line-height: 30px;
+    padding: 5px 0;
+    font-size: 24px;
+    font-weight: bold;
+    background: #000;
+    color: #FFF;
+    text-align: center;
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+.container.thank-content a.goback-home {
+    border: 1px solid #000;
+    color: #000;
+    padding: 5px 20px;
+    display: inline-block;
+	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+.container.thank-content a.goback-home:hover, .container.thank-content a.goback-home:active {
+	background: #000;
+	color: #FFF;
+}
+.goback-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+.thank-content .p-con {
+    padding: 20px 0;
+}
+/*contact table*/
+table.contact_list_later .floor_deposit {
+    display: none;
+}
 /*favorite modal*/
+#favorite-multiple-modal .button_groups {
+    text-align: center;
+}
 table.favorite_list_later {
     border-collapse: collapse;
     width: 100%;
@@ -1176,7 +1231,7 @@ a.remove_property.add-to-favorites {
 .favorite_item p.fl-name, .favorite_item p {
     margin: 0;
 }
-.hidden-pcmodal {
+.hidden-pcmodal, .hidden-spmodal {
 	display: none;
 }
 @media (max-width: 1190px) {
@@ -1203,6 +1258,26 @@ a.remove_property.add-to-favorites {
 	}
 	.hidden-pcmodal {
 	display: block;
+	}
+	
+}
+@media (max-width: 767px) {
+	table.favorite_list_later .floor_checkbox {
+    width: 45px;
+	}
+	table.favorite_list_later tbody tr.favorite_item td.floor_picture {
+    width: 90px;
+	}
+	table.favorite_list_later .floor_date_move {
+    display: none;
+	}
+	.hidden-spmodal {
+	display: block;
+	}
+}
+@media (max-width: 681px) {
+	table.favorite_list_later .floor_contact, table.favorite_list_later .floor_action_remove {
+    display: none;
 	}
 }
 @media (min-width: 992px) {
@@ -2475,8 +2550,11 @@ body.en h2.page-title {
 	}
 }
 @media (min-width: 992px) {
+	body.en nav#navigation .primary-menu a span {
+		font-size:  20px;
+	}
 	.site-desc {
-    min-width: 640px;
+    min-width: 760px;
 	}
 	.slider-searchbox input, .slider-searchbox .chosen-container.chosen-container-single .chosen-single {
     height: 38px;
