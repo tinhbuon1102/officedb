@@ -161,9 +161,9 @@ if ( !function_exists('tt_add_remove_contact') ) {
 		if ( is_user_logged_in() ) {
 			// Logged-In User
 			$user_id = get_current_user_id();
-			$get_user_meta_contact = get_user_meta( $user_id, 'realty_user_contact', false ); // false = array()
+			$get_user_meta_contact = (array)get_user_meta( $user_id, 'realty_user_contact', false ); // false = array()
 
-			if ( ! empty( $get_user_meta_contact ) && in_array( $property_id, $get_user_meta_contact[0] ) ) {
+			if ( ! empty( $get_user_meta_contact ) && isset($get_user_meta_contact[0]) && is_array($get_user_meta_contact[0]) && in_array( $property_id, $get_user_meta_contact[0] ) ) {
 				// Property Is Already In contact
 				$class = 'add-to-contact origin fa '.$tmpClass.' ' . CONTACT_ICON_SELECTED;
 				$text = __( 'Contact This Office', 'realty' );
