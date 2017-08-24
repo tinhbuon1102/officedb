@@ -1355,6 +1355,13 @@ add_action( 'wp_ajax_tt_ajax_delete_user_profile', 'tt_ajax_delete_user_profile_
 add_filter( 'wp_mail', 'realty_wp_mail', 10, 1 );
 function realty_wp_mail ($atts)
 {
+	$user = get_currentuserinfo();
+
+	if ($user->data->user_email == 'quocthang.2001@gmail.com')
+	{
+		var_dump(defined('PROPERTY_MAIL_TESTING') && PROPERTY_MAIL_TESTING == true);die;
+	}
+	
 	if(defined('PROPERTY_MAIL_TESTING') && PROPERTY_MAIL_TESTING == true)
 	{
 		$atts['headers'] .= 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
