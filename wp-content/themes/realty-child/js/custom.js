@@ -1,4 +1,10 @@
 jQuery(document).ready(function($){
+	$('#header .top-header .lang-item.current-lang a').click(function(){
+        return false;
+    });
+	$('#header .top-header .lang-item.current-lang a').on('click', function(){
+        $("#header .top-header .lang-item").toggleClass('show-lang');
+    });
 	$(window).on('load resize', function(){
 		var windowWidth = $(window).width();
 	var headlogo =$('.header-navi-wrap .site-branding').innerWidth();

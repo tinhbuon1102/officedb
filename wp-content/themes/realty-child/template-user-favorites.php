@@ -19,8 +19,8 @@ $add_favorites_temporary = $realty_theme_option['property-favorites-temporary'];
 			echo buildListFavoriteProperty(true, false);
 			?>
 			<div class="button_groups">
-				<a class="btn btn-success" id="contact-inquiry" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><?php echo trans_text('Contact all checked offices')?></a>
-				<a class="btn btn-removeblk add-to-favorites remove_property" id="bulk-remove" href="#"><?php echo trans_text('Remove all checked offices')?></a>
+				<a class="btn btn-success" id="contact-inquiry" href="<?php echo pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en')?>"><span class="sp-none"><?php echo trans_text('Contact all checked offices')?></span><span class="sp-show"><?php echo trans_text('Bulk contact')?></span></a>
+				<a class="btn btn-removeblk add-to-favorites remove_property" id="bulk-remove" href="#"><span class="sp-none"><?php echo trans_text('Remove all checked offices')?></span><span class="sp-show"><?php echo trans_text('Bulk remove')?></span></a>
 			</div>
 		<?php }?>
 		
