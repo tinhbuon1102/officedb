@@ -1,5 +1,4 @@
 <?php
-echo var_export(file_get_contents('http://front.office-jpdb.com', true));die;
 include 'define.php';
 include 'common_functions.php';
 
