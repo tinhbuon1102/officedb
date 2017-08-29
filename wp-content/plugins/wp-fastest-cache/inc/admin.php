@@ -334,8 +334,8 @@
 				return array("You have to set <strong><u><a href='".admin_url()."options-permalink.php"."'>permalinks</a></u></strong>", "error");
 			}else if($res = $this->checkSuperCache($path, $htaccess)){
 				return $res;
-			// }else if($this->isPluginActive('wp-hide-security-enhancer/wp-hide.php')){
-			// 	return array("WP Hide & Security Enhancer needs to be deactived<br>", "error");
+			}else if($this->isPluginActive('sg-cachepress/sg-cachepress.php')){
+				return array("SG Optimizer needs to be deactive", "error");
 			}else if($this->isPluginActive('adrotate/adrotate.php') || $this->isPluginActive('adrotate-pro/adrotate.php')){
 				return $this->warningIncompatible("AdRotate");
 			}else if($this->isPluginActive('mobilepress/mobilepress.php')){
@@ -387,38 +387,48 @@
 		}
 
 		public function insertWebp($htaccess){
-			$tester_arr = array(
-				"tr-TR",
-				"berkatan.com",
-				"pembeportakal.com",
-				"wpfastestcache.com",
-				"zamknijkonto.pl",
-				"devv.zamknijkonto.pl",
-				"goldsgym.nl",
-				"luxury-chauffeurs.com",
-				"rashays.com",
-				"bitcoincafe.ch",
-				"romeing.it",
-				"huzurlabeslen.com",
-				"premiumlv.com",
-				"ribbons.se"
-				);
-														
-			if(in_array(get_bloginfo('language'), $tester_arr) || in_array(str_replace("www.", "", $_SERVER["HTTP_HOST"]), $tester_arr)){
+			if(class_exists("WpFastestCachePowerfulHtml")){
+				$webp = true;
+			}else{
+				$webp = false;
+			}
+
+			$basename = "$1.webp";
+
+			// this part for sub-directory installation
+			// site_url() and home_url() must be the same
+			if(preg_match("/https?\:\/\/[^\/]+\/(.+)/", site_url(), $siteurl_base_name)){
+				if(preg_match("/https?\:\/\/[^\/]+\/(.+)/", home_url(), $homeurl_base_name)){
+					$homeurl_base_name[1] = trim($homeurl_base_name[1], "/");
+					$siteurl_base_name[1] = trim($siteurl_base_name[1], "/");
+
+					if($homeurl_base_name[1] == $siteurl_base_name[1]){
+						if(preg_match("/".preg_quote($homeurl_base_name[1], "/")."$/", trim(ABSPATH, "/"))){
+							$basename = $homeurl_base_name[1]."/".$basename;
+						}
+					}
+				}
+			}
+							
+			if($webp){
+				if(ABSPATH == "//"){
+					$RewriteCond = "RewriteCond %{DOCUMENT_ROOT}/".$basename." -f"."\n";
+				}else{
+					$RewriteCond = "RewriteCond %{DOCUMENT_ROOT}/".$basename." -f [or]"."\n";
+					$RewriteCond = $RewriteCond."RewriteCond ".ABSPATH."$1.webp -f"."\n";
+				}
+
+
 				$data = "# BEGIN WEBPWpFastestCache"."\n".
 						"<IfModule mod_rewrite.c>"."\n".
 						"RewriteEngine On"."\n".
 						"RewriteCond %{HTTP_ACCEPT} image/webp"."\n".
-						"RewriteCond %{REQUEST_URI} jpg|png"."\n".
-						"RewriteCond %{DOCUMENT_ROOT}/$1.webp -f"."\n".
-						"RewriteRule ^(.*) \"/$1.webp\" [L]"."\n".
+						"RewriteCond %{REQUEST_URI} \.(jpe?g|png)"."\n".
+						$RewriteCond.
+						"RewriteRule ^(.*) \"/".$basename."\" [L]"."\n".
 						"</IfModule>"."\n".
 						"<IfModule mod_headers.c>"."\n".
 						"Header append Vary Accept env=REDIRECT_accept"."\n".
-						"Header set Expires \"max-age=2592000, public\""."\n".
-						"Header unset ETag"."\n".
-						"Header set Connection keep-alive"."\n".
-						"FileETag None"."\n".
 						"</IfModule>"."\n".
 						"AddType image/webp .webp"."\n".
 						"# END WEBPWpFastestCache"."\n";
@@ -429,6 +439,7 @@
 
 				return $htaccess;
 			}else{
+				$htaccess = preg_replace("/#\s?BEGIN\s?WEBPWpFastestCache.*?#\s?END\s?WEBPWpFastestCache/s", "", $htaccess);
 				return $htaccess;
 			}
 		}
@@ -594,6 +605,7 @@
 					$this->ruleForWpContent()."\n".
 					$this->prefixRedirect().
 					$this->excludeRules()."\n".
+					$this->excludeAdminCookie()."\n".
 					$this->http_condition_rule()."\n".
 					"RewriteCond %{HTTP_USER_AGENT} !(".$this->get_excluded_useragent().")"."\n".
 					"RewriteCond %{REQUEST_METHOD} !POST"."\n".
@@ -610,6 +622,7 @@
 			if(ABSPATH == "//"){
 				$data = $data."RewriteCond %{DOCUMENT_ROOT}/".WPFC_WP_CONTENT_BASENAME."/cache/all/$1/index.html -f"."\n";
 			}else{
+				//WARNING: If you change the following lines, you need to update webp as well
 				$data = $data."RewriteCond %{DOCUMENT_ROOT}/".WPFC_WP_CONTENT_BASENAME."/cache/all/$1/index.html -f [or]"."\n";
 				// to escape spaces
 				$tmp_WPFC_WP_CONTENT_DIR = str_replace(" ", "\ ", WPFC_WP_CONTENT_DIR);
@@ -811,6 +824,8 @@
 			$wpFastestCachePreload_post = isset($this->options->wpFastestCachePreload_post) ? 'checked="checked"' : "";
 			$wpFastestCachePreload_category = isset($this->options->wpFastestCachePreload_category) ? 'checked="checked"' : "";
 			$wpFastestCachePreload_page = isset($this->options->wpFastestCachePreload_page) ? 'checked="checked"' : "";
+			$wpFastestCachePreload_tag = isset($this->options->wpFastestCachePreload_tag) ? 'checked="checked"' : "";
+			$wpFastestCachePreload_attachment = isset($this->options->wpFastestCachePreload_attachment) ? 'checked="checked"' : "";
 			$wpFastestCachePreload_number = isset($this->options->wpFastestCachePreload_number) ? $this->options->wpFastestCachePreload_number : 4;
 
 
@@ -1185,7 +1200,10 @@
 											"gingerdomain.com",
 											"topclassprinting.com",
 											"camilazivit.com.br",
-											"spycoupon.in"
+											"spycoupon.in",
+											"groovypost.com",
+											"parkviewhomes.info",
+											"myparkviewhomes.com"
 											);
 														
 							if(in_array(get_bloginfo('language'), $tester_arr) || in_array(str_replace("www.", "", $_SERVER["HTTP_HOST"]), $tester_arr)){ ?>
@@ -1584,7 +1602,7 @@
 							    					<span>Purchased</span>
 							    				</button>
 						    				<?php }else{ ?>
-							    				<form action="http://api.wpfastestcache.net/paypal/buypremium/" method="post">
+							    				<form action="https://api.wpfastestcache.net/paypal/buypremium/" method="post">
 							    					<input type="hidden" name="ip" value="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
 							    					<input type="hidden" name="wpfclang" value="<?php echo $this->options->wpFastestCacheLanguage; ?>">
 							    					<input type="hidden" name="bloglang" value="<?php echo get_bloginfo('language'); ?>">
@@ -1663,6 +1681,10 @@
 								<select name="wpfc-exclude-rule-prefix">
 										<option selected="" value=""></option>
 										<option value="homepage">Home Page</option>
+										<option value="category">Categories</option>
+										<option value="tag">Tags</option>
+										<option value="post">Posts</option>
+										<option value="page">Pages</option>
 										<option value="startwith">Start With</option>
 										<option value="contain">Contain</option>
 										<option value="exact">Exact</option>
@@ -2028,13 +2050,6 @@
 						<h3>Having Issues?</h3>
 						<ul>
 							<li><label>You can create a ticket</label> <a target="_blank" href="http://wordpress.org/support/plugin/wp-fastest-cache"><label>WordPress support forum</label></a></li>
-							<?php
-							if(isset($this->options->wpFastestCacheLanguage) && $this->options->wpFastestCacheLanguage == "tr"){
-								?>
-								<li><label>R10 Üzerinden Sorabilirsiniz</label> <a target="_blank" href="http://www.r10.net/wordpress/1096868-wp-fastest-cache-wp-en-hizli-ve-en-basit-cache-sistemi.html"><label>R10.net destek başlığı</label></a></li>
-								<?php
-							}
-							?>
 						</ul>
 					<?php } ?>
 				</div>

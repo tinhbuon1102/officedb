@@ -3,8 +3,8 @@ Contributors: emrevona
 Donate link: http://profiles.wordpress.org/emrevona/
 Tags: cache, performance, wp-cache, total cache, super cache
 Requires at least: 3.3
-Tested up to: 4.7.3
-Stable tag: 0.8.6.8
+Tested up to: 4.8
+Stable tag: 0.8.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,6 +100,43 @@ Wpfc does not support Wordpress Multisite yet.
 18. Database Cleanup
 
 == Changelog ==
+
+= 0.8.7.2 =
+* to exclude the admins cookies for the cache automatically
+* to clear the cache of category and tag after update
+* refactoring of insertWebp()
+* to exclude /cart automatically for eCommerce Shopping Cart by WP EasyCart
+* to exclude /cart and /checkout automatically for Easy Digital Downloads
+* to exclude /sitemap_index.xml automatically for Yoast SEO
+* to decode path if it is not utf-8
+* to fix problem on activation and deactivation
+* to clear widget cache after publishing a new post
+
+= 0.8.7.1 =
+* to fix image error on Structured Data Testing Tool when cdn is used
+* to optimize the panel of wp fastest cache
+* to fix cache path for gtranslate
+* to fix Cannot modify header error
+* to add WPFC_HIDE_CLEAR_CACHE_BUTTON
+
+= 0.8.7.0 =
+* to avoid removing www prefix from photon cdn-url
+* to prevent to empty origin-url on cdn wizard
+* <strong>[FEATURE]</strong> to clear cache of post via post list
+* preload for woocommorce product category
+* to clear cache of tag and cat after product update
+* to check that SG Optimizer is active or not
+* <strong>[FEATURE]</strong> Preload for tags
+* <strong>[FEATURE]</strong> Preload for attachments
+* <strong>[FEATURE]</strong> exclude categories, tags, posts and pages
+
+= 0.8.6.9 =
+* <strong>[FEATURE]</strong> to clear cache of the post tags and the post categories after new post
+* <strong>[FEATURE]</strong> WebP [<a target="_blank" href="http://www.wpfastestcache.com/premium/image-optimization/">Details</a>]
+* to fix BlogPosting error on Structured Data Testing Tool when cdn is used
+* to fix more than one cdn work concurrently
+* <strong>[FEATURE]</strong> Preload for category
+* <strong>[FEATURE]</strong> Preload for woocommerce products
 
 = 0.8.6.8 =
 * <strong>[FEATURE]</strong> Widget Cache [<a target="_blank" href="http://www.wpfastestcache.com/premium/widget-cache-reduce-the-number-of-sql-queries/">Details</a>]

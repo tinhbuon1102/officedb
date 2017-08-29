@@ -264,7 +264,11 @@
 			$script_tags = $this->find_tags("<script", "</script>");
 
 			foreach ($script_tags as $key => $value) {
-				$this->except = $value["text"].$this->except;
+				$link_tags = $this->find_tags("<link", ">", $value["text"]);
+
+				if(count($link_tags) > 0){
+					$this->except = $value["text"].$this->except;
+				}
 			}
 		}
 
@@ -299,8 +303,12 @@
 			}
 		}
 
-		public function find_tags($start_string, $end_string){
-			$data = $this->html;
+		public function find_tags($start_string, $end_string, $source = false){
+			if($source){
+				$data = $source;
+			}else{
+				$data = $this->html;
+			}
 
 			$list = array();
 			$start_index = false;
