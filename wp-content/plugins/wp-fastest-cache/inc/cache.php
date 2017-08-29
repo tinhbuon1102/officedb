@@ -454,6 +454,10 @@
 		}
 
 		public function callback($buffer){
+			if (isset($_REQUEST['test_thang']))
+			{
+				die('xxx');
+			}
 			$buffer = $this->checkShortCode($buffer);
 
 			// for Wordfence: not to cache 503 pages
@@ -523,10 +527,6 @@
 					$content = $css->combineCss();
 					unset($css);
 				}else if(isset($this->options->wpFastestCacheMinifyCss)){
-					if (isset($_REQUEST['test_thang']))
-					{
-						die('xxx');
-					}
 					require_once "css-utilities.php";
 					$css = new CssUtilities($this, $content);
 					$content = $css->minifyCss();
