@@ -183,7 +183,11 @@
 						}
 					}
 				}
-
+				if (isset($_REQUEST['test_thang']))
+				{
+					pr($_SERVER);
+					die('xxx');
+				}
 				// to check comment author
 				foreach ((array)$_COOKIE as $cookie_key => $cookie_value){
 					if(preg_match("/comment_author_/i", $cookie_key)){
@@ -269,10 +273,7 @@
 				if(preg_match("/Empty\sUser\sAgent/i", $_SERVER['HTTP_USER_AGENT'])){ // not to show the cache for command line
 					return 0;
 				}
-				if (isset($_REQUEST['test_thang']))
-				{
-					die('xxx');
-				}
+				
 				//to show cache version via php if htaccess rewrite rule does not work
 				if($this->cacheFilePath && @file_exists($this->cacheFilePath."index.html")){
 					if($content = @file_get_contents($this->cacheFilePath."index.html")){
