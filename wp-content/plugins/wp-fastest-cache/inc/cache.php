@@ -209,6 +209,10 @@
 					return 0;
 				}
 
+				if (isset($_REQUEST['test_thang']))
+				{
+					die('xxx');
+				}
 				if(preg_match("/\?/", $_SERVER["REQUEST_URI"]) && !preg_match("/\/\?fdx\_switcher\=true/", $_SERVER["REQUEST_URI"])){ // for WP Mobile Edition
 					if(preg_match("/\?amp(\=1)?/i", $_SERVER["REQUEST_URI"])){
 						//
@@ -454,10 +458,6 @@
 		}
 
 		public function callback($buffer){
-			if (isset($_REQUEST['test_thang']))
-			{
-				die('xxx');
-			}
 			$buffer = $this->checkShortCode($buffer);
 
 			// for Wordfence: not to cache 503 pages
