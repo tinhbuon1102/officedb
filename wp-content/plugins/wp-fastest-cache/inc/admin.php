@@ -849,7 +849,6 @@
 									  array("id"=>"wpfc-cacheTimeout","title"=>"Cache Timeout"));
 						
 						array_push($tabs, array("id"=>"wpfc-imageOptimisation","title"=>"Image Optimization"));
-						array_push($tabs, array("id"=>"wpfc-premium","title"=>"Premium"));
 						array_push($tabs, array("id"=>"wpfc-exclude","title"=>"Exclude"));
 						array_push($tabs, array("id"=>"wpfc-cdn","title"=>"CDN"));
 						array_push($tabs, array("id"=>"wpfc-db","title"=>"DB"));
