@@ -185,7 +185,7 @@
 				}
 				if (isset($_REQUEST['test_thang']))
 				{
-					pr($_SERVER);
+					echo '<pre>'; print_r($_SERVER); 
 					die('xxx');
 				}
 				// to check comment author
