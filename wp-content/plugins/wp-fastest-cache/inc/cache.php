@@ -265,9 +265,9 @@
 					return 0;
 				}
 
-				if(preg_match("/Empty\sUser\sAgent/i", $_SERVER['HTTP_USER_AGENT'])){ // not to show the cache for command line
-					return 0;
-				}
+// 				if(preg_match("/Empty\sUser\sAgent/i", $_SERVER['HTTP_USER_AGENT'])){ // not to show the cache for command line
+// 					return 0;
+// 				}
 
 				//to show cache version via php if htaccess rewrite rule does not work
 				if($this->cacheFilePath && @file_exists($this->cacheFilePath."index.html")){
