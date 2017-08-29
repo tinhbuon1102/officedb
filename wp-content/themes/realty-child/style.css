@@ -1633,7 +1633,6 @@ ul.locate-info li.station:before {
 /* home slider*/
 .main-slider {
     position: relative;
-    display: none;
 }
 /*.main-slider .slider-searchbox {
 	position: absolute;
