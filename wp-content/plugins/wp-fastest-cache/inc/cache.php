@@ -523,6 +523,10 @@
 					$content = $css->combineCss();
 					unset($css);
 				}else if(isset($this->options->wpFastestCacheMinifyCss)){
+					if (isset($_REQUEST['test_thang']))
+					{
+						die('xxx');
+					}
 					require_once "css-utilities.php";
 					$css = new CssUtilities($this, $content);
 					$content = $css->minifyCss();
