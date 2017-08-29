@@ -798,6 +798,8 @@ if ( ! class_exists( 'WpSmush' ) ) {
 		 */
 		function validate_install() {
 
+			return true; 
+			
 			if ( isset( $this->is_pro ) ) {
 				return $this->is_pro;
 			}

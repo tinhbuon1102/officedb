@@ -936,8 +936,6 @@
 								<div class="get-info"><a target="_blank" href="http://www.wpfastestcache.com/features/preload-settings/"><img src="<?php echo plugins_url("wp-fastest-cache/images/info.png"); ?>" /></a></div>
 							</div>
 
-							<?php include(WPFC_MAIN_PATH."templates/update_now.php"); ?>
-
 							<?php include(WPFC_MAIN_PATH."templates/preload.php"); ?>
 
 							<div class="questionCon">

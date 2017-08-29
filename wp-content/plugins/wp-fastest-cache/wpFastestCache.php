@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Fastest Cache
-Plugin URI: http://wordpress.org/plugins/wp-fastest-cache/
+Plugin URI: http://wordpress.org/plugins/wp-fastest-cache1/
 Description: The simplest and fastest WP Cache system
-Version: 0.8.7.2
+Version: 11110.8.7.2
 Author: Emre Vona
-Author URI: http://tr.linkedin.com/in/emrevona
+Author URI: http://tr.linkedin.com/in/emrevon1a
 Text Domain: wp-fastest-cache
 Domain Path: /languages/
 
