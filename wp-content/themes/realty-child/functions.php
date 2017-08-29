@@ -333,3 +333,9 @@ function realty_save_account_details ($user_id)
 		}
 	}
 }
+
+
+function realty_custom_jpeg_quality() {
+	return 85;
+}
+add_filter( 'jpeg_quality', 'realty_custom_jpeg_quality', 10 );

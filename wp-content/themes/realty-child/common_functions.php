@@ -407,14 +407,15 @@ function realty_theme_init()
 		$building_id = $_GET['building_id'];
 
 		$image = $building_id . basename($image_url);
+		$image = substr($image, 0, strlen($image) - 4) . '.jpg';
+
 		$upload_dir = wp_upload_dir();
 		$temp_folder = $upload_dir['basedir'] . '/temp/';
 		$filename = $temp_folder . $image;
 
-
 		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
 		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
-
+		
 		foreach ($aPostId as $post_id)
 		{
 			$attach = get_image_id($image, $post_id);
@@ -427,13 +428,32 @@ function realty_theme_init()
 				$image_file = file_get_contents($image_url);
 				if ($image_file)
 				{
-					file_put_contents($filename, file_get_contents($image_url));
+					realty_compress_image($image_url, $filename);
 					$attach_id = attachImageToProduct($filename, $post_id, true);
 				}
 			}
 		}
 		die('done');
 	}
+}
+
+function realty_compress_image($source_url, $destination_url, $quality = 85) {
+	$info = getimagesize($source_url);
+
+	if ($info['mime'] == 'image/jpeg')
+		$image = imagecreatefromjpeg($source_url);
+
+		elseif ($info['mime'] == 'image/gif')
+		$image = imagecreatefromgif($source_url);
+
+		elseif ($info['mime'] == 'image/png')
+		{
+			$image = imagecreatefrompng($source_url);
+			$quality = 70;
+		}
+
+		imagejpeg($image, $destination_url, $quality);
+		return $destination_url;
 }
 
 add_action('get_header', 'realty_theme_init_header', 10, 3);
