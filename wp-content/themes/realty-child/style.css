@@ -4496,7 +4496,9 @@ a {
 .acicon-wrap .ac-icon-list.middle {
     margin: 0 5px;
 }
+
 @media (min-width: 1200px) {
+	
 /*	#property-layout-full-width .property-header-container {
     width: 34.2%;
 	width: -webkit-calc(100% - 300px);
