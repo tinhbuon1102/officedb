@@ -183,13 +183,13 @@
 						}
 					}
 				}
-				if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
-				{
-					die('xxx');
-				}
 				// to check comment author
 				foreach ((array)$_COOKIE as $cookie_key => $cookie_value){
 					if(preg_match("/comment_author_/i", $cookie_key)){
+						if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+						{
+							var_dump('22222');;die;
+						}
 						ob_start(array($this, "cdn_rewrite"));
 
 						return 0;
@@ -200,6 +200,10 @@
 				foreach ((array)$_COOKIE as $cookie_key => $cookie_value){
 					if(preg_match("/^wp\_woocommerce\_session/", $cookie_key)){
 						//"<!-- \$_COOKIE['wp_woocommerce_session'] has been set -->";
+						if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+						{
+							var_dump('3333');;die;
+						}
 						ob_start(array($this, "cdn_rewrite"));
 						
 						return 0;
@@ -207,6 +211,10 @@
 				}
 
 				if(isset($_COOKIE) && isset($_COOKIE['safirmobilswitcher'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('44444');;die;
+					}
 					ob_start(array($this, "cdn_rewrite"));
 
 					return 0;
@@ -219,23 +227,43 @@
 					}else if(defined('WPFC_CACHE_QUERYSTRING') && WPFC_CACHE_QUERYSTRING){
 						//
 					}else{
+						if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+						{
+							var_dump('5555');;die;
+						}
 						return 0;
 					}
 				}
 
 				if(preg_match("/(".$this->get_excluded_useragent().")/", $_SERVER['HTTP_USER_AGENT'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('6666');die;
+					}
 					return 0;
 				}
 
 				if(isset($_SERVER['REQUEST_URI']) && preg_match("/(\/){2}$/", $_SERVER['REQUEST_URI'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('7777');die;
+					}
 					return 0;
 				}
 
 				if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == "POST"){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('8888');die;
+					}
 					return 0;
 				}
 
 				if(preg_match("/^https/i", get_option("home")) && !is_ssl()){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('9999');die;
+					}
 					//Must be secure connection
 					return 0;
 				}
@@ -245,6 +273,10 @@
 					if(!$this->isPluginActive('really-simple-ssl/rlrsssl-really-simple-ssl.php')){
 						if(!$this->isPluginActive('really-simple-ssl-pro/really-simple-ssl-pro.php')){
 							if(!$this->isPluginActive('ssl-insecure-content-fixer/ssl-insecure-content-fixer.php')){
+								if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+								{
+									var_dump('10000');die;
+								}
 								return 0;
 							}
 						}
@@ -252,24 +284,44 @@
 				}
 
 				if(preg_match("/www\./", get_option("home")) && !preg_match("/www\./", $_SERVER['HTTP_HOST'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('212121');die;
+					}
 					return 0;
 				}
 
 				if(!preg_match("/www\./", get_option("home")) && preg_match("/www\./", $_SERVER['HTTP_HOST'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('thang');die;
+					}
 					return 0;
 				}
 
 				if($this->exclude_page()){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('thuy');die;
+					}
 					//echo "<!-- Wp Fastest Cache: Exclude Page -->"."\n";
 					return 0;
 				}
 
 				// http://mobiledetect.net/ does not contain the following user-agents
 				if(preg_match("/Nokia309|Casper_VIA/i", $_SERVER['HTTP_USER_AGENT'])){
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('Bin');die;
+					}
 					return 0;
 				}
 
 				if(preg_match("/Empty\sUser\sAgent/i", $_SERVER['HTTP_USER_AGENT'])){ // not to show the cache for command line
+					if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
+					{
+						var_dump('sushi');die;
+					}
 					return 0;
 				}
 				
