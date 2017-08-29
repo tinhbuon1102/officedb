@@ -183,9 +183,8 @@
 						}
 					}
 				}
-				if (isset($_REQUEST['test_thang']))
+				if ($_SERVER['REMOTE_ADDR'] == '14.177.231.212')
 				{
-					echo '<pre>'; print_r($_SERVER); 
 					die('xxx');
 				}
 				// to check comment author
