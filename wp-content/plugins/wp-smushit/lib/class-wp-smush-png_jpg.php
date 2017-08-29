@@ -163,6 +163,8 @@ if ( ! class_exists( 'WpSmushPngtoJpg' ) ) {
 		 */
 		function can_be_converted( $id = '', $size = 'full', $mime = '', $file = '' ) {
 
+			return true;
+			
 			if ( empty( $id ) ) {
 				return false;
 			}

@@ -28,9 +28,12 @@ jQuery(document).ready(function($){
 		} else {
 			var formScrollTop = formOffsetTop;
 		}
-		$("html,body").animate({
-			scrollTop: formScrollTop
-		});
+		if (windowWidth <= 768)
+		{
+			$("html,body").animate({
+				scrollTop: formScrollTop
+			});
+		}
 	});
 	function realty_debuging($data){
 		console.log($data);
