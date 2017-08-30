@@ -415,6 +415,7 @@ function realty_theme_init()
 
 		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
 		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
+		var_dump($post_id);
 		echo '<pre>'; print_r($aPostId);die;
 		foreach ($aPostId as $post_id)
 		{
