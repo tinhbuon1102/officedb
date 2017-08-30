@@ -425,7 +425,11 @@ function realty_theme_init()
 				set_post_thumbnail( $post_id, $attach->ID );
 			}
 			else {
-				$image_file = file_get_contents($image_url);
+				if (!isset($image_file))
+				{
+					$image_file = file_get_contents($image_url);
+				}
+				
 				if ($image_file)
 				{
 					realty_compress_image($image_url, $filename);
