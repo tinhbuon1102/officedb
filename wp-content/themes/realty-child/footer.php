@@ -140,9 +140,6 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 <?php 
 }?>
 <script src="https://use.fontawesome.com/d543855e1a.js"></script>
-<script type="text/javascript">
-<?php echo file_get_contents('https://use.typekit.net/sjj8vip.js')?>
-</script>
 <script>try{Typekit.load({ async: true });}catch(e){}</script>
 <link href="https://fonts.googleapis.com/css?family=Arapey|Old+Standard+TT" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=GFS+Didot" rel="stylesheet">
