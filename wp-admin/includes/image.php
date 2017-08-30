@@ -88,6 +88,7 @@ function wp_generate_attachment_metadata( $attachment_id, $file ) {
 
 		// Make thumbnails and other intermediate sizes.
 		$_wp_additional_image_sizes = wp_get_additional_image_sizes();
+		pr($_wp_additional_image_sizes);die;
 
 		$sizes = array();
 		foreach ( get_intermediate_image_sizes() as $s ) {
