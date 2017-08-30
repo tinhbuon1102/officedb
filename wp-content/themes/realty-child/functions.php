@@ -214,7 +214,7 @@ function custom_scripts ()
 	wp_enqueue_script('cutedropcss', get_stylesheet_directory_uri() . '/js/easy-small-dropdown/dist/js/jktCuteDropdown.js', array('jquery'));
 	wp_enqueue_style('cutedropjs', get_stylesheet_directory_uri() . '/js/easy-small-dropdown/dist/css/jktCuteDropdown.css');
 
-	wp_enqueue_script('typekit', get_stylesheet_directory_uri() . '/js/typekit.js');
+// 	wp_enqueue_script('typekit', get_stylesheet_directory_uri() . '/js/typekit.js');
 	
 	if (is_front_page())
 	{
