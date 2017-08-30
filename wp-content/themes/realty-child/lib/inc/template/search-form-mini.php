@@ -1,7 +1,10 @@
 <?php
 	global $realty_theme_option, $wp_query;
 ?>
-
+<?php if ($atts['inside_slider']) {?>
+<div class="slider-content"><div class="container"><div class="row">
+<div class="col-sm-12 slider-col search-col"><div class="slider-searchbox">
+<?php }?>
 <form class="property-search-form border-box" action="<?php if ( tt_page_id_template_search() ) { echo get_permalink( tt_page_id_template_search() ); } ?>">
 
 	<div class="row search-form-row">
@@ -816,3 +819,8 @@
 	<?php wp_reset_query(); ?>
 
 </form>
+
+<?php if ($atts['inside_slider']) {?>
+</div></div>
+</div></div></div>
+<?php }?>

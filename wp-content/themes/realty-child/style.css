@@ -1646,12 +1646,22 @@ ul.locate-info li.station:before {
 }
 .slider-content {
     position: absolute;
-    top: 50%;
+    top: 219px;
 	width: 100%;
-	display: none;
 }
 .slider-col .map-select {
     margin-bottom: 0px;
+}
+.main-slider .crellyslider-slider {
+	display: block !important;
+}
+.main-slider .crellyslider-slider ul li{
+	display: none;
+}
+.main-slider .crellyslider-slider > ul > li:first-child{
+	display: block;
+	width: 1421px;
+    height: 600px;
 }
 /*.slider-searchbox .search-form-row .form-group, .slider-searchbox .search-form-row .form-group.search-btn-div {
     width: 100%;
