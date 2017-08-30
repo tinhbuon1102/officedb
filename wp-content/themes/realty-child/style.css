@@ -1658,6 +1658,9 @@ ul.locate-info li.station:before {
 .main-slider .crellyslider-slider ul li{
 	display: none;
 }
+.main-slider .crellyslider-slider > ul {
+	padding: 0;
+}
 .main-slider .crellyslider-slider > ul > li:first-child{
 	display: block;
 	width: 1421px;
