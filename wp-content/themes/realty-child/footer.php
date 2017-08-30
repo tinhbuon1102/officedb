@@ -150,7 +150,7 @@ function addingScript(url){
 setTimeout(function(){
 	addingScript("https://use.typekit.net/sjj8vip.js");
 	try{Typekit.load({ async: true });}catch(e){}
-}, 4000)
+}, 6000)
 </script>
 <link href="https://fonts.googleapis.com/css?family=Arapey|Old+Standard+TT" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=GFS+Didot" rel="stylesheet">
