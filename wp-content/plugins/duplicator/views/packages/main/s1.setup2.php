@@ -3,15 +3,14 @@
     PACKAGE OPTS*/
     form#dup-form-opts label {line-height:22px}
     form#dup-form-opts input[type=checkbox] {margin-top:3px}
-    form#dup-form-opts fieldset {border-radius:4px;  border-top:1px solid #dfdfdf;  line-height:20px}
-    form#dup-form-opts fieldset{padding:10px 15px 15px 15px; min-height:275px; margin:0 10px 10px 10px}
     form#dup-form-opts textarea, input[type="text"] {width:100%}
-    form#dup-form-opts textarea#filter-dirs {height:85px}
+    form#dup-form-opts textarea#filter-dirs {height:95px;}
     form#dup-form-opts textarea#filter-exts {height:27px}
-    textarea#package_notes {height:37px;}
+    textarea#package-notes {height:75px;}
 	div.dup-notes-add {float:right; margin:-4px 2px 4px 0;}
     div#dup-notes-area {display:none}
-
+	input#package-name {padding:4px; height: 2em;  font-size: 1.2em;  line-height: 100%; width: 100%;   margin: 0 0 3px;}
+	label.lbl-larger {font-size:1.2em}
     /*ARCHIVE SECTION*/
     form#dup-form-opts div.tabs-panel{max-height:550px; padding:10px; min-height:280px}
     form#dup-form-opts ul li.tabs{font-weight:bold}
@@ -21,6 +20,7 @@
     span#dup-archive-filter-db {color:#A62426; display:none}
     div#dup-file-filter-items, div#dup-db-filter-items {padding:5px 0;}
 	div#dup-db-filter-items {font-stretch:ultra-condensed; font-family:Calibri; }
+	form#dup-form-opts textarea#filter-files {height:85px}
     div.dup-quick-links {font-size:11px; float:right; display:inline-block; margin-top:2px; font-style:italic}
     div.dup-tabs-opts-help {font-style:italic; font-size:11px; margin:10px 0 0 10px; color:#777}
     table#dup-dbtables td {padding:1px 15px 1px 4px}
@@ -43,17 +43,19 @@
 	ul.add-menu-item-tabs li, ul.category-tabs li {padding:3px 30px 5px}
 </style>
 
-<form id="dup-form-opts" method="post" action="?page=duplicator&tab=new2" data-validate="parsley">
+<form id="dup-form-opts" method="post" action="?page=duplicator&tab=new2<?php echo $retry_enabled ? '&retry=1' : '';?>" data-validate="parsley">
 <input type="hidden" id="dup-form-opts-action" name="action" value="">
 <div>
-	<label for="package-name"><b><?php _e('Name', 'duplicator') ?>:</b> </label>
-		<div class="dup-notes-add">
-		<button class="button button-small" type="button" onclick="jQuery('#dup-notes-area').toggle()" title="<?php _e('Notes', 'duplicator') ?>"><i class="fa fa-pencil-square-o"></i> </button>
+	<label for="package-name" class="lbl-larger"><b>&nbsp;<?php _e('Name', 'duplicator') ?>:</b> </label>
+	<div class="dup-notes-add">
+		<a href="javascript:void(0)" onclick="jQuery('#dup-notes-area').toggle()">
+			[<?php _e('Add Notes', 'duplicator') ?>]
+		</a>
 	</div>
-	<a href="javascript:void(0)" onclick="Duplicator.Pack.ResetName()" title="<?php _e('Create a new default name', 'duplicator') ?>"><i class="fa fa-undo"></i></a> <br/>
+	<a href="javascript:void(0)" onclick="Duplicator.Pack.ResetName()" title="<?php _e('Toggle a default name', 'duplicator') ?>"><i class="fa fa-undo"></i></a> <br/>
 	<input id="package-name"  name="package-name" type="text" value="<?php echo $Package->Name ?>" maxlength="40"  data-required="true" data-regexp="^[0-9A-Za-z|_]+$" /> <br/>
 	<div id="dup-notes-area">
-		<label><b><?php _e('Notes', 'duplicator') ?>:</b></label> <br/>
+		<label class="lbl-larger"><b>&nbsp;<?php _e('Notes', 'duplicator') ?>:</b></label> <br/>
 		<textarea id="package-notes" name="package-notes" maxlength="300" /><?php echo $Package->Notes ?></textarea>
 	</div>
 </div>
@@ -90,10 +92,10 @@ STORAGE -->
 							<img src="<?php echo DUPLICATOR_PLUGIN_URL ?>assets/img/google_drive_64px.png" /> 
 							<img src="<?php echo DUPLICATOR_PLUGIN_URL ?>assets/img/ftp-64.png" /> 
 							<?php echo sprintf(__('%1$s, %2$s, %3$s, %4$s and other storage options available in', 'duplicator'), 'Amazon', 'Dropbox', 'Google Drive', 'FTP'); ?>
-							<a href="https://snapcreek.com/duplicator/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_content=free_storage&utm_campaign=duplicator_pro" target="_blank"><?php _e('Professional', 'duplicator');?></a> 
+							<a href="https://snapcreek.com/duplicator/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_content=free_storage&utm_campaign=duplicator_pro" target="_blank"><?php _e('Duplicator Pro', 'duplicator');?></a> 
 							<i class="fa fa-lightbulb-o" 
 								data-tooltip-title="<?php _e("Additional Storage:", 'duplicator'); ?>" 
-								data-tooltip="<?php _e('Professional allows you to create a package and then store it at a custom location on this server or to a cloud '
+								data-tooltip="<?php _e('Duplicator Pro allows you to create a package and then store it at a custom location on this server or to a cloud '
 										. 'based location such as Google Drive, Amazon, Dropbox or FTP.', 'duplicator'); ?>">
 							 </i>
 						</span>
@@ -156,6 +158,7 @@ ARCHIVE -->
 							<a href="javascript:void(0)" onclick="jQuery('#filter-dirs').val('')"><?php _e("(clear)", 'duplicator') ?></a>
 						</div>
 						<textarea name="filter-dirs" id="filter-dirs" placeholder="/full_path/exclude_path1;/full_path/exclude_path2;"><?php echo str_replace(";", ";\n", esc_textarea($Package->Archive->FilterDirs)) ?></textarea><br/>
+
 						<label class="no-select" title="<?php _e("Separate all filters by semicolon", 'duplicator'); ?>"><?php _e("File extensions", 'duplicator') ?>:</label>
 						<div class='dup-quick-links'>
 							<a href="javascript:void(0)" onclick="Duplicator.Pack.AddExcludeExts('avi;mov;mp4;mpeg;mpg;swf;wmv;aac;m3u;mp3;mpa;wav;wma')">[<?php _e("media", 'duplicator') ?>]</a>
@@ -164,19 +167,17 @@ ARCHIVE -->
 						</div>
 						<textarea name="filter-exts" id="filter-exts" placeholder="ext1;ext2;ext3;"><?php echo esc_textarea($Package->Archive->FilterExts); ?></textarea>
 
-						<div class="dup-tabs-opts-help">
-							<?php _e("The directory paths and extensions above will be be excluded from the archive file if enabled is checked.", 'duplicator'); ?> <br/>
-							<?php _e("Use the full path for directories and semicolons to separate all items.", 'duplicator'); ?>
+						<label class="no-select" title="<?php _e("Separate all filters by semicolon", 'duplicator'); ?>"><?php _e("Files", 'duplicator') ?>:</label>
+						<div class='dup-quick-links'>
+							<a href="javascript:void(0)" onclick="Duplicator.Pack.AddExcludeFilePath('<?php echo rtrim(DUPLICATOR_WPROOTPATH, '/'); ?>')"><?php _e("(file path)", 'duplicator') ?></a>
+							<a href="javascript:void(0)" onclick="jQuery('#filter-files').val('')"><?php _e("(clear)", 'duplicator') ?></a>
 						</div>
-						<br/>
-						<span class="dup-pro-text">
-							<?php echo sprintf(__('%1$s are available in', 'duplicator'), 'Individual file filters'); ?>
-							<a href="https://snapcreek.com/duplicator/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_content=free_file_filters&utm_campaign=duplicator_pro" target="_blank"><?php _e('Professional', 'duplicator');?></a>
-							<i class="fa fa-lightbulb-o"
-								data-tooltip-title="<?php _e("File Filters:", 'duplicator'); ?>"
-								data-tooltip="<?php _e('File filters allows you to select individual files and add them to an exclusion list that will filter them from the package.', 'duplicator'); ?>">
-							 </i>
-						</span>
+						<textarea name="filter-files" id="filter-files" placeholder="/full_path/exclude_file_1.ext;/full_path/exclude_file2.ext"><?php echo str_replace(";", ";\n", esc_textarea($Package->Archive->FilterFiles)) ?></textarea>
+
+						<div class="dup-tabs-opts-help">
+							<?php _e("The directory, file and extensions paths above will be excluded from the archive file if enabled is checked.", 'duplicator'); ?> <br/>
+							<?php _e("Use the full path for directories and files with semicolons to separate all paths.", 'duplicator'); ?>
+						</div>
 					</div>
 				</div>
 
@@ -348,59 +349,16 @@ INSTALLER -->
                 <td><?php _e("User", 'duplicator') ?></td>
                 <td><input type="text" name="dbuser" id="dbuser" value="<?php echo $Package->Installer->OptsDBUser ?>"  maxlength="100" placeholder="<?php _e('example: DatabaseUserName (value is optional)', 'duplicator'); ?>" /></td>
             </tr>
-            <!--tr>
-                <td colspan="2"><div class="dup-installer-header-2"><?php _e("Advanced Options", 'duplicator') ?></div></td>
-            </tr>						
-            <tr>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td style="width:130px"><?php _e("SSL", 'duplicator') ?></td>
-                            <td style="padding-right:20px; white-space:nowrap">
-                                <input type="checkbox" name="ssl-admin" id="ssl-admin" <?php echo ($Package->Installer->OptsSSLAdmin) ? "checked='checked'" :""; ?>  />
-                                <label class="chk-labels" for="ssl-admin"><?php _e("Enforce on Admin", 'duplicator') ?></label>
-                            </td>
-                            <td>
-                                <input type="checkbox" name="ssl-login" id="ssl-login" <?php echo ($Package->Installer->OptsSSLLogin) ? "checked='checked'" :""; ?>  />
-                                <label class="chk-labels" for="ssl-login"><?php _e("Enforce on Logins", 'duplicator') ?></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><?php _e("Cache", 'duplicator') ?></td>									
-                            <td style="padding-right:20px; white-space:nowrap">
-                                <input type="checkbox" name="cache-wp" id="cache-wp" <?php echo ($Package->Installer->OptsCacheWP) ? "checked='checked'" :""; ?>  />
-                                <label class="chk-labels" for="cache-wp"><?php _e("Keep Enabled", 'duplicator') ?></label>	
-                            </td>
-                            <td>
-                                <input type="checkbox" name="cache-path" id="cache-path" <?php echo ($Package->Installer->OptsCachePath) ? "checked='checked'" :""; ?>  />
-                                <label class="chk-labels" for="cache-path"><?php _e("Keep Home Path", 'duplicator') ?></label>			
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr-->
         </table><br />
 
-        
-
-         <input type="hidden" name="url-new" id="url-new" value=""/>
-
-         
-        <!--table class="dup-installer-tbl">
-            <tr>
-                <td style="width:130px"><?php _e("New URL", 'duplicator') ?></td>
-                <td><input type="text" name="url-new" id="url-new" value="<?php echo $Package->Installer->OptsURLNew ?>" placeholder="http://mynewsite.com" /></td>
-            </tr>
-        </table-->
-		
 		<div style="padding:10px 0 0 12px;">
 			<span class="dup-pro-text">
 				<img src="<?php echo DUPLICATOR_PLUGIN_URL ?>assets/img/cpanel-48.png" style="width:16px; height:12px" />
 				<?php _e("Create the database and users directly at install time with ", 'duplicator'); ?>
-				<a href="https://snapcreek.com/duplicator/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_content=free_cpanel&utm_campaign=duplicator_pro" target="_blank"><?php _e('Professional', 'duplicator');?></a>
+				<a href="https://snapcreek.com/duplicator/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_content=free_cpanel&utm_campaign=duplicator_pro" target="_blank"><?php _e('Duplicator Pro', 'duplicator');?></a>
 				<i class="fa fa-lightbulb-o"
 					data-tooltip-title="<?php _e("cPanel Access:", 'duplicator'); ?>" 
-					data-tooltip="<?php _e('If your server supports cPanel API access then you can create new databases and select existing ones with Duplicator Professional at install time.', 'duplicator'); ?>">
+					data-tooltip="<?php _e('If your server supports cPanel API access then you can create new databases and select existing ones with Duplicator Pro at install time.', 'duplicator'); ?>">
 				</i>
 			</span>
 		</div>
@@ -425,11 +383,16 @@ THICK-BOX DIALOGS: -->
 	$confirm1->message			= __('This will clear and reset all of the current package settings.  Would you like to continue?', 'duplicator');
 	$confirm1->jscallback		= 'Duplicator.Pack.ResetSettings()';
 	$confirm1->initConfirm();
+
+	$default_name1 = DUP_Package::getDefaultName();
+	$default_name2 = DUP_Package::getDefaultName(false);
+
 ?>
 <script>
 jQuery(document).ready(function ($) 
 {
-	var DUP_NAMEDEFAULT = '<?php echo $default_name ?>';
+	var DUP_NAMEDEFAULT1 = '<?php echo $default_name1 ?>';
+	var DUP_NAMEDEFAULT2 = '<?php echo $default_name2 ?>';
 	var DUP_NAMELAST = $('#package-name').val();
 
 	Duplicator.Pack.ExportOnlyDB = function ()
@@ -446,11 +409,11 @@ jQuery(document).ready(function ($)
 		var $filterItems = $('#dup-file-filter-items');
 		if ($("#filter-on").is(':checked')) {
 			$filterItems.removeAttr('disabled').css({color:'#000'});
-			$('#filter-exts,#filter-dirs').removeAttr('readonly').css({color:'#000'});
+			$('#filter-exts,#filter-dirs, #filter-files').removeAttr('readonly').css({color:'#000'});
 			$('#dup-archive-filter-file').show();
 		} else {
 			$filterItems.attr('disabled', 'disabled').css({color:'#999'});
-			$('#filter-dirs, #filter-exts').attr('readonly', 'readonly').css({color:'#999'});
+			$('#filter-dirs, #filter-exts,  #filter-files').attr('readonly', 'readonly').css({color:'#999'});
 			$('#dup-archive-filter-file').hide();
 		}
 	};
@@ -484,6 +447,12 @@ jQuery(document).ready(function ($)
 		var text = $("#filter-exts").val() + path + ';';
 		$("#filter-exts").val(text);
 	};
+
+	Duplicator.Pack.AddExcludeFilePath = function (path)
+	{
+		var text = $("#filter-files").val() + path + '/file.ext;\n';
+		$("#filter-files").val(text);
+	};
 	
 	Duplicator.Pack.ConfirmReset = function () 
 	{
@@ -502,7 +471,12 @@ jQuery(document).ready(function ($)
 	Duplicator.Pack.ResetName = function () 
 	{
 		var current = $('#package-name').val();
-		$('#package-name').val((current == DUP_NAMELAST) ? DUP_NAMEDEFAULT :DUP_NAMELAST)
+		switch (current) {
+			case DUP_NAMEDEFAULT1 : $('#package-name').val(DUP_NAMELAST); break;
+			case DUP_NAMEDEFAULT2 : $('#package-name').val(DUP_NAMEDEFAULT1); break;
+			case DUP_NAMELAST     : $('#package-name').val(DUP_NAMEDEFAULT2); break;
+			default:	$('#package-name').val(DUP_NAMELAST);
+		}
 	}
 
 	Duplicator.Pack.ExcludeTable = function (check) 
@@ -514,6 +488,11 @@ jQuery(document).ready(function ($)
 			$cb.closest("label").css('textDecoration', 'none');
 		}
 	}
+
+	<?php if ($retry_dbenabled) :?>
+		$('#dup-pack-archive-panel').show(500);
+		$('#export-onlydb').prop( "checked", true );
+	<?php endif; ?>
 	
 	//Init:Toggle OptionTabs
 	Duplicator.Pack.ToggleFileFilters();

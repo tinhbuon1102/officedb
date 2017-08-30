@@ -18,6 +18,7 @@ VIEW: STEP 3- INPUT -->
 	<input type="hidden" name="action_ajax"	 value="3" />
 	<input type="hidden" name="action_step"	 value="3" />
 	<input type="hidden" name="logging"		 value="<?php echo $_POST['logging'] ?>" />
+	<input type="hidden" name="retain_config" value="<?php echo $_POST['retain_config']; ?>" />
 	<input type="hidden" name="archive_name" value="<?php echo $_POST['archive_name'] ?>" />
 	<input type="hidden" name="json"		 value="<?php echo $_POST['json']; ?>" />
 	<input type="hidden" name="dbhost"		 value="<?php echo $_POST['dbhost'] ?>" />
@@ -44,7 +45,7 @@ VIEW: STEP 3- INPUT -->
 			<tr>
 				<td style="width:80px">URL:</td>
 				<td>
-					<input type="text" name="url_new" id="url_new" value="<?php echo $GLOBALS['FW_URL_NEW'] ?>" />
+					<input type="text" name="url_new" id="url_new" value="" />
 					<a href="javascript:DUPX.getNewURL('url_new')" style="font-size:12px">get</a>
 				</td>
 			</tr>
@@ -146,9 +147,8 @@ VIEW: STEP 3- INPUT -->
 		</table>
 		<br/>
 
-		<input type="checkbox" name="urlextended" id="urlextended" value="1" /> <label for="urlextended">Enable Extended URL Replace <small>(Searches multiple protocols: '//', 'http', 'https')</small></label><br/>
-		<input type="checkbox" name="postguid" id="postguid" value="1" /> <label for="postguid">Keep Post GUID unchanged</label><br/>
-		<input type="checkbox" name="fullsearch" id="fullsearch" value="1" /> <label for="fullsearch">Enable Full Search <small>(slower to process)</small> </label><br/>
+		<input type="checkbox" name="fullsearch" id="fullsearch" value="1" /> <label for="fullsearch">Use Database Full Search Mode </label><br/>
+		<input type="checkbox" name="postguid" id="postguid" value="1" /> <label for="postguid">Keep Post GUID Unchanged</label><br/>
 		<br/><br/>
 		
 		<!-- WP-CONFIG -->
@@ -156,18 +156,17 @@ VIEW: STEP 3- INPUT -->
 		<table class="dupx-opts dupx-advopts">
 			<tr>
 				<td>Cache:</td>
-				<td style="width:125px"><input type="checkbox" name="cache_wp" id="cache_wp" <?php echo ($GLOBALS['FW_CACHE_WP']) ? "checked='checked'" : ""; ?> /> <label for="cache_wp">Keep Enabled</label></td>
-				<td><input type="checkbox" name="cache_path" id="cache_path" <?php echo ($GLOBALS['FW_CACHE_PATH']) ? "checked='checked'" : ""; ?> /> <label for="cache_path">Keep Home Path</label></td>
+				<td style="width:125px"><input type="checkbox" name="cache_wp" id="cache_wp" /> <label for="cache_wp">Keep Enabled</label></td>
+				<td><input type="checkbox" name="cache_path" id="cache_path" /> <label for="cache_path">Keep Home Path</label></td>
 			</tr>
 			<tr>
 				<td>SSL:</td>
-				<td><input type="checkbox" name="ssl_admin" id="ssl_admin" <?php echo ($GLOBALS['FW_SSL_ADMIN']) ? "checked='checked'" : ""; ?> /> <label for="ssl_admin">Enforce on Admin</label></td>
-				<td><input type="checkbox" name="ssl_login" id="ssl_login" <?php echo ($GLOBALS['FW_SSL_LOGIN']) ? "checked='checked'" : ""; ?> /> <label for="ssl_login">Enforce on Login</label></td>
+				<td><input type="checkbox" name="ssl_admin" id="ssl_admin" /> <label for="ssl_admin">Enforce on Admin</label></td>
+				<td></td>
 			</tr>
 		</table>
 		<br/><br/><br/>
 		<br/><br/>
-
 	</div>
 
 	<div class="dupx-footer-buttons">
@@ -190,6 +189,7 @@ VIEW: STEP 3 - AJAX RESULT
 	<div class="dupx-debug">
 		<input type="hidden" name="action_step"  value="4" />
 		<input type="hidden" name="archive_name" value="<?php echo $_POST['archive_name'] ?>" />
+		<input type="hidden" name="retain_config" value="<?php echo $_POST['retain_config']; ?>" />
 		<input type="hidden" name="url_new" id="ajax-url_new"  />
 		<input type="hidden" name="json"    id="ajax-json" />
 		<br/>
@@ -209,10 +209,10 @@ VIEW: STEP 3 - AJAX RESULT
 	<div id="ajaxerr-area" style="display:none">
 		<p>Please try again an issue has occurred.</p>
 		<div style="padding: 0px 10px 10px 10px;">
-			<div id="ajaxerr-data">An unknown issue has occurred with the update data setup process.  Please see the installer-log.txt file for more details.</div>
+			<div id="ajaxerr-data">An unknown issue has occurred with the update data set up process.  Please see the installer-log.txt file for more details.</div>
 			<div style="text-align:center; margin:10px auto 0px auto">
 				<input type="button"  class="default-btn" onclick='DUPX.hideErrorResult2()' value="&laquo; Try Again" /><br/><br/>
-				<i style='font-size:11px'>See online help for more details at <a href='https://snapcreek.com/ticket' target='_blank'>snapcreek.com</a></i>
+				<i style='font-size:11px'>See online help for more details at <a href='https://snapcreek.com/ticket?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_campaign=problem_resolution&utm_content=inst_step3_ajax' target='_blank'>snapcreek.com</a></i>
 			</div>
 		</div>
 	</div>
@@ -262,7 +262,7 @@ DUPX.runUpdate = function()
 			status += "<hr/><b>Additional Troubleshooting Tips:</b><br/>";
 			status += "- Check the <a href='installer-log.txt' target='install_log'>installer-log.txt</a> file for warnings or errors.<br/>";
 			status += "- Check the web server and PHP error logs. <br/>";
-			status += "- For timeout issues visit the <a href='https://snapcreek.com/duplicator/docs/faqs-tech/#faq-trouble-100-q' target='_blank'>Timeout FAQ Section</a><br/>";
+			status += "- For timeout issues visit the <a href='https://snapcreek.com/duplicator/docs/faqs-tech/?utm_source=duplicator_free&utm_medium=wordpress_plugin&utm_campaign=problem_resolution&utm_content=inst_step3_ajax_rundepl#faq-trouble-100-q' target='_blank'>Timeout FAQ Section</a><br/>";
 			$('#ajaxerr-data').html(status);
 			DUPX.hideProgressBar();
 		}
@@ -273,7 +273,8 @@ DUPX.runUpdate = function()
 DUPX.getNewURL = function(id)
 {
 	var filename= window.location.pathname.split('/').pop() || 'installer.php' ;
-	$("#" + id).val(window.location.href.replace(filename, ''));
+	var path = window.location.href.replace(filename, '').replace(/\/$/, '');
+	$("#" + id).val(path);
 }
 
 /** Allows user to edit the package url  */
