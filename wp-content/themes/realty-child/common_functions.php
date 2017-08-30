@@ -439,6 +439,11 @@ function realty_theme_init()
 				}
 			}
 		}
+		if (class_exists("WpFastestCache"))
+		{
+			$fastestCache = new WpFastestCache();
+			$fastestCache->deleteCache();
+		}
 		die('done');
 	}
 }
