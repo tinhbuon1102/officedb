@@ -139,6 +139,13 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 	</script>
 <?php 
 }?>
+<script src="https://use.fontawesome.com/d543855e1a.js"></script>
+<script src="https://use.typekit.net/sjj8vip.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css?family=Arapey|Old+Standard+TT" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=GFS+Didot" rel="stylesheet">
+<link href="//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic" rel="stylesheet" type="text/css">
+
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js"></script>
 </body>
 </html>

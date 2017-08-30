@@ -130,7 +130,10 @@ function tt_realty_scripts() {
 	}
 
 	wp_enqueue_script( 'jquery', null, null, false );
-	wp_register_script( 'google-maps-api', "//maps.googleapis.com/maps/api/js?libraries=places$google_maps_api_key", array( 'jquery' ), null, false );
+	if (!is_home() && !is_front_page())
+	{
+		wp_register_script( 'google-maps-api', "//maps.googleapis.com/maps/api/js?libraries=places$google_maps_api_key", array( 'jquery' ), null, false );
+	}
 
 	if ( WP_DEBUG ) {
 		// DEV MODE - All JS is bundled into main.min.js
