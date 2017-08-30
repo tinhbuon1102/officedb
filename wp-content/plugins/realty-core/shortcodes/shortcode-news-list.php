@@ -74,7 +74,7 @@ if ( ! function_exists( 'tt_realty_news_listing' ) ) {
 			?>
 			<div class="item">
 				<span class="news-thumbnail">
-					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo get_the_post_thumbnail($recent['ID'], 'thumbnail');?></a>
+					<a href="<?php echo $news_url?>" title="<?php echo $recent["post_title"]?>" class="title"><?php echo get_the_post_thumbnail($recent['ID'], 'small-thumb');?></a>
 				</span>
 				
 				<div class="post_info">
