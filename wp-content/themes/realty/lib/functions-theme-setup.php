@@ -46,6 +46,7 @@ function tt_estate_setup() {
 	add_image_size( 'property-thumb', 600, 300, true );
 	add_image_size( 'property-thumb-long', 600, 600, true );
 	add_image_size( 'square-300', 232, 308, true );
+	add_image_size( 'small-thumb', 50, 50, true );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array( 'primary' => esc_html__( 'Main Menu', 'realty' ) ) );

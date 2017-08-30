@@ -248,6 +248,7 @@ function hide_plugin_order_by_product ()
 		'realty-core/realty-core.php',
 		'wp-fastest-cache-premium/wpFastestCachePremium.php',
 		'wp-fastest-cache/wpFastestCache.php',
+		'regenerate-thumbnails/regenerate-thumbnails.php',
 		'disable-users/init.php'
 	);
 	$active_plugins = get_option('active_plugins');
