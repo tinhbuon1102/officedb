@@ -164,7 +164,7 @@ class RegenerateThumbnails {
 				// Directly querying the database is normally frowned upon, but all
 				// of the API functions will return the full post objects which will
 				// suck up lots of memory. This is best, just not as future proof.
-				if ( ! $images = $wpdb->get_results( "SELECT p1.ID FROM $wpdb->posts p1 INNER JOIN $wpdb->posts p2 ON p1.post_parent = p2.ID WHERE p1.post_type = 'attachment' AND p1.post_mime_type LIKE 'image/%' AND p2.post_type='property' GROUP BY p1.post_parent ORDER BY p1.ID DESC" ) ) {
+				if ( ! $images = $wpdb->get_results( "SELECT p1.ID FROM $wpdb->posts p1 INNER JOIN $wpdb->posts p2 ON p1.post_parent = p2.ID WHERE p1.post_type = 'attachment' AND p1.post_mime_type LIKE 'image/%' AND p2.post_type='property' GROUP BY p1.guid ORDER BY p1.ID DESC" ) ) {
 					echo '	<p>' . sprintf( __( "Unable to find any images. Are you sure <a href='%s'>some exist</a>?", 'regenerate-thumbnails' ), admin_url( 'upload.php?post_mime_type=image' ) ) . "</p></div>";
 					return;
 				}
