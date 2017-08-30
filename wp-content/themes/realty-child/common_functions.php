@@ -418,6 +418,8 @@ function realty_theme_init()
 		
 		foreach ($aPostId as $post_id)
 		{
+			if (!$post_id) continue;
+			
 			$attach = get_image_id($image, $post_id);
 			if ($attach)
 			{
@@ -432,7 +434,7 @@ function realty_theme_init()
 				
 				if ($image_file)
 				{
-					file_put_contents($filename, file_get_contents($image_url));
+					realty_compress_image($image_url, $filename);
 					$attach_id = attachImageToProduct($filename, $post_id, true);
 				}
 			}
