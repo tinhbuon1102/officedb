@@ -140,12 +140,12 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 <?php 
 }?>
 <script src="https://use.fontawesome.com/d543855e1a.js"></script>
-<script>
+<script type="text/javascript">
 function addingScript(url){
 	var s = document.createElement("script");
 	s.type = "text/javascript";
 	s.src = url;
-	$("head").append(s);
+	jQuery("head").append(s);
 }
 setTimeout(function(){
 	addingScript("https://use.typekit.net/sjj8vip.js");
