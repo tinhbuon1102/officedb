@@ -140,18 +140,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 <?php 
 }?>
 <script src="https://use.fontawesome.com/d543855e1a.js"></script>
-<script type="text/javascript">
-function addingScript(url){
-	var s = document.createElement("script");
-	s.type = "text/javascript";
-	s.src = url;
-	jQuery("head").append(s);
-}
-setTimeout(function(){
-	addingScript("https://use.typekit.net/sjj8vip.js");
-	try{Typekit.load({ async: true });}catch(e){}
-}, 6000)
-</script>
+<script src="https://use.typekit.net/sjj8vip.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Arapey|Old+Standard+TT" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=GFS+Didot" rel="stylesheet">
 <link href="//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic" rel="stylesheet" type="text/css">
