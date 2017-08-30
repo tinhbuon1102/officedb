@@ -432,7 +432,7 @@ function realty_theme_init()
 				
 				if ($image_file)
 				{
-					realty_compress_image($image_url, $filename);
+					file_put_contents($filename, file_get_contents($image_url));
 					$attach_id = attachImageToProduct($filename, $post_id, true);
 				}
 			}
