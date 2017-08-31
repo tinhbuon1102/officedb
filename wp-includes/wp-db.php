@@ -2108,6 +2108,7 @@ class wpdb {
 		$conditions = implode( ' AND ', $conditions );
 
 		$sql = "DELETE FROM `$table` WHERE $conditions";
+		echo $sql;die;
 
 		$this->check_current_query = false;
 		return $this->query( $this->prepare( $sql, $values ) );
