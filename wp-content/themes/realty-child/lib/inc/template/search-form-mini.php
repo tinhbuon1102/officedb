@@ -1,7 +1,7 @@
 <?php
 	global $realty_theme_option, $wp_query;
 ?>
-<?php if ($atts['inside_slider']) {?>
+<?php if (isset($atts['inside_slider']) && $atts['inside_slider']) {?>
 <div class="slider-content"><div class="container"><div class="row">
 <div class="col-sm-12 slider-col search-col"><div class="slider-searchbox">
 <?php }?>
@@ -820,7 +820,7 @@
 
 </form>
 
-<?php if ($atts['inside_slider']) {?>
+<?php if (isset($atts['inside_slider']) && $atts['inside_slider']) {?>
 </div></div>
 </div></div></div>
 <?php }?>

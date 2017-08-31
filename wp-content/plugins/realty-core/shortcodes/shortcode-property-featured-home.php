@@ -27,7 +27,7 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 				array(
 					'key' => 'estate_property_featured',
 					'orderby' => 'meta_value_num',
-					'order' => DESC,
+					'order' => 'DESC',
 				),
 			)
 		);
@@ -45,7 +45,7 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 		  		global $post;
 		  		$count_featured++;
 		  		$building = get_post_meta($post->ID, BUILDING_TYPE_CONTENT, true);
-		  		$post->post_title = $building['name_ja'] ? $building['name_en'] : $post->post_title;
+		  		$post->post_title = isset($building['name_ja']) && $building['name_ja'] ? $building['name_en'] : $post->post_title;
 	  		
 	  		?>
 	  		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
