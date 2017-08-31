@@ -1528,7 +1528,7 @@ button.close {
 }
 
 .tab-content > .active {
-  display: block;
+  display: block !important;
 }
 
 .nav-tabs .dropdown-menu {
