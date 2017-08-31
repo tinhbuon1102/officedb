@@ -246,7 +246,6 @@ class LoginWithAjax {
 	    if( get_option('users_can_register') ){
 	    	// Remove if user is disabled and want to register again
 	    	$user = get_user_by( 'email', $_POST['email']);
-	    	var_dump($user);die;
 	    	if ($user && get_user_meta($user->ID, 'ja_disable_user', true))
 	    	{
 	    		$deleted = wp_delete_user($user->ID);
