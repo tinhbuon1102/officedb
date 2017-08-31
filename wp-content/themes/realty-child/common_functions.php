@@ -371,6 +371,12 @@ function renderJapaneseDate($date, $hasTime = false)
 	return date(getDateFormat($hasTime), strtotime($date));
 }
 
+function writeRealtyLog($data)
+{
+	$fp = fopen(ABSPATH . '/log/log.txt', 'a+');
+	fwrite($fp, var_export($data, true) . PHP_EOL);
+	fclose($fp);
+}
 add_action('wp_loaded', 'realty_theme_init', 10, 3);
 function realty_theme_init()
 {
