@@ -153,14 +153,14 @@ function tt_realty_scripts() {
 		wp_enqueue_script( 'store2', get_template_directory_uri() . '/lib/js/store.js', array(), null );
 		wp_enqueue_script( 'throttledresize', get_template_directory_uri() . '/lib/js/jquery.throttledresize.js', array( 'jquery' ), null, true );
 		wp_enqueue_script( 'wnumb', get_template_directory_uri() . '/lib/js/wNumb.min.js', array( 'jquery' ), null );
-		if ( ! is_page_template( 'template-property-submit.php' ) ) {
+		if ( ! is_page_template( 'template-property-submit.php' ) && !is_home() && !is_front_page()) {
 			wp_enqueue_script( 'google-maps-api' );
 			wp_enqueue_script( 'google-maps-info-cluster-oms', get_template_directory_uri() . '/lib/js/google-maps/google-maps.min.js', array( 'google-maps-api' ), null );
 		}
 		wp_enqueue_script( 'theme', get_template_directory_uri() . '/assets/js/theme.js', array( 'jquery', 'bootstrap', 'chosen' ), null );
 	}	else {
 		// PRODUCTION - Concatinated & minified main JS file
-		if ( ! is_page_template( 'template-property-submit.php' ) ) {
+		if ( ! is_page_template( 'template-property-submit.php' ) && !is_home() && !is_front_page() ) {
 			wp_enqueue_script( 'google-maps-api' );
 			wp_enqueue_script( 'google-maps-info-cluster-oms', get_template_directory_uri() . '/lib/js/google-maps/google-maps.min.js', array( 'google-maps-api' ), null );
 		}
