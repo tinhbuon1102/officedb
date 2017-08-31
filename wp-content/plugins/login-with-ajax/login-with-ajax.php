@@ -250,9 +250,9 @@ class LoginWithAjax {
 	    	{
 	    		$deleted = wp_delete_user($user->ID);
 	    		// Delete all user meta
-	    		delete_user_meta($user->ID, 'realty_user_follow');
-	    		delete_user_meta($user->ID, 'realty_user_contact');
-	    		delete_user_meta($user->ID, 'realty_user_favorites');
+	    		global $wpdb;
+	    		$deleted = $wpdb->delete($wpdb->usermeta, 'user_id=' . (int)$user->ID);
+	    		var_dump($deleted);die;
 	    	}
 	    	
 			$errors = register_new_user($_REQUEST['username'], $_REQUEST['email']);
