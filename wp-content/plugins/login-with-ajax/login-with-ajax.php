@@ -244,6 +244,18 @@ class LoginWithAjax {
 	    }
 	    
 	    if( get_option('users_can_register') ){
+	    	// Remove if user is disabled and want to register again
+	    	$user = get_user_by( 'email', $_POST['email']);
+	    	var_dump($user);die;
+	    	if ($user && get_user_meta($user->ID, 'ja_disable_user', true))
+	    	{
+	    		$deleted = wp_delete_user($user->ID);
+	    		// Delete all user meta
+	    		delete_user_meta($user->ID, 'realty_user_follow');
+	    		delete_user_meta($user->ID, 'realty_user_contact');
+	    		delete_user_meta($user->ID, 'realty_user_favorites');
+	    	}
+	    	
 			$errors = register_new_user($_REQUEST['username'], $_REQUEST['email']);
 			if ( !is_wp_error($errors) ) {
 				//Success
