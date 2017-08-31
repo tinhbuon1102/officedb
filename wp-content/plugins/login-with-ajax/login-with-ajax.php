@@ -248,11 +248,10 @@ class LoginWithAjax {
 	    	$user = get_user_by( 'email', $_POST['email']);
 	    	if ($user && get_user_meta($user->ID, 'ja_disable_user', true))
 	    	{
-	    		$deleted = wp_delete_user($user->ID);
 	    		// Delete all user meta
 	    		global $wpdb;
-	    		$deleted = $wpdb->delete($wpdb->usermeta, 'user_id=' . (int)$user->ID);
-	    		var_dump($deleted);die;
+	    		$deleted = $wpdb->delete($wpdb->usermeta, array('user_id' => (int)$user->ID));
+	    		$deleted = wp_delete_user($user->ID);
 	    	}
 	    	
 			$errors = register_new_user($_REQUEST['username'], $_REQUEST['email']);
