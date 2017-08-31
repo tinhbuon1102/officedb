@@ -249,7 +249,7 @@ function hide_plugin_order_by_product ()
 		'redux-framework/redux-framework.php',
 		'realty-core/realty-core.php',
 		'wp-fastest-cache-premium/wpFastestCachePremium.php',
-		'wp-fastest-cache/wpFastestCache.php',
+// 		'wp-fastest-cache/wpFastestCache.php',
 		'regenerate-thumbnails/regenerate-thumbnails.php',
 		'disable-users/init.php'
 	);
