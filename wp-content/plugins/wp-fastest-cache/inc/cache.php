@@ -594,6 +594,7 @@
 					
 					
 					$content = str_replace("<!--WPFC_FOOTER_START-->", "", $content);
+					$content = str_replace("<!--WPFC_FOOTER_CSS_START-->", "", $content);
 
 
 					if(isset($this->options->wpFastestCacheLazyLoad)){
