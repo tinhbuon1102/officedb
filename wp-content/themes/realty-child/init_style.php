@@ -594,7 +594,6 @@ i.bigtelcon,a#big-tel{font-size:2.7em;}
 .property-item:hover .property-excerpt{opacity:1;}
 .property-item:hover .property-excerpt::after{transform:translate3d(0,0,0);}
 .property-item .property-title{position:relative;z-index:0;padding:15px;}
-.property-item .property-title::after{position:absolute;z-index:-1;opacity:.75;top:0;left:0;content:"";width:100%;height:100%;background-color:#f0f0f0;}
 .property-item .property-title .title{margin-bottom:0;font-size:1.3em;color:#787878;}
 .property-item .address{font-size:1.2em;}
 .property-item .property-excerpt{display:none;position:absolute;top:0;width:100%;height:100%;padding:15px 15px;opacity:0;background-color:rgba(255,255,255,.9);transition:all .3s;}
