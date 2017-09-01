@@ -8,6 +8,12 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+<?php 
+	if (!is_user_logged_in() && is_plugin_active("wp-fastest-cache/wpFastestCache.php"))
+	{
+		get_template_part( 'init_style' );
+	}
+?>
  
 <?php wp_head(); ?>
 
@@ -41,12 +47,6 @@
         jQuery('#usa_image').mapster(default_options);
     });
 </script>
-	<?php 
-	if (!is_user_logged_in() && is_plugin_active("wp-fastest-cache/wpFastestCache.php"))
-	{
-		get_template_part( 'init_style' );
-	}
-	?>
 </head>
 
 <body <?php body_class(); ?>>
