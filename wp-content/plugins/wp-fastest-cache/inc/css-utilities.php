@@ -613,7 +613,7 @@
 
 			$url = str_replace('&#038;', '&', $url);
 	    	
-	    	if(preg_match("/\.php\?/i", $url)){
+	    	if(preg_match("/?/i", $url)){
 	    		$version = "";
 			}
 

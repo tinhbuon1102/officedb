@@ -251,7 +251,7 @@
 	    	}
 
 			if(!preg_match("/\.php$/", $url)){
-				$url = $url."?v=".time();
+// 				$url = $url."?v=".time();
 			}
 
 			if(preg_match("/^\/[^\/]/", $url)){

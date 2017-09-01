@@ -4,7 +4,8 @@ require_once ROOT_DIR . '/lib/timezone.php';
 
 $parameters = include ROOT_DIR . '/config/parameters.php';
 
-$site_lang = $_SESSION[Session::SESSION_NAMESPACE]['lang'];
+$site_lang = isset($_REQUEST['lang']) ? $_REQUEST['lang'] : $_SESSION[Session::SESSION_NAMESPACE]['lang'];
+$_SESSION[Session::SESSION_NAMESPACE]['lang'] = $site_lang;
 
 $config = Utils::arrayMergeRecursive(array(
 

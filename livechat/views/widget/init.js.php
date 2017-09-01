@@ -93,7 +93,7 @@
         var MOBILE_BUTTON_SIZE = 55;
 
         iframe.id = iframe.name = 'customer-chat-iframe';
-        iframe.src              = '<?php echo $app->url("Widget:iframeContent") ?>&domain=' + document.domain;
+        iframe.src              = '<?php echo $app->url("Widget:iframeContent") ?>&domain=' + document.domain + '&lang=<?php echo $_SESSION[Session::SESSION_NAMESPACE]['lang']?>';
         iframe.border           = 0;
         iframe.marginwidth      = 0;
         iframe.marginWidth      = 0;
