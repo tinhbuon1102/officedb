@@ -2150,6 +2150,7 @@ p.note-rate {
     margin-bottom: 10px;
 	position: relative;
 	padding-left: 25px;
+	background: white;
 }
 div#viewed_property_box > ul > li {
     border-bottom: 1px solid #eeeeee;
@@ -4752,4 +4753,8 @@ display:none!important
 }
 #page-user-profile ul.widget-user-menu {
     display: none;
+}
+
+.btn-primary, .btn-primary:focus, input[type='submit'], .acf-button.blue, .property-item .property-excerpt::after, .property-item.featured .property-title::after, #pagination .page-numbers li a:hover, #pagination .page-numbers li span:hover, #pagination .page-numbers li i:hover, #page-banner .banner-title:after, .map-wrapper .map-controls .control.active, .map-wrapper .map-controls .control:hover, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .noUi-connect {
+    background-color: #000;
 }
