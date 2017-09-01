@@ -140,14 +140,14 @@
 								}
 							}
 							
-// 							$this->html = str_replace($combined_link, "", $this->html);
-// 							$this->html = str_replace("<!--WPFC_FOOTER_CSS_START-->", "<!--WPFC_FOOTER_CSS_START-->\n" . $combined_link, $this->html);
+							$this->html = str_replace($combined_link, "", $this->html);
+							$this->html = str_replace("<!--WPFC_FOOTER_CSS_START-->", "<!--WPFC_FOOTER_CSS_START-->\n" . $combined_link, $this->html);
 						}
 					}
 				}
 			}
 
-// 			$this->html = str_replace("<!--WPFC_FOOTER_CSS_START-->", "", $this->html);
+			$this->html = str_replace("<!--WPFC_FOOTER_CSS_START-->", "", $this->html);
 			return $this->html;
 		}
 

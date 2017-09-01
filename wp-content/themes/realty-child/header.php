@@ -41,6 +41,12 @@
         jQuery('#usa_image').mapster(default_options);
     });
 </script>
+	<?php 
+	if (!is_user_logged_in() && is_plugin_active("wp-fastest-cache/wpFastestCache.php"))
+	{
+		get_template_part( 'init_style' );
+	}
+	?>
 </head>
 
 <body <?php body_class(); ?>>
