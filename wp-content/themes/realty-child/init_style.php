@@ -87,7 +87,6 @@ input:-moz-focusring{outline:1px dotted ButtonText;}
 .col-md-3{float:left;}
 .col-md-3{width:25%;}
 }
-body{position:relative;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.7;color:#787878;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;word-wrap:break-word;transition:all .5s;}
 *,:after,:before{box-sizing:border-box;}
 .clearfix:before,.clearfix:after{content:" ";display:table;}
 .clearfix:after{clear:both;}
