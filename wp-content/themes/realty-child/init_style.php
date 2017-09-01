@@ -459,7 +459,7 @@ html{height:100%;font-size:62.5%;margin:0!important;}
 .site-branding{float:left;}
 .main-navigation{min-width:0;max-width:none;float:right;position:relative;padding:0;transform:none;text-transform:none;background-color:transparent;transition:all 0s;transform:translateX(0);-webkit-transform:translateX(0);-moz-transform:translateX(0);-o-transform:translateX(0);-ms-transform:translateX(0);}
 .primary-menu{margin:0 -15px;}
-.primary-menu li{float:left;margin:0 15px;}
+.primary-menu li {float: left;margin: 0;height: 65px;line-height: 65px;}
 }
 html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 body{font-size:14px;font-style:normal;font-weight:400;background-color:#fff;line-height:1.4;-webkit-font-smoothing:subpixel-antialiased;}
@@ -772,5 +772,43 @@ body.page-template-page-lgray {
 #registerform ul, li.wppb-form-field {
     list-style-type: none;
     padding-left: 0;
+}
+.breadcrumbs {
+    font-size: 12px;
+    line-height: 40px;
+    background: #fafafa;
+}
+
+.top-header a, .breadcrumbs a {
+    color: #787878;
+}
+
+.btn-primary, .btn-primary:focus, input[type='submit'], .acf-button.blue, .property-item .property-excerpt::after, .property-item.featured .property-title::after, #pagination .page-numbers li a:hover, #pagination .page-numbers li span:hover, #pagination .page-numbers li i:hover, #page-banner .banner-title:after, .map-wrapper .map-controls .control.active, .map-wrapper .map-controls .control:hover, .datepicker table tr td.active.active, .datepicker table tr td.active:hover.active, .noUi-connect {
+    background-color: #000;
+}
+
+.entry-header .header-content a {
+    color: #42484b;
+}
+.news .entry-title a {
+    color: #000;
+}
+.has-post-thumbnail .entry-header .entry-title {
+    color: #fff;
+}
+
+.entry-header .entry-title {
+    margin: 0;
+    display: inline-block;
+    font-size: 2em;
+}
+
+.news .entry-title {
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    font-weight: 500;
+    font-family: "heisei-mincho-stdn","Roboto Slab",Garamond,"Times New Roman",游明朝,"Yu Mincho",游明朝体,YuMincho,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro",HiraMinProN-W3,HGS明朝E,"ＭＳ Ｐ明朝","MS PMincho",serif;
+    font-family: "Roboto Slab",Garamond,"Times New Roman",游明朝,"Yu Mincho",游明朝体,YuMincho,"ヒラギノ明朝 Pro W3","Hiragino Mincho Pro",HiraMinProN-W3,HGS明朝E,"ＭＳ Ｐ明朝","MS PMincho",serif;
 }
 </style>
