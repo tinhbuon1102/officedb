@@ -1,11 +1,11 @@
 <?php
 /*
-Plugin Name: Autoptimize
-Plugin URI: http://autoptimize.com/
+Plugin Name: Autoptimize1
+Plugin URI: http://autoptimize.com123/
 Description: Optimizes your website, concatenating the CSS and JavaScript code, and compressing it.
-Version: 2.2.2
+Version: 2123123.2.2
 Author: Frank Goossens (futtta)
-Author URI: http://blog.futtta.be/
+Author URI: http://blog.futtta.be123/
 Domain Path: localization/
 Text Domain: autoptimize
 Released under the GNU General Public License (GPL)
@@ -133,7 +133,7 @@ function autoptimize_start_buffering() {
     }
 
 	// if setting says not to optimize logged in user and user is logged in
-	if ( get_option('autoptimize_optimize_logged','on') !== 'on' && is_user_logged_in() && current_user_can('edit_posts') ) {
+	if ( get_option('autoptimize_optimize_logged','on') !== 'on' && is_user_logged_in()) {
 		$ao_noptimize = true;
 	}
 
