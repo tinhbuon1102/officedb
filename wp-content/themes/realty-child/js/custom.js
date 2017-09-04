@@ -502,9 +502,11 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 								$('#building_detail_modal .propertyTable tbody').html(response.html);
 								
 								var building_title = clickElement.closest('.property-item').find('.property-content .property-title h3').text();
+								var building_image = clickElement.closest('.property-item').find('.property-thumbnail img').attr('src');
 								
 								$('#building_detail_modal .bld_name').text(building_title);
-								$('#building_detail_modal .bld_sublocate .addr').text(response.address);
+								$('#building_detail_modal .responsive-img').text(building_image);
+								
 								$('#building_detail_modal .bld_sublocate .addr').text(response.address);
 								$('#building_detail_modal .bld_sublocate .station').text(response.station);
 								$('#building_detail_modal .details-summary').text(response.content);
