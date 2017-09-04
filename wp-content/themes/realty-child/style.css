@@ -4765,3 +4765,70 @@ display:none!important
 .property-item.featured .property-title::after, .property-item .property-title::after {
     background: none;
 }
+/*click details*/
+.motmot * {
+    box-sizing: border-box;
+}
+.motmot .container, .motmot .container-max, .motmot .container-large-max {
+    margin: 0 auto;
+}
+.motmot .padding-right-large {
+    padding-right: 20px;
+}
+.motmot .container-max {
+    width: 100%;
+}
+.motmot button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    cursor: pointer;
+    overflow: visible;
+}
+.motmot button, .motmot select {
+    text-transform: none;
+}
+.motmot button {
+    background-color: transparent;
+    border-width: 0;
+}
+.motmot h2, .motmot h4 {
+	font-weight: 400;
+}
+.motmot h2 {
+    font-size: 2rem;
+    line-height: 2.45rem;
+    font-weight: 400;
+}
+.motmot h4 {
+    font-size: 1em;
+}
+.motmot .no-margin {
+    margin: 0;
+}
+.motmot .margin-bottom-medium {
+    margin-bottom: 15px;
+}
+.motmot .right-align {
+    text-align: right;
+}
+.motmot .container-table {
+    display: table;
+}
+.motmot .container-table-cell {
+    display: table-cell;
+}
+.motmot .container-table-cell, .motmot .v-align-middle {
+    vertical-align: middle;
+}
+.motmot .container-full {
+    width: 100%;
+}
+.propertyTable table {
+    width: 100%;
+    border-spacing: 0;
+}
+.propertyTable th {
+    font-weight: 400;
+    font-size: .9em;
+}
