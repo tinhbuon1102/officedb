@@ -1025,7 +1025,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			if (isEnglish())
 			{
 				return $building['std_floor_space'] != "" ? 
-					((formatNumber(str_replace(',', '', $building['std_floor_space']) * OFFICE_DB_FEE_RATE).' ' . AREA_M2) . ' | ' . 
+					((formatNumber(str_replace(',', '', $building['std_floor_space']) * OFFICE_DB_FEE_RATE).' ' . AREA_M2) . '<br/>' . 
 					formatNumber(str_replace(',', '', $building['std_floor_space'])) .' ' . trans_text('tsubo')) 
 				: FIELD_MISSING_VALUE;
 			}
