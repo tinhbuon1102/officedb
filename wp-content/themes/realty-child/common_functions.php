@@ -800,7 +800,10 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 	{
 		case "area_ping":
 			if (!$floor['area_m']) return FIELD_MISSING_VALUE;
-			return $current_lang == LANGUAGE_EN ? formatNumber($floor['area_m']).AREA_M2 : formatNumber($floor[$field]).trans_text('tsubo');
+			if(isEnglish()) 
+				return formatNumber($floor['area_m']).AREA_M2 . ' | ' . formatNumber($floor[$field]).trans_text('tsubo');
+			else 
+				return formatNumber($floor[$field]).trans_text('tsubo');
 			break;
 
 		case 'floor_up_down' :
@@ -1021,7 +1024,10 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 		case 'std_floor_space' :
 			if (isEnglish())
 			{
-				return $building['std_floor_space'] != "" ? formatNumber(str_replace(',', '', $building['std_floor_space']) * OFFICE_DB_FEE_RATE).' ' . AREA_M2 : FIELD_MISSING_VALUE;
+				return $building['std_floor_space'] != "" ? 
+					((formatNumber(str_replace(',', '', $building['std_floor_space']) * OFFICE_DB_FEE_RATE).' ' . AREA_M2) . ' | ' . 
+					formatNumber(str_replace(',', '', $building['std_floor_space'])) .' ' . trans_text('tsubo')) 
+				: FIELD_MISSING_VALUE;
 			}
 			else {
 				return $building['std_floor_space'] != "" ? formatNumber(str_replace(',', '', $building['std_floor_space'])) .' ' . trans_text('tsubo') : FIELD_MISSING_VALUE;
