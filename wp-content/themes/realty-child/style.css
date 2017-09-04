@@ -4796,9 +4796,13 @@ display:none!important
 	font-weight: 400;
 }
 .motmot h2 {
-    font-size: 2rem;
+    font-size: 2.45rem;
     line-height: 2.45rem;
     font-weight: 400;
+	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
+}
+body.ja .motmot h2 {
+    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 .motmot h4 {
     font-size: 1em;
@@ -4831,4 +4835,47 @@ display:none!important
 .propertyTable th {
     font-weight: 400;
     font-size: .9em;
+}
+.propertyTable td {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 7px 3px;
+    height: 40px;
+    text-align: center;
+}
+.mouseover td {
+    background: rgba(247,247,247,1);
+}
+.motmot .details-summary {
+    margin-bottom: 25px;
+    font-size: .9em;
+}
+.bld_sublocate > span {
+    margin-right: 10px;
+}
+.bld_sublocate > span:last-child {
+    margin-right: 0px;
+}
+.bld_sublocate .addr:before {
+    content: "\e903";
+    font-family: 'iconmoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bld_sublocate .station:before {
+    content: "\e535";
+    font-family: 'iconmoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
