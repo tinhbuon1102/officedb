@@ -1418,7 +1418,7 @@ add_action( 'wp_ajax_tt_ajax_delete_user_profile', 'tt_ajax_delete_user_profile_
 add_filter( 'wp_mail', 'realty_wp_mail', 10, 1 );
 function realty_wp_mail ($atts)
 {
-	if(defined('PROPERTY_MAIL_TESTING') && PROPERTY_MAIL_TESTING == true)
+	if(defined('PROPERTY_MAIL_TESTING') && PROPERTY_MAIL_TESTING == true && is_array($atts))
 	{
 		if (is_string($atts['headers']))
 		{
