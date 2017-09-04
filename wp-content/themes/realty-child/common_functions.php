@@ -1493,7 +1493,7 @@ function realty_get_floors($building_id = 0){
 				$responseArray['content'] = get_the_content();
 			}
 			
-			$row = '<tr>
+			$row = '<tr class="overlink_row">
 						<td class="overlink"><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
 						<td class="overlink"><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
 						<td class="overlink"><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>

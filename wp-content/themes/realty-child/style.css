@@ -476,7 +476,7 @@ body.en nav#navigation .primary-menu a {
 	max-width: 1000px;
 }
 
-td.overlink:hover{
+tr.overlink_row:hover td.overlink{
 	cursor: pointer;
 	background: #f3f3f3;
 }
