@@ -1165,7 +1165,7 @@ GNU General Public License for more details.
 
 		public function create_preload_cache(){
 			if($data = get_option("WpFastestCachePreLoad")){
-				$count_posts = wp_count_posts("post");
+				$count_posts = wp_count_posts("property") + wp_count_posts("news");
 				$count_pages = wp_count_posts('page');
 
 				$this->options = $this->getOptions();
@@ -1197,6 +1197,38 @@ GNU General Public License for more details.
 					$pre_load->homepage = -1;
 				}
 
+				// PAGE
+				if($number > 0 && $pre_load->page > -1){
+					$pages = get_pages(array(
+						'sort_order' => 'DESC',
+						'sort_column' => 'ID',
+						'parent' => -1,
+						'hierarchical' => 0,
+						'number' => $number,
+						'offset' => $pre_load->page,
+						'post_type' => 'page',
+						'post_status' => 'publish'
+					));
+				
+					if(count($pages) > 0){
+						foreach ($pages as $key => $page) {
+							$page_url = get_option("home")."/".get_page_uri($page->ID);
+				
+							if($mobile_theme){
+								array_push($urls, array("url" => $page_url, "user-agent" => "mobile"));
+								$number--;
+							}
+				
+							array_push($urls, array("url" => $page_url, "user-agent" => "desktop"));
+							$number--;
+				
+							$pre_load->page = $pre_load->page + 1;
+						}
+					}else{
+						$pre_load->page = -1;
+					}
+				}
+				
 				// POST
 				if($number > 0 && $pre_load->post > -1){
 		    		// $recent_posts = wp_get_recent_posts(array(
@@ -1209,7 +1241,7 @@ GNU General Public License for more details.
 								// 		    'suppress_filters' => true
 								// 		    ), ARRAY_A);
 		    		global $wpdb;
-		    		$recent_posts = $wpdb->get_results("SELECT SQL_CALC_FOUND_ROWS  ".$wpdb->prefix."posts.ID FROM ".$wpdb->prefix."posts  WHERE 1=1  AND (".$wpdb->prefix."posts.post_type = 'post' OR ".$wpdb->prefix."posts.post_type = 'property' OR ".$wpdb->prefix."posts.post_type = 'news' OR ".$wpdb->prefix."posts.post_type = 'product') AND ((".$wpdb->prefix."posts.post_status = 'publish'))  ORDER BY ".$wpdb->prefix."posts.ID DESC LIMIT ".$pre_load->post.", ".$number, ARRAY_A);
+		    		$recent_posts = $wpdb->get_results("SELECT SQL_CALC_FOUND_ROWS  ".$wpdb->prefix."posts.ID FROM ".$wpdb->prefix."posts  WHERE 1=1  AND (".$wpdb->prefix."posts.post_type = 'property' OR ".$wpdb->prefix."posts.post_type = 'news') AND ((".$wpdb->prefix."posts.post_status = 'publish'))  ORDER BY ".$wpdb->prefix."posts.ID DESC LIMIT ".$pre_load->post.", ".$number, ARRAY_A);
 
 
 		    		if(count($recent_posts) > 0){
@@ -1249,38 +1281,6 @@ GNU General Public License for more details.
 		    		}else{
 		    			$pre_load->attachment = -1;
 		    		}
-				}
-
-				// PAGE
-				if($number > 0 && $pre_load->page > -1){
-					$pages = get_pages(array(
-							'sort_order' => 'DESC',
-							'sort_column' => 'ID',
-							'parent' => -1,
-							'hierarchical' => 0,
-							'number' => $number,
-							'offset' => $pre_load->page,
-							'post_type' => 'page',
-							'post_status' => 'publish'
-					));
-
-					if(count($pages) > 0){
-						foreach ($pages as $key => $page) {
-							$page_url = get_option("home")."/".get_page_uri($page->ID);
-
-		    				if($mobile_theme){
-		    					array_push($urls, array("url" => $page_url, "user-agent" => "mobile"));
-		    					$number--;
-		    				}
-
-	    					array_push($urls, array("url" => $page_url, "user-agent" => "desktop"));
-	    					$number--;
-
-		    				$pre_load->page = $pre_load->page + 1;
-						}
-					}else{
-						$pre_load->page = -1;
-					}
 				}
 
 				// CATEGORY
