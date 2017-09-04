@@ -505,7 +505,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 								var building_image = clickElement.closest('.property-item').find('.property-thumbnail img').attr('src');
 								
 								$('#building_detail_modal .bld_name').text(building_title);
-								$('#building_detail_modal .responsive-img').text(building_image);
+								$('#building_detail_modal .responsive-img').attr('src', building_image);
 								
 								$('#building_detail_modal .bld_sublocate .addr').text(response.address);
 								$('#building_detail_modal .bld_sublocate .station').text(response.station);
