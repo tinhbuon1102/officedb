@@ -476,6 +476,11 @@ body.en nav#navigation .primary-menu a {
 	max-width: 1000px;
 }
 
+td.overlink:hover{
+	cursor: pointer;
+	background: #f3f3f3;
+}
+
 @media all and (-ms-high-contrast:none) {
 	body.en nav#navigation .primary-menu a {
     font-family: "adobe-caslon-pro",Times,serif;
