@@ -1494,11 +1494,11 @@ function realty_get_floors($building_id = 0){
 			}
 			
 			$row = '<tr>
-						<td>'.$floor['floor_up_down'].'</td>
-						<td>'.$floor['area_ping'].'</td>
-						<td>'.$floor['rent_unit_price'].'</td>
-						<td>'.$floor['unit_condo_fee'].'</td>
-						<td>'.$floor['move_in_date'].'</td>
+						<td><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
+						<td><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
+						<td><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
+						<td><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
+						<td><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
 						<td>'.$floor['favorite'].'</td>
 					</tr>';
 			$responseArray['floor'][] = $floor;
