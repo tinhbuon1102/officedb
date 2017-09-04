@@ -481,6 +481,55 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			jQuery('#contact-multiple-modal').modal('toggle');
 		});
 		
+		if ($('#building_detail_modal').length)
+		{
+			$('body').on('click', '#property-search-results .property-item > a, #property-search-results .property-content .property-title > a', function(e){
+				e.preventDefault();
+				var clickElement = $(this);
+				var building_id = clickElement.closest('.property-item').attr('data-buildingid');
+				
+				if ($('#building_detail_modal').attr('data-buildingid') != building_id)
+				{
+					$('body').LoadingOverlay("show");
+					$.ajax({
+						type: 'GET',
+						url: ajax_object.ajax_url,
+						data: {action: 'realty_get_floors', building_id: building_id},
+						dataType: 'json',
+						success: function (response) {
+							if (response.html)
+							{
+								$('#building_detail_modal .propertyTable tbody').html(response.html);
+								
+								var building_title = clickElement.closest('.property-item').find('.property-content .property-title h3').text();
+								
+								$('#building_detail_modal .bld_name').text(building_title);
+								$('#building_detail_modal .bld_sublocate .addr').text(response.address);
+								$('#building_detail_modal .bld_sublocate .addr').text(response.address);
+								$('#building_detail_modal .bld_sublocate .station').text(response.station);
+								$('#building_detail_modal .details-summary').text(response.content);
+								
+								jQuery('#building_detail_modal').modal('show');
+								$('#building_detail_modal').attr('data-buildingid', building_id);
+								$('body').LoadingOverlay("hide");
+							}
+							else {
+								// Redirect if building have only this floor
+								location.href = clickElement.attr('href');
+							}
+						},
+						error: function () {
+							console.log( 'failed' );
+							$('body').LoadingOverlay("hide");
+						}
+					});
+				}
+				else {
+					jQuery('#building_detail_modal').modal('show');
+				}
+			});
+		}
+		
 	}
 	
 	initScrollBar();

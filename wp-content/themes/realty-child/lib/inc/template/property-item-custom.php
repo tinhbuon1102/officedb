@@ -59,7 +59,7 @@ $classes = join( ' ', $classes );
 $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 ?>
 
-<div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
+<div class="<?php echo $classes; ?>" data-buildingid="<?php echo $building['building_id'] ?>" <?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 
 	<a href="<?php echo get_permalink( $post ); ?>">
 		<figure class="property-thumbnail fit-height">

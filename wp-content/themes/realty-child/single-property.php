@@ -122,32 +122,7 @@
 		$pdfUrl = getBuildingPDF($building_id);
 		
 		// Get list same building
-		$buildingArgs = array(
-			'post_type' => 'property',
-			'posts_per_page' => -1,
-			'meta_query' => array(
-				array(
-					'key' => FLOOR_BUILDING_TYPE,
-					'value' => $building_id,
-					'compare' => '=',
-				),
-				array(
-					'relation' => 'AND',
-					'floor_down' => array(
-						'key'       => 'estate_property_floor_down',
-						'compare'   => 'EXISTS',
-						'type'      => 'numeric'
-					),
-					'floor_up' => array(
-						'key'       => 'estate_property_floor_up',
-						'compare'   => 'EXISTS',
-						'type'      => 'numeric'
-					),
-				)
-			),
-			'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
-		);
-		$query_floors_results = new WP_Query($buildingArgs);
+		$query_floors_results = get_floors_by_building($building_id);
 		
 		$i_vacancy_floor = 0;
 		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();

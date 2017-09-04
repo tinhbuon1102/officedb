@@ -63,74 +63,62 @@ jQuery(window).load(function() {
 									?>
 								</li>
 							<?php endwhile; ?>
-							<div id="details-wrapper" class="details-wrapper motmot open">
-								<div id="details" class="js-details container-relative">
-									<div class="padding-right-large">
-										<div class="container-max">
-											<div class="margin-bottom-medium">
-												<div class="right-align"><button class="js-details-close-button"><span class="grey silver-sand-text"><i class="icon-close"></i></span></button></div>
-											</div>
-											<!--header-->
-											<div class="margin-bottom-medium">
-												<div class="container-table container-full">
-													<div class="container-table-cell">
-														<h2 class="no-margin bld_name">Building name</h2>
-														<h4 class="no-margin bld_sublocate"><span class="addr">address</span><span class="station">station</span></h4>
+						</ul>
+						
+						<div class="modal fade modal-custom" id="building_detail_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
+										<span class="linericon-cross" aria-hidden="true">X</span>
+									</button>
+									<div class="modal-header">
+										<h2 class="no-margin bld_name">Building name</h2>
+										<h4 class="no-margin bld_sublocate"><span class="addr">address</span><span class="station">station</span></h4>
+									</div>
+									<div class="modal-body">
+										<div id="details-wrapper" class="details-wrapper motmot open">
+											<div id="details" class="js-details container-relative">
+												<div class="padding-right-large">
+													<div class="container-max">
+														<div class="row row-details">
+															<div class="col-md-3 col-sm-3 col-xs-12 on-large-auto">
+																<div class="container-relative">
+																	<div class="container-relative container-inline-block">
+																		<img id="details-enlarged-image" class="js-search-result-thumbnail responsive-img" src="http://front.office-jpdb.com/wp-content/uploads/2017/08/83959350e7c80627-1.jpg">
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-9 col-sm-9 col-xs-12 details-right-panel">
+																<div class="container-flexible-medium left">
+																<div class="details-summary">
+																	Carrot Tower is the landmark tower directly connected to Sangenjaya station / Setagaya Line. It is located in a quiet neighborhood with better access to Shibuya.
+																</div>
+																	<div class="propertyTable">
+																	<table>
+																		<thead>
+																			<tr class="column-head">
+																				<th><?php echo __('Floor', 'realty')?></th>
+																				<th><?php echo __('Area', 'realty')?></th>
+																				<th><?php echo __('Rent', 'realty')?></th>
+																				<th><?php echo __('Common service', 'realty')?></th>
+																				<th><?php echo __('Date of occupancy', 'realty')?></th>
+																				<th></th>
+																			</tr>
+																		</thead>
+																		<tbody></tbody>
+																	</table>
+																	</div>
+																</div>
+															</div>
+														</div><!--/row-details-->
 													</div>
 												</div>
 											</div>
-											<!--content-->
-											<div class="row row-details">
-												<div class="col-md-3 col-sm-3 col-xs-12 on-large-auto">
-													<div class="container-relative">
-														<div class="container-relative container-inline-block">
-															<img id="details-enlarged-image" class="js-search-result-thumbnail responsive-img" src="http://front.office-jpdb.com/wp-content/uploads/2017/08/83959350e7c80627-1.jpg">
-														</div>
-													</div>
-												</div>
-												<div class="col-md-9 col-sm-9 col-xs-12 details-right-panel">
-													<div class="container-flexible-medium left">
-													<div class="details-summary">
-														Carrot Tower is the landmark tower directly connected to Sangenjaya station / Setagaya Line. It is located in a quiet neighborhood with better access to Shibuya.
-													</div>
-														<div class="propertyTable">
-														<table>
-															<tbody>
-																<tr class="column-head">
-																	<th><?php echo __('Floor', 'realty')?></th>
-																	<th><?php echo __('Area', 'realty')?></th>
-																	<th><?php echo __('Rent', 'realty')?></th>
-																	<th><?php echo __('Common service', 'realty')?></th>
-																	<th><?php echo __('Date of occupancy', 'realty')?></th>
-																	<th></th>
-																</tr>
-																<tr>
-																	<td>floor_up_down</td>
-																	<td>area_ping</td>
-																	<td>rent_unit_price</td>
-																	<td>'unit_condo_fee</td>
-																	<td>move_in_date</td>
-																	<td><i class="add-to-favorites origin  fa fa-star-o"></i></td>
-																</tr>
-																<tr>
-																	<td>floor_up_down</td>
-																	<td>area_ping</td>
-																	<td>rent_unit_price</td>
-																	<td>'unit_condo_fee</td>
-																	<td>move_in_date</td>
-																	<td><i class="add-to-favorites origin  fa fa-star-o"></i></td>
-																</tr>
-															</tbody>
-														</table>
-														</div>
-													</div>
-												</div>
-											</div><!--/row-details-->
-										</div>
+										</div><!--/details-wrapper-->
 									</div>
 								</div>
-							</div><!--/details-wrapper-->
-						</ul>
+							</div>
+						</div>
 
 						<?php wp_reset_query(); ?>
 

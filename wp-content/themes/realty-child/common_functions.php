@@ -784,6 +784,15 @@ function getBuilding($single_property_id) {
 	return $building;
 }
 
+function getBuildingByBuildingID($building_id)
+{
+	global $wpdb;
+	$building = (array)$wpdb->get_row("SELECT * FROM building WHERE building_id=".(int)$building_id);
+	$stations = $wpdb->get_results("SELECT * FROM building_station WHERE building_id=".(int)$building_id, ARRAY_A);
+	$building['stations'] = $stations;
+	return $building;
+}
+
 function getFloor($single_property_id)
 {
 	global $wpdb;
@@ -1390,6 +1399,7 @@ function realty_post_type_link($permalink, $post, $leavename)
 	return $permalink;
 }
 
+add_action( 'wp_ajax_tt_ajax_delete_user_profile', 'tt_ajax_delete_user_profile_function' );
 if ( ! function_exists( 'tt_ajax_delete_user_profile_function' ) ) {
 	function tt_ajax_delete_user_profile_function() {
 		$user_id = $_POST['user_id'];
@@ -1413,7 +1423,98 @@ if ( ! function_exists( 'tt_ajax_delete_user_profile_function' ) ) {
 		echo json_encode(array('success' => $deleted, 'redirect' => get_option('siteurl'))); die;
 	}
 }
-add_action( 'wp_ajax_tt_ajax_delete_user_profile', 'tt_ajax_delete_user_profile_function' );
+
+function get_floors_by_building($building_id)
+{
+	// Get list same building
+	$buildingArgs = array(
+		'post_type' => 'property',
+		'posts_per_page' => -1,
+		'meta_query' => array(
+			array(
+				'key' => FLOOR_BUILDING_TYPE,
+				'value' => $building_id,
+				'compare' => '=',
+			),
+			array(
+				'relation' => 'AND',
+				'floor_down' => array(
+					'key'       => 'estate_property_floor_down',
+					'compare'   => 'EXISTS',
+					'type'      => 'numeric'
+				),
+				'floor_up' => array(
+					'key'       => 'estate_property_floor_up',
+					'compare'   => 'EXISTS',
+					'type'      => 'numeric'
+				),
+			)
+		),
+		'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
+	);
+	return new WP_Query($buildingArgs);
+}
+
+add_action( 'wp_ajax_realty_get_floors', 'realty_get_floors' );
+add_action( 'wp_ajax_nopriv_realty_get_floors', 'realty_get_floors' );
+function realty_get_floors($building_id = 0){
+	$building_id = $_REQUEST['building_id'];
+	$building = getBuildingByBuildingID($building_id);
+	$query_floors_results = get_floors_by_building($building_id);
+	
+	$responseArray = array();
+	$responseHtml = '';
+	if ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) {
+		$count_related = 0;
+		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
+			global $post;
+			$related_property_id = get_the_ID();
+			$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+			
+			$google_maps = get_post_meta( $related_property_id, 'estate_property_google_maps', true );
+			$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
+			
+			// out if floor has no vacant
+			if (!$related_floor['vacancy_info']) continue;
+			$count_related ++;
+	
+			$floor = array();
+			$floor['floor_up_down'] = translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id);
+			$floor['area_ping'] = translateBuildingValue('area_ping', $building, $related_floor, $related_property_id);
+			$floor['rent_unit_price'] = translateBuildingValue('rent_unit_price_opt', $building, $related_floor, $related_property_id);
+			$floor['unit_condo_fee'] = translateBuildingValue('unit_condo_fee_opt', $building, $related_floor, $related_property_id);
+			$floor['move_in_date'] = translateBuildingValue('move_in_date', $building, $related_floor, $related_property_id);
+			$floor['favorite'] = tt_add_remove_favorites();
+			
+			if (!isset($responseArray['address']))
+			{
+				$responseArray['address'] = $google_maps['address'];
+				$responseArray['station'] = $estate_property_station;
+				$responseArray['content'] = get_the_content();
+			}
+			
+			$row = '<tr>
+						<td>'.$floor['floor_up_down'].'</td>
+						<td>'.$floor['area_ping'].'</td>
+						<td>'.$floor['rent_unit_price'].'</td>
+						<td>'.$floor['unit_condo_fee'].'</td>
+						<td>'.$floor['move_in_date'].'</td>
+						<td>'.$floor['favorite'].'</td>
+					</tr>';
+			$responseArray['floor'][] = $floor;
+			$responseHtml .= $row;
+		endwhile;
+	}
+	
+	if (defined( 'DOING_AJAX' ) && DOING_AJAX )
+	{
+		$responseArray['html'] = $responseHtml;
+		echo json_encode($responseArray);die;
+	}
+	else {
+		return $responseArray;
+	}
+}
 
 add_filter( 'wp_mail', 'realty_wp_mail', 10, 1 );
 function realty_wp_mail ($atts)
