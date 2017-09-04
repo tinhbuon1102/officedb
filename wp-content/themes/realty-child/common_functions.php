@@ -1494,11 +1494,11 @@ function realty_get_floors($building_id = 0){
 			}
 			
 			$row = '<tr>
-						<td><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
-						<td><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
-						<td><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
-						<td><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
-						<td><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
+						<td class="overlink"><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
+						<td class="overlink"><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
+						<td class="overlink"><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
+						<td class="overlink"><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
+						<td class="overlink"><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
 						<td>'.$floor['favorite'].'</td>
 					</tr>';
 			$responseArray['floor'][] = $floor;
