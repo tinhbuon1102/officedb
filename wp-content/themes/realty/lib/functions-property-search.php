@@ -43,6 +43,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 						$search_key != "order-by" && 
 						$search_key != "action" &&
 						$search_key != "building_id" &&
+						$search_key != "lang" &&
 						$search_key != "response" &&
 						$search_key != "search_type" &&
 						$search_key != "pageid" && 
@@ -83,6 +84,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			if ( 
 					$search_key == "action" || 
 					$search_key == "building_id" || 
+					$search_key == "lang" || 
 					$search_key == "response" ||
 					$search_key == "search_type" ||
 					$search_key == "order-by" || 
