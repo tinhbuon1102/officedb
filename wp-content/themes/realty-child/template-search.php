@@ -65,7 +65,6 @@ jQuery(window).load(function() {
 							<?php endwhile; ?>
 						</ul>
 						
-						<?php if (!$_REQUEST['size']) {?>
 						<div class="modal fade modal-custom" id="building_detail_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
@@ -73,8 +72,8 @@ jQuery(window).load(function() {
 										<span class="linericon-cross" aria-hidden="true">X</span>
 									</button>
 									<div class="modal-header">
-										<h2 class="no-margin bld_name">Building name</h2>
-										<h4 class="no-margin bld_sublocate"><span class="addr">address</span><span class="station">station</span></h4>
+										<h2 class="no-margin bld_name"></h2>
+										<h4 class="no-margin bld_sublocate"><span class="addr"></span><span class="station"></span></h4>
 									</div>
 									<div class="modal-body">
 										<div id="details-wrapper" class="details-wrapper motmot open">
@@ -91,9 +90,7 @@ jQuery(window).load(function() {
 															</div>
 															<div class="col-md-9 col-sm-9 col-xs-12 details-right-panel">
 																<div class="container-flexible-medium left">
-																<div class="details-summary">
-																	Carrot Tower is the landmark tower directly connected to Sangenjaya station / Setagaya Line. It is located in a quiet neighborhood with better access to Shibuya.
-																</div>
+																<div class="details-summary"></div>
 																	<div class="propertyTable">
 																	<table>
 																		<thead>
@@ -120,7 +117,6 @@ jQuery(window).load(function() {
 								</div>
 							</div>
 						</div>
-						<?php }?>
 
 						<?php wp_reset_query(); ?>
 
