@@ -1507,7 +1507,7 @@ function realty_get_floors($building_id = 0){
 						<td class="overlink rent_unit_price"><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
 						<td class="overlink unit_condo_fee"><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
 						<td class="overlink move_in_date"><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
-						<td class="overlink vacancy_info'. ($related_floor['vacancy_info'] ? 'available' : 'unavailable') .'">
+						<td class="overlink vacancy_info '. ($related_floor['vacancy_info'] ? 'available' : 'unavailable') .'">
 							<a href="'.get_permalink().'">'.($related_floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available')).'</a>
 						</td>
 						<td class="favorite_column">'.$floor['favorite'].'</td>
