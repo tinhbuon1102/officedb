@@ -576,7 +576,10 @@ function realty_posts_request ($request, $query)
 	global $wpdb;
 	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
-		$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+		if ($_GET['action'] != 'realty_get_floors')
+		{
+			$request = str_replace('GROUP BY wp_posts.ID', 'GROUP BY wp_posts.pinged', $request);
+		}
 
 		if (isset($query->query['meta_query']) &&
 				isset($query->query['meta_query'][0]) &&
