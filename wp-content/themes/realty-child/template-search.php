@@ -103,6 +103,7 @@ jQuery(window).load(function() {
 																				<th><?php echo __('Rent', 'realty')?></th>
 																				<th><?php echo __('Common service', 'realty')?></th>
 																				<th><?php echo __('Date of occupancy', 'realty')?></th>
+																				<th><?php echo __('Vacancy', 'realty')?></th>
 																				<th></th>
 																			</tr>
 																		</thead>
