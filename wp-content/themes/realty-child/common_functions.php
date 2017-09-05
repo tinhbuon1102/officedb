@@ -1465,7 +1465,6 @@ function realty_get_floors($building_id = 0){
 	$responseArray = array();
 	$responseHtml = '';
 	if ($query_floors_results->have_posts() && $query_floors_results->post_count > 1) {
-		$count_related = 0;
 		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
 			global $post;
 			$related_property_id = get_the_ID();
@@ -1474,10 +1473,6 @@ function realty_get_floors($building_id = 0){
 			$google_maps = get_post_meta( $related_property_id, 'estate_property_google_maps', true );
 			$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
 			
-			// out if floor has no vacant
-			if (!$related_floor['vacancy_info']) continue;
-			$count_related ++;
-	
 			$floor = array();
 			$floor['floor_up_down'] = translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id);
 			$floor['area_ping'] = translateBuildingValue('area_ping', $building, $related_floor, $related_property_id);
