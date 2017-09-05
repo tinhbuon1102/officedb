@@ -497,6 +497,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 					$('body').LoadingOverlay("show");
 					global_request.action = 'realty_get_floors';
 					global_request.building_id = building_id;
+					global_request.lang = global_lang;
 					
 					$.ajax({
 						type: 'GET',

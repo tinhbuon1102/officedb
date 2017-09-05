@@ -22,6 +22,7 @@
 <![endif]-->
 <script type="text/javascript">
 	var message_no_result = '<?php echo trans_text('No result for "{{query}}"')?>';
+	var global_lang = '<?php echo pll_current_language()?>';
 </script>
   
 
