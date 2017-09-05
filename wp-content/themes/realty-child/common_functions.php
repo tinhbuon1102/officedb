@@ -1469,14 +1469,8 @@ function realty_get_floors($building_id = 0){
 	$action = $_GET['action'];
 	$building_id = $_GET['building_id'];
 	
-	unset($_GET['action']);
-	unset($_GET['building_id']);
-	
 	$buildingArgs = apply_filters( 'property_search_args', $buildingArgs );
 	$query_floors_results = new WP_Query($buildingArgs);
-	
-	$_GET['action'] = $action;
-	$_GET['building_id'] = $building_id;
 	
 	$responseArray = array();
 	$responseHtml = '';
