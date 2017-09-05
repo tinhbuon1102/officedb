@@ -2090,21 +2090,27 @@ body.en.single-property h3.section-title {
     font-style: italic;
 }
 section#similar-properties h3.section-title {
-    font-family: "futura-pt",sans-serif !important;
-    font-weight: 100;
-	font-style: normal;
+    font-style: normal;
     font-size: 26px;
     font-size: 1.8em;
     letter-spacing: 0.06em;
-    text-transform: uppercase;
 }
-body.ja section#similar-properties h3.section-title span:after {
+body.en section#similar-properties h3.section-title {
+    font-family: "futura-pt",sans-serif;
+    text-transform: uppercase;
+	font-weight: 100;
+}
+
+body.ja section#similar-properties h3.section-title {
+    font-family: "a-otf-ryumin-pr6n","Roboto Slab" , Garamond , "Times New Roman" , "游明朝" , "Yu Mincho" , "游明朝体" , "YuMincho" , "ヒラギノ明朝 Pro W3" , "Hiragino Mincho Pro" , "HiraMinProN-W3" , "HGS明朝E" , "ＭＳ Ｐ明朝" , "MS PMincho" , serif;
+}
+/*body.ja section#similar-properties h3.section-title span:after {
     content: "当物件に類似する空室情報";
     display: block;
     font-family: 游ゴシック, YuGothic, "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, sans-serif;
     font-size: 14px;
     margin-top: 10px;
-}
+}*/
 body.ja.page-template-template-user-favorites h1.section-title {
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
     color: #000;
@@ -2392,6 +2398,7 @@ table#vacantfloors {
     box-sizing: border-box;
     border: 0px;
     border-collapse: collapse;
+	table-layout: fixed;
 }
 body.en table#vacantfloors th.th_dateoccupancy {
     min-width: 120px;
@@ -2403,10 +2410,10 @@ body.en table#vacantfloors th.th_dateoccupancy {
     min-width: 150px;
 }
 table#vacantfloors th.th_floor {
-    width: 100px;
+    width: 80px;
 }
 body.en table#vacantfloors th.th_view {
-    min-width: 100px;
+    width: 120px;
 }
 td.td_view {
     text-align: right;
@@ -2427,6 +2434,32 @@ table.has-border tbody td:last-child, table.has-border thead th:last-child {
 }
 table.has-border tbody tr:last-child td {
     border-bottom: 0px;
+}
+body.en table#vacantfloors th.th_use {
+    width: 80px;
+}
+table#vacantfloors td {
+    padding: 10px 1em;
+    line-height: 1.6;
+}
+table#vacantfloors td:last-child {
+    padding-right: 0;
+}
+@media (max-width: 1199px) {
+	body.en table#vacantfloors th.th_use, body.en table#vacantfloors td.td_use {
+    display: none;
+	}
+	body.en table#vacantfloors th.th_view {
+    width: 120px;
+	}
+	body.en table#vacantfloors th.th_dateoccupancy {
+    width: 150px;
+	}
+}
+@media (max-width: 767px) {
+	body.en table#vacantfloors th.th_view {
+    width: 40px
+	}
 }
 section#property-details .meta-title {
     letter-spacing: 2px;
@@ -4770,6 +4803,9 @@ display:none!important
 .property-item.featured .property-title::after, .property-item .property-title::after {
     background: none;
 }
+.property-item .property-title .title {
+	color: #000;
+}
 /*click details*/
 .motmot * {
     box-sizing: border-box;
@@ -4800,16 +4836,13 @@ display:none!important
 .motmot h2, .motmot h4 {
 	font-weight: 400;
 }
-.motmot h2 {
+#building_detail_modal h2 {
     font-size: 2.45rem;
     line-height: 2.45rem;
     font-weight: 400;
 	font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
-body.ja .motmot h2 {
-    font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
-}
-.motmot h4 {
+body.page-template h4.bld_sublocate {
     font-size: 1em;
 }
 .motmot .no-margin {
@@ -4840,6 +4873,7 @@ body.ja .motmot h2 {
 .propertyTable th {
     font-weight: 400;
     font-size: .9em;
+	border-bottom: 1px solid #CCC;
 }
 .propertyTable td {
     border-bottom: 1px solid #dcdcdc;
@@ -4883,4 +4917,20 @@ body.ja .motmot h2 {
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+@media (max-width: 767px) {
+	#building_detail_modal h2 {
+    font-size: 1.6rem;
+    line-height: 2rem;
+	}
+	.bld_sublocate > span {
+    margin-right: 0px;
+    display: block;
+	}
+	.details-right-panel {
+    margin-top: 15px;
+	}
+}
+@media (max-width: 480px) {
+	
 }
