@@ -524,7 +524,6 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 							}
 							else {
 								// Redirect if building have only this floor
-								$('body').LoadingOverlay("hide");
 								location.href = clickElement.attr('href');
 							}
 						},
