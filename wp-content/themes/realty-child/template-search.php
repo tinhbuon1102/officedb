@@ -8,11 +8,14 @@ $listing_view = $realty_theme_option['property-listing-default-view'];
 ?>
 
 <script>
+var global_request = <?php echo count($_GET) ? json_encode($_GET) : '{}'?>;
+
 jQuery(window).load(function() {
 	var windowHeight = jQuery(window).height();
 	var headerHeight = jQuery('#header').height();
 	var verticalMapHeight = windowHeight - headerHeight;
 	jQuery('.google-map').height(verticalMapHeight);
+	
 });
 </script>
 

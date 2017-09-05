@@ -19,10 +19,13 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 		$search_results_per_page = $realty_theme_option['search-results-per-page'];
 
 		// Search Results Per Page: Check for Theme Option
-		if ( $search_results_per_page ) {
-			$search_results_args['posts_per_page'] = $search_results_per_page;
-		} else {
-			$search_results_args['posts_per_page'] = 10;
+		if (!isset($search_results_args['posts_per_page']))
+		{
+			if ( $search_results_per_page ) {
+				$search_results_args['posts_per_page'] = $search_results_per_page;
+			} else {
+				$search_results_args['posts_per_page'] = 10;
+			}
 		}
 
 		/* META & TAX QUERIES:
@@ -480,7 +483,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 		}
 
 		// Search Results Order
-		if ( ! empty( $_GET[ 'order-by' ]) || ! empty( $realty_theme_option['search_results_default_order'] ) ) {
+		if (( ! empty( $_GET[ 'order-by' ]) || ! empty( $realty_theme_option['search_results_default_order'] ) ) && !isset($search_results_args['orderby']) ) {
 
 			if ( ! empty( $_GET[ 'order-by' ] ) ) {
 				$orderby = $_GET[ 'order-by' ];
@@ -574,16 +577,19 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 		}
 
 		if ( $meta_count > 0 ) {
-			$search_results_args['meta_query'] = $meta_query;
+			$search_results_args['meta_query'] = isset($search_results_args['meta_query']) ? array_merge($search_results_args['meta_query'], $meta_query) : $meta_query;
 		}
 
 		if ( $tax_count > 0 ) {
 			$search_results_args['tax_query'] = $tax_query;
 		}
 
-		
 		$size_key = array_search('estate_property_size', $searching_fields);
-		if ((!isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size'))) && ($size_key === false || !$_GET[$size_key] || $_GET[$size_key] == 'all')  )
+		if (
+				((!isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')))
+				&& ($size_key === false || !$_GET[$size_key] || $_GET[$size_key] == 'all'))
+				|| strpos($_SERVER['REQUEST_URI'], 'search-properties') !== false
+			)
 		{
 			$search_results_args = buildSearchArgs($search_results_args);
 		}

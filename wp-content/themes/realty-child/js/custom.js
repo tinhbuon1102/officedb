@@ -495,10 +495,13 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 				if ($('#building_detail_modal').attr('data-buildingid') != building_id)
 				{
 					$('body').LoadingOverlay("show");
+					global_request.action = 'realty_get_floors';
+					global_request.building_id = building_id;
+					
 					$.ajax({
 						type: 'GET',
 						url: ajax_object.ajax_url,
-						data: {action: 'realty_get_floors', building_id: building_id},
+						data: global_request,
 						dataType: 'json',
 						success: function (response) {
 							if (response.html)

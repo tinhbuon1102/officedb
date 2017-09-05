@@ -623,7 +623,7 @@ function buildSearchArgs($search_results_args){
 	{
 		foreach ($search_results_args['meta_query'] as $meta_field)
 		{
-			if (isset($meta_field['key']) && $meta_field['key'] == 'estate_property_size')
+			if ((isset($meta_field['key']) && $meta_field['key'] == 'estate_property_size') && strpos($_SERVER['REQUEST_URI'], 'search-properties') === false)
 			{
 				// Don't group floor if has size in Search
 				return $search_results_args;
@@ -1452,6 +1452,18 @@ function get_floors_by_building($building_id)
 		),
 		'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
 	);
+	
+	$action = $_GET['action'];
+	$building_id = $_GET['building_id'];
+	
+	unset($_GET['action']);
+	unset($_GET['building_id']);
+	
+	$buildingArgs = apply_filters( 'property_search_args', $buildingArgs );
+	
+	$_GET['action'] = $action;
+	$_GET['building_id'] = $building_id;
+	
 	return new WP_Query($buildingArgs);
 }
 
@@ -1473,6 +1485,9 @@ function realty_get_floors($building_id = 0){
 			$google_maps = get_post_meta( $related_property_id, 'estate_property_google_maps', true );
 			$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
 			
+			// out if floor has no vacant
+// 			if (!$related_floor['vacancy_info']) continue;
+	
 			$floor = array();
 			$floor['floor_up_down'] = translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id);
 			$floor['area_ping'] = translateBuildingValue('area_ping', $building, $related_floor, $related_property_id);
