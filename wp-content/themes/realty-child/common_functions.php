@@ -1507,15 +1507,15 @@ function realty_get_floors($building_id = 0){
 			}
 			
 			$row = '<tr class="overlink_row">
-						<td class="overlink"><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
-						<td class="overlink"><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
-						<td class="overlink"><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
-						<td class="overlink"><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
-						<td class="overlink"><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
-						<td class="overlink '. ($floor['vacancy_info'] ? 'available' : 'unavailable') .'">
+						<td class="overlink floor_up_down"><a href="'.get_permalink().'">'.$floor['floor_up_down'].'</a></td>
+						<td class="overlink area_ping"><a href="'.get_permalink().'">'.$floor['area_ping'].'</a></td>
+						<td class="overlink rent_unit_price"><a href="'.get_permalink().'">'.$floor['rent_unit_price'].'</a></td>
+						<td class="overlink unit_condo_fee"><a href="'.get_permalink().'">'.$floor['unit_condo_fee'].'</a></td>
+						<td class="overlink move_in_date"><a href="'.get_permalink().'">'.$floor['move_in_date'].'</a></td>
+						<td class="overlink vacancy_info'. ($floor['vacancy_info'] ? 'available' : 'unavailable') .'">
 							<a href="'.get_permalink().'">'.($floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available')).'</a>
 						</td>
-						<td>'.$floor['favorite'].'</td>
+						<td class="favorite_column">'.$floor['favorite'].'</td>
 					</tr>';
 			$responseArray['floor'][] = $floor;
 			$responseHtml .= $row;

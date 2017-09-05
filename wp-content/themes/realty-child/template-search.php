@@ -98,13 +98,13 @@ jQuery(window).load(function() {
 																	<table>
 																		<thead>
 																			<tr class="column-head">
-																				<th><?php echo __('Floor', 'realty')?></th>
-																				<th><?php echo __('Area', 'realty')?></th>
-																				<th><?php echo __('Rent', 'realty')?></th>
-																				<th><?php echo __('Common service', 'realty')?></th>
-																				<th><?php echo __('Date of occupancy', 'realty')?></th>
-																				<th><?php echo __('Vacancy', 'realty')?></th>
-																				<th></th>
+																				<th class="floor_up_down"><?php echo __('Floor', 'realty')?></th>
+																				<th class="area_ping"><?php echo __('Area', 'realty')?></th>
+																				<th class="rent_unit_price"><?php echo __('Rent', 'realty')?></th>
+																				<th class="unit_condo_fee"><?php echo __('Common service', 'realty')?></th>
+																				<th class="move_in_date"><?php echo __('Date of occupancy', 'realty')?></th>
+																				<th class="vacancy_info"><?php echo __('Vacancy', 'realty')?></th>
+																				<th class="favorite_column"></th>
 																			</tr>
 																		</thead>
 																		<tbody></tbody>
