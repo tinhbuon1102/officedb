@@ -122,7 +122,8 @@
 		$pdfUrl = getBuildingPDF($building_id);
 		
 		// Get list same building
-		$query_floors_results = get_floors_by_building($building_id);
+		$buildingArgs = get_floors_by_building($building_id);
+		$query_floors_results = new WP_Query($buildingArgs);
 		
 		$i_vacancy_floor = 0;
 		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();

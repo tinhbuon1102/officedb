@@ -1456,18 +1456,7 @@ function get_floors_by_building($building_id)
 		'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
 	);
 	
-	$action = $_GET['action'];
-	$building_id = $_GET['building_id'];
-	
-	unset($_GET['action']);
-	unset($_GET['building_id']);
-	
-	$buildingArgs = apply_filters( 'property_search_args', $buildingArgs );
-	
-	$_GET['action'] = $action;
-	$_GET['building_id'] = $building_id;
-	
-	return new WP_Query($buildingArgs);
+	return $buildingArgs;
 }
 
 add_action( 'wp_ajax_realty_get_floors', 'realty_get_floors' );
@@ -1475,7 +1464,19 @@ add_action( 'wp_ajax_nopriv_realty_get_floors', 'realty_get_floors' );
 function realty_get_floors($building_id = 0){
 	$building_id = $_REQUEST['building_id'];
 	$building = getBuildingByBuildingID($building_id);
-	$query_floors_results = get_floors_by_building($building_id);
+	$buildingArgs = get_floors_by_building($building_id);
+	
+	$action = $_GET['action'];
+	$building_id = $_GET['building_id'];
+	
+	unset($_GET['action']);
+	unset($_GET['building_id']);
+	
+	$buildingArgs = apply_filters( 'property_search_args', $buildingArgs );
+	$query_floors_results = new WP_Query($buildingArgs);
+	
+	$_GET['action'] = $action;
+	$_GET['building_id'] = $building_id;
 	
 	$responseArray = array();
 	$responseHtml = '';
