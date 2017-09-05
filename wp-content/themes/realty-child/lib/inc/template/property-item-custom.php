@@ -44,6 +44,7 @@ $estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $
 $floor = getFloor($property_id);
 
 $post_title = (isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all') || (isset($show_floor_title) && $show_floor_title) ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
+$post_title = strpos($_SERVER['REQUEST_URI'], 'search-properties') === false ? $post_title : get_post_meta($property_id, 'post_title_building', true);
 
 $classes = array();
 $classes[] = 'property-item';
