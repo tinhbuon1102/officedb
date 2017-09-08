@@ -4,7 +4,7 @@ define('PROPERTY_VIEWED_LIMIT', 3);
 define('OFFICE_DB_FEE_RATE', 3.30578);
 define('PROPERTY_HOME_FEATURE_CONTENT_LIMIT', 48);
 define('PROPERTY_MAIL_TESTING', true);
-define('PROPERTY_MAIL_CC', 'kyoko@heart-hunger.com');
+define('PROPERTY_MAIL_CC', 'kyoko@heart-hunger.com, baba@properties.co.jp');
 define('PROPERTY_MAIL_BCC', 'quocthang.2001@gmail.com');
 
 // *** DO NOT MODIFY BELOW ****

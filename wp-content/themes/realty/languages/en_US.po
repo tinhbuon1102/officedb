@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-09-04 10:05+0900\n"
+"PO-Revision-Date: 2017-09-08 10:36+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -3286,7 +3286,7 @@ msgstr ""
 #: realty-core/shortcodes/shortcode-contact-form.php:11
 #: realty-core/shortcodes/shortcode-contact-form.php:218
 msgid "Contact Form Request"
-msgstr ""
+msgstr "物件お問い合わせを受け付けました(英語) | 高級オフィス検索"
 
 #: realty-core/shortcodes/shortcode-contact-form.php:14
 #: realty-core/shortcodes/shortcode-contact-form.php:279

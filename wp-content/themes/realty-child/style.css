@@ -4814,7 +4814,7 @@ display:none!important
     margin: 0 auto;
 }
 .motmot .padding-right-large {
-    padding-right: 20px;
+    padding-right: 0px;
 }
 .motmot .container-max {
     width: 100%;
@@ -4874,6 +4874,7 @@ body.page-template h4.bld_sublocate {
     font-weight: 400;
     font-size: .9em;
 	border-bottom: 1px solid #CCC;
+	padding: 7px 3px;
 }
 .propertyTable td {
     border-bottom: 1px solid #dcdcdc;
@@ -4932,5 +4933,28 @@ body.page-template h4.bld_sublocate {
 	}
 }
 @media (max-width: 480px) {
-	
+	.propertyTable .favorite_column, .propertyTable .unit_condo_fee, .propertyTable .move_in_date {
+    display: none;
+	}
+	.modal .modal-dialog .modal-content {
+    padding: 30px 20px;
+	}
+	.propertyTable td {
+    position: relative;
+	}
+	.propertyTable td.vacancy_info:after {
+    font-family: 'realty';
+    content: "\75";
+    position: absolute;
+    margin-top: -6px;
+    top: 50%;
+    right: 0;
+    font-size: .6em;
+    line-height: 1;
+    transform: rotate(0deg);
+	}
+	.propertyTable .floor_up_down {
+	width: 60px;
+    text-align: left;
+	}
 }
