@@ -1545,3 +1545,17 @@ function realty_wp_mail ($atts)
 	
 	return $atts;
 }
+
+function realty_recaptcha_scripts() {
+	wp_deregister_script( 'google-recaptcha' );
+
+	$url = 'https://www.google.com/recaptcha/api.js';
+	$url = add_query_arg( array(
+		'onload' => 'recaptchaCallback',
+		'render' => 'explicit',
+		'hl' => pll_current_language()), $url ); // es is the language code for Spanish language
+
+	wp_register_script( 'google-recaptcha', $url, array(), '2.0', true );
+}
+
+add_action( 'wpcf7_enqueue_scripts', 'realty_recaptcha_scripts', 11 );
