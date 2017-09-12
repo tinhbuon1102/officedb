@@ -132,6 +132,12 @@ Template Name: User - Profile
 
 			<?php } else { ?>
 				<p class=" alert alert-info"><?php esc_html_e( 'Login to view and edit your profile.', 'realty' ); ?></p>
+				<script type="text/javascript">
+					jQuery(function($){
+					    jQuery('#header .top-header-links a[data-toggle="modal"]:eq(0)').trigger("click");
+					});
+				</script>
+				
 			<?php } ?>
 
 		</div>
