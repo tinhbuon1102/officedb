@@ -4958,3 +4958,8 @@ body.page-template h4.bld_sublocate {
     text-align: left;
 	}
 }
+body.ja #tab-registration .wppb-default-username label:after {
+    content: "半角英数字のみ使用可能";
+    padding-left: 5px;
+    font-size: .9em;
+}
