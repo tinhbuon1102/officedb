@@ -132,7 +132,7 @@ $user_phone = get_user_meta($user->ID, 'user_phone', true);
 									type: 'GET',
 									url: ajax_object.ajax_url,
 									data: formData,
-									success:function(){
+									success:function(response){
 										//console.log(formData);
 										$('#contact_modal .modal-dialog').LoadingOverlay("hide");
 										alert('<?php echo esc_html_e( 'Message has been sent successfully.', 'realty' )?>');

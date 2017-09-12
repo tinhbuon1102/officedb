@@ -14,6 +14,8 @@ if ( ! function_exists( 'submit_property_contact_form' ) ) {
 			$property_url = $_POST['property_url'];
 			$recipient = array();
 
+			$admin_email = get_bloginfo( 'admin_email' );
+			
 			if ( $realty_theme_option['property-contact-form-cc-admin'] ) {
 				$recipient[] = $_POST['agent_email'];
 				$recipient[] = $realty_theme_option['property-contact-form-cc-admin'];
@@ -52,11 +54,23 @@ if ( ! function_exists( 'submit_property_contact_form' ) ) {
 		  	$message .= esc_html__( 'Sent from', 'realty' ) . ': ' . $property_url;
 			}
 
-		  $headers[] = "From: $name <$email>";
-		  $headers[] = "Content-Type: text/html; charset=UTF-8";
-
+			$headers[] = "From:<$admin_email>";
+			$headers[] = "Reply-To: $name <$email>";
+			$headers[] = "Content-Type: text/html; charset=UTF-8";
+			
+			
+			// Send to admin
+			$subject = trans_text('物件お問い合わせを受け付けました(英語) | 高級オフィス検索');
 			wp_mail( $recipient, $subject, $message, $headers );
-
+			
+			// Send to customer
+			$subject_customer = trans_text('Thank you for inquiring about the property | Premium Office Search');
+			$message_customer = trans_text('Thank you very much for your inquiry at the Premium Office Search this time. <br />Please wait for a while because we will contact you within 1 - 3 business days.<br />The property you are contacting is below.<br /><br />');
+			$message_customer .= $message;
+			wp_mail( $email, $subject_customer, $message_customer, $headers );
+			
+			$thankUrl = home_url() . (isEnglish() ? '/thank-you-2/' : '/thank-you/');
+			echo json_encode(array('error' => false, 'redirect' => $thankUrl)); die;
 		}
 
 		die;
