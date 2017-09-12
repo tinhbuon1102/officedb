@@ -131,6 +131,13 @@ if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
 if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 {
 	$thankUrl = home_url() . (isEnglish() ? '/thank-you-2/' : '/thank-you/'); 
+}
+elseif (strpos($_SERVER['REQUEST_URI'], 'smart-searching') !== false)
+{
+	$thankUrl = home_url() . (isEnglish() ? '/thank-you-for-your-request/' : '/thankyou-smart/'); 
+}
+if (isset($thankUrl) && $thankUrl)
+{
 	?>
 	<script>
 	document.addEventListener( 'wpcf7mailsent', function( event ) {
@@ -138,7 +145,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact-us') !== false)
 	}, false );
 	</script>
 <?php 
-}?>
+}
+
+?>
 
 <script type="text/javascript">
 function addingScript(url){
