@@ -1534,12 +1534,24 @@ function realty_wp_mail ($atts)
 	{
 		if (is_string($atts['headers']))
 		{
-			$atts['headers'] .= 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
-			$atts['headers'] .= 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+			if (defined('PROPERTY_MAIL_CC') || PROPERTY_MAIL_CC)
+			{
+				$atts['headers'] .= 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
+			}
+			if (defined('PROPERTY_MAIL_BCC') || PROPERTY_MAIL_BCC)
+			{
+				$atts['headers'] .= 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+			}
 		}
 		else {
-			$atts['headers'][] = 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
-			$atts['headers'][] = 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+			if (defined('PROPERTY_MAIL_CC') || PROPERTY_MAIL_CC)
+			{
+				$atts['headers'][] = 'Cc: ' . PROPERTY_MAIL_CC . PHP_EOL;
+			}
+			if (defined('PROPERTY_MAIL_BCC') || PROPERTY_MAIL_BCC)
+			{
+				$atts['headers'][] = 'Bcc: ' . PROPERTY_MAIL_BCC . PHP_EOL;
+			}
 		}
 	}
 	
