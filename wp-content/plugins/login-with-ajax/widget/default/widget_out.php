@@ -95,7 +95,7 @@
 			<form class="lwa-register-form register" action="<?php echo esc_attr(LoginWithAjax::$url_register); ?>" method="post">
 				<div class="lwa-status"></div>
 				<?php do_action('lwa_register_form');?>
-				<input type="hidden" name="login-with-ajax" value="<?php echo trans_text('register')?>" />
+				<input type="hidden" name="login-with-ajax" value="<?php echo trans_text('Register')?>" />
 			</form>
 		</div>
 	<?php endif; ?>
