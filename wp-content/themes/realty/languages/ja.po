@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-09-11 23:51+0900\n"
+"PO-Revision-Date: 2017-09-12 12:19+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -523,7 +523,7 @@ msgstr "パスワード"
 
 #: template-user-profile.php:249
 msgid "Login to view and edit your profile."
-msgstr ""
+msgstr "アカウントページを見るにはログインしてください。"
 
 #: lib/functions-add-to-favorites.php:63 lib/functions-add-to-favorites.php:118
 #: lib/functions-add-to-favorites.php:135
@@ -754,7 +754,7 @@ msgstr ""
 #: lib/functions-forms.php:48 realty-core/custom-post-types.php:19
 #: realty-core/shortcodes/shortcode-single-property.php:67
 msgid "Property"
-msgstr ""
+msgstr "物件"
 
 #: lib/functions-forms.php:52
 #: realty-core/shortcodes/shortcode-contact-form.php:356
@@ -763,7 +763,7 @@ msgstr "送信元"
 
 #: lib/functions-forms.php:114
 msgid "Property: "
-msgstr ""
+msgstr "物件: "
 
 #: lib/functions-login.php:14 lib/inc/template/login-bar-header.php:24
 msgid "Login"
@@ -4351,7 +4351,7 @@ msgstr "送信"
 
 #: lib/inc/template/contact-form.php:55
 msgid "Message has been sent successfully."
-msgstr ""
+msgstr "問い合わせの送信が完了しました。"
 
 #: lib/inc/template/login-bar-header.php:15
 #: lib/inc/template/login-bar-header.php:50
