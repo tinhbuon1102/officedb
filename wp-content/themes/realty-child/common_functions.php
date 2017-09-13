@@ -872,7 +872,7 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 				return $price . '/' . AREA_M2;
 			}
 			else {
-				return $floor['unit_condo_fee'] . '/' . trans_text('tsubo');
+				return renderPrice(formatNumber(str_replace(',', '', $building['unit_condo_fee']))). '/' . trans_text('tsubo');
 			}
 			
 			break;
