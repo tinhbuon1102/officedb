@@ -861,6 +861,22 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			return $floor[$field] == FLOOR_UNIT_OPTION_UNDECIDED ? trans_text('Undecided') : trans_text('Ask');
 			break;
 
+		case "unit_condo_fee" :
+			if (!$floor['unit_condo_fee'])
+			{
+				return translateBuildingValue('unit_condo_fee_opt', $building, $floor, $property_id);
+			}
+			if (false && isEnglish())
+			{
+				$price = renderPrice(formatNumber(str_replace(',', '', $building['unit_condo_fee'])) / OFFICE_DB_FEE_RATE);
+				return $price . '/' . AREA_M2;
+			}
+			else {
+				return $floor['unit_condo_fee'] . '/' . trans_text('tsubo');
+			}
+			
+			break;
+			
 		case "unit_condo_fee_opt":
 			switch ($floor[$field])
 			{
