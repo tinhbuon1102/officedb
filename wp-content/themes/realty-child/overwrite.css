@@ -1,0 +1,19 @@
+body.ja #tab-registration .wppb-default-username label:after {
+    content: "半角英数字のみ使用可能";
+    padding-left: 5px;
+    font-size: .9em;
+}
+body.page-template-page-propertylisting div#property-items li h3:before {
+	display: none;
+}
+@media (min-width: 1200px) {
+	body.page-template-page-propertylisting .col-lg-3 {
+    width: 20%;
+	}
+	body.page-template-page-propertylisting .property-items li.col-lg-3:nth-child(4n+5) {
+    clear: none;
+	}
+	body.page-template-page-propertylisting .property-items li.col-lg-3:nth-child(5n+6) {
+    clear: both;
+	}
+}

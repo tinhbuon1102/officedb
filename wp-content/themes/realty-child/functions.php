@@ -4,6 +4,11 @@ include 'common_functions.php';
 
 add_action( 'personal_options', array ( 'T5_Hide_Profile_Bio_Box', 'start' ) );
 
+function add_files() {
+// サイト共通のCSSの読み込み
+wp_enqueue_style( 'over-style', get_stylesheet_directory_uri() . '/overwrite.css?'. filemtime( get_stylesheet_directory() . '/overwrite.css') );
+}
+add_action( 'wp_enqueue_scripts', 'add_files' );
 /**
  * Captures the part with the biobox in an output buffer and removes it.
  *
