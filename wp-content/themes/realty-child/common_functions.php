@@ -868,11 +868,11 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			}
 			if (false && isEnglish())
 			{
-				$price = renderPrice(formatNumber(str_replace(',', '', $building['unit_condo_fee'])) / OFFICE_DB_FEE_RATE);
+				$price = renderPrice(formatNumber(str_replace(',', '', $floor['unit_condo_fee'])) / OFFICE_DB_FEE_RATE);
 				return $price . '/' . AREA_M2;
 			}
 			else {
-				return renderPrice(formatNumber(str_replace(',', '', $building['unit_condo_fee']))). '/' . trans_text('tsubo');
+				return renderPrice(formatNumber(str_replace(',', '', $floor['unit_condo_fee']))). '/' . trans_text('tsubo');
 			}
 			
 			break;
