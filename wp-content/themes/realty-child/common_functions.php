@@ -1062,8 +1062,8 @@ function translateBuildingValue($field, $building, $floor, $property_id){
 			else{
 				if (isEnglish())
 				{
-					$return = $building['avg_neighbor_fee_min'] ? renderPrice(str_replace(',', '', $building['avg_neighbor_fee_min']) * OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
-					$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice(str_replace(',', '', $building['avg_neighbor_fee_max']) * OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
+					$return = $building['avg_neighbor_fee_min'] ? renderPrice(str_replace(',', '', $building['avg_neighbor_fee_min']) / OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
+					$return .= $building['avg_neighbor_fee_max'] ? FIELD_MISSING_VALUE . renderPrice(str_replace(',', '', $building['avg_neighbor_fee_max']) / OFFICE_DB_FEE_RATE) : FIELD_MISSING_VALUE;
 				}
 				else {
 					$return = $building['avg_neighbor_fee_min'] ? renderPrice($building['avg_neighbor_fee_min']) : FIELD_MISSING_VALUE;
@@ -1215,7 +1215,7 @@ function renderPropertyPrice($property_id, $building, $floor)
 	}
 	if (isEnglish())
 	{
-		$price = renderPrice($property_price * OFFICE_DB_FEE_RATE);
+		$price = renderPrice($property_price / OFFICE_DB_FEE_RATE);
 		return $price . '/' . AREA_M2;
 	}
 	else {
