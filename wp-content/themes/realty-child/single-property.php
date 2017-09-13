@@ -346,7 +346,7 @@
 				[Floor[rent_unit_price_opt]]
 				else
 				[Floor[rent_unit_price]] -->
-				<?php echo $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price'])."/".trans_text('tsubo') : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);?>
+				<?php echo $floor['rent_unit_price'] ? renderPropertyPrice($single_property_id, $building, $floor) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);?>
 				</td>
 			</tr>
 			<tr>
