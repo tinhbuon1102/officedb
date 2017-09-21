@@ -81,7 +81,9 @@ add_action('wp_head', 'wppb_recaptcha_script_header');
 function wppb_recaptcha_script_footer(){
     global $wppb_recaptcha_forms;
     if( !empty( $wppb_recaptcha_forms ) ) {
-        echo '<script src="https://www.google.com/recaptcha/api.js?onload=wppbRecaptchaCallBack&render=explicit&hl='.pll_current_language().'" async defer></script>';
+        echo '
+        		jQuery(function(){wppbRecaptchaCallBack();}
+        		<script src="https://www.google.com/recaptcha/api.js?onload=wppbRecaptchaCallBack&render=explicit&hl='.pll_current_language().'" async defer></script>';
 
         $forms = explode(',',$wppb_recaptcha_forms);
 
@@ -103,7 +105,6 @@ function wppb_recaptcha_script_footer(){
             }
         }
         echo '};
-        		jQuery(function(){wppbRecaptchaCallBack;})
           </script>';
     }
 }
