@@ -103,6 +103,7 @@ function wppb_recaptcha_script_footer(){
             }
         }
         echo '};
+        		jQuery(function(){wppbRecaptchaCallBack;})
           </script>';
     }
 }
