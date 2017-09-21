@@ -542,7 +542,9 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 		
 		if ($('form.lwa-register-form').length)
 		{
-			wppbRecaptchaCallBack();
+			setTimeout(function(){
+				wppbRecaptchaCallBack();
+			}, 3000)
 		}
 		
 	}
