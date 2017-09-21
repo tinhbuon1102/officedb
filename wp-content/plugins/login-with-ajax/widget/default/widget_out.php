@@ -95,6 +95,7 @@
 		<div class="tab-pane lwa-register lwa-register-default" id="tab-registration">
 			<form class="lwa-register-form register" action="<?php echo esc_attr(LoginWithAjax::$url_register); ?>" method="post">
 				<div class="lwa-status"></div>
+				<input name="lang" type="hidden" value="<?php echo pll_current_language();?>" />
 				<?php do_action('lwa_register_form');?>
 				<input type="hidden" name="login-with-ajax" value="<?php echo trans_text('Register')?>" />
 			</form>
