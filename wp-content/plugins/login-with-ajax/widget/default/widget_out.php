@@ -41,6 +41,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<input name="rememberme" type="checkbox" class="lwa-rememberme" value="forever" />
+							<input name="lang" type="hidden" value="<?php echo pll_current_language();?>" />
 							<label class="visible"><?php esc_html_e( 'Remember Me','login-with-ajax' ) ?></label>
 						</div>
 					</div>
