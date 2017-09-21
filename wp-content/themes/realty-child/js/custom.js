@@ -540,7 +540,10 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 			});
 		}
 		
-		wppbRecaptchaCallBack();
+		if ($('form.lwa-register-form').length)
+		{
+			wppbRecaptchaCallBack();
+		}
 		
 	}
 	
