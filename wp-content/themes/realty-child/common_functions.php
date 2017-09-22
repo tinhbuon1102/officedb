@@ -1594,6 +1594,7 @@ function realty_registration_errors($errors, $sanitized_user_login, $user_email)
 	global $realty_theme_option, $current_user;
 	
 	// If reCAPTCHA not entered or incorrect reCAPTCHA answer
+	$wppb_recaptcha_response = wppb_validate_captcha_response( $realty_theme_option['google-recaptcha-site-key'], $realty_theme_option['google-recaptcha-secret-key'] );
 	if ( $wppb_recaptcha_response == false ) {
 		$errors->add( 'wppb_recaptcha_error', __('Please enter a (valid) reCAPTCHA value','profile-builder') );
 	}
