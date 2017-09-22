@@ -1587,3 +1587,16 @@ function realty_recaptcha_scripts() {
 }
 
 add_action( 'wpcf7_enqueue_scripts', 'realty_recaptcha_scripts', 11 );
+
+
+add_filter( 'registration_errors', 'realty_registration_errors', 10, 3 );
+function realty_registration_errors($errors, $sanitized_user_login, $user_email) {
+	global $realty_theme_option, $current_user;
+	
+	// If reCAPTCHA not entered or incorrect reCAPTCHA answer
+	if ( $wppb_recaptcha_response == false ) {
+		$errors->add( 'wppb_recaptcha_error', __('Please enter a (valid) reCAPTCHA value','profile-builder') );
+	}
+	
+	return $errors;
+}
