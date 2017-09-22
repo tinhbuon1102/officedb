@@ -461,7 +461,7 @@ function wppb_verify_recaptcha_default_wp_register( $errors ){
 
 return $errors;
 }
-add_filter('registration_errors','wppb_verify_recaptcha_default_wp_register');
+// add_filter('registration_errors','wppb_verify_recaptcha_default_wp_register');
 
 // set default "Display on which forms?" values in case there's already an existing reCAPTCHA field in Manage fields (when upgrading)
 function wppb_recaptcha_set_default_values() {
