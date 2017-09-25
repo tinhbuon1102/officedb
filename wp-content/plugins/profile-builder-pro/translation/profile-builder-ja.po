@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Profile Builder package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2017-09-12 00:15+0900\n"
+"PO-Revision-Date: 2017-09-21 14:06+0900\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2827,7 +2827,7 @@ msgstr ""
 #: profile-builder-2.0/front-end/extra-fields/recaptcha/recaptcha.php:421
 #: profile-builder-2.0/front-end/extra-fields/recaptcha/recaptcha.php:458
 msgid "Please enter a (valid) reCAPTCHA value"
-msgstr ""
+msgstr "ロボット認証にチェックをいれてください"
 
 #: profile-builder-2.0/front-end/extra-fields/recaptcha/recaptcha.php:421
 msgid "Click the BACK button on your browser, and try again."
