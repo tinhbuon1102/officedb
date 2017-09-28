@@ -1,4 +1,74 @@
 jQuery(document).ready(function($){
+	$(window).on('load', function(){
+		$('.tmp_table_row > td').wrapInner('<span />');
+	});
+	$(window).on('load resize', function(){
+	
+	//所在階
+	var max1 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_name').each(function(){
+        $(this).children().each(function(){
+            var itemWidth1 = parseInt($(this).width());
+            if(itemWidth1 > max1){
+                max1 = itemWidth1;
+            }
+        });
+    });
+	console.log('階数' + max1 + 'px');
+	$('.tmp_table_row > .floor_name').css('width', (max1 + 10) + 'px');
+	
+	var colCheck = $('.tmp_table_row > .floor_checkbox').innerWidth();
+	var colFloor = $('.tmp_table_row > .floor_name').innerWidth();
+	var col3 = colFloor + colCheck;
+	$('table.favorite_list_later thead th.floor_name').css('width', col3 + 'px');
+		
+	//賃料
+	var max2 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_rent').each(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($(this).width());
+            if(itemWidth > max2){
+                max2 = itemWidth;
+            }
+        });
+    });
+	console.log('賃料' + max2 + 'px');
+	$('.tmp_table_row > .floor_rent').css('width', (max2 + 10) + 'px');
+	$('table.favorite_list_later thead th.floor_rent').css('width', (max2 + 10) + 'px');
+		
+	//契約面積
+	var max3 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_area').each(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($(this).width());
+            if(itemWidth > max3){
+                max3 = itemWidth;
+            }
+        });
+    });
+	console.log('賃料' + max3 + 'px');
+	$('.tmp_table_row > .floor_area').css('width', (max3 + 10) + 'px');
+	$('table.favorite_list_later thead th.floor_area').css('width', (max3 + 10) + 'px');
+		
+	//入居日
+	var max4 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_date_move > span').each(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($(this).width());
+            if(itemWidth > max4){
+                max4 = itemWidth;
+            }
+        });
+    });
+	console.log('入居日' + max4 + 'px');
+	$('.tmp_table_row > .floor_date_move').css('width', (max4 + 10) + 'px');
+	$('table.favorite_list_later thead th.floor_date_move').css('width', (max4 + 10) + 'px');
+		
+	/*$('.tmp_table_row').each(function(i){
+		var floorMoveW = $('.tmp_table_row > .floor_date_move > span').eq(i).width();
+		$('.tmp_table_row > .floor_date_move').eq(i).css('width',floorMoveW);
+	});*/
+	});
 	$('#header .top-header .lang-item.current-lang a').click(function(){
         return false;
     });

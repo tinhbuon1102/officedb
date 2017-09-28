@@ -96,14 +96,13 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	<table class="favorite_list_later">
 		<thead>
 			<tr>
-				<th colspan="2" class="floor_picture" ><?php echo trans_text('Building Name')?></th>
+				<th class="floor_picture" ><?php echo trans_text('Building Name')?></th>
 				<?php if ($show_remove) {?>
 				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
 				<?php }?>
 				<th colspan="2" class="floor_name"><?php echo trans_text('Floor')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
-				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
 				<?php if ($show_remove) {?>
 				<th class="floor_contact"></th>
@@ -117,17 +116,16 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			$isSubcribed = count($get_user_meta_follow) ? in_array( $tableFloors[0]['property_id'], $get_user_meta_follow[0]) : false;
 		?>
 			<tr class="favorite_item">
+			<td class="show-sp name_sp"><span class="bld_name_sp"><?php echo $tableFloors[0]['building_name']?></span></td>
 			<td class="floor_picture">
-					<span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span>
-				</td>
-				<td class="bld_name">
-					<span class="floor_name"><?php echo $tableFloors[0]['building_name']?></span>
-				</td>
+			<span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span><!--
+			--><span class="bld_name"><?php echo $tableFloors[0]['building_name']?></span>
+			</td>
 				<?php if ($show_remove) {?>
 				<td class="floor_subscribe" ><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
 				<?php }?>
 				
-				<td colspan="6">
+				<td class="floors-td" colspan="6">
 					<table class="tmp_table">
 					<?php foreach ($tableFloors as $indexFloor => $floor) {
 						$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
@@ -135,13 +133,14 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 						
 					?>
 						<tr class="tmp_table_row">
-							<td class="floor_name">
+						<td class="floor_checkbox">
 								<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/>
+							</td>
+							<td class="floor_name">
 								<?php echo $floor['floor_number']?>
 							</td>
 							<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 							<td class="floor_area"><?php echo $floor['size']?></td>
-							<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
 							<td class="floor_date_move"><?php echo $floor['date_move']?></td>
 							<?php if ($show_remove) {?>
 							<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact now')?></a></td>
@@ -163,14 +162,13 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			<td class="floor_subscribe" ></td>
 			<?php }?>
 			
-			<td colspan="5">
+			<td class="floors-td" colspan="6">
 				<table class="tmp_table">
 					<tr class="tmp_table_row">
 						<td class="floor_checkbox form-group checkbox"></td>
 						<td class="floor_name"></td>
 						<td class="floor_rent"></td>
 						<td class="floor_area"></td>
-<!-- 						<td class="floor_deposit"></td> -->
 						<td class="floor_date_move"></td>
 						<?php if ($show_remove) {?>
 						<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');?>"><?php echo trans_text('Contact')?></a></td>

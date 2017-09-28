@@ -1278,9 +1278,6 @@ div#page-user-favorites .button_groups {
 	/*table.favorite_list_later thead {
     display: none;
 	}*/
-	table.favorite_list_later .floor_rent, table.favorite_list_later .floor_area, table.favorite_list_later .floor_deposit {
-    display: none;
-	}
 	.favorite_item p.fl-name {
     margin: 0 0 5px 0;
 		font-weight: bold;
@@ -1307,12 +1304,9 @@ div#page-user-favorites .button_groups {
 	table.favorite_list_later tbody tr.favorite_item td.floor_contact {
     width: 115px;
 	}
-	table.favorite_list_later tbody tr.favorite_item td.floor_subscribe {
-    width: 90px;
-	}
-	table.favorite_list_later .floor_date_move {
+	/*table.favorite_list_later .floor_date_move {
     display: none;
-	}
+	}*/
 	.hidden-spmodal {
 	display: block;
 	}
@@ -3130,9 +3124,7 @@ form #lang {display: none;}
 #contact_list_later td.floor_name {
     text-align: left;
 }
-td.floor_picture img {
-    max-width: 50px;
-}
+
 /*Privacy*/
 .pp-list h4 {
     margin-top: 2em;
