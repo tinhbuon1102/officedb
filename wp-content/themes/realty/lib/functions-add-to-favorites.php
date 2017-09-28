@@ -96,7 +96,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	<table class="favorite_list_later">
 		<thead>
 			<tr>
-				<th class="floor_picture" ><?php echo trans_text('Building Name')?></th>
+				<th colspan="2" class="floor_picture" ><?php echo trans_text('Building Name')?></th>
 				<?php if ($show_remove) {?>
 				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
 				<?php }?>
@@ -116,8 +116,10 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			$isSubcribed = count($get_user_meta_follow) ? in_array( $tableFloors[0]['property_id'], $get_user_meta_follow[0]) : false;
 		?>
 			<tr class="favorite_item">
-				<td class="floor_picture" >
+			<td class="floor_picture">
 					<span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span>
+				</td>
+				<td class="bld_name">
 					<span class="floor_name"><?php echo $tableFloors[0]['building_name']?></span>
 				</td>
 				<?php if ($show_remove) {?>
