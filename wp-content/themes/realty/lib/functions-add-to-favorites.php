@@ -508,7 +508,22 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 
 				if (!property_id) return '';
-				
+
+				// find all floor same building 
+				var relatedFloors = [property_id];
+				if (jQuery('.favorite_list_later input.floor_checked').length)
+				{
+					jQuery('#favorite-multiple-modal .favorite_list_later:eq(0) input.floor_checked').each(function(){
+						if (jQuery(this).val() == property_id) {
+							var buildingTable = jQuery(this).closest('table.tmp_table');
+
+							buildingTable.find('input.floor_checked').each(function(){
+								relatedFloors.push(jQuery(this).val());
+							});
+						}
+					});
+				}
+								
 				if (is_single)
 				{
 					if (!single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o') || elementCLick.hasClass('remove_property'))
@@ -521,7 +536,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					}
 					
 					single_wraper.find('i.add-to-favorites.origin').toggleClass('fa-star fa-star-o');
-					jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
+
+					jQuery.each(relatedFloors, function(property_index, property_id){
+						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
+					});
 
 					if (single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star'))
 					{
@@ -544,7 +562,11 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 				else {
 					if (elementCLick.hasClass('custom-fav'))
 					{						
-						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
+						jQuery.each(relatedFloors, function(property_index, property_id){
+							jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
+						});
+						
+						
 					}
 					else {
 
@@ -558,8 +580,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 							}
 							
 						}
-						
-						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
+
+						jQuery.each(relatedFloors, function(property_index, property_id){
+							jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
+						});
 
 						if (element.hasClass('fa-star'))
 						{
