@@ -510,7 +510,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 				if (!property_id) return '';
 
 				// find all floor same building 
-				var relatedFloors = [property_id];
+				var relatedFloors = [];
 				if (jQuery('.favorite_list_later input.floor_checked').length)
 				{
 					jQuery('#favorite-multiple-modal .favorite_list_later:eq(0) input.floor_checked').each(function(){
