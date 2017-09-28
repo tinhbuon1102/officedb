@@ -100,7 +100,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<?php if ($show_remove) {?>
 				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
 				<?php }?>
-				<th class="floor_name"><?php echo trans_text('Floor')?></th>
+				<th colspan="2" class="floor_name"><?php echo trans_text('Floor')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
 				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
@@ -126,7 +126,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<td class="floor_subscribe" ><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
 				<?php }?>
 				
-				<td colspan="5">
+				<td colspan="6">
 					<table class="tmp_table">
 					<?php foreach ($tableFloors as $indexFloor => $floor) {
 						$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
