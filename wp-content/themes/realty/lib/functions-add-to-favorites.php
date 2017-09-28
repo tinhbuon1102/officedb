@@ -238,6 +238,15 @@ function tt_add_remove_property_favorite($property_id){
 			{
 				unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
 			}
+			
+			// Remove follow
+			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
+			{
+				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
+				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
+				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
+			}
 		}
 		update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 	}
@@ -502,6 +511,15 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 				
 				if (is_single)
 				{
+					if (!single_wraper.find('a.add-to-favorites_wraper i.add-to-favorites').hasClass('fa-star-o') || elementCLick.hasClass('remove_property'))
+					{
+						if (!confirm('<?php echo trans_text("Removing will stop subscription too, are you sure to remove?")?>'))
+						{
+							return '';
+						}
+						
+					}
+					
 					single_wraper.find('i.add-to-favorites.origin').toggleClass('fa-star fa-star-o');
 					jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
 
@@ -529,10 +547,20 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star-o fa-star');
 					}
 					else {
-						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
 
 						var element = elementCLick.find('i').length ? elementCLick.find('i') : elementCLick.closest('i');
-						 
+						
+						if (!element.hasClass('fa-star-o') || elementCLick.hasClass('remove_property'))
+						{
+							if (!confirm('<?php echo trans_text("Removing will stop subscription too, are you sure to remove?")?>'))
+							{
+								return '';
+							}
+							
+						}
+						
+						jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
+
 						if (element.hasClass('fa-star'))
 						{
 							title = element.attr('data-remove-title');
