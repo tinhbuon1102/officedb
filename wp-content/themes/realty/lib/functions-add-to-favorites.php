@@ -585,7 +585,6 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						}
 
 						jQuery.each(relatedFloors, function(property_index, property_id){
-							alert(property_id);
 							jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
 						});
 
