@@ -30,6 +30,13 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 
 	$properties = get_posts($args);
 
+	usort($properties, function ($a, $b) use ($propertyIdList) {
+		$pos_a = array_search($a->ID, $propertyIdList);
+		$pos_b = array_search($b->ID, $propertyIdList);
+		return $pos_a - $pos_b;
+	});
+	
+	
 	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 	
 	$tableFloors = array();
