@@ -510,7 +510,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 				if (!property_id) return '';
 
 				// find all floor same building 
-				var relatedFloors = [];
+				var relatedFloors = [property_id];
 				if (jQuery('.favorite_list_later input.floor_checked').length)
 				{
 					jQuery('#favorite-multiple-modal .favorite_list_later:eq(0) input.floor_checked').each(function(){
@@ -518,7 +518,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 							var buildingTable = jQuery(this).closest('table.tmp_table');
 
 							buildingTable.find('input.floor_checked').each(function(){
-								relatedFloors.push(jQuery(this).val());
+								if (relatedFloors.indexOf(jQuery(this).val()) == -1) 
+								{
+									relatedFloors.push(jQuery(this).val());
+								}
 							});
 						}
 					});
@@ -582,6 +585,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						}
 
 						jQuery.each(relatedFloors, function(property_index, property_id){
+							alert(property_id);
 							jQuery('i.add-to-favorites[data-fav-id="'+property_id+'"]').toggleClass('fa-star fa-star-o');
 						});
 
