@@ -4,7 +4,7 @@
  * Plugin Name: Slider WD
  * Plugin URI: https://web-dorado.com/products/wordpress-slider-plugin.html
  * Description: This is a responsive plugin, which allows adding sliders to your posts/pages and to custom location. It uses large number of transition effects and supports various types of layers.
- * Version: 1.1.87
+ * Version: 1.1.91
  * Author: WebDorado
  * Author URI: https://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -13,8 +13,10 @@
 define('WD_S_NAME', plugin_basename(dirname(__FILE__))); 
 define('WD_S_DIR', WP_PLUGIN_DIR . "/" . WD_S_NAME);
 define('WD_S_URL', plugins_url(WD_S_NAME));
+define('WD_S_PREFIX', 'wds');
+define('WD_S_NICENAME', __( 'Slider WD', WD_S_PREFIX ));
 
-define('WD_S_VERSION', '1.1.87');
+define('WD_S_VERSION', '1.1.91');
 
 function wds_use_home_url() {
   $home_url = str_replace("http://", "", home_url());
@@ -219,7 +221,6 @@ function wds_preview() {
 }
 
 function wds_media_button($context) {
-
   global $pagenow;
   if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php', 'admin-ajax.php'))) {
     $context .= '
@@ -263,6 +264,9 @@ add_action('admin_head', 'wds_admin_ajax');
 // Add images to Slider.
 add_action('wp_ajax_wds_UploadHandler', 'wds_UploadHandler');
 add_action('wp_ajax_addImage', 'wds_filemanager_ajax');
+
+
+
 
 // Upload.
 function wds_UploadHandler() {
@@ -852,7 +856,7 @@ function wds_overview() {
     dorado_web_init($wds_options);
   }
 }
-add_action('init', 'wds_overview');
+add_action('init', 'wds_overview', 9);
 
 function wds_topic() {
   $page = isset($_GET['page']) ? $_GET['page'] : '';
@@ -986,3 +990,90 @@ function wds_topic() {
   echo ob_get_clean();
 }
 add_action('admin_notices', 'wds_topic', 11);
+
+/**
+ * Show notice to install backup plugin
+ */
+function wds_bp_install_notice() {
+  // Remove old notice.
+  if ( get_option('wds_bk_notice_status') !== FALSE ) {
+    update_option('wds_bk_notice_status', '1', 'no');
+  }
+
+  // Show notice only on plugin pages.
+  if ( !isset($_GET['page']) || strpos(esc_html($_GET['page']), '_wds') === FALSE ) {
+    return '';
+  }
+
+  $meta_value = get_option('wd_bk_notice_status');
+  if ( $meta_value === '' || $meta_value === FALSE ) {
+    ob_start();
+    $prefix = WD_S_PREFIX;
+    $nicename = WD_S_NICENAME;
+    $url = WD_S_URL;
+    $dismiss_url = add_query_arg(array( 'action' => 'wd_bp_dismiss' ), admin_url('admin-ajax.php'));
+    $install_url = esc_url(wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=backup-wd'), 'install-plugin_backup-wd'));
+    ?>
+    <div class="notice notice-info" id="wd_bp_notice_cont">
+      <p>
+        <img id="wd_bp_logo_notice" src="<?php echo $url . '/images/logo.png'; ?>" />
+        <?php echo sprintf(__("%s advises: Install brand new FREE %s plugin to keep your images and website safe.", $prefix), $nicename, '<a href="https://wordpress.org/plugins/backup-wd/" title="' . __("More details", $prefix) . '" target="_blank">' .  __("Backup WD", $prefix) . '</a>'); ?>
+        <a class="button button-primary" href="<?php echo $install_url; ?>">
+          <span onclick="jQuery.post('<?php echo $dismiss_url; ?>');"><?php _e("Install", $prefix); ?></span>
+        </a>
+      </p>
+      <button type="button" class="wd_bp_notice_dissmiss notice-dismiss" onclick="jQuery('#wd_bp_notice_cont').hide(); jQuery.post('<?php echo $dismiss_url; ?>');"><span class="screen-reader-text"></span></button>
+    </div>
+    <style>
+      @media only screen and (max-width: 500px) {
+        body #wd_backup_logo {
+          max-width: 100%;
+        }
+        body #wd_bp_notice_cont p {
+          padding-right: 25px !important;
+        }
+      }
+      #wd_bp_logo_notice {
+        width: 40px;
+        float: left;
+        margin-right: 10px;
+      }
+      #wd_bp_notice_cont {
+        position: relative;
+      }
+      #wd_bp_notice_cont a {
+        margin: 0 5px;
+      }
+      #wd_bp_notice_cont .dashicons-dismiss:before {
+        content: "\f153";
+        background: 0 0;
+        color: #72777c;
+        display: block;
+        font: 400 16px/20px dashicons;
+        speak: none;
+        height: 20px;
+        text-align: center;
+        width: 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .wd_bp_notice_dissmiss {
+        margin-top: 5px;
+      }
+    </style>
+    <?php
+    echo ob_get_clean();
+  }
+}
+
+if ( !is_dir(plugin_dir_path(__DIR__) . 'backup-wd') ) {
+  add_action('admin_notices', 'wds_bp_install_notice');
+}
+
+if ( !function_exists('wd_bps_install_notice_status') ) {
+  // Add usermeta to db.
+  function wd_bps_install_notice_status() {
+    update_option('wd_bk_notice_status', '1', 'no');
+  }
+  add_action('wp_ajax_wd_bp_dismiss', 'wd_bps_install_notice_status');
+}

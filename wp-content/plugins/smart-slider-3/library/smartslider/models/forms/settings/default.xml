@@ -9,7 +9,7 @@
             <param type="text" label="To" style="width:200px;"/>
         </param>
         <param type="textarea" name="external-css-files" label="Editor - additional CSS files" default=""
-               style2="width:400px; height: 100px; resize: vertical;"/>
+               style2="width:300px; height: 100px; resize: vertical;"/>
         <param type="onoff" name="hardware-acceleration" label="Hardware acceleration on sliders" default="1"/>
         <param type="onoff" name="slide-as-file" label="Send slide as file" default="0"/>
         <param type="onoff" name="preview-new-window" label="Open preview in new window" default="0"/>

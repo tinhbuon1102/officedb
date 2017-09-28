@@ -11,7 +11,6 @@ class N2SmartsliderApplicationTypeBackend extends N2ApplicationType {
             'libraries.plugin.plugin',
             'libraries.form.form',
             'libraries.image.color',
-            'libraries.mobiledetect.Mobile_Detect',
             'libraries.parse.parse'
         ));
 

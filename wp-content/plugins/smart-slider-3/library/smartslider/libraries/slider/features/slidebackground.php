@@ -25,7 +25,7 @@ class N2SmartSliderFeatureSlideBackground {
 
         if ($slide->parameters->get('background-type') == '') {
             $slide->parameters->set('background-type', 'color');
-            if ($slide->parameters->get('backgroundVideoMp4') || $slide->parameters->get('backgroundVideoWebm') || $slide->parameters->get('backgroundVideoOgg')) {
+            if ($slide->parameters->get('backgroundVideoMp4')) {
                 $slide->parameters->set('background-type', 'video');
             } else if ($slide->parameters->get('backgroundImage')) {
                 $slide->parameters->set('background-type', 'image');
@@ -33,10 +33,6 @@ class N2SmartSliderFeatureSlideBackground {
         }
 
         $html = $this->makeBackground($slide);
-
-        if ($slide->parameters->get('background-type') == 'video') {
-            $html .= $this->makeBackgroundVideo($slide);
-        }
 
         return $html;
     }
@@ -88,20 +84,35 @@ class N2SmartSliderFeatureSlideBackground {
                 $style .= "background-color: " . N2Color::colorToRGBA($color) . ";";
             }
         }
+
         return $style;
     }
 
     private function makeBackground($slide) {
 
-        $backgroundColorStyle = $this->getBackgroundStyle($slide);
-
-        if ($slide->parameters->get('background-type') == 'color') {
-            return $this->color($backgroundColorStyle);
+        $videoHTML = '';
+        if ($slide->parameters->get('background-type') == 'video') {
+            $videoHTML .= $this->makeBackgroundVideo($slide);
         }
 
-        $dynamicHeight = intval($this->slider->params->get('dynamic-height', 0));
+        $backgroundColorStyle = $this->getBackgroundStyle($slide);
 
         $backgroundImageOpacity = min(100, max(0, $slide->parameters->get('backgroundImageOpacity', 100))) / 100;
+
+        $backgroundImageBlur = max(0, $slide->parameters->get('backgroundImageBlur', 0));
+
+        $x = max(0, min(100, $slide->parameters->get('backgroundFocusX', 50)));
+        $y = max(0, min(100, $slide->parameters->get('backgroundFocusY', 50)));
+
+        $fillMode = $slide->parameters->get('backgroundMode', 'default');
+        if ($fillMode == 'default') {
+            $fillMode = $this->slider->params->get('backgroundMode', 'fill');
+        }
+
+        if ($slide->parameters->get('background-type') == 'color') {
+            return $this->colorOnly($videoHTML, $fillMode, $backgroundColorStyle, $backgroundImageOpacity, $backgroundImageBlur, $x, $y);
+        }
+
 
         if ($slide->hasGenerator()) {
 
@@ -120,11 +131,6 @@ class N2SmartSliderFeatureSlideBackground {
 
             $imageData = N2ImageManager::getImageData($backgroundImage);
         }
-        $sizes = $this->slider->assets->sizes;
-
-
-        $x = max(0, min(100, $slide->parameters->get('backgroundFocusX', 50)));
-        $y = max(0, min(100, $slide->parameters->get('backgroundFocusY', 50)));
 
         if (empty($backgroundImage)) {
             $src = N2Image::base64Transparent();
@@ -133,46 +139,44 @@ class N2SmartSliderFeatureSlideBackground {
         }
 
 
-        $alt      = $slide->fill($slide->parameters->get('backgroundAlt', ''));
-        $title    = $slide->fill($slide->parameters->get('backgroundTitle', ''));
-        $fillMode = $slide->parameters->get('backgroundMode', 'default');
-        if ($fillMode == 'default') {
-            $fillMode = $this->slider->params->get('backgroundMode', 'fill');
-        }
+        $alt   = $slide->fill($slide->parameters->get('backgroundAlt', ''));
+        $title = $slide->fill($slide->parameters->get('backgroundTitle', ''));
 
-        if ($dynamicHeight) {
-            return $this->simple($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y);
-        }
-        switch ($fillMode) {
-            case 'fit':
-                return $this->fit($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y);
-            case 'stretch':
-                return $this->stretch($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $alt, $title, $x, $y);
-            case 'center':
-                return $this->center($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $x, $y);
-            case 'tile':
-                return $this->tile($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $x, $y);
-        }
-    
-        return $this->fill($backgroundColorStyle, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y);
+        return $this->image($videoHTML, $fillMode, $backgroundColorStyle, $backgroundImageOpacity, $backgroundImageBlur, $src, $imageData, $alt, $title, $x, $y);
+
     }
 
-    private function getSize($image, $imageData) {
-        $size = N2Parse::parse($imageData['desktop']['size']);
-        if ($size[0] > 0 && $size[1] > 0) {
-            return $size;
-        } else {
-            list($width, $height) = @getimagesize($image);
-            if ($width != null && $height != null) {
-                $imageData['desktop']['size'] = $width . '|*|' . $height;
-                N2ImageManager::setImageData($image, $imageData);
-                return array(
-                    $width,
-                    $height
-                );
-            }
-        }
-        return null;
+    private function colorOnly($videoHTML, $fillMode, $backgroundColor, $backgroundImageOpacity, $backgroundImageBlur, $x, $y) {
+
+        return N2Html::tag('div', array(
+            "class"        => "n2-ss-slide-background n2-ow",
+            "data-opacity" => $backgroundImageOpacity,
+            "data-blur"    => $backgroundImageBlur,
+            "data-mode"    => $fillMode,
+            "data-x"       => $x,
+            "data-y"       => $y
+        ), N2Html::tag('div', array(
+            'class' => 'n2-ss-slide-background-mask',
+            "style" => $backgroundColor
+        ), $videoHTML));
+    }
+
+    private function image($videoHTML, $fillMode, $backgroundColor, $backgroundImageOpacity, $backgroundImageBlur, $src, $imageData, $alt, $title, $x, $y) {
+        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
+
+        return N2Html::tag('div', $deviceAttributes + array(
+                "class"        => "n2-ss-slide-background n2-ow",
+                "data-opacity" => $backgroundImageOpacity,
+                "data-blur"    => $backgroundImageBlur,
+                "data-mode"    => $fillMode,
+                "data-x"       => $x,
+                "data-y"       => $y
+            ), N2Html::tag('div', array(
+            'class' => 'n2-ss-slide-background-mask',
+            "style" => $backgroundColor
+        ), N2Html::image($this->getDefaultImage($src, $deviceAttributes), $alt, array(
+                "title" => $title
+            )) . $videoHTML));
     }
 
     private function getDeviceAttributes($image, $imageData) {
@@ -202,6 +206,7 @@ class N2SmartSliderFeatureSlideBackground {
             //We have to force the fade on load enabled to make sure the user get great result.
             $this->slider->features->fadeOnLoad->forceFadeOnLoad();
         }
+
         return $attributes;
     }
 
@@ -212,156 +217,6 @@ class N2SmartSliderFeatureSlideBackground {
             return N2ImageHelper::fixed($src);
         }
     }
-
-    private function fill($backgroundColor, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y) {
-
-        $outerRatio = $sizes['canvasWidth'] / $sizes['canvasHeight'];
-
-        list($width, $height) = $this->getSize($src, $imageData);
-        if (!$width || !$height) {
-            $style = '';
-        } else {
-            $ratio = $width / $height;
-
-            if ($outerRatio > $ratio) {
-                $style  = 'width: 100%;height: auto;';
-                $height = ($sizes['canvasHeight'] - $sizes['canvasWidth'] / $width * $height) / 2;
-                $style .= 'margin-top: ' . $height . 'px;';
-            } else {
-                $style = 'width: auto;height: 100%;';
-                $width = ($sizes['canvasWidth'] - $sizes['canvasHeight'] / $height * $width) / 2;
-                $style .= 'margin-left: ' . $width . 'px;';
-            }
-        }
-
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::image($this->getDefaultImage($src, $deviceAttributes), $alt, array(
-            "title"  => $title,
-            "style"  => $style . 'opacity:' . $backgroundImageOpacity . ';',
-            "class"  => "n2-ss-slide-background-image n2-ss-slide-fill n2-ow",
-            "data-x" => $x,
-            "data-y" => $y
-        )));
-    }
-
-    private function color($backgroundColor) {
-        return N2Html::tag('div', array(
-            "style" => $backgroundColor,
-            "class" => "n2-ss-slide-background"
-        ), N2Html::tag('div', array(
-            "class" => "n2-ss-slide-background-image",
-        )));
-    }
-
-    private function simple($backgroundColor, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y) {
-
-        $style = 'width: 100%;height: auto;';
-
-
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::image($this->getDefaultImage($src, $deviceAttributes), $alt, array(
-            "title"  => $title,
-            "style"  => $style . 'opacity:' . $backgroundImageOpacity . ';',
-            "class"  => "n2-ss-slide-background-image n2-ss-slide-simple n2-ow",
-            "data-x" => $x,
-            "data-y" => $y
-        )));
-    }
-
-    private function fit($backgroundColor, $backgroundImageOpacity, $src, $imageData, $alt, $title, $sizes, $x, $y) {
-
-        $outerRatio = $sizes['canvasWidth'] / $sizes['canvasHeight'];
-
-        list($width, $height) = $this->getSize($src, $imageData);
-        if (!$width || !$height) {
-            $style = '';
-        } else {
-            $ratio = $width / $height;
-            if ($outerRatio < $ratio) {
-                $style  = 'width: 100%;height: auto;';
-                $height = ($sizes['canvasHeight'] - $sizes['canvasWidth'] / $width * $height) / 2;
-                $style .= 'margin-top: ' . $height . 'px;';
-            } else {
-                $style = 'width: auto;height: 100%;';
-                $width = ($sizes['canvasWidth'] - $sizes['canvasHeight'] / $height * $width) / 2;
-                $style .= 'margin-left: ' . $width . 'px;';
-            }
-        }
-
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::image($this->getDefaultImage($src, $deviceAttributes), $alt, array(
-            "title"  => $title,
-            "style"  => $style . 'opacity:' . $backgroundImageOpacity . ';',
-            "class"  => "n2-ss-slide-background-image n2-ss-slide-fit n2-ow",
-            "data-x" => $x,
-            "data-y" => $y
-        )));
-    }
-
-    private function stretch($backgroundColor, $backgroundImageOpacity, $src, $imageData, $alt, $title, $x, $y) {
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::image($this->getDefaultImage($src, $deviceAttributes), $alt, array(
-            "title"  => $title,
-            "style"  => 'opacity:' . $backgroundImageOpacity . ';',
-            "class"  => "n2-ss-slide-background-image n2-ss-slide-stretch n2-ow",
-            "data-x" => $x,
-            "data-y" => $y
-        )));
-    }
-
-    private function center($backgroundColor, $backgroundImageOpacity, $src, $imageData, $x, $y) {
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::tag('div', array(
-            "class" => "n2-ss-slide-background-image n2-ss-slide-center",
-            "style" => "background-image: url(" . $this->getDefaultImage($src, $deviceAttributes) . ");" . 'opacity:' . $backgroundImageOpacity . ';background-position: ' . $x . '% ' . $y . '%;'
-        )));
-    }
-
-    private function tile($backgroundColor, $backgroundImageOpacity, $src, $imageData, $x, $y) {
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::tag('div', array(
-            "class" => "n2-ss-slide-background-image n2-ss-slide-tile",
-            "style" => "background-image: url(" . $this->getDefaultImage($src, $deviceAttributes) . ");" . 'opacity:' . $backgroundImageOpacity . ';background-position: ' . $x . '% ' . $y . '%;'
-        )));
-    }
-
-    private function fixed($backgroundColor, $backgroundImageOpacity, $src, $imageData, $x, $y) {
-        $deviceAttributes = $this->getDeviceAttributes($src, $imageData);
-        return N2Html::tag('div', $deviceAttributes + array(
-                "style"        => $backgroundColor,
-                "class"        => "n2-ss-slide-background",
-                "data-opacity" => $backgroundImageOpacity
-            ), N2Html::tag('div', array(
-            "class" => "n2-ss-slide-background-image n2-ss-slide-fixed",
-            "style" => "background-image: url(" . $this->getDefaultImage($src, $deviceAttributes) . ");" . 'opacity:' . $backgroundImageOpacity . ';background-position: ' . $x . '% ' . $y . '%;'
-        )));
-    }
-
 
     private function makeBackgroundVideo($slide) {
         return '';

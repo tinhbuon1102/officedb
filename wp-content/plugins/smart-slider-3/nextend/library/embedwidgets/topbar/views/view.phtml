@@ -4,7 +4,7 @@ if ($fixTo) {
     <script type="text/javascript">
         nextend.ready(
             function ($) {
-                var topOffset = $('#wpadminbar, .navbar-fixed-top').height(),
+                var topOffset = $('#wpadminbar:visible, .navbar-fixed-top:visible').height(),
                     topOffsetLightbox = 0;
                 $('.<?php echo $snapClass; ?>').each(function () {
                     var bar = $(this);
@@ -20,7 +20,6 @@ if ($fixTo) {
 ?>
 
 <div class="n2-top-bar n2-sidebar-list-bg <?php echo $snapClass; ?>">
-
     <?php
     if ($back):
         ?>

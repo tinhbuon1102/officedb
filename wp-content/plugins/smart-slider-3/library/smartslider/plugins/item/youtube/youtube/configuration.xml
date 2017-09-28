@@ -27,11 +27,19 @@
         <option value="highres">High res</option>
         <option value="default">Default</option>
       </param>
-      <param name="playbutton" label="Play button" type="onoff" default="1"/>
       <param name="autoplay" type="onoff" label="Autoplay" default="0"/>
       <param name="controls" type="onoff" label="Controls" default="1"/>
       <param name="center" type="onoff" label="Centered" default="0"/>
       <param name="loop" type="onoff" label="Loop" default="0"/>
       <param name="related" type="onoff" label="Related" default="0"/></param>
+    <param type="group">
+      <param name="playbutton" label="Play button" type="onoff" default="1"/>
+      <param name="playbuttonwidth" type="text" label="Play button width" default="48" style="width:32px;">
+        <unit value="px">px</unit>
+      </param>
+      <param name="playbuttonheight" type="text" label="Play button height" default="48" style="width:32px;">
+        <unit value="px">px</unit>
+      </param>
+      <param name="playbuttonimage" type="image" label="Play button image"/></param>
   </params>
 </root>

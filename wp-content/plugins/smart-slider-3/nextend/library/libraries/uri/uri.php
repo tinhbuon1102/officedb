@@ -25,10 +25,11 @@ class N2UriAbstract {
 
     static function getBaseUri() {
         $i = N2Uri::getInstance();
+
         return $i->_baseuri;
     }
 
-    static function pathToUri($path) {
+    static function pathToUri($path, $protocol = true) {
         $i = N2Uri::getInstance();
 
         $from = array();
@@ -42,21 +43,24 @@ class N2UriAbstract {
         $from[] = DIRECTORY_SEPARATOR;
         $to[]   = '/';
 
-        return $i->_baseuri . str_replace($from, $to, str_replace('/', DIRECTORY_SEPARATOR, $path));
+        return ($protocol ? $i->_baseuri : preg_replace('/^http:/', '', $i->_baseuri)) . str_replace($from, $to, str_replace('/', DIRECTORY_SEPARATOR, $path));
     }
 
     static function ajaxUri($query = '', $magento = 'nextendlibrary') {
         $i = N2Uri::getInstance();
+
         return $i->_baseuri;
     }
 
     static function fixrelative($uri) {
         if (substr($uri, 0, 1) == '/' || strpos($uri, '://') !== false) return $uri;
+
         return self::getInstance()->_baseuri . $uri;
     }
 
     static function relativetoabsolute($uri) {
         if (substr($uri, 0, 1) == '/' || strpos($uri, '://') !== false) return $uri;
+
         return self::getInstance()->_currentbase . $uri;
     }
 }

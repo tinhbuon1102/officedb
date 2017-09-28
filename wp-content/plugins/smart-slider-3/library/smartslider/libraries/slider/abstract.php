@@ -1,17 +1,20 @@
 <?php
 
-N2Loader::import('libraries.mobiledetect.Mobile_Detect');
 N2Loader::import('libraries.parse.font');
 
 N2Loader::import('libraries.slider.type', 'smartslider');
 N2Loader::import('libraries.slider.css', 'smartslider');
 N2Loader::import('libraries.slider.group', 'smartslider');
 N2Loader::importAll('libraries.slider.features', 'smartslider');
-N2Loader::importAll('libraries.slider.slide', 'smartslider');
+N2Loader::importAll("libraries.slider.slides", "smartslider");
 N2Loader::import('libraries.settings.settings', 'smartslider');
 N2Loader::import('libraries.slider.widget.widgets', 'smartslider');
 
 abstract class N2SmartSliderAbstract {
+
+    public $manifestData = array(
+        'generator' => array()
+    );
 
     protected $isGroup = false;
 
@@ -46,7 +49,7 @@ abstract class N2SmartSliderAbstract {
 
     public $isAdmin = false;
 
-    public $_activeSlide = 0;
+    public $firstSlideIndex = 0;
     /**
      * @var Mobile_Detect
      */
@@ -90,9 +93,6 @@ abstract class N2SmartSliderAbstract {
         ), $parameters);
 
         $this->disableResponsive = $this->parameters['disableResponsive'];
-
-
-        $this->device = new Mobile_Detect();
 
         N2Loader::import("models.Sliders", "smartslider");
 
@@ -180,11 +180,13 @@ abstract class N2SmartSliderAbstract {
 
             $this->initSlides();
         }
+
         return true;
     }
 
     private function initSlides() {
         if ($this->isAdmin) {
+            N2Loader::importAll("libraries.slider.slides.admin", "smartslider");
             $this->slidesBuilder = new N2SmartSliderSlidesAdmin($this);
         } else {
             $this->slidesBuilder = new N2SmartSliderSlides($this);
@@ -196,6 +198,7 @@ abstract class N2SmartSliderAbstract {
         if ($this->isGroup) {
             return $this->sliderType->getNextCacheRefresh();
         }
+
         return $this->slidesBuilder->getNextCacheRefresh();
     }
 
@@ -208,11 +211,10 @@ abstract class N2SmartSliderAbstract {
         if (!$this->isGroup && count($this->slides) == 0) {
             return false;
         }
-
         $this->assets = $this->getSliderTypeResource('css');
         $this->assets->render();
         if (!$this->isGroup) {
-            $this->slides[$this->_activeSlide]->setActive();
+            $this->slides[$this->firstSlideIndex]->setFirst();
             for ($i = 0; $i < count($this->slides); $i++) {
                 $this->slides[$i]->prepare();
                 $this->slides[$i]->setSlidesParams();
@@ -234,7 +236,7 @@ abstract class N2SmartSliderAbstract {
         if (!N2Platform::$isAdmin) {
             $rocketAttributes = '';
             $dependency       = max(0, intval($this->params->get('dependency')));
-            if ($dependency) {
+            if ($dependency && ($dependency != $this->sliderId)) {
                 $rocketAttributes .= 'data-dependency="' . $dependency . '"';
             } else {
                 $delay = max(0, intval($this->params->get('delay'), 0));
@@ -263,6 +265,11 @@ abstract class N2SmartSliderAbstract {
 
             $slider .= $this->features->fadeOnLoad->renderPlaceholder($this->assets->sizes);
         }
+
+        if (intval($this->params->get('clear-both', 0))) {
+            $slider = '<div class="n2-clear"></div>' . $slider;
+        }
+
         return "\n<!-- Nextend Smart Slider 3 #" . $this->sliderId . " - BEGIN -->\n" . $slider . "\n<!-- Nextend Smart Slider 3 #" . $this->sliderId . " - END -->\n";
     }
 
@@ -285,10 +292,11 @@ abstract class N2SmartSliderAbstract {
     public function getPreviousSlide() {
         $length = count($this->slides);
 
-        if ($this->_activeSlide == 0) {
+        if ($this->firstSlideIndex == 0) {
             return $this->slides[$length - 1];
         }
-        return $this->slides[$this->_activeSlide - 1];
+
+        return $this->slides[$this->firstSlideIndex - 1];
     }
 
     /**
@@ -296,16 +304,18 @@ abstract class N2SmartSliderAbstract {
      */
     public function getNextSlide() {
         $length = count($this->slides);
-        if ($this->_activeSlide == $length - 1) {
+        if ($this->firstSlideIndex == $length - 1) {
             return $this->slides[0];
         }
-        return $this->slides[$this->_activeSlide + 1];
+
+        return $this->slides[$this->firstSlideIndex + 1];
     }
 
     public static function removeShortcode($content) {
         $content = preg_replace('/smartslider3\[([0-9]+)\]/', '', $content);
         $content = preg_replace('/\[smartslider3 slider="([0-9]+)"\]/', '', $content);
         $content = preg_replace('/\[smartslider3 slider=([0-9]+)\]/', '', $content);
+
         return $content;
     }
 

@@ -1,8 +1,7 @@
 <?php
 N2Loader::import('libraries.form.element.list');
 
-class N2ElementSkin extends N2ElementList
-{
+class N2ElementSkin extends N2ElementList {
 
     protected $fixedMode = false;
 
@@ -14,7 +13,7 @@ class N2ElementSkin extends N2ElementList
 
         $html = parent::fetchElement();
 
-        N2JS::addInline('new NextendElementSkin("' . $this->_id . '", "' . str_replace($this->_name, '', $this->_id) . '", ' . json_encode($this->skins) . ', ' . json_encode($this->fixedMode) . ');');
+        N2JS::addInline('new N2Classes.FormElementSkin("' . $this->_id . '", "' . str_replace($this->_name, '', $this->_id) . '", ' . json_encode($this->skins) . ', ' . json_encode($this->fixedMode) . ');');
 
         return $html;
     }
@@ -33,6 +32,7 @@ class N2ElementSkin extends N2ElementList
                 $this->skins[$v][$param->getName()] = (string)$param;
             }
         }
+
         return $html;
     }
 }

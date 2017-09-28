@@ -48,6 +48,38 @@ class N2GeneratorPostsPosts extends N2GeneratorAbstract {
             }
         }
 
+        $allTerms = $this->data->get('postcustomtaxonomy', '');
+        if (!empty($allTerms)) {
+            $terms = explode('||', $allTerms);
+            if (!in_array('0', $terms)) {
+                $termarray = array();
+                foreach ($terms as $key => $value) {
+                    $term = explode("_x_", $value);
+                    if (array_key_exists($term[0],$termarray)){
+                        $termarray[$term[0]][] = $term[1];
+                    } else {
+                        $termarray[$term[0]] = array();
+                        $termarray[$term[0]][] = $term[1];
+                    }
+                }
+
+                $term_helper = array();
+                foreach ($termarray as $taxonomy => $termids) {
+                    $term_helper[] = array(
+                        'taxonomy' => $taxonomy,
+                        'terms'    => $termids,
+                        'field'    => 'id'
+                    );
+                }
+                if(!empty($tax_query)){
+                    array_unshift($tax_query, array('relation' => 'AND'));
+                } else {
+                    $tax_query = array('relation' => 'AND'); 
+                }
+                $tax_query = array_merge($tax_query, $term_helper);
+            }
+        }
+
         $postsFilter = array(
             'include'          => '',
             'exclude'          => '',
@@ -104,14 +136,22 @@ class N2GeneratorPostsPosts extends N2GeneratorAbstract {
                         $record['et_slide' . $j] = $et_slides[$j];
                     }
                 }
-                if (strpos($record['description'], 'et_pb_fullwidth_header admin_label') !== false ) {
-                    $et_fullwidth_header = $this->get_string_between($record['description'], 'background_url="', '"');
-                    for ($j = 0; $j < count($et_fullwidth_header); $j++) {
-                        $record['et_pb_fullwidth_header_' . $j] = $et_fullwidth_header[$j];
+                if (strpos($record['description'], 'background_url') !== false){
+                    $et_backgrounds = $this->get_string_between($record['description'], 'background_url="', '"');
+                    for ($j=0; $j < count($et_backgrounds); $j++){
+                        $record['et_background' . $j] = $et_backgrounds[$j];
                     }
-                    $et_logo_image_url = $this->get_string_between($record['description'], 'logo_image_url="', '"');
-                    for ($j = 0; $j < count($et_logo_image_url); $j++) {
-                        $record['et_pb_logo_image_url_' . $j] = $et_logo_image_url[$j];
+                }
+                if (strpos($record['description'], 'logo_image_url') !== false){
+                    $et_logoImages = $this->get_string_between($record['description'], 'logo_image_url="', '"');
+                    for($j=0; $j < count($et_logoImages); $j++){
+                        $record['et_logoImage' . $j] = $et_logoImages[$j];
+                    }
+                }
+                if (strpos($record['description'], 'slider-content') !== false){
+                    $et_contents = $this->get_string_between($record['description'], 'slider-content">', '</p>');
+                    for($j=0; $j < count($et_contents); $j++){
+                        $record['et_content' . $j] = $et_contents[$j];
                     }
                 }
             }
@@ -150,6 +190,11 @@ class N2GeneratorPostsPosts extends N2GeneratorAbstract {
                     $sizes = $this->getImageSizes($thumbnail_id, $thumbnail_meta['sizes']);
                     $record = array_merge($record, $sizes);
                 }
+                $record['alt'] = '';
+                $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+                if(isset($alt)){
+                    $record['alt'] = $alt;
+                }
             }
 
             $record['thumbnail'] = $record['image'] = $record['featured_image'];
@@ -182,7 +227,7 @@ class N2GeneratorPostsPosts extends N2GeneratorAbstract {
                                 $record[$k] = $v['url'];
                             } else if(is_array($v)){
                                 foreach($v AS $v_v => $k_k){
-                                    if(isset($k_k['url'])){
+                                    if(is_array($k_k) && isset($k_k['url'])){
                                         $record[$k . $v_v] = $k_k['url'];
                                     }
                                 }
@@ -198,6 +243,29 @@ class N2GeneratorPostsPosts extends N2GeneratorAbstract {
                             $record = array_merge($record, $sizes);
                         }
                     }
+                }
+            }
+			
+			$post_meta = get_post_meta($post->ID);
+            if (count($post_meta) && is_array($post_meta) && !empty($post_meta)) {
+                foreach ($post_meta AS $key => $value) {
+                    if (count($value) && is_array($value) && !empty($value)) {
+						foreach ($value AS $v) {
+							if (!empty($v) && !is_array($v) && !is_object($v)) {
+								$key = str_replace(array(
+									'_',
+									'-'
+								), array(
+									'',
+									''
+								), $key);
+								if (array_key_exists($key, $record)) {
+									$key = 'meta' . $key;
+								}
+								$record[$key] = $v;
+							}
+						}
+					}
                 }
             }
 

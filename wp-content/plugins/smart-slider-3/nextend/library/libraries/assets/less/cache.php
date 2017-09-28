@@ -1,11 +1,15 @@
 <?php
 
-class N2AssetsCacheLess extends N2AssetsCacheCSS
-{
+class N2AssetsCacheLess extends N2AssetsCacheCSS {
 
     public $outputFileType = "less.css";
 
-    public function getCachedContent() {
+    /**
+     * @param N2CacheManifest $cache
+     *
+     * @return string
+     */
+    public function getCachedContent($cache) {
 
         $fileContents = '';
 
@@ -15,11 +19,11 @@ class N2AssetsCacheLess extends N2AssetsCacheCSS
             if (!empty($parameters['importDir'])) {
                 $compiler->addImportDir($parameters['importDir']);
             }
-            $compiler->addImportDir(N2LIBRARYASSETS . NDS . "less" . NDS);
 
             $compiler->setVariables($parameters['context']);
             $fileContents .= $compiler->compileFile($parameters['file']);
         }
+
         return $fileContents;
     }
 
@@ -27,8 +31,8 @@ class N2AssetsCacheLess extends N2AssetsCacheCSS
         return json_encode($parameters) . filemtime($parameters['file']);
     }
 
-    protected function parseFile($content, $lessParameters) {
+    protected function parseFile($cache, $content, $lessParameters) {
 
-        return parent::parseFile($content, $lessParameters['file']);
+        return parent::parseFile($cache, $content, $lessParameters['file']);
     }
 }

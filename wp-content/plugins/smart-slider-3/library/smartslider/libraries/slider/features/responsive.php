@@ -23,6 +23,8 @@ class N2SmartSliderFeatureResponsive {
 
     public $forceFull = 0;
 
+    public $forceFullHorizontalSelector = '';
+
     public $constrainRatio = 1;
 
     public $minimumHeight = -1;
@@ -390,7 +392,6 @@ class N2SmartSliderFeatureResponsive {
             $this->maximumSlideWidthMobileLandscape = $this->maximumSlideWidthMobile;
         }
 
-
         $properties['responsive'] = array(
             'desktop' => N2Platform::$isAdmin ? 1 : $this->desktop,
             'tablet'  => $this->tablet,
@@ -410,6 +411,7 @@ class N2SmartSliderFeatureResponsive {
             'maximumSlideWidthMobileLandscape' => $this->maximumSlideWidthMobileLandscape,
             'maximumSlideWidthConstrainHeight' => intval($this->maximumSlideWidthConstrainHeight),
             'forceFull'                        => $this->forceFull,
+            'forceFullHorizontalSelector'      => $this->forceFullHorizontalSelector,
             'constrainRatio'                   => $this->constrainRatio,
             'verticalOffsetSelectors'          => $this->verticalOffsetSelectors,
 
@@ -446,6 +448,7 @@ class N2SmartSliderFeatureResponsive {
         foreach ($this->minimumFontSizes AS $k => $v) {
             $return['data-minFontSize' . $k] = $v;
         }
+
         return $return;
     }
 }

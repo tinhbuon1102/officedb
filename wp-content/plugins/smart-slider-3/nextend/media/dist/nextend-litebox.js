@@ -1,5 +1,4 @@
-;
-(function ($, window, document, undefined) {
+(function ($, undefined) {
     function useragentIsIphone() {
         return (navigator.userAgent.match(/iPhone/i) != null) || (navigator.userAgent.match(/iPod/i) != null);
     }
@@ -45,6 +44,7 @@
 
     function liteBox(element, options) {
         this.timeout = false;
+        this.clickTimeout = false;
         this.element = element;
         this.$element = $(this.element);
 
@@ -79,11 +79,11 @@
             // Element click
             this.$element.on('click n2click', function (e) {
                 if (!nextend.shouldPreventClick) {
-                    if ($this.timeout === false) {
+                    if ($this.clickTimeout === false) {
                         e.preventDefault();
                         $this.openLitebox();
-                        $this.timeout = setTimeout(function () {
-                            $this.timeout = false;
+                        $this.clickTimeout = setTimeout(function () {
+                            $this.clickTimeout = false;
                         }, 300);
                     }
                 }
@@ -110,14 +110,14 @@
             // Interactions
             if ($this.options.overlayClose)
                 $litebox.on('click', function (e) {
-                    if ($this.timeout === false) {
+                    if ($this.clickTimeout === false) {
                         if (e.target === this || $(e.target).hasClass('litebox-container') || $(e.target).hasClass('litebox-error'))
                             $this.closeLitebox();
                     }
                 });
 
             $close.on('click', function () {
-                if ($this.timeout === false) {
+                if ($this.clickTimeout === false) {
                     $this.closeLitebox();
                 }
             });
@@ -322,7 +322,7 @@
 
                     $iframe.attr('src', src);
 
-                    $iframe.load(function () {
+                    $iframe.on('load', function () {
                         $loader.remove();
                     });
                 }
@@ -351,7 +351,7 @@
 
                 $this.transitionContent('iframe', $currentContent, $iframe);
 
-                $iframe.load(function () {
+                $iframe.on('load', function () {
                     $loader.remove();
                 });
             }
@@ -437,4 +437,4 @@
         });
     };
 
-})(n2, window, document);
+})(n2);

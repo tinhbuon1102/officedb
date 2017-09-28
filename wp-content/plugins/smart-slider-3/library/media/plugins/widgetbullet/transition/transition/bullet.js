@@ -1,12 +1,13 @@
-(function ($, scope, undefined) {
-    function NextendSmartSliderWidgetBulletTransition(id, parameters) {
+N2Require('SmartSliderWidgetBulletTransition', [], [], function ($, scope, undefined) {
+
+    function SmartSliderWidgetBulletTransition(id, parameters) {
 
         this.slider = window[id];
 
         this.slider.started($.proxy(this.start, this, id, parameters));
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.start = function (id, parameters) {
+    SmartSliderWidgetBulletTransition.prototype.start = function (id, parameters) {
 
         if (this.slider.sliderElement.data('bullet')) {
             return false;
@@ -25,25 +26,27 @@
         }
         this.originalDots = this.dots = this.bar.find('div').on(event, $.proxy(this.onDotClick, this));
 
-        if (typeof this.slider.shuffled !== 'undefined') {
-            var _temp = [],
-                _temp2 = [];
-            for (var i = 0; i < this.slider.shuffled.length; i++) {
-                _temp.push(this.dots.get(this.slider.shuffled[i]));
-                _temp2.push(this.parameters.thumbnails[this.slider.shuffled[i]]);
+        if (this.slider.isShuffled) {
+            var dots = [],
+                thumbnails = [];
+            for (var i = 0; i < this.slider.realSlides.length; i++) {
+                var slide = this.slider.realSlides[i];
+                dots.push(this.dots.get(slide.originalIndex));
+                thumbnails.push(this.parameters.thumbnails[slide.originalIndex]);
                 if (parameters.numeric) {
-                    this.dots.eq(this.slider.shuffled[i]).html(i + 1);
+                    this.dots.eq(slide.originalIndex).html(i + 1);
                 }
             }
-            this.originalDots = this.dots = $(_temp).appendTo(this.dots.parent());
-            this.parameters.thumbnails = _temp2;
+            this.originalDots = this.dots = $(dots).appendTo(this.dots.parent());
+            this.parameters.thumbnails = thumbnails;
         }
 
-        this.slider.sliderElement
-            .on('slideCountChanged', $.proxy(this.onSlideCountChanged, this))
-            .on('sliderSwitchTo', $.proxy(this.onSlideSwitch, this));
+        this.slider.sliderElement.on({
+            slideCountChanged: $.proxy(this.onSlideCountChanged, this),
+            sliderSwitchTo: $.proxy(this.onSlideSwitch, this)
+        });
 
-        this.onSlideSwitch(null, this.slider.currentSlideIndex);
+        this.slider.firstSlideReady.done($.proxy(this.onFirstSlideSet, this));
 
         if (parameters.overlay == 0) {
             var side = false;
@@ -72,33 +75,37 @@
         this.initThumbnails();
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.onDotClick = function (e) {
-        this.slider.directionalChangeToReal(this.originalDots.index(e.currentTarget));
+    SmartSliderWidgetBulletTransition.prototype.onFirstSlideSet = function (slide) {
+        this.dots.eq(slide.index).addClass('n2-active');
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.onSlideSwitch = function (e, targetSlideIndex) {
+    SmartSliderWidgetBulletTransition.prototype.onDotClick = function (e) {
+        this.slider.directionalChangeToReal(this.originalDots.index(e.currentTarget));
+        $(e.target).blur();
+    };
+
+    SmartSliderWidgetBulletTransition.prototype.onSlideSwitch = function (e, targetSlideIndex) {
         this.dots.filter('.n2-active').removeClass('n2-active');
         this.dots.eq(targetSlideIndex).addClass('n2-active');
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.isVisible = function () {
+    SmartSliderWidgetBulletTransition.prototype.isVisible = function () {
         return this.bar.is(':visible');
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.getSize = function () {
+    SmartSliderWidgetBulletTransition.prototype.getSize = function () {
         if (this.axis == 'horizontal') {
             return this.bar.height() + this.offset;
         }
         return this.bar.width() + this.offset;
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.initThumbnails = function () {
+    SmartSliderWidgetBulletTransition.prototype.initThumbnails = function () {
         if (this.parameters.thumbnails.length > 0) {
             this.dots.each($.proxy(function (i, el) {
                 if (this.parameters.thumbnails[i] != '') {
                     $(el).on({
-                        universalenter: $.proxy(this.showThumbnail, this, i)/*,
-                         universalleave: $.proxy(this.hideThumbnail, this, i)*/
+                        universalenter: $.proxy(this.showThumbnail, this, i)
                     }, {
                         leaveOnSecond: true
                     })
@@ -107,7 +114,7 @@
         }
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.showThumbnail = function (i, e) {
+    SmartSliderWidgetBulletTransition.prototype.showThumbnail = function (i, e) {
         var thumbnail = this.getThumbnail(i);
 
         NextendTween.to(thumbnail, 0.3, {
@@ -117,7 +124,7 @@
         this.originalDots.eq(i).on('universalleave', $.proxy(this.hideThumbnail, this, thumbnail));
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.hideThumbnail = function (thumbnail, e) {
+    SmartSliderWidgetBulletTransition.prototype.hideThumbnail = function (thumbnail, e) {
         e.stopPropagation();
         NextendTween.to(thumbnail, 0.3, {
             opacity: 0,
@@ -127,7 +134,7 @@
         }).play();
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.getThumbnail = function (i) {
+    SmartSliderWidgetBulletTransition.prototype.getThumbnail = function (i) {
         var target = this.originalDots.eq(i);
         var targetOffset = target.offset(),
             targetW = target.outerWidth(),
@@ -137,7 +144,7 @@
             width: this.parameters.thumbnailWidth,
             height: this.parameters.thumbnailHeight,
             backgroundImage: 'url("' + this.parameters.thumbnails[i] + '")',
-            backgroundSize: 'inherit',
+            backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'
         }).addClass('n2-bullet-thumbnail'))
@@ -180,7 +187,7 @@
         return thumbnail;
     };
 
-    NextendSmartSliderWidgetBulletTransition.prototype.onSlideCountChanged = function (e, newCount, slidesInGroup) {
+    SmartSliderWidgetBulletTransition.prototype.onSlideCountChanged = function (e, newCount, slidesInGroup) {
         this.dots = $();
         for (var i = 0; i < this.originalDots.length; i++) {
             if (i % slidesInGroup == 0) {
@@ -196,5 +203,5 @@
         }
     };
 
-    scope.NextendSmartSliderWidgetBulletTransition = NextendSmartSliderWidgetBulletTransition;
-})(n2, window);
+    return SmartSliderWidgetBulletTransition;
+});

@@ -56,7 +56,6 @@ class N2Tab {
                 $class = N2Form::importElement(N2XmlHelper::getAttribute($element, 'type'));
                 if (!class_exists($class, false)) {
                     throw new Exception($class . ' missing in ' . $this->_form->_xmlfile);
-                    n2_exit(true);
                 }
 
                 $field = new $class($this->_form, $this, $element);
@@ -120,7 +119,13 @@ class N2Tab {
      * @param $i
      */
     function decorateElement(&$el, $out, $i) {
-        echo "<tr class='" . N2XmlHelper::getAttribute($el->_xml, 'class') . "'>";
+        $attrs = array();
+        if (isset($el->_xml->attribute)) {
+            foreach ($el->_xml->attribute AS $attr) {
+                $attrs[N2XmlHelper::getAttribute($attr, 'type')] = (string)$attr;
+            }
+        }
+        echo N2Html::openTag('tr', $attrs + array('class' => N2XmlHelper::getAttribute($el->_xml, 'class')));
         $colSpan = '';
         if ($out[0] != '') {
             echo "<td class='n2-label" . ($el->hasLabel ? '' : ' n2-empty-label') . "'>" . $out[0] . "</td>";

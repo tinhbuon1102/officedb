@@ -24,6 +24,15 @@
         <option value="1080p">1080p</option>
         <option value="-1">Default</option>
       </param>
-    </param>
+      <param name="start" type="text" label="Start" style="width:20px;" default="0"/></param>
+    <param type="group" class="n2-expert">
+      <param name="playbutton" label="Play button" type="onoff" default="1"/>
+      <param name="playbuttonwidth" type="text" label="Play button width" default="48" style="width:32px;">
+        <unit value="px">px</unit>
+      </param>
+      <param name="playbuttonheight" type="text" label="Play button height" default="48" style="width:32px;">
+        <unit value="px">px</unit>
+      </param>
+      <param name="playbuttonimage" type="image" label="Play button image"/></param>
   </params>
 </root>

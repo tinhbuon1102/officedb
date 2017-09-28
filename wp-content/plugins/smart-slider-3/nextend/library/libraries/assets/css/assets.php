@@ -13,6 +13,8 @@ class N2AssetsCss extends N2AssetsAbstract {
 
         $output = "";
 
+        $this->urls = array_unique($this->urls);
+
         foreach ($this->urls AS $url) {
             $output .= N2Html::style($url, true, array(
                     'media' => 'screen, print'
@@ -23,9 +25,15 @@ class N2AssetsCss extends N2AssetsAbstract {
         if (N2Platform::$isAdmin || $mode == 'normal') {
 
             foreach ($this->getFiles() AS $file) {
-                $output .= N2Html::style(N2Uri::pathToUri($file) . '?' . filemtime($file), true, array(
-                        'media' => 'screen, print'
-                    )) . "\n";
+                if (substr($file, 0, 2) == '//') {
+                    $output .= N2Html::style($file, true, array(
+                            'media' => 'screen, print'
+                        )) . "\n";
+                } else {
+                    $output .= N2Html::style(N2Uri::pathToUri($file, false) . '?' . filemtime($file), true, array(
+                            'media' => 'screen, print'
+                        )) . "\n";
+                }
             }
 
             $inline = implode("\n", $this->inline);
@@ -41,15 +49,13 @@ class N2AssetsCss extends N2AssetsAbstract {
             $combinedFile = $cssCombine->make();
 
             if ($mode == 'combine') {
-                $output .= N2Html::style(N2Uri::pathToUri($combinedFile), true, array(
+                $output .= N2Html::style(N2Uri::pathToUri($combinedFile, false), true, array(
                         'media' => 'screen, print'
                     )) . "\n";
             } else if ($mode == 'async') {
-                N2JS::addInline('window.n2CSS = "' . N2Uri::pathToUri($combinedFile) . '";', true, true);
+                N2JS::addInline('window.n2CSS = "' . N2Uri::pathToUri($combinedFile, false) . '";', true, true);
             } else if ($mode == 'inline') {
-                $output .= N2Html::style(file_get_contents($combinedFile), false, array(
-                    'lazyload' => 1
-                ));
+                $output .= N2Html::style(file_get_contents($combinedFile), false, array());
             }
         }
 
@@ -67,17 +73,7 @@ class N2AssetsCss extends N2AssetsAbstract {
         );
     }
 
-    protected function getFilesRaw() {
-
-        N2GoogleFonts::build();
-        N2LESS::build();
-
-        return parent::getFilesRaw();
-    }
-
     public function getAjaxOutput() {
-
-        //$output = $this->getFilesRaw() . "\n";
 
         $output = implode("\n", $this->inline);
 

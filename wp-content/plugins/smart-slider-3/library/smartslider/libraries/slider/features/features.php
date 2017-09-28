@@ -96,7 +96,6 @@ class N2SmartSliderFeatures {
 
         $return         = array(
             'admin'          => $this->slider->isAdmin,
-            'isStaticEdited' => intval($this->slider->isStaticEdited),
             'translate3d'    => intval(N2SmartSliderSettings::get('hardware-acceleration', 1)),
             'callbacks'      => $this->slider->params->get('callbacks', '')
         );
@@ -146,38 +145,6 @@ class N2SmartSliderFeatures {
     public function makeBackground($slide) {
 
         return $this->slideBackground->make($slide);
-    }
-
-    protected function setDevices() {
-
-        if (intval($this->_data->get('showmobile', 1)) == 0) {
-            if (!$this->device->isTablet() && $this->device->isMobile()) {
-                $this->norender = true;
-                return;
-            }
-        }
-
-        $custommobile = N2Parse::parse($this->_data->get('showcustommobile', '0|*|'));
-        if ($custommobile[0] == 1) {
-            if (!$this->device->isTablet() && $this->device->isMobile()) {
-                $this->_data->set('slider', $custommobile[1]);
-            }
-        }
-
-        if (intval($this->_data->get('showtablet', 1)) == 0) {
-            if ($this->device->isTablet()) {
-                $this->norender = true;
-                return;
-            }
-        }
-
-        $customtablet = N2Parse::parse($this->_data->get('showcustomtablet', '0|*|'));
-        if ($customtablet[0] == 1) {
-            if ($this->device->isTablet()) {
-                $this->_data->set('slider', $customtablet[1]);
-            }
-        }
-
     }
 
     public function addInitCallback($callback) {

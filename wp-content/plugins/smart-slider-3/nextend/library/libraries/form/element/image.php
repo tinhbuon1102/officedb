@@ -30,7 +30,7 @@ class N2ElementImage extends N2ElementText {
 
         $params['alt'] = N2XmlHelper::getAttribute($this->_xml, 'alt');
 
-        N2JS::addInline("new NextendElementImage('" . $this->_id . "', " . json_encode($params) . " );");
+        N2JS::addInline("new N2Classes.FormElementImage('" . $this->_id . "', " . json_encode($params) . " );");
 
         if ($this->fixed) {
 
@@ -58,7 +58,7 @@ class N2ElementImage extends N2ElementText {
         if (empty($image) || $image[0] == '{') {
             return '';
         }
-        return 'background-image:url(' . N2ImageHelper::fixed($image) . ');';
+        return 'background-image:URL(' . N2ImageHelper::fixed($image) . ');';
     }
 
     protected function post() {

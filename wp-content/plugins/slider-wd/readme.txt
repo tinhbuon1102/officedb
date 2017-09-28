@@ -4,7 +4,7 @@ Donate link: https://web-dorado.com/products/wordpress-slider-plugin.html
 Tags: responsive slider, slider, slideshow, wordpress slider, image slider, gallery slider, images slider, Photo Slider, post slider,  slider plugin
 Requires at least: 3.4
 Tested up to: 4.8
-Stable tag: 1.1.87
+Stable tag: 1.1.91
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -128,6 +128,19 @@ After downloading the ZIP file of the slider plugin,
 
 
 == Changelog ==
+
+= 1.1.91 =
+* Changed: Show notification to install Backup WD plugin only on plugin pages.    
+
+= 1.1.90 =
+* Removed: Popup to install Backup WD plugin.   
+
+= 1.1.89 =
+* Added: Show popup notice to install Backup WD plugin.     
+
+= 1.1.88 =
+* Fixed: Overview page conflict.   
+* Fixed: Conflict with Jetpack Contact Form module.    
 
 = 1.1.87 =
 * Fixed: Updated library to prevent conflict with PHP version 7.   

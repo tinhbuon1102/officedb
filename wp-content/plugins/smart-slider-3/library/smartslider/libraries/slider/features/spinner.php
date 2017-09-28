@@ -361,7 +361,18 @@ div.n2-ss-spinner-rectangle-4 {
 
     public function renderSlider($slider, $sliderHTML) {
 
-        if (isset(self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')]) && !empty(self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')])) {
+        $customSpinner = $this->slider->params->get('custom-spinner', '');
+        if (!empty($customSpinner)) {
+            $width      = $this->slider->params->get('custom-spinner-width', '100');
+            $height     = $this->slider->params->get('custom-spinner-height', '100');
+            $marginLeft = -($width / 2);
+            $marginTop  = -($height / 2);
+            $style      = '';
+            if ($this->slider->params->get('custom-display', '1')) {
+                $style = 'style="display:none;"';
+            }
+            return $sliderHTML . '<div id="' . $slider->elementId . '-spinner" ' . $style . '><img src="' . N2ImageHelper::fixed($customSpinner) . '" style="width:' . $width . 'px; height:' . $height . 'px; position:absolute;left:50%;top:50%;margin-left:' . $marginLeft . 'px;margin-top:' . $marginTop . 'px;" alt="loading"/></div>';
+        } else if (isset(self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')]) && !empty(self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')])) {
             N2CSS::addInline(self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')][1]);
             return $sliderHTML . '<div id="' . $slider->elementId . '-spinner" style="display: none;">' . self::$spinners[$this->slider->params->get('spinner', 'simpleWhite')][0] . '</div>';
         }

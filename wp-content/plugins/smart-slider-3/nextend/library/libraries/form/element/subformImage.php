@@ -17,7 +17,7 @@ class N2ElementSubformImage extends N2ElementSubform
         }
 
         N2JS::addInline('
-        new NextendElementSubform(
+        new N2Classes.FormElementSubform(
                "' . $this->_id . '",
                "nextend-' . $this->_name . '-panel",
                "' . $this->_tab->_name . '",
@@ -25,7 +25,7 @@ class N2ElementSubformImage extends N2ElementSubform
             );
         ');
         N2JS::addInline('
-        new NextendElementSubformImage(
+        new N2Classes.FormElementSubformImage(
               "' . $this->_id . '",
               "' . $this->_id . '_options"
             );
@@ -49,7 +49,7 @@ class N2ElementSubformImage extends N2ElementSubform
             'class' => 'n2-subform-image-option ' . $this->isActive($k)
         ), N2Html::tag('div', array(
                 'class' => 'n2-subform-image-element',
-                'style' => 'background-image: url(' . $this->getImage($path, $k) . ');'
+                'style' => 'background-image: URL(' . $this->getImage($path, $k) . ');'
             )) . N2Html::tag('div', array(
                 'class' => 'n2-subform-image-title n2-h4'
             ), $this->getLabel($k)));

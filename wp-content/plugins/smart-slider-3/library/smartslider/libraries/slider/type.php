@@ -1,7 +1,6 @@
 <?php
 
-abstract class N2SmartSliderType
-{
+abstract class N2SmartSliderType {
 
     /**
      * @var N2SmartSliderAbstract
@@ -10,7 +9,10 @@ abstract class N2SmartSliderType
 
     protected $javaScriptProperties;
 
+    /** @var  N2SmartSliderWidgets */
     protected $widgets;
+
+    protected $shapeDividerAdded = false;
 
     public function __construct($slider) {
         $this->slider     = $slider;
@@ -29,6 +31,7 @@ abstract class N2SmartSliderType
 
         ob_start();
         $this->renderType();
+
         return ob_get_clean();
     }
 
@@ -41,18 +44,17 @@ abstract class N2SmartSliderType
     protected function openSliderElement() {
         return N2Html::openTag('div', array(
                 'id'    => $this->slider->elementId,
-                'class' => 'n2-ss-slider n2notransition ' . $this->getSliderClasses(),
+                'class' => 'n2-ss-slider n2-ow n2-has-hover n2notransition ' . $this->getSliderClasses(),
 
             ) + $this->getFontSizeAttributes());
     }
 
     private function getFontSizeAttributes() {
-        $params = $this->slider->params;
 
         return $this->slider->features->responsive->getMinimumFontSizeAttributes() + array(
-            'style'         => "font-size: " . $this->slider->fontSize . "px;",
-            'data-fontsize' => $this->slider->fontSize
-        );
+                'style'         => "font-size: " . $this->slider->fontSize . "px;",
+                'data-fontsize' => $this->slider->fontSize
+            );
     }
 
     public function getDefaults() {
@@ -64,5 +66,14 @@ abstract class N2SmartSliderType
      */
     public function limitParams($params) {
 
+    }
+
+    protected function initParticleJS() {
+    }
+
+    protected function renderShapeDividers() {
+    }
+
+    private function renderShapeDivider($side, $params) {
     }
 }

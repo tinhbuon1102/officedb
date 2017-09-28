@@ -15,7 +15,9 @@ class N2ElementPublishSlider extends N2ElementHidden {
                 } else if (window.getSelection) {
                     var range = document.createRange();
                     range.selectNode(container);
-                    window.getSelection().addRange(range);
+                    var selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
                 }
                 return false;
             }
@@ -27,6 +29,7 @@ class N2ElementPublishSlider extends N2ElementHidden {
               ->renderInlineInNamespace("publish", 'backend.inline', 'smartslider.platform', array(
                   'sliderid' => N2Get::getInt('sliderid')
               ));
+
         return ob_get_clean();
     }
 }

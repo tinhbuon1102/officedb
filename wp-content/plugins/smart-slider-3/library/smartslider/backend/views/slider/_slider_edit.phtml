@@ -8,7 +8,7 @@ N2Loader::import('libraries.browse.browse');
 N2Loader::import('libraries.backgroundanimation.manager', 'smartslider');
 N2Loader::import('libraries.postbackgroundanimation.manager', 'smartslider');
 
-N2JS::addInline("new NextendSmartSliderQuickSlides('" . $this->appType->router->createUrl(array(
+N2JS::addInline("new N2Classes.QuickSlides('" . $this->appType->router->createUrl(array(
         'slides/quickedit',
         array('sliderid' => $slider['id'])
     )) . "');");
@@ -48,6 +48,11 @@ $this->widget->init('heading', array(
 ));
 ?>
 
+<?php
+$this->renderInline("tutorial-free");
+
+?>
+
     <div class="n2-ss-slides-outer-container">
         <?php
         $this->renderInline("slidemanager", array(
@@ -79,7 +84,7 @@ $this->widget->init('heading', array(
             var isPreview = false;
 
             form.on('submit', function (e) {
-                if (!isPreview) {
+                if (form.attr('target') == undefined) {
                     e.preventDefault();
                     nextend.askToSave = false;
                     NextendAjaxHelper.ajax({
