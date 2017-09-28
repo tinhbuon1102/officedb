@@ -9,7 +9,23 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	$args = array(
 		'post_type' => 'property',
 		'posts_per_page' => -1,
-		'post__in' => $propertyIdList
+		'post__in' => $propertyIdList,
+		'meta_query' => array(
+			array(
+				'relation' => 'AND',
+				'floor_down' => array(
+					'key'       => 'estate_property_floor_down',
+					'compare'   => 'EXISTS',
+					'type'      => 'numeric'
+				),
+				'floor_up' => array(
+					'key'       => 'estate_property_floor_up',
+					'compare'   => 'EXISTS',
+					'type'      => 'numeric'
+				),
+			)
+		),
+		'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
 	);
 
 	$properties = get_posts($args);
@@ -17,6 +33,13 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 	
 	$tableFloors = array();
+	
+	//Count floor same building
+	$aFloorCounting = array();
+	foreach ($properties as $property_index => $property) {
+		$aFloorCounting[$property->pinged] = (isset($aFloorCounting[$property->pinged]) ? $aFloorCounting[$property->pinged] : 0) + 1;
+	}
+	
 	foreach ($properties as $property_index => $property) {
 		$single_property_id = $property->ID;
 		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
@@ -26,18 +49,31 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		$isSubcribed = count($get_user_meta_follow) ? in_array( $single_property_id, $get_user_meta_follow[0]) : false;
 		$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
 		$inquiryUrl .=  '?id='. $single_property_id;
+		$buildingName = get_post_meta($single_property_id, 'post_title_building', true);
+		$floorNumber = substr($property->post_title, strlen($buildingName));
 		
-		$tableFloors[$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';
-		$tableFloors[$property_index]['name'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . $property->post_title . '</a>';
-		$tableFloors[$property_index]['size'] = translateBuildingValue('area_ping', $building, $floor, $single_property_id);
-		$tableFloors[$property_index]['address'] = $google_maps['address'];
-		$tableFloors[$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
-		$tableFloors[$property_index]['deposit'] = renderPrice($floor['total_deposit']);
-		$tableFloors[$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
-		$tableFloors[$property_index]['property_id'] = $single_property_id;
+		$tableFloors[$property->pinged][$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';
+		$tableFloors[$property->pinged][$property_index]['name'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . $property->post_title . '</a>';
+		$tableFloors[$property->pinged][$property_index]['size'] = translateBuildingValue('area_ping', $building, $floor, $single_property_id);
+		$tableFloors[$property->pinged][$property_index]['address'] = $google_maps['address'];
+		$tableFloors[$property->pinged][$property_index]['rent_unit_price'] = $floor['rent_unit_price'] ? renderPrice($floor['rent_unit_price']) : translateBuildingValue('rent_unit_price_opt', $building, $floor, $single_property_id);
+		$tableFloors[$property->pinged][$property_index]['deposit'] = renderPrice($floor['total_deposit']);
+		$tableFloors[$property->pinged][$property_index]['date_move'] = translateBuildingValue('move_in_date', $building, $floor, $single_property_id);
+		$tableFloors[$property->pinged][$property_index]['property_id'] = $single_property_id;
+		$tableFloors[$property->pinged][$property_index]['pinged'] = $property->pinged;
+		$tableFloors[$property->pinged][$property_index]['title'] = $property->post_title ;
+		$tableFloors[$property->pinged][$property_index]['building_name'] = $buildingName ;
+		$tableFloors[$property->pinged][$property_index]['floor_number'] = $floorNumber ;
 		
-		$tableFloors[$property_index]['subscribed'] = '<a class="btn btn-success add-to-follow-popup follow-popup '. ($isSubcribed ? ' subscribed' : '') .'" data-fav-id="'. $single_property_id .'" data-subscribe="'. trans_text('Subscribe') .'" data-unsubscribe="'. trans_text('Unsubscribe') .'"  href="javascript:void(0)">' . ($isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe')) . '</a>';
-		$tableFloors[$property_index]['contact_url'] = $inquiryUrl;
+		$tableFloors[$property->pinged][$property_index]['subscribed'] = '<a class="btn btn-success add-to-follow-popup follow-popup '. ($isSubcribed ? ' subscribed' : '') .'" data-fav-id="'. $single_property_id .'" data-subscribe="'. trans_text('Subscribe') .'" data-unsubscribe="'. trans_text('Unsubscribe') .'"  href="javascript:void(0)">' . ($isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe')) . '</a>';
+		$tableFloors[$property->pinged][$property_index]['contact_url'] = $inquiryUrl;
+		foreach ($aFloorCounting as $pinged => $floorCounting)
+		{
+			if ($pinged == $property->pinged)
+			{
+				$tableFloors[$property->pinged][$property_index]['related_count'] = $floorCounting;
+			}
+		}
 		
 		
 		
@@ -50,62 +86,100 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	$user = get_currentuserinfo();
 	$user_id = $user->ID;
 	
-	$tableFloors = get_favorite_property_list(false, 'realty_user_favorites');
+	$aTableFloors = get_favorite_property_list(false, 'realty_user_favorites');
 	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 	$tableHtml = '';
-	if (!empty($tableFloors) || $is_modal) {
+	if (!empty($aTableFloors) || $is_modal) {
 		ob_start();
 		?>
 	<!--<h4><?php //echo trans_text('With list of properties below :')?></h4>-->
 	<table class="favorite_list_later">
 		<thead>
 			<tr>
-				<th class="floor_checkbox" ></th>
-				<th class="floor_picture" colspan="2"><?php echo trans_text('Property Name')?></th>
+				<th class="floor_picture" ><?php echo trans_text('Building Name')?></th>
+				<?php if ($show_remove) {?>
+				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
+				<?php }?>
+				<th class="floor_name"><?php echo trans_text('Floor')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
 				<!--<th class="floor_deposit"><?php //echo trans_text('Total deposit')?></th>-->
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
 				<?php if ($show_remove) {?>
-				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
 				<th class="floor_contact"></th>
 				<th class="floor_action_remove"></th>
 				<?php }?>
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($tableFloors as $floor) {
-			$isSubcribed = count($get_user_meta_follow) ? in_array( $floor['property_id'], $get_user_meta_follow[0]) : false;
-			$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
-			$inquiryUrl .=  '?id='. $floor['property_id'];
+		<?php foreach ($aTableFloors as $pinged => $tableFloors) {
+			$isSubcribed = count($get_user_meta_follow) ? in_array( $tableFloors[0]['property_id'], $get_user_meta_follow[0]) : false;
 		?>
-		<tr class="favorite_item">
-			<td class="floor_checkbox form-group checkbox"><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></td>
-			<td class="floor_picture"><?php echo $floor['thumbnail']?></td>
-			<td class="floor_name"><?php echo $floor['name']?></td>
-			<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
-			<td class="floor_area"><?php echo $floor['size']?></td>
-			<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
-			<td class="floor_date_move"><?php echo $floor['date_move']?></td>
-			<?php if ($show_remove) {?>
-			<td class="floor_subscribe"><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $floor['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
-			<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact now')?></a></td>
-			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
-			<?php }?>
-		</tr>
-		<?php }?>
+			<tr class="favorite_item">
+				<td class="floor_picture" >
+					<span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span>
+					<span class="floor_name"><?php echo $tableFloors[0]['building_name']?></span>
+				</td>
+				<?php if ($show_remove) {?>
+				<td class="floor_subscribe" ><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
+				<?php }?>
+				
+				<td colspan="5">
+					<table class="tmp_table">
+					<?php foreach ($tableFloors as $indexFloor => $floor) {
+						$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
+						$inquiryUrl .=  '?id='. $floor['property_id'];
+						
+					?>
+						<tr class="tmp_table_row">
+							<td class="floor_name">
+								<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/>
+								<?php echo $floor['floor_number']?>
+							</td>
+							<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
+							<td class="floor_area"><?php echo $floor['size']?></td>
+							<!--<td class="floor_deposit"><?php //echo $floor['deposit']?></td>-->
+							<td class="floor_date_move"><?php echo $floor['date_move']?></td>
+							<?php if ($show_remove) {?>
+							<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact now')?></a></td>
+							<?php }?>
+						</tr>
+					<?php }?>
+					</table>
+				</td>
+				<?php if ($show_remove) {?>
+				<td class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
+				<?php }?>
+			</tr>
+		<?php }
+		?>
+		
 		<tr class="favorite_item_tmp element-disable" style="display:none">
-			<td class="floor_checkbox form-group checkbox"></td>
-			<td class="floor_picture"></td>
-			<td class="floor_name"></td>
-			<td class="floor_rent"></td>
-			<td class="floor_area"></td>
-			<td class="floor_deposit"></td>
-			<td class="floor_date_move"></td>
+			<td class="floor_picture" ></td>
 			<?php if ($show_remove) {?>
-			<td class="floor_subscribe"></td>
-			<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');?>"><?php echo trans_text('Contact')?></a></td>
-			<td class="floor_action_remove"><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></td>
+			<td class="floor_subscribe" ></td>
+			<?php }?>
+			
+			<td colspan="5">
+				<table class="tmp_table">
+					<tr class="tmp_table_row">
+						<td class="floor_checkbox form-group checkbox"></td>
+						<td class="floor_name"></td>
+						<td class="floor_rent"></td>
+						<td class="floor_area"></td>
+<!-- 						<td class="floor_deposit"></td> -->
+						<td class="floor_date_move"></td>
+						<?php if ($show_remove) {?>
+						<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');?>"><?php echo trans_text('Contact')?></a></td>
+						<?php }?>
+					</tr>
+				</table>
+			</td>
+			
+			
+			
+			<?php if ($show_remove) {?>
+			<td class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></td>
 			<?php }?>
 		</tr>
 		</tbody>
@@ -124,6 +198,50 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	return $tableHtml;
 }
 
+function tt_add_remove_property_favorite($property_id){
+	$user_id = $_GET['user'];
+	
+	// Get Favorites Meta Data
+	$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
+	
+	$property_translations = pll_get_post_translations( $property_id );
+		
+	$sync_property_id = 0;
+	foreach ($property_translations as $property_lang_id) {
+		if ($property_lang_id != $property_id)
+		{
+			$sync_property_id = $property_lang_id;
+			break;
+		}
+	}
+	
+	if ( ! $get_user_meta_favorites ) {
+		// No User Meta Data Favorites Found -> Add Data
+		$create_favorites = array($property_id, $sync_property_id);
+		add_user_meta( $user_id, 'realty_user_favorites', $create_favorites );
+	} else {
+		// Meta Data Found -> Update Data
+		if ( ! in_array( $property_id, $get_user_meta_favorites[0] ) && ! in_array( $sync_property_id, $get_user_meta_favorites[0] ) ) {
+			// Add New Favorite
+			array_unshift( $get_user_meta_favorites[0], $property_id ); // Add To Beginning Of Favorites Array
+			array_unshift( $get_user_meta_favorites[0], $sync_property_id ); // Add To Beginning Of Favorites Array
+		} else {
+			// Remove Favorite
+			$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_favorites[0] );
+			$removeFavoriteFromPositionSync = array_search( $sync_property_id, $get_user_meta_favorites[0] );
+				
+			if ($removeFavoriteFromPosition !== false)
+			{
+				unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
+			}
+			if ($removeFavoriteFromPositionSync !== false)
+			{
+				unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
+			}
+		}
+		update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
+	}
+}
 
 /**
  * AJAX - Favorites
@@ -132,53 +250,59 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 	function tt_ajax_add_remove_favorites() {
 
+		global $wpdb;
 		$user_id = $_GET['user'];
 		$aProperty_id = explode(',', $_GET['property']);
-
+		$propertyIds = array();
+		
+		// Get Favorites Meta Data
+		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
+		
 		foreach ($aProperty_id as $property_id)
 		{
-			$property_translations = pll_get_post_translations( $property_id );
+			$property = get_post($property_id);
+				
+			$building_id = substr($property->pinged, strlen(FLOOOR_BUILDING_PARENT));
+			// Get all property of all language to remove favorite
+			$querystr = "SELECT p.ID 
+			FROM $wpdb->posts p
+			WHERE p.post_type='property' AND p.pinged = $property->pinged";
+				
+			$aProperties = $wpdb->get_results($querystr, OBJECT);
 			
-			$sync_property_id = 0;
-			foreach ($property_translations as $property_lang_id) {
-				if ($property_lang_id != $property_id)
+			// Remove same building floor favorite before add or remove
+			foreach ($aProperties as $oProperty){
+				if ($oProperty->ID != $property_id)
 				{
-					$sync_property_id = $property_lang_id;
-					break;
-				}
-			}
-			// Get Favorites Meta Data
-			$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-	
-			if ( ! $get_user_meta_favorites ) {
-				// No User Meta Data Favorites Found -> Add Data
-				$create_favorites = array($property_id, $sync_property_id);
-				add_user_meta( $user_id, 'realty_user_favorites', $create_favorites );
-			} else {
-				// Meta Data Found -> Update Data
-				if ( ! in_array( $property_id, $get_user_meta_favorites[0] ) && ! in_array( $sync_property_id, $get_user_meta_favorites[0] ) ) {
-					// Add New Favorite
-					array_unshift( $get_user_meta_favorites[0], $property_id ); // Add To Beginning Of Favorites Array
-					array_unshift( $get_user_meta_favorites[0], $sync_property_id ); // Add To Beginning Of Favorites Array
-					update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
-				} else {
-					// Remove Favorite
-					$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_favorites[0] );
-					$removeFavoriteFromPositionSync = array_search( $sync_property_id, $get_user_meta_favorites[0] );
-					
+					$removeFavoriteFromPosition = array_search( $oProperty->ID, $get_user_meta_favorites[0] );
 					if ($removeFavoriteFromPosition !== false)
 					{
 						unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
 					}
-					if ($removeFavoriteFromPositionSync !== false)
-					{
-						unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
-					}
-					update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 				}
 			}
+			
+			// Get all same building floor with chosen language
+			$querystr = "SELECT p.ID
+			FROM $wpdb->posts p
+			INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
+			WHERE
+			pm.meta_key = 'jpdb_floor_building_id_".pll_current_language()."'
+			AND pm.meta_value=".(int)$building_id."
+			AND p.post_type='property' AND p.pinged = ".(int)$property->pinged." AND p.ID != " . (int)$property_id;
+			
+			$aProperties = $wpdb->get_results($querystr, OBJECT);
+			
+			array_unshift($aProperties, $property);
+			
+			// Add favorite all floors in same building
+			foreach ($aProperties as $oProperty){
+				tt_add_remove_property_favorite($oProperty->ID);
+			}
 		}
+		
 		$tableFloors = get_favorite_property_list($user_id, 'realty_user_favorites');
+		sort($tableFloors);
 		echo json_encode(array('floors' => $tableFloors)); die;
 	}
 }
@@ -441,10 +565,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 					  },
 					  success: function (response) {
 
-							var floors = response.floors;
+							var aFloors = response.floors;
 							
 							// Update header count
-							jQuery('.favorite-list-count').html(floors.length);
+							jQuery('.favorite-list-count').html(aFloors.length);
 
 							jQuery('body').LoadingOverlay("hide");
 							if (show_popup || elementCLick.hasClass('remove_property'))
@@ -457,32 +581,45 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 								jQuery('.favorite_item').remove();	
 
-								if (floors.length)
+								if (aFloors.length)
 								{
 									jQuery('.favorite_list_later').show();
 									jQuery('.modal-body .button_groups .btn-success').css('display', 'inline-block');
 									jQuery('.no-favorite-list').remove();
-									
-									jQuery.each(floors, function(floor_index, floor){
-										var floor_row = jQuery('tr.favorite_item_tmp:eq(0)').clone();
-										floor_row.removeClass('favorite_item_tmp element-disable');
-										floor_row.show();
-										floor_row.addClass('favorite_item');
-										floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="'+ floor.property_id +'"/>');
-										floor_row.find('.floor_picture').html(floor.thumbnail);
-										floor_row.find('.floor_name').html(floor.name);
-										floor_row.find('.floor_rent').html(floor.rent_unit_price);
-										floor_row.find('.floor_area').html(floor.size);
-										floor_row.find('.floor_deposit').html(floor.deposit);
-										floor_row.find('.floor_date_move').html(floor.date_move);
-										floor_row.find('.floor_subscribe').html(floor.subscribed);
-										floor_row.find('.floor_contact a').attr('href', floor.contact_url);
-										floor_row.find('.floor_action_remove a').attr('data-fav-id', floor.property_id);
 
-										jQuery('.favorite_list_later').append(floor_row);
 
-										checkboxFavoriteInitial();
+									var favorite_html = '';
+									jQuery.each(aFloors, function(pinged, floors){
+										var building_row = jQuery('tr.favorite_item_tmp:eq(0)').clone();
+										var current_floor = [];
+										building_row.find('tr').remove();
+										
+										jQuery.each(floors, function(floor_index, floor){
+											var floor_row = jQuery('tr.favorite_item_tmp:eq(0) table.tmp_table tr').clone();
+											current_floor = floor;
+											
+											floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="'+ floor.property_id +'"/>');
+											floor_row.find('.floor_name').html(floor.floor_number);
+											floor_row.find('.floor_rent').html(floor.rent_unit_price);
+											floor_row.find('.floor_area').html(floor.size);
+											floor_row.find('.floor_deposit').html(floor.deposit);
+											floor_row.find('.floor_date_move').html(floor.date_move);
+
+											building_row.find('table.tmp_table').append(floor_row);
+										});
+
+										building_row.removeClass('favorite_item_tmp element-disable');
+										building_row.show();
+										building_row.addClass('favorite_item');
+
+										building_row.find('.floor_picture').html('<span class="floor_thumb">'+current_floor.thumbnail+'</span><span class="floor_name">'+current_floor.building_name+'</span>');
+										building_row.find('.floor_subscribe').html(current_floor.subscribed);
+										building_row.find('.floor_contact a').attr('href', current_floor.contact_url);
+										building_row.find('.floor_action_remove a').attr('data-fav-id', current_floor.property_id);
+										jQuery('.favorite_list_later').append(building_row);
 									});
+									
+									checkboxFavoriteInitial();
 								}
 								else {
 									jQuery('.favorite_list_later').hide();

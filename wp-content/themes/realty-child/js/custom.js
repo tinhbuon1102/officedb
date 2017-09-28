@@ -543,7 +543,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 		if ($('form.lwa-register-form').length)
 		{
 			setTimeout(function(){
-				if (!$('.wppb-recaptcha #recaptcha_pb_register0').html())
+				if (!$('.wppb-recaptcha #recaptcha_pb_register0').html() && typeof wppbRecaptchaCallBack == 'function')
 				{
 					wppbRecaptchaCallBack();
 				}

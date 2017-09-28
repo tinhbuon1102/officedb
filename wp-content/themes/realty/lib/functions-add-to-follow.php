@@ -5,6 +5,7 @@
  */
 if ( ! function_exists('tt_ajax_add_remove_follow') ) {
 	function tt_ajax_add_remove_follow() {
+		global $wpdb;
 
 		$user_id = $_GET['user'];
 		$property_id = $_GET['property'];
@@ -12,25 +13,53 @@ if ( ! function_exists('tt_ajax_add_remove_follow') ) {
 		// Get follow Meta Data
 		$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 
-		// No User Meta Data follow Found -> Add Data
-		if ( !$get_user_meta_follow ) {
-			$create_follow = array($property_id);
-			add_user_meta( $user_id, 'realty_user_follow', $create_follow );
-		}
-		// Meta Data Found -> Update Data
-		else {
-			// Add New Follow
-			if ( ! in_array( $property_id, $get_user_meta_follow[0] ) ) {
-				array_unshift( $get_user_meta_follow[0], $property_id ); // Add To Beginning Of follow Array
-				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
+		$property = get_post($property_id);
+		
+		$building_id = substr($property->pinged, strlen(FLOOOR_BUILDING_PARENT));
+			
+		// Get all same building floor with chosen language
+		$querystr = "SELECT p.ID
+		FROM $wpdb->posts p
+		INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
+		WHERE
+		pm.meta_key = 'jpdb_floor_building_id_".pll_current_language()."'
+			AND pm.meta_value=".(int)$building_id."
+			AND p.post_type='property' AND p.pinged = ".(int)$property->pinged." AND p.ID != " . (int)$property_id;
+			
+		$aProperties = $wpdb->get_results($querystr, OBJECT);
+			
+		// Remove same building floor favorite before add or remove
+		foreach ($aProperties as $oProperty){
+			if ($oProperty->ID != $property_id && isset($get_user_meta_follow[0]))
+			{
+				$removeFavoriteFromPosition = array_search( $oProperty->ID, $get_user_meta_follow[0] );
+				if ($removeFavoriteFromPosition !== false)
+				{
+					unset($get_user_meta_follow[0][$removeFavoriteFromPosition]);
+				}
 			}
-			// Remove Follow
-			else {
+		}
+		array_unshift($aProperties, $property);
+		
+		// No User Meta Data follow Found -> Add Data
+		// Add New Follow
+		if ( !$get_user_meta_follow[0] || ! in_array( $property_id, $get_user_meta_follow[0] ) ) {
+			foreach ($aProperties as $oProperty)
+			{
+				$property_id = $oProperty->ID;
+				array_unshift( $get_user_meta_follow[0], $property_id ); // Add To Beginning Of follow Array
+			}
+		}
+		// Remove Follow
+		else {
+			foreach ($aProperties as $oProperty)
+			{
 				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
 				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
-				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 			}
 		}
+		
+		update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 		
 		die('processed');
 
