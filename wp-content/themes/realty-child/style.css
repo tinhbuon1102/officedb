@@ -3749,9 +3749,6 @@ body.ja .title-mincho1 .section-title, body.ja .title-mincho1 h4 {
 .top-header-links.primary-tooltips a {
     vertical-align: top;
 }
-#header .top-header .lang-item.current-lang a {
-    color: #FFF;
-}
 @media (max-width: 767px) {
 	.top-header-sidebar ul {
 		position: relative;

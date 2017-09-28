@@ -46,15 +46,15 @@ jQuery(document).ready(function($){
             }
         });
     });
-	console.log('賃料' + max3 + 'px');
+	console.log('契約面積' + max3 + 'px');
 	$('.tmp_table_row > .floor_area').css('width', (max3 + 10) + 'px');
 	$('table.favorite_list_later thead th.floor_area').css('width', (max3 + 10) + 'px');
 		
 	//入居日
 	var max4 = 0;
-	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_date_move > span').each(function(){
+	$('.favorite_list_later .favorite_item').each(function(){
         $(this).children().each(function(){
-            var itemWidth = parseInt($(this).width());
+            var itemWidth = parseInt($('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_date_move').width());
             if(itemWidth > max4){
                 max4 = itemWidth;
             }
