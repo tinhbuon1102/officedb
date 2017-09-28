@@ -622,9 +622,6 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 							var aFloors = response.floors;
 							
-							// Update header count
-							jQuery('.favorite-list-count').html(aFloors.length);
-
 							jQuery('body').LoadingOverlay("hide");
 							if (show_popup || elementCLick.hasClass('remove_property'))
 							{
@@ -644,12 +641,14 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 
 									var favorite_html = '';
+									var favorite_count = 0;
 									jQuery.each(aFloors, function(pinged, floors){
 										var building_row = jQuery('tr.favorite_item_tmp:eq(0)').clone();
 										var current_floor = [];
 										building_row.find('tr').remove();
 										
 										jQuery.each(floors, function(floor_index, floor){
+											favorite_count++;
 											var floor_row = jQuery('tr.favorite_item_tmp:eq(0) table.tmp_table tr').clone();
 											current_floor = floor;
 											
@@ -673,6 +672,9 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										building_row.find('.floor_action_remove a').attr('data-fav-id', current_floor.property_id);
 										jQuery('.favorite_list_later').append(building_row);
 									});
+
+									// Update header count
+									jQuery('.favorite-list-count').html(favorite_count);
 									
 									checkboxFavoriteInitial();
 								}
