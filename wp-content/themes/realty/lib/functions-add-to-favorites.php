@@ -129,7 +129,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			--><span class="bld_name"><?php echo $tableFloors[0]['building_name']?></span>
 			</td>
 				<?php if ($show_remove) {?>
-				<td class="floor_subscribe" ><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
+				<td class="floor_subscribe" ><span class="show-sp sp-disc">この物件の更新情報を</span><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
 				<?php }?>
 				
 				<td class="floors-td" colspan="6">

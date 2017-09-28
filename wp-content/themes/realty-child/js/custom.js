@@ -1,10 +1,27 @@
 jQuery(document).ready(function($){
+  /*$('table.favorite_list_later').resizable();
+
+  $('table.favorite_list_later').resize(function() {
+	var windowWidth = $(window).width();
+    if (windowWidth < 992) {
+      $(this).find('.floors-td').filter(function() {
+        return !$(this).hasClass('floors-td');
+      }).prop('colspan', 5).addClass('floors-td').parent().append("<td></td>");
+    } else {
+      $(this).find('.adjSpan.adjusted').prop('colspan', 6).removeClass('floors-td').next().remove();
+    }
+  });*/
+	$(window).on('load resize', function(){
+		var windowWidth = $(window).width();
+		if (windowWidth < 768) {
+			//$('<span class="sp-disc">この物件の更新情報を</span>').prependTo('td.floor_subscribe');
+		}
+	});
 	$(window).on('load', function(){
 		$('.tmp_table_row > td').wrapInner('<span />');
 	});
-	$(window).on('load resize', function(){
-	
-	//所在階
+	function fixTable(e) {
+    //所在階
 	var max1 = 0;
 	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_name').each(function(){
         $(this).children().each(function(){
@@ -14,13 +31,6 @@ jQuery(document).ready(function($){
             }
         });
     });
-	console.log('階数' + max1 + 'px');
-	$('.tmp_table_row > .floor_name').css('width', (max1 + 10) + 'px');
-	
-	var colCheck = $('.tmp_table_row > .floor_checkbox').innerWidth();
-	var colFloor = $('.tmp_table_row > .floor_name').innerWidth();
-	var col3 = colFloor + colCheck;
-	$('table.favorite_list_later thead th.floor_name').css('width', col3 + 'px');
 		
 	//賃料
 	var max2 = 0;
@@ -32,9 +42,6 @@ jQuery(document).ready(function($){
             }
         });
     });
-	console.log('賃料' + max2 + 'px');
-	$('.tmp_table_row > .floor_rent').css('width', (max2 + 10) + 'px');
-	$('table.favorite_list_later thead th.floor_rent').css('width', (max2 + 10) + 'px');
 		
 	//契約面積
 	var max3 = 0;
@@ -46,9 +53,6 @@ jQuery(document).ready(function($){
             }
         });
     });
-	console.log('契約面積' + max3 + 'px');
-	$('.tmp_table_row > .floor_area').css('width', (max3 + 10) + 'px');
-	$('table.favorite_list_later thead th.floor_area').css('width', (max3 + 10) + 'px');
 		
 	//入居日
 	var max4 = 0;
@@ -60,15 +64,38 @@ jQuery(document).ready(function($){
             }
         });
     });
-	console.log('入居日' + max4 + 'px');
-	$('.tmp_table_row > .floor_date_move').css('width', (max4 + 10) + 'px');
-	$('table.favorite_list_later thead th.floor_date_move').css('width', (max4 + 10) + 'px');
 		
-	/*$('.tmp_table_row').each(function(i){
-		var floorMoveW = $('.tmp_table_row > .floor_date_move > span').eq(i).width();
-		$('.tmp_table_row > .floor_date_move').eq(i).css('width',floorMoveW);
+	console.log('階数' + max1 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_name').css('width', (max1 + 10) + 'px');
+	
+	var colCheck = $('.tmp_table_row > .floor_checkbox').innerWidth();
+	var colFloor = $('.tmp_table_row > .floor_name').innerWidth();
+	var col3 = colFloor + colCheck;
+	$('#page-user-favorites table.favorite_list_later thead th.floor_name').css('width', col3 + 'px');
+		
+	console.log('賃料' + max2 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_rent').css('width', (max2 + 10) + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_rent').css('width', (max2 + 10) + 'px');
+		
+	console.log('契約面積' + max3 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_area').css('width', (max3 + 10) + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_area').css('width', (max3 + 10) + 'px');
+		
+	console.log('入居日' + max4 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_date_move').css('width', (max4 + 10) + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_date_move').css('width', (max4 + 10) + 'px');
+	}
+	$('body').on('click', '.favorite-header > a', fixTable);
+	$(window).on('load resize',fixTable);
+	//$(window).resize(fixTable);
+	
+	/*$(window).on('load resize', function(){
+	
+	
+
 	});*/
-	});
+	
+	
 	$('#header .top-header .lang-item.current-lang a').click(function(){
         return false;
     });

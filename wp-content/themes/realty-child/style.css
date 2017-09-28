@@ -935,7 +935,7 @@ nav#navigation .primary-menu li.menu-clist a span:before {
 }
 @media (max-width: 767px) {
 	.viewwrap {
-		padding-top: 140px;
+		padding-top: 84px;
 	}
 }
 header#header {

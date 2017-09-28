@@ -95,6 +95,11 @@ table.favorite_list_later a.btn {
     font-size: 1em !important;
 	}
 }
+@media (max-width: 991px) {
+	/*#page-user-favorites table.favorite_list_later .floor_contact {
+    display: none;
+	}*/
+}
 @media (min-width: 768px) {
 #page-user-favorites table.favorite_list_later .floor_picture > span {
     display: table-cell;
@@ -107,19 +112,19 @@ table.favorite_list_later a.btn {
     max-width: 50px;
 	}
 	.tmp_table_row > td > span {
-	display: block;
+	display: inline-block;
 	}
 }
 @media (max-width: 767px) {
+#page-user-favorites table.favorite_list_later tbody tr.favorite_item td .tmp_table td.floor_contact {
+    display: none;
+}	
 	td.floor_picture img {
     max-width: 100%;
 }
 	#page-user-favorites table.favorite_list_later tbody tr.favorite_item td.floor_picture span.bld_name {
     display: none;
 }
-	#page-user-favorites table.favorite_list_later .floor_action_remove {
-		display: none;
-	}
 table.favorite_list_later, table.favorite_list_later tbody {
     display: block;
 }
@@ -132,6 +137,15 @@ table.favorite_list_later, table.favorite_list_later tbody {
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
 }
+	table.tmp_table tbody tr.tmp_table_row {
+		display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+	}
 table.tmp_table, table.tmp_table tbody {
     display: block;
 }
@@ -166,8 +180,14 @@ table.tmp_table td, table.tmp_table th {
     -ms-flex-order: 2;
     order: 2;
 }
+#page-user-favorites table.favorite_list_later .floor_action_remove {
+	-webkit-order: 4;
+    -ms-flex-order: 4;
+    order: 4;
+}
 table.favorite_list_later tbody tr.favorite_item td.floor_subscribe {
-
+	 flex: 1 100%;
+	text-align: left;
 }
 #page-user-favorites table.favorite_list_later tbody tr.favorite_item td.floor_picture {
     padding: 10px 0;
@@ -179,4 +199,37 @@ td.floor_picture > .floor_thumb {
 td.floor_picture img {
     max-width: 100%;
 }
+#page-user-favorites table.favorite_list_later tbody tr.favorite_item td .tmp_table td.floor_date_move {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+#page-user-favorites table.favorite_list_later tbody tr.favorite_item td .tmp_table td.floor_area {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+td.floor_subscribe .sp-disc {
+    padding-right: 15px;
+    display: inline-block;
+}
+
+}
+@media (max-width: 580px) {
+	#page-user-favorites table.favorite_list_later tbody tr.favorite_item td.floor_picture {
+    padding: 10px 0;
+    width: 60px;
+	}
+	#page-user-favorites table.favorite_list_later tbody tr.favorite_item td .tmp_table td.floor_date_move {
+		display: none;
+	}
+	.link-items img {
+    width: 100%;
+	}
+	.viewwrap {
+    position: relative;
+    overflow-x: hidden;
+	}
 }
