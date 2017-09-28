@@ -113,6 +113,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 		</thead>
 		<tbody>
 		<?php foreach ($aTableFloors as $pinged => $tableFloors) {
+			$tableFloors = array_values($tableFloors);
 			$isSubcribed = count($get_user_meta_follow) ? in_array( $tableFloors[0]['property_id'], $get_user_meta_follow[0]) : false;
 		?>
 			<tr class="favorite_item">
