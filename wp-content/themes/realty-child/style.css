@@ -1229,9 +1229,6 @@ table.favorite_list_later td.floor_name {
 table.favorite_list_later tbody tr.favorite_item td {
     padding: 10px 5px;
 }
-#page-user-favorites table.favorite_list_later tbody tr.favorite_item td {
-	border-bottom: 1px solid #CCC;
-}
 .btn.add-to-follow-popup.follow-popup {
     background: rgba(32,103,174,1);
 }
@@ -1268,7 +1265,7 @@ div#page-user-favorites .button_groups {
 		font-size: 12px;
 	}
 	#favorite-multiple-modal .modal-dialog {
-		width: 80%;
+		width: 90%;
 	}
 	#favorite-multiple-modal .btn.btn-success, #favorite-multiple-modal a.remove_property.add-to-favorites {
     font-size: 12px;
@@ -1315,9 +1312,7 @@ div#page-user-favorites .button_groups {
 	}
 }
 @media (max-width: 600px) {
-	table.favorite_list_later .floor_action_remove {
-    display: none;
-	}
+	
 }
 #page-user-favorites .button_groups a span.sp-show {
     display: none;
