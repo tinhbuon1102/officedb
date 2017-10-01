@@ -36,11 +36,7 @@
 		$number_of_favorites = 0;
 
 		if ( $get_user_meta_favorites ) {
-			foreach ( $get_user_meta_favorites[0] as $favorite ) {
-				if ( get_post_status( $favorite ) == 'publish' ) {
-					$number_of_favorites++;
-				}
-			}
+			$number_of_favorites = count($get_user_meta_favorites[0]);
 		}
 	?>
 

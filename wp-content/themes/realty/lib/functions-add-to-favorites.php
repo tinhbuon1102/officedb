@@ -14,6 +14,7 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	$args = array(
 		'post_type' => 'property',
 		'posts_per_page' => -1,
+		'post_status' => 'publish',
 		'meta_query' => array(
 			array(
 				'relation' => 'OR',
@@ -54,13 +55,15 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		$aFloorCounting[$property->pinged] = (isset($aFloorCounting[$property->pinged]) ? $aFloorCounting[$property->pinged] : 0) + 1;
 	}
 	
+	$current_lang = pll_current_language();
 	foreach ($properties as $property_index => $property) {
 		$single_property_id = $property->ID;
 		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
 		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 
-		$isSubcribed = count($get_user_meta_follow) ? in_array( $single_property_id, $get_user_meta_follow[0]) : false;
+		$building_id_lang = $building['building_id'].'_'.$current_lang;
+		$isSubcribed = (! empty( $get_user_meta_follow ) && isset($get_user_meta_follow[0]) && isset($get_user_meta_follow[0][$building_id_lang])) ? true : false;
 		$inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');
 		$inquiryUrl .=  '?id='. $single_property_id;
 		$buildingName = get_post_meta($single_property_id, 'post_title_building', true);
@@ -89,7 +92,19 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 			}
 		}
 	}
+	// Sort by floor number
+	if (!function_exists('sort_by_floor_number'))
+	{
+		function sort_by_floor_number($a, $b)
+		{
+			return $a['floor_number'] - $b['floor_number'];
+		}
+	}
 	
+	foreach ($tableFloors as $pinged => &$tableFloor)
+	{
+		usort($tableFloor, 'sort_by_floor_number');
+	}
 	return $tableFloors;
 }
 
@@ -122,9 +137,14 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			</tr>
 		</thead>
 		<tbody>
-		<?php foreach ($aTableFloors as $pinged => $tableFloors) {
+		<?php 
+		$current_lang = pll_current_language();
+		foreach ($aTableFloors as $pinged => $tableFloors) {
+			$building_id = get_post_meta($tableFloors[0]['property_id'], FLOOR_BUILDING_TYPE, true);
+			$building_id_lang = $building_id.'_'.$current_lang;
+			$isSubcribed = (! empty( $get_user_meta_follow ) && isset($get_user_meta_follow[0]) && isset($get_user_meta_follow[0][$building_id_lang])) ? true : false;
+			
 			$tableFloors = array_values($tableFloors);
-			$isSubcribed = count($get_user_meta_follow) ? in_array( $tableFloors[0]['property_id'], $get_user_meta_follow[0]) : false;
 		?>
 			<tr class="favorite_item">
 			<td class="show-sp name_sp"><span class="bld_name_sp"><?php echo $tableFloors[0]['building_name']?></span></td>
@@ -218,54 +238,6 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 	return $tableHtml;
 }
 
-function tt_add_remove_property_favorite($property_id){
-	$user_id = $_GET['user'];
-	
-	// Get Favorites Meta Data
-	$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-	pr($get_user_meta_favorites);die;
-	
-	$property_translations = pll_get_post_translations( $property_id );
-		
-	$sync_property_id = 0;
-	foreach ($property_translations as $property_lang_id) {
-		if ($property_lang_id != $property_id)
-		{
-			$sync_property_id = $property_lang_id;
-			break;
-		}
-	}
-	
-	$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
-	$current_lang = pll_current_language();
-	$current_time = time();
-	
-	if ( ! $get_user_meta_favorites ) {
-		// No User Meta Data Favorites Found -> Add Data
-		$get_user_meta_favorites = array();
-		$get_user_meta_favorites[0][$building_id] = $current_time;
-	} else {
-		// Meta Data Found -> Update Data
-		if ( isset($get_user_meta_favorites[0][$building_id])) {
-			// Remove Favorite
-			unset($get_user_meta_favorites[0][$building_id]);
-				
-			// Remove follow
-// 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
-// 			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
-// 			{
-// 				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
-// 				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
-// 				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
-// 			}
-		} else {
-			// Add New Favorite
-			$get_user_meta_favorites[0][$building_id] = $current_time;
-		}
-		update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
-	}
-}
-
 /**
  * AJAX - Favorites
  *
@@ -285,6 +257,7 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 			
 			$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
 			$current_lang = pll_current_language();
+			$building_id_lang = $building_id.'_'.$current_lang;
 			$current_time = time();
 			
 			if ( ! $get_user_meta_favorites ) {
@@ -298,13 +271,13 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 					unset($get_user_meta_favorites[0][$building_id]);
 			
 					// Remove follow
-					// 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
-					// 			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
-						// 			{
-					// 				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
-					// 				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
-					// 				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
-					// 			}
+					$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+					if ($get_user_meta_follow && isset($get_user_meta_follow[0]) && isset($get_user_meta_follow[0][$building_id_lang]))
+					{
+						unset( $get_user_meta_follow[0][$building_id_lang] );
+						update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
+					}
+					
 				} else {
 					// Add New Favorite
 					$get_user_meta_favorites[0][$building_id] = $current_time;
@@ -312,11 +285,9 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 			}
 			update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 		}
-		
-		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-		
 		$tableFloors = get_favorite_property_list($user_id, 'realty_user_favorites');
-		sort($tableFloors);
+		// remove index
+		$tableFloors = array_values($tableFloors);
 		echo json_encode(array('floors' => $tableFloors)); die;
 	}
 }
@@ -341,13 +312,14 @@ if ( !function_exists('tt_add_remove_favorites') ) {
 			$property_id = get_the_ID();
 		}
 		
+		$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
 		$favicon = '%s';
 		if ( is_user_logged_in() ) {
 			// Logged-In User
 			$user_id = get_current_user_id();
 			$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 
-			if ( ! empty( $get_user_meta_favorites ) && in_array( $property_id, $get_user_meta_favorites[0] ) ) {
+			if ( ! empty( $get_user_meta_favorites ) && isset($get_user_meta_favorites[0][$building_id]) ) {
 				// Property Is Already In Favorites
 				$class = $is_custom ? 'add-to-favorites custom-fav fa fa-star' : 'add-to-favorites origin fa fa-star';
 				$text = __( 'Remove From Favorites', 'realty' );
@@ -516,7 +488,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 
 				// find all floor same building 
 				var relatedFloors = [property_id];
-				if (jQuery('.favorite_list_later input.floor_checked').length)
+				if (jQuery('.favorite_list_later input.floor_checked:visible').length)
 				{
 					jQuery('#favorite-multiple-modal .favorite_list_later:eq(0) input.floor_checked').each(function(){
 						if (jQuery(this).val() == property_id) {
@@ -531,6 +503,23 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 						}
 					});
 				}
+
+				if (jQuery('.overlink_row .favorite_column').length)
+				{
+					jQuery('#building_detail_modal .add-to-favorites').each(function(){
+						if (jQuery(this).attr('data-fav-id') == property_id) {
+							var buildingTable = jQuery(this).closest('.propertyTable');
+
+							buildingTable.find('.add-to-favorites').each(function(){
+								if (relatedFloors.indexOf(jQuery(this).attr('data-fav-id')) == -1) 
+								{
+									relatedFloors.push(jQuery(this).attr('data-fav-id'));
+								}
+							});
+						}
+					});
+				}
+				
 								
 				if (is_single)
 				{
@@ -648,12 +637,12 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 									var favorite_html = '';
 									var favorite_count = 0;
 									jQuery.each(aFloors, function(pinged, floors){
+										favorite_count++;
 										var building_row = jQuery('tr.favorite_item_tmp:eq(0)').clone();
 										var current_floor = [];
 										building_row.find('tr').remove();
 										
 										jQuery.each(floors, function(floor_index, floor){
-											favorite_count++;
 											var floor_row = jQuery('tr.favorite_item_tmp:eq(0) table.tmp_table tr').clone();
 											current_floor = floor;
 											
@@ -676,7 +665,7 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										building_row.find('.floor_subscribe').html(current_floor.subscribed);
 										building_row.find('.floor_contact a').attr('href', current_floor.contact_url);
 										building_row.find('.floor_action_remove a').attr('data-fav-id', current_floor.property_id);
-										jQuery('.favorite_list_later').append(building_row);
+										jQuery('.favorite_list_later > tbody').append(building_row);
 									});
 
 									// Update header count
@@ -706,7 +695,8 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 							else{
 								if (is_remove)
 								{
-									jQuery('.remove_property.add-to-favorites[data-fav-id="'+property_id+'"]').closest('tr').remove();
+									jQuery('.floor_checked[value="'+property_id+'"]').closest('tr.favorite_item').remove();
+									jQuery('.favorite-list-count').html(parseInt(jQuery('.favorite-list-count:eq(0)').text()) - 1);
 								}
 							}
 						  

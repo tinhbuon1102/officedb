@@ -13,53 +13,26 @@ if ( ! function_exists('tt_ajax_add_remove_follow') ) {
 		// Get follow Meta Data
 		$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 
-		$property = get_post($property_id);
-		
-		$building_id = substr($property->pinged, strlen(FLOOOR_BUILDING_PARENT));
+		$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+		$current_lang = pll_current_language();
+		$building_id_lang = $building_id.'_'.$current_lang;
+		$current_time = time();
 			
-		// Get all same building floor with chosen language
-		$querystr = "SELECT p.ID
-		FROM $wpdb->posts p
-		INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
-		WHERE
-		pm.meta_key = 'jpdb_floor_building_id_".pll_current_language()."'
-			AND pm.meta_value=".(int)$building_id."
-			AND p.post_type='property' AND p.pinged = ".(int)$property->pinged." AND p.ID != " . (int)$property_id;
-			
-		$aProperties = $wpdb->get_results($querystr, OBJECT);
-			
-		// Remove same building floor favorite before add or remove
-		foreach ($aProperties as $oProperty){
-			if ($oProperty->ID != $property_id && isset($get_user_meta_follow[0]))
-			{
-				$removeFavoriteFromPosition = array_search( $oProperty->ID, $get_user_meta_follow[0] );
-				if ($removeFavoriteFromPosition !== false)
-				{
-					unset($get_user_meta_follow[0][$removeFavoriteFromPosition]);
-				}
+		if ( ! $get_user_meta_follow ) {
+			// No User Meta Data Favorites Found -> Add Data
+			$get_user_meta_follow = array();
+			$get_user_meta_follow[0][$building_id_lang] = $current_time;
+		} else {
+			// Meta Data Found -> Update Data
+			if ( isset($get_user_meta_follow[0][$building_id_lang])) {
+				// Remove Favorite
+				unset($get_user_meta_follow[0][$building_id_lang]);
+			} else {
+				// Add New Favorite
+				$get_user_meta_follow[0][$building_id_lang] = $current_time;
 			}
+			update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 		}
-		array_unshift($aProperties, $property);
-		
-		// No User Meta Data follow Found -> Add Data
-		// Add New Follow
-		if ( !$get_user_meta_follow[0] || ! in_array( $property_id, $get_user_meta_follow[0] ) ) {
-			foreach ($aProperties as $oProperty)
-			{
-				$property_id = $oProperty->ID;
-				array_unshift( $get_user_meta_follow[0], $property_id ); // Add To Beginning Of follow Array
-			}
-		}
-		// Remove Follow
-		else {
-			foreach ($aProperties as $oProperty)
-			{
-				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
-				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
-			}
-		}
-		
-		update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 		
 		die('processed');
 
@@ -85,10 +58,15 @@ if ( ! function_exists( 'tt_add_remove_follow' ) ) {
 
 		// Logged-In User
 		if ( is_user_logged_in() ) {
+			
+			$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+			$current_lang = pll_current_language();
+			$building_id_lang = $building_id.'_'.$current_lang;
+			
 			$user_id = get_current_user_id();
 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
 
-			if ( ! empty( $get_user_meta_follow ) && in_array( $property_id, $get_user_meta_follow[0] ) ) {
+			if ( ! empty( $get_user_meta_follow ) && isset($get_user_meta_follow[0]) && isset($get_user_meta_follow[0][$building_id_lang]) ) {
 				// Follow: true
 				$favicon = '<i class="add-to-follow icon-email-1" data-fol-id="' . $property_id . '" data-toggle="tooltip" title="' . esc_html__( 'Unsubscribe From Email Updates', 'realty' ) . '"></i>';
 			} else {
@@ -178,7 +156,12 @@ if ( ! function_exists( 'tt_property_updated_send_email' ) ) {
 		}
 
 		global $wpdb, $post;
-		$users = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_value LIKE '%\"". $post_id ."\"%' AND meta_key = 'realty_user_follow' GROUP BY user_id");
+		
+		$current_lang = pll_current_language();
+		
+		$building_id = get_post_meta($post_id, FLOOR_BUILDING_TYPE, true);
+		$building_id_lang = $building_id.'_'.$current_lang;
+		$users = $wpdb->get_results("SELECT user_id FROM $wpdb->usermeta WHERE meta_value LIKE '%\"". $building_id_lang ."\"%' AND meta_key = 'realty_user_follow' GROUP BY user_id");
 		
 		foreach ( $users as $user ) {
 			$user = get_user_by('ID', $user->user_id);

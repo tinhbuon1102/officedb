@@ -42,19 +42,11 @@
 		$number_of_follows = 0;
 
 		if ( $get_user_meta_favorites ) {
-			foreach ( $get_user_meta_favorites[0] as $favorite ) {
-				if ( get_post_status( $favorite ) == 'publish' ) {
-					$number_of_favorites++;
-				}
-			}
+			$number_of_favorites = count($get_user_meta_favorites[0]);
 		}
 		
 		if ( $get_user_meta_follow ) {
-			foreach ( $get_user_meta_follow[0] as $follow ) {
-				if ( get_post_status( $follow ) == 'publish' ) {
-					$number_of_follows++;
-				}
-			}
+			$number_of_follows = count($get_user_meta_follow[0]);
 		}
 	?>
 
