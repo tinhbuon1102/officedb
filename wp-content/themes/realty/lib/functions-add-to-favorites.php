@@ -3,42 +3,49 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	$user = get_currentuserinfo();
 	$user_id = $user->ID;
 
-	$propertyIdList = get_user_meta($user_id, $meta_key, true);
-	if (!$propertyIdList) return array();
+	$buildingList = get_user_meta($user_id, $meta_key, true);
+	if (!$buildingList) return array();
+	
+	// Sort by value date descending
+	arsort($buildingList);
+	
+	$buildingIds = array_keys($buildingList);
 
 	$args = array(
 		'post_type' => 'property',
 		'posts_per_page' => -1,
-		'post__in' => $propertyIdList,
 		'meta_query' => array(
 			array(
-				'relation' => 'AND',
-				'floor_down' => array(
-					'key'       => 'estate_property_floor_down',
-					'compare'   => 'EXISTS',
-					'type'      => 'numeric'
-				),
-				'floor_up' => array(
-					'key'       => 'estate_property_floor_up',
-					'compare'   => 'EXISTS',
-					'type'      => 'numeric'
-				),
+				'relation' => 'OR',
 			)
 		),
-		'orderby' => array( 'floor_down' => 'ASC', 'floor_up' => 'ASC' )
 	);
-
-	$properties = get_posts($args);
-
-	usort($properties, function ($a, $b) use ($propertyIdList) {
-		$pos_a = array_search($a->ID, $propertyIdList);
-		$pos_b = array_search($b->ID, $propertyIdList);
-		return $pos_a - $pos_b;
-	});
 	
+	foreach ($buildingIds as $buildingId)
+	{
+		$args['meta_query'][0][] = array(
+			'key'       => 'jpdb_floor_building_id',
+			'compare'   => '=',
+			'value'      => $buildingId
+		);
+	}
+
+	$aProperties = get_posts($args);
+	
+	$properties = array();
+	// Sort properties by building id
+	foreach ($buildingIds as $buildingId)
+	{
+		foreach ($aProperties as $aProperty)
+		{
+			if ($aProperty->pinged == FLOOOR_BUILDING_PARENT . $buildingId)
+			{
+				$properties[] = $aProperty;
+			}
+		}
+	}
 	
 	$get_user_meta_follow = (array)get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
-	
 	$tableFloors = array();
 	
 	//Count floor same building
@@ -81,9 +88,6 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 				$tableFloors[$property->pinged][$property_index]['related_count'] = $floorCounting;
 			}
 		}
-		
-		
-		
 	}
 	
 	return $tableFloors;
@@ -211,6 +215,7 @@ function tt_add_remove_property_favorite($property_id){
 	
 	// Get Favorites Meta Data
 	$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
+	pr($get_user_meta_favorites);die;
 	
 	$property_translations = pll_get_post_translations( $property_id );
 		
@@ -223,38 +228,31 @@ function tt_add_remove_property_favorite($property_id){
 		}
 	}
 	
+	$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+	$current_lang = pll_current_language();
+	$current_time = time();
+	
 	if ( ! $get_user_meta_favorites ) {
 		// No User Meta Data Favorites Found -> Add Data
-		$create_favorites = array($property_id, $sync_property_id);
-		add_user_meta( $user_id, 'realty_user_favorites', $create_favorites );
+		$get_user_meta_favorites = array();
+		$get_user_meta_favorites[0][$building_id] = $current_time;
 	} else {
 		// Meta Data Found -> Update Data
-		if ( ! in_array( $property_id, $get_user_meta_favorites[0] ) && ! in_array( $sync_property_id, $get_user_meta_favorites[0] ) ) {
-			// Add New Favorite
-			array_unshift( $get_user_meta_favorites[0], $property_id ); // Add To Beginning Of Favorites Array
-			array_unshift( $get_user_meta_favorites[0], $sync_property_id ); // Add To Beginning Of Favorites Array
-		} else {
+		if ( isset($get_user_meta_favorites[0][$building_id])) {
 			// Remove Favorite
-			$removeFavoriteFromPosition = array_search( $property_id, $get_user_meta_favorites[0] );
-			$removeFavoriteFromPositionSync = array_search( $sync_property_id, $get_user_meta_favorites[0] );
+			unset($get_user_meta_favorites[0][$building_id]);
 				
-			if ($removeFavoriteFromPosition !== false)
-			{
-				unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
-			}
-			if ($removeFavoriteFromPositionSync !== false)
-			{
-				unset($get_user_meta_favorites[0][$removeFavoriteFromPositionSync]);
-			}
-			
 			// Remove follow
-			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
-			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
-			{
-				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
-				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
-				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
-			}
+// 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+// 			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
+// 			{
+// 				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
+// 				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
+// 				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
+// 			}
+		} else {
+			// Add New Favorite
+			$get_user_meta_favorites[0][$building_id] = $current_time;
 		}
 		update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 	}
@@ -272,51 +270,42 @@ if ( ! function_exists( 'tt_ajax_add_remove_favorites' ) ) {
 		$aProperty_id = explode(',', $_GET['property']);
 		$propertyIds = array();
 		
-		// Get Favorites Meta Data
-		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
-		
 		foreach ($aProperty_id as $property_id)
 		{
-			$property = get_post($property_id);
-				
-			$building_id = substr($property->pinged, strlen(FLOOOR_BUILDING_PARENT));
-			// Get all property of all language to remove favorite
-			$querystr = "SELECT p.ID 
-			FROM $wpdb->posts p
-			WHERE p.post_type='property' AND p.pinged = $property->pinged";
-				
-			$aProperties = $wpdb->get_results($querystr, OBJECT);
+			// Get Favorites Meta Data
+			$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 			
-			// Remove same building floor favorite before add or remove
-			foreach ($aProperties as $oProperty){
-				if ($oProperty->ID != $property_id)
-				{
-					$removeFavoriteFromPosition = array_search( $oProperty->ID, $get_user_meta_favorites[0] );
-					if ($removeFavoriteFromPosition !== false)
-					{
-						unset($get_user_meta_favorites[0][$removeFavoriteFromPosition]);
-					}
+			$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+			$current_lang = pll_current_language();
+			$current_time = time();
+			
+			if ( ! $get_user_meta_favorites ) {
+				// No User Meta Data Favorites Found -> Add Data
+				$get_user_meta_favorites = array();
+				$get_user_meta_favorites[0][$building_id] = $current_time;
+			} else {
+				// Meta Data Found -> Update Data
+				if ( isset($get_user_meta_favorites[0][$building_id])) {
+					// Remove Favorite
+					unset($get_user_meta_favorites[0][$building_id]);
+			
+					// Remove follow
+					// 			$get_user_meta_follow = get_user_meta( $user_id, 'realty_user_follow', false ); // false = array()
+					// 			if ($get_user_meta_follow && isset($get_user_meta_follow[0]))
+						// 			{
+					// 				$removeFollowFromPosition = array_search( $property_id, $get_user_meta_follow[0] );
+					// 				unset( $get_user_meta_follow[0][$removeFollowFromPosition] );
+					// 				update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
+					// 			}
+				} else {
+					// Add New Favorite
+					$get_user_meta_favorites[0][$building_id] = $current_time;
 				}
 			}
-			
-			// Get all same building floor with chosen language
-			$querystr = "SELECT p.ID
-			FROM $wpdb->posts p
-			INNER JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
-			WHERE
-			pm.meta_key = 'jpdb_floor_building_id_".pll_current_language()."'
-			AND pm.meta_value=".(int)$building_id."
-			AND p.post_type='property' AND p.pinged = ".(int)$property->pinged." AND p.ID != " . (int)$property_id;
-			
-			$aProperties = $wpdb->get_results($querystr, OBJECT);
-			
-			array_unshift($aProperties, $property);
-			
-			// Add favorite all floors in same building
-			foreach ($aProperties as $oProperty){
-				tt_add_remove_property_favorite($oProperty->ID);
-			}
+			update_user_meta( $user_id, 'realty_user_favorites', $get_user_meta_favorites[0] );
 		}
+		
+		$get_user_meta_favorites = get_user_meta( $user_id, 'realty_user_favorites', false ); // false = array()
 		
 		$tableFloors = get_favorite_property_list($user_id, 'realty_user_favorites');
 		sort($tableFloors);
