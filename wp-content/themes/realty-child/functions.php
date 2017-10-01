@@ -4,11 +4,17 @@ include 'common_functions.php';
 
 add_action( 'personal_options', array ( 'T5_Hide_Profile_Bio_Box', 'start' ) );
 
-function add_files() {
-// サイト共通のCSSの読み込み
+/*function add_files() {
 wp_enqueue_style( 'over-style', get_stylesheet_directory_uri() . '/overwrite.css?'. filemtime( get_stylesheet_directory() . '/overwrite.css') );
 }
-add_action( 'wp_enqueue_scripts', 'add_files' );
+add_action( 'wp_enqueue_scripts', 'add_files' );*/
+function my_custom_styles() {
+  // Register my custom stylesheet
+  wp_register_style( 'over-style', get_stylesheet_directory_uri() . '/overwrite.css?'. filemtime( get_stylesheet_directory() . '/overwrite.css'), array(), null  );
+  // Load my custom stylesheet
+  wp_enqueue_style( 'over-style' );
+}
+add_action( 'wp_enqueue_scripts', 'my_custom_styles', 30 );
 /**
  * Captures the part with the biobox in an output buffer and removes it.
  *

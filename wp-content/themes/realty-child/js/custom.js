@@ -1,16 +1,4 @@
 jQuery(document).ready(function($){
-  /*$('table.favorite_list_later').resizable();
-
-  $('table.favorite_list_later').resize(function() {
-	var windowWidth = $(window).width();
-    if (windowWidth < 992) {
-      $(this).find('.floors-td').filter(function() {
-        return !$(this).hasClass('floors-td');
-      }).prop('colspan', 5).addClass('floors-td').parent().append("<td></td>");
-    } else {
-      $(this).find('.adjSpan.adjusted').prop('colspan', 6).removeClass('floors-td').next().remove();
-    }
-  });*/
 	$(window).on('load resize', function(){
 		var windowWidth = $(window).width();
 		if (windowWidth < 768) {
@@ -25,7 +13,7 @@ jQuery(document).ready(function($){
 	var max1 = 0;
 	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_name').each(function(){
         $(this).children().each(function(){
-            var itemWidth1 = parseInt($(this).width());
+            var itemWidth1 = parseInt($(this).innerWidth());
             if(itemWidth1 > max1){
                 max1 = itemWidth1;
             }
@@ -36,7 +24,7 @@ jQuery(document).ready(function($){
 	var max2 = 0;
 	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_rent').each(function(){
         $(this).children().each(function(){
-            var itemWidth = parseInt($(this).width());
+            var itemWidth = parseInt($(this).innerWidth());
             if(itemWidth > max2){
                 max2 = itemWidth;
             }
@@ -47,7 +35,7 @@ jQuery(document).ready(function($){
 	var max3 = 0;
 	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_area').each(function(){
         $(this).children().each(function(){
-            var itemWidth = parseInt($(this).width());
+            var itemWidth = parseInt($(this).innerWidth());
             if(itemWidth > max3){
                 max3 = itemWidth;
             }
@@ -56,7 +44,77 @@ jQuery(document).ready(function($){
 		
 	//入居日
 	var max4 = 0;
-	$('.favorite_list_later .favorite_item').each(function(){
+	$('.favorite_list_later .favorite_item').innerWidth(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_date_move').width());
+            if(itemWidth > max4){
+                max4 = itemWidth;
+            }
+        });
+    });
+		
+	var windowWidth = $(window).width();
+	if (windowWidth >= 768) {
+	console.log('階数' + max1 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_name').css('width', max1 + 'px');
+	
+	var colCheck = $('.tmp_table_row > .floor_checkbox').innerWidth();
+	var colFloor = $('.tmp_table_row > .floor_name').innerWidth();
+	var col3 = colFloor + colCheck;
+	$('#page-user-favorites table.favorite_list_later thead th.floor_name').css('width', col3 + 'px');
+		
+	console.log('賃料' + max2 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_rent').css('width', max2 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_rent').css('width', max2 + 'px');
+		
+	console.log('契約面積' + max3 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_area').css('width', max3 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_area').css('width', max3 + 'px');
+		
+	console.log('入居日' + max4 + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_date_move').css('width', max4 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_date_move').css('width', max4 + 'px');
+	}
+	}
+	$(window).on('load resize',fixTable);
+	
+	$("#favorite-multiple-modal").on('in' , function() {
+    //所在階
+	var max1 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_name').each(function(){
+        $(this).children().each(function(){
+            var itemWidth1 = parseInt($(this).innerWidth());
+            if(itemWidth1 > max1){
+                max1 = itemWidth1;
+            }
+        });
+    });
+		
+	//賃料
+	var max2 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_rent').each(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($(this).innerWidth());
+            if(itemWidth > max2){
+                max2 = itemWidth;
+            }
+        });
+    });
+		
+	//契約面積
+	var max3 = 0;
+	$('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_area').each(function(){
+        $(this).children().each(function(){
+            var itemWidth = parseInt($(this).innerWidth());
+            if(itemWidth > max3){
+                max3 = itemWidth;
+            }
+        });
+    });
+		
+	//入居日
+	var max4 = 0;
+	$('.favorite_list_later .favorite_item').innerWidth(function(){
         $(this).children().each(function(){
             var itemWidth = parseInt($('.favorite_list_later .favorite_item .floors-td .tmp_table .tmp_table_row > .floor_date_move').width());
             if(itemWidth > max4){
@@ -66,7 +124,7 @@ jQuery(document).ready(function($){
     });
 		
 	console.log('階数' + max1 + 'px');
-	$('#page-user-favorites .tmp_table_row > .floor_name').css('width', (max1 + 10) + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_name').css('width', max1 + 'px');
 	
 	var colCheck = $('.tmp_table_row > .floor_checkbox').innerWidth();
 	var colFloor = $('.tmp_table_row > .floor_name').innerWidth();
@@ -74,27 +132,18 @@ jQuery(document).ready(function($){
 	$('#page-user-favorites table.favorite_list_later thead th.floor_name').css('width', col3 + 'px');
 		
 	console.log('賃料' + max2 + 'px');
-	$('#page-user-favorites .tmp_table_row > .floor_rent').css('width', (max2 + 10) + 'px');
-	$('#page-user-favorites table.favorite_list_later thead th.floor_rent').css('width', (max2 + 10) + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_rent').css('width', max2 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_rent').css('width', max2 + 'px');
 		
 	console.log('契約面積' + max3 + 'px');
-	$('#page-user-favorites .tmp_table_row > .floor_area').css('width', (max3 + 10) + 'px');
-	$('#page-user-favorites table.favorite_list_later thead th.floor_area').css('width', (max3 + 10) + 'px');
+	$('#page-user-favorites .tmp_table_row > .floor_area').css('width', max3 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_area').css('width', max3 + 'px');
 		
 	console.log('入居日' + max4 + 'px');
-	$('#page-user-favorites .tmp_table_row > .floor_date_move').css('width', (max4 + 10) + 'px');
-	$('#page-user-favorites table.favorite_list_later thead th.floor_date_move').css('width', (max4 + 10) + 'px');
-	}
-	$('body').on('click', '.favorite-header > a', fixTable);
-	$(window).on('load resize',fixTable);
-	//$(window).resize(fixTable);
-	
-	/*$(window).on('load resize', function(){
-	
-	
-
-	});*/
-	
+	$('#page-user-favorites .tmp_table_row > .floor_date_move').css('width', max4 + 'px');
+	$('#page-user-favorites table.favorite_list_later thead th.floor_date_move').css('width', max4 + 'px');
+	//end
+	});
 	
 	$('#header .top-header .lang-item.current-lang a').click(function(){
         return false;

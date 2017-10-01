@@ -109,7 +109,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			<tr>
 				<th class="floor_picture" ><?php echo trans_text('Building Name')?></th>
 				<?php if ($show_remove) {?>
-				<th class="floor_subscribe"><?php echo trans_text('Subscribe Setting')?></th>
+				<!--<th class="floor_subscribe"><?php //echo trans_text('Subscribe Setting')?></th>-->
 				<?php }?>
 				<th colspan="2" class="floor_name"><?php echo trans_text('Floor')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
@@ -129,12 +129,12 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 			<tr class="favorite_item">
 			<td class="show-sp name_sp"><span class="bld_name_sp"><?php echo $tableFloors[0]['building_name']?></span></td>
 			<td class="floor_picture">
-			<span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span><!--
-			--><span class="bld_name"><?php echo $tableFloors[0]['building_name']?></span>
+			<span class="bld_name"><?php echo $tableFloors[0]['building_name']?></span><!--
+			--><span class="flex-wrap"><span class="floor_thumb"><?php echo $tableFloors[0]['thumbnail']?></span><!--
+			--><?php if ($show_remove) {?>
+				<span class="hide-sp floor_subscribe" ><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></span>
+				<?php }?></span><!--/flex-wrap-->
 			</td>
-				<?php if ($show_remove) {?>
-				<td class="floor_subscribe" ><span class="show-sp sp-disc">この物件の更新情報を</span><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></td>
-				<?php }?>
 				
 				<td class="floors-td" colspan="6">
 					<table class="tmp_table">
@@ -145,7 +145,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 					?>
 						<tr class="tmp_table_row">
 						<td class="floor_checkbox">
-								<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/>
+								<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></span>
 							</td>
 							<td class="floor_name">
 								<?php echo $floor['floor_number']?>
@@ -161,18 +161,20 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 					</table>
 				</td>
 				<?php if ($show_remove) {?>
-				<td class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
+				<td class="show-sp action-groups" ><span class="floor_subscribe"><a class="btn btn-success add-to-follow-popup follow-popup <?php echo ($isSubcribed ? ' subscribed' : '')?>" data-fav-id="<?php echo $tableFloors[0]['property_id']?>" data-subscribe="<?php echo trans_text('Subscribe')?>" data-unsubscribe="<?php echo trans_text('Unsubscribe')?>" href="javascript:void(0)"><?php echo $isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe'); ?></a></span>
+				<span class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></span>
+				</td>
+				<?php }?>
+				<?php if ($show_remove) {?>
+				<td class="floor_action_remove hide-sp" ><a href="javascript:void(0)" class="remove_property add-to-favorites" data-fav-id="<?php echo $floor['property_id']?>" ><?php echo trans_text('Remove')?></a></td>
 				<?php }?>
 			</tr>
 		<?php }
 		?>
 		
 		<tr class="favorite_item_tmp element-disable" style="display:none">
+		<td class="show-sp name_sp"></td>
 			<td class="floor_picture" ></td>
-			<?php if ($show_remove) {?>
-			<td class="floor_subscribe" ></td>
-			<?php }?>
-			
 			<td class="floors-td" colspan="6">
 				<table class="tmp_table">
 					<tr class="tmp_table_row">
@@ -187,11 +189,17 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 					</tr>
 				</table>
 			</td>
+			<?php if ($show_remove) {?>
+			<td class="show-sp action-groups">
+			<span class="floor_subscribe" ></span><!--
+			--><span class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></span>
+			</td>
+			<?php }?>
 			
 			
 			
 			<?php if ($show_remove) {?>
-			<td class="floor_action_remove" ><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></td>
+			<td class="floor_action_remove hide-sp" ><a href="javascript:void(0)" class="remove_property add-to-favorites" ><?php echo trans_text('Remove')?></a></td>
 			<?php }?>
 		</tr>
 		</tbody>
@@ -649,10 +657,10 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 											var floor_row = jQuery('tr.favorite_item_tmp:eq(0) table.tmp_table tr').clone();
 											current_floor = floor;
 											
-											floor_row.find('.floor_checkbox').html('<input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="'+ floor.property_id +'"/>');
-											floor_row.find('.floor_name').html(floor.floor_number);
-											floor_row.find('.floor_rent').html(floor.rent_unit_price);
-											floor_row.find('.floor_area').html(floor.size);
+											floor_row.find('.floor_checkbox').html('<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="'+ floor.property_id +'"/></span>');
+											floor_row.find('.floor_name').html('<span>'+floor.floor_number+'</span>');
+											floor_row.find('.floor_rent').html('<span>'+floor.rent_unit_price+'</span>');
+											floor_row.find('.floor_area').html('<span>'+floor.size+'</span>');
 											floor_row.find('.floor_deposit').html(floor.deposit);
 											floor_row.find('.floor_date_move').html(floor.date_move);
 
@@ -663,7 +671,8 @@ if ( ! function_exists( 'tt_favorites_script' ) ) {
 										building_row.show();
 										building_row.addClass('favorite_item');
 
-										building_row.find('.floor_picture').html('<span class="floor_thumb">'+current_floor.thumbnail+'</span><span class="floor_name">'+current_floor.building_name+'</span>');
+										building_row.find('.floor_picture').html('<span class="bld_name">'+current_floor.building_name+'</span><span class="flex-wrap"><span class="floor_thumb">'+current_floor.thumbnail+'</span><span class="hide-sp floor_subscribe" >'+current_floor.subscribed+'</span></span>');
+										building_row.find('.name_sp').html('<span class="bld_name_sp">'+current_floor.building_name+'</span>');
 										building_row.find('.floor_subscribe').html(current_floor.subscribed);
 										building_row.find('.floor_contact a').attr('href', current_floor.contact_url);
 										building_row.find('.floor_action_remove a').attr('data-fav-id', current_floor.property_id);
