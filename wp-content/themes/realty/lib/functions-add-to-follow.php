@@ -31,8 +31,8 @@ if ( ! function_exists('tt_ajax_add_remove_follow') ) {
 				// Add New Favorite
 				$get_user_meta_follow[0][$building_id_lang] = $current_time;
 			}
-			update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 		}
+		update_user_meta( $user_id, 'realty_user_follow', $get_user_meta_follow[0] );
 		
 		die('processed');
 
