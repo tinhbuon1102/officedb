@@ -1273,6 +1273,8 @@ function realty_array_filter($string) {
 	global $main_image;
 	foreach ($main_image as $image)
 	{
+		if (!$image) return false;
+		
 		if (strpos($image, '.') !== false)
 		{
 			$image = substr($image, 0, strlen($image) - 4);
@@ -1281,7 +1283,6 @@ function realty_array_filter($string) {
 		{
 			$string = substr($string, 0, strlen($string) - 4);
 		}
-		
 		if (strpos($image, $string) !== false)
 		{
 			return false;
@@ -1606,11 +1607,18 @@ function realty_registration_errors($errors, $sanitized_user_login, $user_email)
 add_action('wp_head','realty_hook_meta_tag', 9999);
 function realty_hook_meta_tag() {
 	$output = '';
-	if (is_singular('property') && false) {
+	if (is_singular('property')) {
 		$property_id = get_the_ID();
 		$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
-		
-		$output='<meta name="robots" content="noindex, nofollow" />';
+		$isBuildingHaveBothVacant = realty_building_has_both_vacant($building_id);
+		if ($isBuildingHaveBothVacant)
+		{
+			$floor = getFloor($property_id);
+			if (!$floor['vacancy_info'])
+			{
+				$output='<meta name="robots" content="noindex, nofollow" />';
+			}
+		}
 	}
 	echo $output;
 }
