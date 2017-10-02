@@ -47,7 +47,7 @@ jQuery(window).load(function() {
 		</div>
 
 		<div class="col-md-8 map-container">
-			<div id="property-search-results" data-view="<?php if ( isset( $listing_view ) ) { echo $listing_view; } else { echo 'grid-view'; } ?>">
+			<div id="property-search-results" class="property-search-results" data-view="<?php if ( isset( $listing_view ) ) { echo $listing_view; } else { echo 'grid-view'; } ?>">
 				<div class="property-items show-compare">
 			<?php if ( $query_search_results->have_posts() ) : ?>
 				<?php $count_results = $query_search_results->found_posts; ?>

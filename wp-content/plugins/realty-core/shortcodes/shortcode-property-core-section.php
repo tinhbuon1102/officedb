@@ -29,7 +29,10 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 		}
 		?>
 
-	  <div id="property-items" class="property-items show-compare<?php echo ' ' . esc_attr( $view ); ?>"  data-view="<?php echo $view; ?>">
+	  <script type="text/javascript">
+	  	var global_request = <?php echo count($_GET) ? json_encode($_GET) : '{}'?>;
+	  </script>
+	  <div id="property-items" class="property-search-results  property-items show-compare<?php echo ' ' . esc_attr( $view ); ?>"  data-view="<?php echo $view; ?>">
 
 			<?php get_template_part( 'lib/inc/template/property', 'comparison' ); ?>
 
@@ -77,70 +80,10 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 					$custom_query_args['meta_query'] = $meta_query;
 				}
 				
-				if ( $meta_count > 1 ) {
-					$meta_query['relation'] = 'AND';
-				}
-				
-				/**
-				 * Order by
-				 *
-				 */
-				if ( ! empty( $_GET[ 'order-by' ] ) ) {
-					$orderby = $_GET[ 'order-by' ];
-				} else {
-					$orderby = $sort_by;
-				}
-
-				// By Date (Newest First)
-				if ( $orderby == 'date-new' ) {
-					$custom_query_args['orderby'] = 'date';
-					$custom_query_args['order'] = 'DESC';
-				}
-
-				// By Date (Oldest First)
-				if ( $orderby == 'date-old' ) {
-					$custom_query_args['orderby'] = 'date';
-					$custom_query_args['order'] = 'ASC';
-				}
-
-				// By Price (Highest First)
-				if ( $orderby == 'price-high' ) {
-					$custom_query_args['meta_key'] = 'estate_property_price';
-					$custom_query_args['orderby'] = 'meta_value_num';
-					$custom_query_args['order'] = 'DESC';
-				}
-
-				// By Price (Lowest First)
-				if ( $orderby == 'price-low' ) {
-					$custom_query_args['meta_key'] = 'estate_property_price';
-					$custom_query_args['orderby'] = 'meta_value_num';
-					$custom_query_args['order'] = 'ASC';
-				}
-
-				// By Name (Ascending)
-				if ( $orderby == 'name-asc' ) {
-					$custom_query_args['orderby'] = 'title';
-					$custom_query_args['order'] = 'ASC';
-				}
-
-				// By Name (Ascending)
-				if ( $orderby == 'name-desc' ) {
-					$custom_query_args['orderby'] = 'title';
-					$custom_query_args['order'] = 'DESC';
-				}
-
-				if ( $orderby == 'random' ) {
-					$custom_query_args['orderby'] = 'rand';
-					$custom_query_args['order'] = '';
-				}
 
 				// Check for search query
-				if ( isset( $_GET['pageid'] ) || isset( $_GET['form'] ) || isset( $_GET['searchid'] )  ) {
-					$custom_query_args = array();
-					$custom_query_args = apply_filters( 'property_search_args', $custom_query_args );
-				}
+				$custom_query_args = apply_filters( 'property_search_args', $custom_query_args );
 				
-
 				$custom_query = new WP_Query( $custom_query_args );
 			?>
 
@@ -207,6 +150,59 @@ if ( ! function_exists( 'tt_realty_property_core_section' ) ) {
 
 		</div><!-- .property-items -->
 
+		<div class="modal fade modal-custom" id="building_detail_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display:none;">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<button type="button" class="close abs-right" data-dismiss="modal" aria-label="Close">
+						<span class="linericon-cross" aria-hidden="true">X</span>
+					</button>
+					<div class="modal-header">
+						<h2 class="no-margin bld_name"></h2>
+						<h4 class="no-margin bld_sublocate"><span class="addr"></span><span class="station"></span></h4>
+					</div>
+					<div class="modal-body">
+						<div id="details-wrapper" class="details-wrapper motmot open">
+							<div id="details" class="js-details container-relative">
+								<div class="padding-right-large">
+									<div class="container-max">
+										<div class="row row-details">
+											<div class="col-md-3 col-sm-3 col-xs-12 on-large-auto">
+												<div class="container-relative">
+													<div class="container-relative container-inline-block">
+														<img id="details-enlarged-image" class="js-search-result-thumbnail responsive-img" src="http://front.office-jpdb.com/wp-content/uploads/2017/08/83959350e7c80627-1.jpg">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-9 col-sm-9 col-xs-12 details-right-panel">
+												<div class="container-flexible-medium left">
+												<div class="details-summary"></div>
+													<div class="propertyTable">
+													<table>
+														<thead>
+															<tr class="column-head">
+																<th class="floor_up_down"><?php echo __('Floor', 'realty')?></th>
+																<th class="area_ping"><?php echo __('Area', 'realty')?></th>
+																<th class="rent_unit_price"><?php echo __('Rent', 'realty')?></th>
+																<th class="unit_condo_fee"><?php echo __('Common service', 'realty')?></th>
+																<th class="move_in_date"><?php echo __('Date of occupancy', 'realty')?></th>
+																<th class="vacancy_info"><?php echo __('Vacancy', 'realty')?></th>
+																<th class="favorite_column"></th>
+															</tr>
+														</thead>
+														<tbody></tbody>
+													</table>
+													</div>
+												</div>
+											</div>
+										</div><!--/row-details-->
+									</div>
+								</div>
+							</div>
+						</div><!--/details-wrapper-->
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php
 		return ob_get_clean();
 

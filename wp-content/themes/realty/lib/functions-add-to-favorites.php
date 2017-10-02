@@ -37,8 +37,14 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	// Sort properties by building id
 	foreach ($buildingIds as $buildingId)
 	{
+		$isBuildingHaveBothVacant = realty_building_has_both_vacant($buildingId);
+		
 		foreach ($aProperties as $aProperty)
 		{
+			$property_meta = get_post_meta($aProperty->ID, FLOOR_TYPE_CONTENT, true);
+			// out if floor has no vacant
+			if ($isBuildingHaveBothVacant && !$property_meta['vacancy_info']) continue;
+			
 			if ($aProperty->pinged == FLOOOR_BUILDING_PARENT . $buildingId)
 			{
 				$properties[] = $aProperty;

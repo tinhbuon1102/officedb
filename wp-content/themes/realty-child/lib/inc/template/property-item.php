@@ -45,6 +45,8 @@ $estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $
 $floor = getFloor($property_id);
 
 $post_title = (isset($_GET['size']) && $_GET['size'] && $_GET['size'] != 'all') || (isset($show_floor_title) && $show_floor_title) ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
+$post_title = strpos($_SERVER['REQUEST_URI'], 'property-core-section-listing') === false ? $post_title : get_post_meta($property_id, 'post_title_building', true);
+
 
 $classes = array();
 $classes[] = 'property-item';
@@ -60,7 +62,7 @@ $classes = join( ' ', $classes );
 $last_updated_on = get_post_modified_time( get_option( 'date_format' ) );
 ?>
 
-<div class="<?php echo $classes; ?>"<?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
+<div class="<?php echo $classes; ?>" data-buildingid="<?php echo $building['building_id'] ?>" <?php if ( isset ( $property_counter ) ) { echo ' data-sync-id="' . esc_attr( $property_counter ) . '"'; }?>>
 <div class="thum-element">
 	<a href="<?php echo get_permalink( $post ); ?>">
 		<figure class="property-thumbnail fit-height">

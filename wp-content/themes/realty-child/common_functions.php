@@ -626,7 +626,7 @@ function buildSearchArgs($search_results_args){
 	{
 		foreach ($search_results_args['meta_query'] as $meta_field)
 		{
-			if ((isset($meta_field['key']) && $meta_field['key'] == 'estate_property_size') && strpos($_SERVER['REQUEST_URI'], 'search-properties') === false)
+			if ((isset($meta_field['key']) && $meta_field['key'] == 'estate_property_size') && strpos($_SERVER['REQUEST_URI'], 'search-properties') === false && strpos($_SERVER['REQUEST_URI'], 'property-core-section-listing') === false)
 			{
 				// Don't group floor if has size in Search
 				return $search_results_args;
@@ -1484,6 +1484,7 @@ function realty_get_floors($building_id = 0){
 	
 	$action = $_GET['action'];
 	$building_id = $_GET['building_id'];
+	$isBuildingHaveBothVacant = realty_building_has_both_vacant($building_id);
 	
 	$buildingArgs = apply_filters( 'property_search_args', $buildingArgs );
 	$query_floors_results = new WP_Query($buildingArgs);
@@ -1500,7 +1501,7 @@ function realty_get_floors($building_id = 0){
 			$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
 			
 			// out if floor has no vacant
-// 			if (!$related_floor['vacancy_info']) continue;
+			if ($isBuildingHaveBothVacant && !$related_floor['vacancy_info']) continue;
 	
 			$floor = array();
 			$floor['floor_up_down'] = translateBuildingValue('floor_up_down', $building, $related_floor, $related_property_id);
@@ -1600,4 +1601,31 @@ function realty_registration_errors($errors, $sanitized_user_login, $user_email)
 	}
 	
 	return $errors;
+}
+
+add_action('wp_head','realty_hook_meta_tag', 9999);
+function realty_hook_meta_tag() {
+	$output = '';
+	if (is_singular('property') && false) {
+		$property_id = get_the_ID();
+		$building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
+		
+		$output='<meta name="robots" content="noindex, nofollow" />';
+	}
+	echo $output;
+}
+
+function realty_building_has_both_vacant($building_id)
+{
+	global $wpdb;
+	$result = $wpdb->get_row("select COUNT(*) as count, SUM(vacancy_info) as sum FROM  floor where show_frontend = 1 and building_id = $building_id");
+	if ($result->count > $result->sum && $result->sum > 0)
+	{	
+		// This case, building has both vacant and no vacant
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

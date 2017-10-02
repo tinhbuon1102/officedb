@@ -593,6 +593,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 				((!isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')))
 				&& ($size_key === false || !$_GET[$size_key] || $_GET[$size_key] == 'all'))
 				|| strpos($_SERVER['REQUEST_URI'], 'search-properties') !== false
+				|| strpos($_SERVER['REQUEST_URI'], 'property-core-section-listing') !== false
 			)
 		{
 			$search_results_args = buildSearchArgs($search_results_args);

@@ -633,7 +633,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 				location.href = $(this).find('a').attr('href');
 			});
 			
-			$('body').on('click', '#property-search-results .property-item > a, #property-search-results .property-content .property-title > a', function(e){
+			$('body').on('click', '#property-search-results .property-item > a, .property-search-results .property-item .thum-element > a, .property-search-results .property-content .property-title > a', function(e){
 				e.preventDefault();
 				var clickElement = $(this);
 				var building_id = clickElement.closest('.property-item').attr('data-buildingid');
