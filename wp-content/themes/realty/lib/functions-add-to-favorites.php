@@ -87,6 +87,7 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		$tableFloors[$property->pinged][$property_index]['title'] = $property->post_title ;
 		$tableFloors[$property->pinged][$property_index]['building_name'] = $buildingName ;
 		$tableFloors[$property->pinged][$property_index]['floor_number'] = $floorNumber ;
+		$tableFloors[$property->pinged][$property_index]['vacancy_info'] = $floor['vacancy_info'] ;
 		
 		$tableFloors[$property->pinged][$property_index]['subscribed'] = '<a class="btn btn-success add-to-follow-popup follow-popup '. ($isSubcribed ? ' subscribed' : '') .'" data-fav-id="'. $single_property_id .'" data-subscribe="'. trans_text('Subscribe') .'" data-unsubscribe="'. trans_text('Unsubscribe') .'"  href="javascript:void(0)">' . ($isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe')) . '</a>';
 		$tableFloors[$property->pinged][$property_index]['contact_url'] = $inquiryUrl;
@@ -174,6 +175,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 								<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></span>
 							</td>
 							<td class="floor_name">
+								<span class="status"><?php echo $floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available');?></span>
 								<?php echo $floor['floor_number']?>
 							</td>
 							<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
