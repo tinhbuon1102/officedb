@@ -1613,8 +1613,8 @@ function realty_hook_meta_tag() {
 		$isBuildingHaveBothVacant = realty_building_has_both_vacant($building_id);
 		if ($isBuildingHaveBothVacant)
 		{
-			$floor = getFloor($property_id);
-			if (!$floor['vacancy_info'])
+			$property_meta = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
+			if (!$property_meta['vacancy_info'])
 			{
 				$output='<meta name="robots" content="noindex, nofollow" />';
 			}
