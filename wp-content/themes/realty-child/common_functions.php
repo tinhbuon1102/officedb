@@ -452,6 +452,23 @@ function realty_theme_init()
 		}
 		die('done');
 	}
+	
+	if (isset($_GET['check_existing_floor']))
+	{
+		global $wpdb;
+		$checkSql = 'SELECT pt.*, f.floor_id FROM wp_postmeta pt
+					LEFT JOIN floor f ON pt.meta_value = f.floor_id
+					WHERE 
+						pt.meta_key = "jpdb_floor_id"
+						AND f.floor_id is NULL;';
+		$aNoExistings = $wpdb->get_results($checkSql);
+		if ($aNoExistings){
+			foreach ($aNoExistings as $aNoExisting)
+			{
+				wp_trash_post($aNoExisting->post_id);
+			}
+		}
+	}
 }
 
 function realty_compress_image($source_url, $destination_url, $quality = 85) {
