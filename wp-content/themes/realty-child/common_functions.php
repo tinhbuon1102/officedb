@@ -618,6 +618,13 @@ function realty_posts_request ($request, $query)
 		$request = str_replace($text_search, '', $request);
 	}
 
+	if ($query->query['post_type'] == 'property' && $_REQUEST['action'] == 'tt_ajax_search')
+	{
+		$request = str_replace('SQL_CALC_FOUND_ROWS', '', $request);
+		$request = str_replace('GROUP BY wp_posts.pinged', '', $request);
+		$request = "SELECT * FROM ($request) as t GROUP BY pinged";
+	}
+	
 	return $request;
 }
 

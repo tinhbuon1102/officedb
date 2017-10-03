@@ -588,7 +588,7 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			$search_results_args['tax_query'] = $tax_query;
 		}
 
-		if (defined('DOING_AJAX') && DOING_AJAX) {
+		if (defined('DOING_AJAX') && DOING_AJAX && $_REQUEST['action'] == 'tt_ajax_search') {
 			// order by vacancy
 			$search_results_args['meta_key'] = 'floor_vacancy';
 			$search_results_args['orderby'] = 'meta_value_num';
