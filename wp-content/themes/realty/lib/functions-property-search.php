@@ -495,6 +495,10 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 				$orderby = $realty_theme_option['search_results_default_order'];
 			}
 
+			$search_results_args['meta_key'] = 'floor_vacancy';
+			$search_results_args['orderby'] = 'meta_value_num';
+			$search_results_args['order'] = 'DESC';
+			
 			// By Date (Newest First)
 			if ( $orderby == 'date-new' ) {
 				$search_results_args['orderby'] = 'date';
