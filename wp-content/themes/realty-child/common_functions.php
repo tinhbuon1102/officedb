@@ -457,9 +457,11 @@ function realty_theme_init()
 	{
 		global $wpdb;
 		$checkSql = 'SELECT pt.*, f.floor_id FROM wp_postmeta pt
+					INNER JOIN wp_posts p ON p.ID = pt.post_id
 					LEFT JOIN floor f ON pt.meta_value = f.floor_id
 					WHERE 
-						pt.meta_key = "jpdb_floor_id"
+						p.post_type = "publish"
+						AND pt.meta_key = "jpdb_floor_id"
 						AND f.floor_id is NULL;';
 		$aNoExistings = $wpdb->get_results($checkSql);
 		if ($aNoExistings){
