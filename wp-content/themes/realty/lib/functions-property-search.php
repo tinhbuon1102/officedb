@@ -495,10 +495,6 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 				$orderby = $realty_theme_option['search_results_default_order'];
 			}
 
-			$search_results_args['meta_key'] = 'floor_vacancy';
-			$search_results_args['orderby'] = 'meta_value_num';
-			$search_results_args['order'] = 'DESC';
-			
 			// By Date (Newest First)
 			if ( $orderby == 'date-new' ) {
 				$search_results_args['orderby'] = 'date';
@@ -592,6 +588,13 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			$search_results_args['tax_query'] = $tax_query;
 		}
 
+		if (defined('DOING_AJAX') && DOING_AJAX) {
+			// order by vacancy
+			$search_results_args['meta_key'] = 'floor_vacancy';
+			$search_results_args['orderby'] = 'meta_value_num';
+			$search_results_args['order'] = 'DESC';
+		}
+		
 		$size_key = array_search('estate_property_size', $searching_fields);
 		if (
 				((!isset($_GET[ 'order-by' ]) || !$_GET[ 'order-by' ] || !in_array($_GET['order-by'], array('price-high', 'price-low', 'size')))
