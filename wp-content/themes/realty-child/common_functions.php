@@ -607,10 +607,19 @@ function realty_posts_request ($request, $query)
 				isset($query->query['meta_query'][0][1]) &&
 				$query->query['meta_query'][0][1]['key'] == 'estate_property_google_maps')
 		{
-			$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )
+			
+			if ($query->query['post_type'] == 'property' && $_REQUEST['action'] == 'tt_ajax_search')
+			{
+				$text_search = "( mt1.meta_key = 'estate_property_station' AND mt1.meta_value LIKE '%".$query->query['s']."%' )
+    OR
+    ( mt1.meta_key = 'estate_property_google_maps' AND mt1.meta_value LIKE '%".$query->query['s']."%' )";
+			}
+			else 
+			{
+				$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )
     OR
     ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
-			
+			}
 			$request = str_replace(PHP_EOL, ' ', $request);
 			$request = preg_replace('!\s+!', ' ', $request);
 				
@@ -619,8 +628,6 @@ function realty_posts_request ($request, $query)
 				
 			
 			$text_filter = "wp_posts.post_title LIKE '%".$query->query['s']."%'";
-			// 			$text_name_kana = "(wp_postmeta.meta_key = 'estate_property_kana_name' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
-			// 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search_keywords' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			$text_keyword = "(wp_postmeta.meta_key = 'estate_property_search' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%')";
 			$request = str_replace($text_search, ' 1=1 ', $request);
 			$request = str_replace($text_filter, '('.$text_filter . ' OR ' . $text_keyword . ' OR ' . $text_search.')', $request);
@@ -640,7 +647,7 @@ function realty_posts_request ($request, $query)
 	if ($query->query['post_type'] == 'property' && $_REQUEST['action'] == 'tt_ajax_search')
 	{
 		$request = str_replace('SQL_CALC_FOUND_ROWS', '', $request);
-		$request = str_replace('GROUP BY wp_posts.pinged', '', $request);
+		$request = str_replace('GROUP BY wp_posts.pinged', 'GROUP BY wp_posts.ID', $request);
 		$request = "SELECT * FROM ($request) as t GROUP BY pinged";
 	}
 	
