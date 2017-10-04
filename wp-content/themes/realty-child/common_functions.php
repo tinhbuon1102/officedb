@@ -471,6 +471,64 @@ function realty_theme_init()
 			}
 		}
 	}
+	
+	if (isset($_GET['remove_room_number']))
+	{
+		global $wpdb;
+		$roomnumber_sql = "SELECT p.post_title, p.guid, f.roomname, p.ID FROM wp_posts p 
+				INNER JOIN wp_postmeta pt ON p.ID = pt.post_id
+				LEFT JOIN floor f ON f.floor_id = pt.`meta_value`
+				WHERE 
+				p.post_type = 'property'
+				AND pt.meta_key = 'jpdb_floor_id'
+				AND f.roomname != ''
+				GROUP BY p.ID";
+		$properties = $wpdb->get_results($roomnumber_sql);
+		foreach ($properties as $property)
+		{
+			$property->post_title = trim(str_replace($property->roomname, '', $property->post_title));
+			// Update post title
+			$sql = " UPDATE $wpdb->posts SET post_title = '" . $property->post_title . "' WHERE ID = $property->ID";
+			$wpdb->query($sql);
+			
+			$post_title = regenerate_post_clear_diacritics($property->post_title);
+			$guid = home_url() . '/' . sanitize_title_with_dashes($post_title);
+			
+			// Update post_name and guid
+			$sql = "
+					UPDATE $wpdb->posts
+					SET post_name = '" . sanitize_title_with_dashes($post_title) . "',
+					guid = '" . $guid . "'
+					WHERE ID = $property->ID";
+			$wpdb->query($sql);
+		}
+		die('done remove_room_number');
+	}
+}
+
+function regenerate_post_clear_diacritics($str) {
+	$table = array(
+		'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A',
+		'Æ' => 'A', 'à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'ae',
+		'Č' => 'C', 'č' => 'c', 'Ć' => 'C', 'ć' => 'c', 'Ç' => 'C', 'ç' => 'c',
+		'Ď' => 'D', 'ď' => 'd',
+		'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ě' => 'E', 'è' => 'e',
+		'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ě' => 'e',
+		'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i',
+		'Ñ' => 'N', 'ñ' => 'n',
+		'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O',
+		'ð' => 'o', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o',
+		'Ŕ' => 'R', 'Ř' => 'R', 'Ŕ' => 'R', 'ŕ' => 'r', 'ř' => 'r',
+		'Š' => 'S', 'š' => 's', 'Ś' => 'S', 'ś' => 's',
+		'Ť' => 'T', 'ť' => 't',
+		'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'ù' => 'u', 'ú' => 'u',
+		'û' => 'u', 'ü' => 'u',
+		'Ý' => 'Y', 'ÿ' => 'y', 'ý' => 'y', 'ý' => 'y',
+		'Ž' => 'Z', 'ž' => 'z', 'Ź' => 'Z', 'ź' => 'z',
+		'Đ' => 'Dj', 'đ' => 'dj', 'Þ' => 'B', 'ß' => 's', 'þ' => 'b',
+	);
+
+	return  strtr($str, $table);
 }
 
 function realty_compress_image($source_url, $destination_url, $quality = 85) {
