@@ -640,7 +640,6 @@ if ( ! function_exists( 'tt_ajax_search' ) ) {
 		$count_results = 0;
 
 		$query_search_results = new WP_Query( $search_results_args );
-		echo $query_search_results->request;die;
 
 		if ( ! isset( $orderby ) || empty( $orderby ) ) {
 			$orderby = "date-new";
