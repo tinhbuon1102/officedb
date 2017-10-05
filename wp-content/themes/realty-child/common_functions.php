@@ -666,18 +666,13 @@ function realty_posts_request ($request, $query)
 				$query->query['meta_query'][0][1]['key'] == 'estate_property_google_maps')
 		{
 			
-			if ($query->query['post_type'] == 'property' && $_REQUEST['action'] == 'tt_ajax_search')
+			if ($query->query['post_type'] == 'property')
 			{
 				$text_search = "( mt1.meta_key = 'estate_property_station' AND mt1.meta_value LIKE '%".$query->query['s']."%' )
     OR
     ( mt1.meta_key = 'estate_property_google_maps' AND mt1.meta_value LIKE '%".$query->query['s']."%' )";
 			}
-			else 
-			{
-				$text_search = "( wp_postmeta.meta_key = 'estate_property_station' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )
-    OR
-    ( wp_postmeta.meta_key = 'estate_property_google_maps' AND wp_postmeta.meta_value LIKE '%".$query->query['s']."%' )";
-			}
+			
 			$request = str_replace(PHP_EOL, ' ', $request);
 			$request = preg_replace('!\s+!', ' ', $request);
 				
@@ -702,11 +697,14 @@ function realty_posts_request ($request, $query)
 		$request = str_replace($text_search, '', $request);
 	}
 
-	if ($query->query['post_type'] == 'property' && $_REQUEST['action'] == 'tt_ajax_search')
+	if (isset($query->query['post_type']) && $query->query['post_type'] == 'property' && isset($query->query['property_query_listing_request']) && $query->query['property_query_listing_request'] == 1)
 	{
+		$limit = 'LIMIT ' . ($query->query['paged'] - 1) * $query->query['posts_per_page'] . ', ' . $query->query['posts_per_page'];
 		$request = str_replace('SQL_CALC_FOUND_ROWS', '', $request);
 		$request = str_replace('GROUP BY wp_posts.pinged', 'GROUP BY wp_posts.ID', $request);
-		$request = "SELECT * FROM ($request) as t GROUP BY pinged";
+		$request = str_replace('SELECT', 'SELECT wp_postmeta.*,', $request);
+		$request = str_replace($limit, '', $request);
+		$request = "SELECT SQL_CALC_FOUND_ROWS * FROM ($request) as t GROUP BY pinged ORDER BY meta_value + 0 DESC, post_date DESC $limit";
 	}
 	
 	return $request;
