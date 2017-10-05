@@ -588,12 +588,12 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			$search_results_args['tax_query'] = $tax_query;
 		}
 
-		if (defined('DOING_AJAX') && DOING_AJAX && $_REQUEST['action'] == 'tt_ajax_search') {
+// 		if (defined('DOING_AJAX') && DOING_AJAX && $_REQUEST['action'] == 'tt_ajax_search') {
 			// order by vacancy
 			$search_results_args['meta_key'] = 'floor_vacancy';
-			$search_results_args['orderby'] = 'meta_value_num date';
+			$search_results_args['orderby'] = 'meta_value_num';
 			$search_results_args['order'] = 'DESC';
-		}
+// 		}
 		
 		$size_key = array_search('estate_property_size', $searching_fields);
 		if (
