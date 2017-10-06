@@ -687,10 +687,10 @@ function realty_posts_request ($request, $query)
 		
 		if ($query->query['post_type'] == 'property')
 		{
+			$query->query['paged'] = $query->query['paged'] <= 0 ? 1 : $query->query['paged'] ; 
 			$limit = 'LIMIT ' . ($query->query['paged'] - 1) * $query->query['posts_per_page'] . ', ' . $query->query['posts_per_page'];
 			$request = str_replace('SQL_CALC_FOUND_ROWS', '', $request);
 			$request = str_replace('GROUP BY wp_posts.pinged', 'GROUP BY wp_posts.ID', $request);
-			//$request = str_replace('SELECT', 'SELECT wp_postmeta.*,', $request);
 			$request = str_replace($limit, '', $request);
 			$request = "SELECT SQL_CALC_FOUND_ROWS * FROM ($request) as t GROUP BY pinged ORDER BY post_date DESC $limit";
 		}
