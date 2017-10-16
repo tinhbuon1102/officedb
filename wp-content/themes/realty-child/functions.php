@@ -8,6 +8,13 @@ add_action( 'personal_options', array ( 'T5_Hide_Profile_Bio_Box', 'start' ) );
 wp_enqueue_style( 'over-style', get_stylesheet_directory_uri() . '/overwrite.css?'. filemtime( get_stylesheet_directory() . '/overwrite.css') );
 }
 add_action( 'wp_enqueue_scripts', 'add_files' );*/
+function wpb_add_google_fonts() {
+ 
+wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i', false ); 
+}
+ 
+add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+
 function my_custom_styles() {
   // Register my custom stylesheet
   wp_register_style( 'over-style', get_stylesheet_directory_uri() . '/overwrite.css?'. filemtime( get_stylesheet_directory() . '/overwrite.css'), array(), null  );
@@ -15,6 +22,7 @@ function my_custom_styles() {
   wp_enqueue_style( 'over-style' );
 }
 add_action( 'wp_enqueue_scripts', 'my_custom_styles', 30 );
+
 /**
  * Captures the part with the biobox in an output buffer and removes it.
  *

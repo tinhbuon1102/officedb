@@ -1,4 +1,5 @@
 /*
+/*
 Theme Name:   Realty Child Theme123
 Theme URI:    http://demo.themetrail.com/realty123/
 Description:  Realty Child Theme
@@ -10,7 +11,7 @@ Text Domain:  realty_child
 */
 
 @import url("../realty/style.css");
-@import url(//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic);
+/*@import url(//db.onlinewebfonts.com/c/6272dc913454bb6ac46143176180c0fd?family=DidotW01-Italic);
 @font-face {font-family: "DidotW01-Italic";
     src: url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.eot");
     src: url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.eot?#iefix") format("embedded-opentype"),
@@ -18,7 +19,7 @@ Text Domain:  realty_child
     url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.woff") format("woff"),
     url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.ttf") format("truetype"),
     url("//db.onlinewebfonts.com/t/6272dc913454bb6ac46143176180c0fd.svg#DidotW01-Italic") format("svg");
-}
+}*/
 
 /* =Theme customization starts here
 -------------------------------------------------------------- */
@@ -359,7 +360,7 @@ input, input[type=submit], input:focus, textarea, .chosen-container.chosen-conta
     font-size: 1em;
     line-height: 1.5em;
     font-weight: normal;
-	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 }
 body.en .calling-info .calling-desc .jat {
     font-size: 1em;
@@ -371,7 +372,7 @@ body.en .calling-info .calling-desc .jat {
 .calling-info .calling-desc span a {
     color: #000;
     font-size: 2em;
-	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 	letter-spacing: 2px;
 }
 #header .calling-info .calling-desc span a {
@@ -450,7 +451,7 @@ nav#navigation .primary-menu a:before {
     height: 100%;
 }
 body.en nav#navigation .primary-menu a {
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 1.2em;
     font-style: italic;
 }
@@ -625,7 +626,7 @@ iframe#customer-chat-iframe {
 	letter-spacing: 2px !important;
 }
 .adobe-calson {
-	font-family: "adobe-caslon-pro", Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-family: "adobe-caslon-pro", "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 .ja-txt {
 	font-size: 26px;
@@ -837,7 +838,7 @@ section#floorPlan {
 	}
 	
 	body.en nav#navigation .sp-second-menu a, body.en .ask-staff .btn {
-	font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
 	}
 	nav#navigation .sp-second-menu, ul#menu-sp-bottom-menu-ja, ul#menu-sp-bottom-menu-en {
 		padding: 0;
@@ -1105,7 +1106,7 @@ div#content {
     font-size: 48px;
     text-transform: uppercase;
     margin: 0;
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 	color: #FFF;
 }
 footer .above-flogo {
@@ -1120,7 +1121,7 @@ footer .above-flogo {
 }
 #footer .textwidget .list-info {
     font-size: 2em;
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 	line-height: 1.4;
     vertical-align: middle;
 	-webkit-font-smoothing: antialiased;
@@ -1444,7 +1445,7 @@ body.ja .joinms h2.section-title, body.en .entry-content .joinms h2.section-titl
     text-align: center;
     font-size: 3.5em;
 	text-transform: uppercase;
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 }
 a.btn-ql {
     color: #383838;
@@ -1823,13 +1824,13 @@ h3.fontbig {
 	line-height: 1.2 !important;
     margin: 0;
 	text-transform: uppercase;
-	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
+	font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif !important;
 }
 h3.fontbig.sm80 {
     font-size: 60px;
 }
 .read_more {
-	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif !important;
+	font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif !important;
 }
 /*property list*/
 i.add-to-contact.origin.fa {
@@ -2274,7 +2275,7 @@ section#acbuttons {
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 body.en section#acbuttons {
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-style: italic;
 }
 #acbuttons .contact-argent {
@@ -2641,7 +2642,7 @@ div#property-items li:nth-child(5) h3:before {
 /*small space*/
 body.en h2.page-title {
     color: #000;
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 .has-post-thumbnail .post-date {
     color: #000;
@@ -2708,7 +2709,7 @@ body.en h2.page-title {
 
 /*search result*/
 .search-result-container .page-title, .col-md-4.search-container h2 {
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     color: #000;
 }
 .property-excerpt .address {
@@ -2932,7 +2933,7 @@ ul.latest-news-list.row {
 	list-style: none;
 }
 ul.latest-news-list li .inner:before {
-	font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+	font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 	font-size: 60px;
     display: block;
 	line-height: 1;
@@ -3146,7 +3147,7 @@ ul.style_num li {
 	margin-bottom: 10px;
 }
 body.en .pp-list h4 {
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-weight: 400;
 }
 
@@ -3165,7 +3166,7 @@ body.en .pp-list h4 {
 	color: #FFF;
 }
 .top-head-img .wpb_text_column h1 {
-	font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-weight: 400;
 	font-size: 3em;
 	text-transform: uppercase;
@@ -3230,7 +3231,7 @@ p.tel-note span.open-hour {
     letter-spacing: 1px;
 }
 body.en p.tel-note span.open-hour {
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 }
 i.bigtelcon {
     font-size: 3em;
@@ -3245,7 +3246,7 @@ a#big-tel {
 a#big-tel {
     color: #000;
     font-size: 3em;
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
     letter-spacing: 2px;
 }
 
@@ -3294,13 +3295,13 @@ body.page-template-page-lgray {
     font-family: a-otf-ryumin-pr6n, "Roboto Slab", Garamond, "Times New Roman", 游明朝, "Yu Mincho", 游明朝体, YuMincho, "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", HiraMinProN-W3, HGS明朝E, "ＭＳ Ｐ明朝", "MS PMincho", serif;
 }
 .h4_didot h4.section-title {
-	font-family: "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+	font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
 }
 body.en .style_a .big-title {
 	margin-bottom: 20px;
 }
 .style_a .big-title {
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     text-transform: uppercase;
     font-size: 2.6em;
     line-height: 0.9em;
@@ -3323,7 +3324,7 @@ section.style_a_sec {
 }
 body.en .page.type-page .entry-content h2.section-title {
 	letter-spacing:0px;
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2em;
 }
 body.en.home .page.type-page .entry-content section h2.section-title {
@@ -3335,7 +3336,7 @@ body.en .page.type-page .entry-content section .joinms h2.section-title {
     text-align: center;
     font-size: 3.5em;
     text-transform: uppercase;
-    font-family: "DidotW01-Italic",Hoefler Text,Garamond,Times New Roman,serif;
+    font-family: 'Playfair Display',Hoefler Text,Garamond,Times New Roman,serif;
 }
 .page.type-page h2.section-title {
 	margin-bottom: 20px;
@@ -3493,7 +3494,7 @@ span.list-count {
 }
 body.en #ss-intro h2.section-title {
     letter-spacing:0px;
-    font-family: Didot, "DidotW01-Italic", "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-family: 'Playfair Display', "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2em;
 }
 
