@@ -487,6 +487,14 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         
         function actionLoginRegister(e, i, n){
         	if (i.result) {
+        		if (e == 'lwa_register')
+        		{
+        			   dataLayer.push({
+        				      'event':'VirtualPageview',
+        				      'virtualPageURL':'/register-successfully',
+        				      'virtualPageTitle':'Register Successfully'
+        				});
+        		}
         		location.reload();
         	}
         }
