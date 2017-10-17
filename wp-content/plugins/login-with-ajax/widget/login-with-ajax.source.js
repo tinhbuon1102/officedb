@@ -117,6 +117,12 @@ jQuery(document).ready( function($) {
 	//Handle a AJAX call for Login, RememberMe or Registration
 	function lwaAjax( data, statusElement ){
 		$('.lwa-loading').remove();
+		
+		if (typeof grecaptcha == 'object')
+		{
+			grecaptcha.reset();
+		}
+
 		statusElement = $(statusElement);
 		if(data.result === true){
 			//Login Successful
