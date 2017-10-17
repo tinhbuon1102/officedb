@@ -491,7 +491,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         		{
         			   dataLayer.push({
         				      'event':'VirtualPageview',
-        				      'virtualPageURL':'/register-successfully',
+        				      'virtualPageUrl':'/register-successfully',
         				      'virtualPageTitle':'Register Successfully'
         				});
         		}
