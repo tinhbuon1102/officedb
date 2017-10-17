@@ -487,19 +487,19 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         
         function actionLoginRegister(e, i, n){
         	if (i.result) {
-        		if (e == 'lwa_register' && typeof dataLayer == 'object')
-        		{
-        			   dataLayer.push({
-        				      'event':'VirtualPageview',
-        				      'virtualPageUrl':'/register-successfully',
-        				      'virtualPageTitle':'Register Successfully'
-        				});
-        		}
         		location.reload();
         	}
         }
         
         $(document).on("lwa_register", function(e, i, n) {
+        	if (i.result && typeof dataLayer == 'object')
+    		{
+    			   dataLayer.push({
+    				      'event':'VirtualPageview',
+    				      'virtualPageUrl':'/register-successfully',
+    				      'virtualPageTitle':'Register Successfully'
+    				});
+    		}
         	actionLoginRegister(e, i, n);
         });
         
