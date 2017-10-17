@@ -487,7 +487,7 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         
         function actionLoginRegister(e, i, n){
         	if (i.result) {
-        		if (e == 'lwa_register')
+        		if (e == 'lwa_register' && typeof dataLayer == 'object')
         		{
         			   dataLayer.push({
         				      'event':'VirtualPageview',
