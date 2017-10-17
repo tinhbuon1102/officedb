@@ -486,6 +486,11 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
         });
         
         function actionLoginRegister(e, i, n){
+        	if (typeof grecaptcha == 'object')
+    		{
+    			grecaptcha.reset();
+    		}
+        	
         	if (i.result) {
         		location.reload();
         	}
