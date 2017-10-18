@@ -29,6 +29,11 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 					'orderby' => 'meta_value_num',
 					'order' => 'DESC',
 				),
+				array(
+					'key' => 'floor_vacancy',
+					'orderby' => 'meta_value_num',
+					'order' => 'DESC',
+				),
 			)
 		);
 		
