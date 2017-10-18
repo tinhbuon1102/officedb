@@ -693,6 +693,8 @@ function realty_posts_request ($request, $query)
 			$request = str_replace('GROUP BY wp_posts.pinged', 'GROUP BY wp_posts.ID', $request);
 			$request = str_replace($limit, '', $request);
 			$request = "SELECT SQL_CALC_FOUND_ROWS * FROM ($request) as t GROUP BY pinged ORDER BY post_date DESC $limit";
+			
+			pr($request);
 		}
 	}
 	elseif (isset($query->query['post_type']) && $query->query['post_type'] == 'news')
