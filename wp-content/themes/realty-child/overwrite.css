@@ -1,3 +1,13 @@
+table.favorite_list_later td.floor_novacant {
+    text-align: left;
+	color: red;
+}
+td.floor_name .status.vacant {
+    color: blue;
+}
+td.floor_name .status.novacant {
+    color: red;
+}
 body.ja #tab-registration .wppb-default-username label:after {
     content: "半角英数字のみ使用可能";
     padding-left: 5px;

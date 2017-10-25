@@ -174,13 +174,17 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 						<td class="floor_checkbox">
 								<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></span>
 							</td>
+							<?php if ($floor['vacancy_info']) {?>
 							<td class="floor_name">
-								<span class="status"><?php echo $floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available');?></span>
+								<span class="status <?php if ($floor['vacancy_info']) {?>vacant<?php } else {?>novacant<?php }?>"><?php echo $floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available');?></span>
 								<?php echo $floor['floor_number']?>
 							</td>
 							<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 							<td class="floor_area"><?php echo $floor['size']?></td>
 							<td class="floor_date_move"><?php echo $floor['date_move']?></td>
+							<?php } else {?>
+							<td class="floor_novacant" colspan="4"><?php echo trans_text('このビルは満室です')?></td>
+							<?php }?>
 							<?php if ($show_remove) {?>
 							<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact now')?></a></td>
 							<?php }?>
