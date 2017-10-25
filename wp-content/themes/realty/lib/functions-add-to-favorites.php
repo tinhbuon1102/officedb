@@ -175,7 +175,7 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 						<td class="floor_checkbox">
 								<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></span>
 							</td>
-							<?php if ($floor['vacancy_info']) {?>
+							<?php if (!$floor['fixed_floor'] ) {?>
 							<td class="floor_name">
 								<span class="status <?php if ($floor['vacancy_info']) {?>vacant<?php } else {?>novacant<?php }?>"><?php echo $floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available');?></span>
 								<?php echo $floor['floor_number']?>
