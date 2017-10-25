@@ -98,11 +98,11 @@
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 		// Get building info
 		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
-		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
+		$building = getBuilding($single_property_id);
 		
 		// Get Floor info
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
-		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$floor = getFloor($single_property_id);
 		
 		// Get PDF
 		$pdfUrl = getBuildingPDF($building_id);
@@ -480,7 +480,7 @@
 				// out if same as existing
 				if ($related_property_id == $single_property_id) continue;
 				
-				$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+				$related_floor = getFloor($related_property_id);
 				
 				// out if floor has no vacant
 				if (!$related_floor['vacancy_info']) continue;

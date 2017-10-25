@@ -25,8 +25,10 @@ function get_contact_property_list($user_id = false, $meta_key = 'realty_user_co
 	$tableFloors = array();
 	foreach ($properties as $property_index => $property) {
 		$single_property_id = $property->ID;
-		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
-		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		
+		$building = getBuilding($single_property_id);
+		$floor = getFloor($single_property_id);
+		
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 	
 		$tableFloors[$property_index]['thumbnail'] = '<a target="_blank" href="'.get_permalink($single_property_id).'">' . get_the_post_thumbnail($single_property_id, 'thumbnail') . '</a>';

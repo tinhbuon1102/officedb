@@ -1584,7 +1584,7 @@ function realty_get_floors($building_id = 0){
 		while ( $query_floors_results->have_posts() ) : $query_floors_results->the_post();
 			global $post;
 			$related_property_id = get_the_ID();
-			$related_floor = get_post_meta($related_property_id, FLOOR_TYPE_CONTENT, true);
+			$related_floor = getFloor($related_property_id);
 			
 			$google_maps = get_post_meta( $related_property_id, 'estate_property_google_maps', true );
 			$estate_property_station = isEnglish() ? $building['stations'][0]['name_en'] : $building['stations'][0]['name'];
@@ -1701,7 +1701,7 @@ function realty_hook_meta_tag() {
 		$isBuildingHaveBothVacant = realty_building_has_both_vacant($building_id);
 		if ($isBuildingHaveBothVacant)
 		{
-			$property_meta = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
+			$property_meta = getFloor($property_id);
 			if (!$property_meta['vacancy_info'])
 			{
 				$output='<meta name="robots" content="noindex, nofollow" />';

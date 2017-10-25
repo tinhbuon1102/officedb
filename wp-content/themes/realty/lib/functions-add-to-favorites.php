@@ -41,9 +41,10 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		
 		foreach ($aProperties as $aProperty)
 		{
-			$property_meta = get_post_meta($aProperty->ID, FLOOR_TYPE_CONTENT, true);
+			$floor = getFloor($aProperty->ID);
+			
 			// out if floor has no vacant
-			if ($isBuildingHaveBothVacant && !$property_meta['vacancy_info']) continue;
+			if ($isBuildingHaveBothVacant && !$floor['vacancy_info']) continue;
 			
 			if ($aProperty->pinged == FLOOOR_BUILDING_PARENT . $buildingId)
 			{
@@ -64,8 +65,9 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 	$current_lang = pll_current_language();
 	foreach ($properties as $property_index => $property) {
 		$single_property_id = $property->ID;
-		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
-		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$building = getBuilding($single_property_id);
+		$floor = getFloor($single_property_id);
+		
 		$google_maps = get_post_meta( $single_property_id, 'estate_property_google_maps', true );
 
 		$building_id_lang = $building['building_id'].'_'.$current_lang;

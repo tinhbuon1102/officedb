@@ -37,11 +37,10 @@ if ( ! empty( $size ) ) {
 
 // Get building info
 $building_id = get_post_meta($property_id, FLOOR_BUILDING_TYPE, true);
-$building = get_post_meta($property_id, BUILDING_TYPE_CONTENT, true);
-
+$building = getBuilding($property_id);
 // Get Floor info
 $floor_id = get_post_meta($property_id, FLOOR_TYPE, true);
-$floor = get_post_meta($property_id, FLOOR_TYPE_CONTENT, true);
+$floor = getFloor($property_id);
 
 $post_title = isset($_GET['size']) && $_GET['size'] ? get_the_title() : get_post_meta($property_id, 'post_title_building', true);
 
