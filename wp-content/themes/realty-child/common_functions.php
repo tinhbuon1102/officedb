@@ -1361,7 +1361,7 @@ function realty_array_filter($string) {
 	global $main_image;
 	foreach ($main_image as $image)
 	{
-		if (!$image) return false;
+		if (!$image) continue;
 		
 		if (strpos($image, '.') !== false)
 		{
@@ -1397,7 +1397,6 @@ function getBuildingFloorPictures($building, $floor, $property_id){
 	{
 		$thumbnail_name = basename($thumbnail_url);
 		$main_image = array($buildingPictureRow->main_image, substr($thumbnail_name, strlen($building['building_id'])));
-
 		$front_images = array_filter(explode(',' , $buildingPictureRow->front_images), 'realty_array_filter');
 		$entrance_images = array_filter(explode(',' , $buildingPictureRow->entrance_images), 'realty_array_filter');
 		$in_front_images = array_filter(explode(',' , $buildingPictureRow->in_front_building_images), 'realty_array_filter');
