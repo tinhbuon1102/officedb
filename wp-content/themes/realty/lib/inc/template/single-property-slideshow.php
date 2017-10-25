@@ -10,16 +10,14 @@
 	{
 		// Get building info
 		$building_id = get_post_meta($single_property_id, FLOOR_BUILDING_TYPE, true);
-		$building = get_post_meta($single_property_id, BUILDING_TYPE_CONTENT, true);
-		
+		$building = getBuilding($single_property_id);
 		// Get Floor info
 		$floor_id = get_post_meta($single_property_id, FLOOR_TYPE, true);
-		$floor = get_post_meta($single_property_id, FLOOR_TYPE_CONTENT, true);
+		$floor = getFloor($single_property_id);
 		
 	}
 	
 	$buildingFloorPictures = getBuildingFloorPictures($building, $floor, $single_property_id);
-	
 	
 ?>
 
