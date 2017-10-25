@@ -88,6 +88,7 @@ function get_favorite_property_list($user_id = false, $meta_key = 'realty_user_f
 		$tableFloors[$property->pinged][$property_index]['building_name'] = $buildingName ;
 		$tableFloors[$property->pinged][$property_index]['floor_number'] = $floorNumber ;
 		$tableFloors[$property->pinged][$property_index]['vacancy_info'] = $floor['vacancy_info'] ;
+		$tableFloors[$property->pinged][$property_index]['fixed_floor'] = $floor['fixed_floor'] ;
 		
 		$tableFloors[$property->pinged][$property_index]['subscribed'] = '<a class="btn btn-success add-to-follow-popup follow-popup '. ($isSubcribed ? ' subscribed' : '') .'" data-fav-id="'. $single_property_id .'" data-subscribe="'. trans_text('Subscribe') .'" data-unsubscribe="'. trans_text('Unsubscribe') .'"  href="javascript:void(0)">' . ($isSubcribed ? trans_text('Unsubscribe') : trans_text('Subscribe')) . '</a>';
 		$tableFloors[$property->pinged][$property_index]['contact_url'] = $inquiryUrl;
