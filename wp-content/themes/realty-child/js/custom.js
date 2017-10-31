@@ -1,14 +1,15 @@
 jQuery(document).ready(function($){
-	$('#favorite-multiple-modal').on('show.bs.modal', function (e) {
+	$('#favorite-multiple-modal').on('shown.bs.modal', function (e) {
 		var th_floor_name_W = $('.favorite_list_later th.floor_name').innerWidth();
 		var td_floor_check_W = $('.favorite_list_later .floors-td .tmp_table .floor_checkbox').innerWidth();
-		console.log('th_floor_name' + th_floor_name_W + 'px');
+		
 		$('.favorite_list_later thead .floor_checkbox').css('width', td_floor_check_W + 'px');
 		//$('.favorite_list_later .floors-td .tmp_table .floor_name').css('width', th_floor_name_W + 'px');
 	});
 	$(window).on('load', function(){
 		$('.tmp_table_row > td').wrapInner('<span />');
 	});
+	
 	function fixTable(e) {
     //所在階
 	var max1 = 0;
