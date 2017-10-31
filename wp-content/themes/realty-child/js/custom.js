@@ -1,9 +1,10 @@
 jQuery(document).ready(function($){
-	$(window).on('load resize', function(){
-		var windowWidth = $(window).width();
-		if (windowWidth < 768) {
-			//$('<span class="sp-disc">この物件の更新情報を</span>').prependTo('td.floor_subscribe');
-		}
+	$('#favorite-multiple-modal').on('show.bs.modal', function (e) {
+		var th_floor_name_W = $('.favorite_list_later th.floor_name').innerWidth();
+		var td_floor_check_W = $('.favorite_list_later .floors-td .tmp_table .floor_checkbox').innerWidth();
+		console.log('th_floor_name' + th_floor_name_W + 'px');
+		$('.favorite_list_later thead .floor_checkbox').css('width', td_floor_check_W + 'px');
+		$('.favorite_list_later .floors-td .tmp_table .floor_name').css('width', th_floor_name_W + 'px');
 	});
 	$(window).on('load', function(){
 		$('.tmp_table_row > td').wrapInner('<span />');
@@ -55,6 +56,7 @@ jQuery(document).ready(function($){
 		
 	var windowWidth = $(window).width();
 	if (windowWidth >= 768) {
+	
 	console.log('階数' + max1 + 'px');
 	$('#page-user-favorites .tmp_table_row > .floor_name').css('width', max1 + 'px');
 	

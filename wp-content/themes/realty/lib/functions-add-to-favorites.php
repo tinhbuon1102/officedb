@@ -136,7 +136,8 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<?php if ($show_remove) {?>
 				<!--<th class="floor_subscribe"><?php //echo trans_text('Subscribe Setting')?></th>-->
 				<?php }?>
-				<th colspan="2" class="floor_name"><?php echo trans_text('Floor')?></th>
+				<th class="floor_checkbox"></th>
+				<th class="floor_name"><?php echo trans_text('Floor')?></th>
 				<th class="floor_rent"><?php echo trans_text('Rent')?></th>
 				<th class="floor_area"><?php echo trans_text('Area')?></th>
 				<th class="floor_date_move"><?php echo trans_text('Date of occupancy')?></th>
@@ -177,7 +178,11 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 						<td class="floor_checkbox">
 								<span><input type="checkbox" name="floor_checked[]" class="form-control chosen-select floor_checked" value="<?php echo $floor['property_id']?>"/></span>
 							</td>
-							<?php if (!$floor['fixed_floor'] || !$floor['vacancy_info'] ) {?>
+							<?php //if (!$floor['fixed_floor'] || !$floor['vacancy_info'] ) {?>
+							<?php //if ($floor['vacancy_info'] ) {?>
+							<?php if ($floor['fixed_floor'] || !$floor['vacancy_info'] ) {?>
+							<td class="floor_novacant" colspan="4"><?php echo trans_text('このビルは満室です')?></td>
+							<?php } else {?>
 							<td class="floor_name">
 								<span class="status <?php if ($floor['vacancy_info']) {?>vacant<?php } else {?>novacant<?php }?>"><?php echo $floor['vacancy_info'] ? trans_text('Avaiable') : trans_text('Not Available');?></span>
 								<?php echo $floor['floor_number']?>
@@ -185,8 +190,8 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 							<td class="floor_rent"><?php echo $floor['rent_unit_price']?></td>
 							<td class="floor_area"><?php echo $floor['size']?></td>
 							<td class="floor_date_move"><?php echo $floor['date_move']?></td>
-							<?php } else {?>
-							<td class="floor_novacant" colspan="4"><?php echo trans_text('このビルは満室です')?></td>
+							
+							
 							<?php }?>
 							<?php if ($show_remove) {?>
 							<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl;?>"><?php echo trans_text('Contact now')?></a></td>
@@ -214,10 +219,14 @@ function buildListFavoriteProperty($show_remove = false, $is_modal = false){
 				<table class="tmp_table">
 					<tr class="tmp_table_row">
 						<td class="floor_checkbox form-group checkbox"></td>
+						<?php if ($floor['fixed_floor'] || !$floor['vacancy_info'] ) {?>
+							<td class="floor_novacant" colspan="4"><?php echo trans_text('このビルは満室です')?></td>
+							<?php } else {?>
 						<td class="floor_name"></td>
 						<td class="floor_rent"></td>
 						<td class="floor_area"></td>
 						<td class="floor_date_move"></td>
+						<?php }?>
 						<?php if ($show_remove) {?>
 						<td class="floor_contact"><a class="btn btn-success" href="<?php echo $inquiryUrl = pll_current_language() == LANGUAGE_JA ? site_url('inquiry') : site_url('inquiry-en');?>"><?php echo trans_text('Contact')?></a></td>
 						<?php }?>

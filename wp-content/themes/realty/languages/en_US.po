@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-09-08 10:36+0900\n"
+"PO-Revision-Date: 2017-10-31 03:55+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -523,7 +523,7 @@ msgstr ""
 
 #: template-user-profile.php:249
 msgid "Login to view and edit your profile."
-msgstr ""
+msgstr "アカウントページを見るにはログインしてください。"
 
 #: lib/functions-add-to-favorites.php:63 lib/functions-add-to-favorites.php:118
 #: lib/functions-add-to-favorites.php:135
@@ -4746,3 +4746,6 @@ msgstr "Size"
 
 msgid "トップページへ戻る"
 msgstr "Go back to homepage"
+
+msgid "このビルは満室です"
+msgstr "This building have no vacancy"

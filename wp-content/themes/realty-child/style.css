@@ -1339,6 +1339,9 @@ div#page-user-favorites .button_groups {
     margin-left: -5px;
     margin-right: -5px;
 	}
+	table.favorite_list_later .favorite_item td {
+    text-align: center;
+	}
 }
 @media (max-width: 991px) {
 	.sword-wrap > .sword {
