@@ -4,7 +4,7 @@ jQuery(document).ready(function($){
 		var td_floor_check_W = $('.favorite_list_later .floors-td .tmp_table .floor_checkbox').innerWidth();
 		
 		$('.favorite_list_later thead .floor_checkbox').css('width', td_floor_check_W + 'px');
-		//$('.favorite_list_later .floors-td .tmp_table .floor_name').css('width', th_floor_name_W + 'px');
+		$('.favorite_list_later .floors-td .tmp_table .floor_name').css('width', th_floor_name_W + 'px');
 	});
 	$(window).on('load', function(){
 		$('.tmp_table_row > td').wrapInner('<span />');

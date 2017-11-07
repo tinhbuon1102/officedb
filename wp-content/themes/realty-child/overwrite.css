@@ -188,6 +188,11 @@ table.favorite_list_later .floor_picture > span.flex-wrap {
 		width: auto;
 	}
 }
+table.favorite_list_later > tbody > tr.favorite_item > td.floor_action_remove > a.remove_property.add-to-favorites {
+    display: inline-block;
+    line-height: 30px;
+    padding: 0 10px;
+}
 @media (min-width: 768px) {
 	.show-sp {
 		display: none;
@@ -217,6 +222,12 @@ table.favorite_list_later .floor_picture > span.flex-wrap {
 	}
 	table.favorite_list_later tbody tr.favorite_item td .tmp_table .floor_date_move {
     width: 110px;
+	}
+	table.tmp_table {
+    margin-top: 24px;
+	}
+	table.favorite_list_later > tbody > tr.favorite_item > td.floor_action_remove > a.remove_property.add-to-favorites {
+    margin-top: 24px;
 	}
 }
 @media (max-width: 767px) {
