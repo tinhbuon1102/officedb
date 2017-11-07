@@ -99,9 +99,8 @@ if ( ! function_exists( 'tt_property_search_args' ) ) {
 			$aExcludeSearchKey = array('order-by', 'pagenumber', 'pageid', 'page_id', 'searchid', 'search_type');
 			if ( ( ! empty( $search_value ) || $search_key == "price_range_min" ) && !in_array($search_key, $aExcludeSearchKey) ) {
 				
-				
 				$aAcceptedSearchKey = array('keyword', 'location', 'size');
-				if(!in_array($search_key, $aExcludeSearchKey))
+				if(!in_array($search_key, $aAcceptedSearchKey))
 				{
 					continue;
 				}
