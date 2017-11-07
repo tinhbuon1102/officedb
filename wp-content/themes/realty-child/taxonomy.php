@@ -7,7 +7,11 @@ if ($taxonomy_name == 'property-location')
 {
 	$oTerm = get_term_by('slug', $taxonomy_slug, $taxonomy_name);
 	$search_page = get_permalink( tt_page_id_template_search());
-	wp_redirect($search_page . '?location['.$oTerm->term_id.']=' . $taxonomy_slug, 301);
+	
+	$params = array_merge(array("location['.$oTerm->term_id.']" => $taxonomy_slug), $_GET);
+	$new_query_string = http_build_query($params);
+	
+	wp_redirect($search_page . '?' . $new_query_string, 301);
 	exit();
 }
 get_header();
