@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-12-06 13:51+0700\n"
+"PO-Revision-Date: 2017-12-06 15:26+0700\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -5234,6 +5234,9 @@ msgstr "物件お問い合わせを受け付けました | 高級オフィス検
 
 msgid "Building Name"
 msgstr "物件名"
+
+msgid "email_resgistration_subject_custom"
+msgstr "高級オフィス検索会員登録のご確認 | 高級オフィス検索"
 
 msgid "email_resgistration_to_user"
 msgstr ""
