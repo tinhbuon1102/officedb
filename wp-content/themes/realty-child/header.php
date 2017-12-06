@@ -50,21 +50,35 @@
 </script>
 
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5VF3RG4');</script>
-<!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google AdWords: 988279235 -->
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-988279235"></script>
+
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('js', new Date());
+
+
+
+  gtag('config', 'AW-988279235');
+
+</script>
+<?php if ( is_page('5751') ) : ?>
+<!-- Event snippet for 問い合わせ(GTM) conversion page -->
+<script>
+
+  gtag('event', 'conversion', {'send_to': 'AW-988279235/fbObCI2hxQsQw-Of1wM'});
+
+</script>
+<?php else: ?>
+<?php endif; ?>
 </head>
 
 <body <?php body_class(); ?>>
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VF3RG4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <?php global $realty_theme_option; ?>
 <div class="viewwrap">
@@ -166,7 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div class="calling-info">
 			<div class="calling-content">
 				<!--<i class="topicon-icon-topnav03"></i>-->
-				<div class="calling-desc"><span class="jat"><?php esc_html_e( '平日', 'realty' ); ?></span>9:00~18:00<br/><span><a href="tel:03-5411-7500">03-5411-7500</a></span></div>
+				<div class="calling-desc"><span class="jat"><?php esc_html_e( '平日', 'realty' ); ?></span>9:00~18:00<br/><span><a href="tel:03-5411-7500" >03-5411-7500</a></span></div>
 			</div>
 		</div>
 	</div><!--/inline-container-->

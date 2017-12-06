@@ -117,7 +117,7 @@
 		<?php
 $time = intval(date('H'));
 if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
-<a href="tel:0354117500" class="button tel-btn"><i class="topicon-icon-topnav03"></i><span>03-5411-7500</span></a>
+<a href="tel:0354117500" onclick="goog_report_conversion('tel:03-5411-7500');yahoo_report_conversion(undefined)" class="button tel-btn"><i class="topicon-icon-topnav03"></i><span>03-5411-7500</span></a>
 <?php } else { // それ以外の時間帯のとき ?>
 <a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="button contact-btn"><i class="howcons-mail-envelope-closed"></i><span><?php esc_html_e( 'Contact us', 'realty' ); ?></span></a>
 <?php } ?>
@@ -167,5 +167,171 @@ setTimeout(function(){
 <link href="https://fonts.googleapis.com/css?family=GFS+Didot" rel="stylesheet">
 
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js&lang=<?php echo pll_current_language()?>"></script>
+
+<!-- Google Code for &#12467;&#12540;&#12523;&#12479;&#12483;&#12503; Conversion Page
+
+In your html page, add the snippet and call
+
+goog_report_conversion when someone clicks on the
+
+phone number link or button. -->
+
+<script type="text/javascript">
+
+  /* <![CDATA[ */
+
+  goog_snippet_vars = function() {
+
+    var w = window;
+
+    w.google_conversion_id = 988279235;
+
+    w.google_conversion_label = "QDNICOCQ-1kQw-Of1wM";
+
+    w.google_remarketing_only = false;
+
+  }
+
+  // DO NOT CHANGE THE CODE BELOW.
+
+  goog_report_conversion = function(url) {
+
+    goog_snippet_vars();
+
+    window.google_conversion_format = "3";
+
+    var opt = new Object();
+
+    opt.onload_callback = function() {
+
+    if (typeof(url) != 'undefined') {
+
+      window.location = url;
+
+    }
+
+  }
+
+  var conv_handler = window['google_trackConversion'];
+
+  if (typeof(conv_handler) == 'function') {
+
+    conv_handler(opt);
+
+  }
+
+}
+
+/* ]]> */
+
+</script>
+
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+
+<!-- Yahoo Code for your Conversion Page In your html page, add the snippet and call
+
+yahoo_report_conversion when someone clicks on the phone number link or button. -->
+
+<script type="text/javascript">
+
+    /* <![CDATA[ */
+
+    yahoo_snippet_vars = function() {
+
+        var w = window;
+
+        w.yahoo_conversion_id = 1000085419;
+
+        w.yahoo_conversion_label = "8Ch_CN6t-lkQ-Zbu1AM";
+
+        w.yahoo_conversion_value = 0;
+
+        w.yahoo_remarketing_only = false;
+
+    }
+
+    // IF YOU CHANGE THE CODE BELOW, THIS CONVERSION TAG MAY NOT WORK.
+
+    yahoo_report_conversion = function(url) {
+
+        yahoo_snippet_vars();
+
+        window.yahoo_conversion_format = "3";
+
+        window.yahoo_is_call = true;
+
+        var opt = new Object();
+
+        opt.onload_callback = function() {
+
+            if (typeof(url) != 'undefined') {
+
+                window.location = url;
+
+            }
+
+        }
+
+        var conv_handler = window['yahoo_trackConversion'];
+
+        if (typeof(conv_handler) == 'function') {
+
+            conv_handler(opt);
+
+        }
+
+    }
+
+    /* ]]> */
+
+</script>
+
+<script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion_async.js"></script>
+
+<!-- Yahoo Code for your Target List -->
+
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+var yahoo_ss_retargeting_id = 1000085419;
+
+var yahoo_sstag_custom_params = window.yahoo_sstag_params;
+
+var yahoo_ss_retargeting = true;
+
+/* ]]> */
+
+</script>
+
+<script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion.js"></script>
+
+<noscript>
+<div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="https://b97.yahoo.co.jp/pagead/conversion/1000085419/?guid=ON&script=0&disvt=false"/></div>
+</noscript>
+<?php if ( is_page('5751') ) : ?>
+<!-- Yahoo Code for your Conversion Page -->
+
+<script type="text/javascript">
+
+    /* <![CDATA[ */
+
+    var yahoo_conversion_id = 1000085419;
+
+    var yahoo_conversion_label = "RMKICL-8wwgQ-Zbu1AM";
+
+    var yahoo_conversion_value = 0;
+
+    /* ]]> */
+
+</script>
+
+<script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion.js"></script>
+
+<noscript>
+	<div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="https://b91.yahoo.co.jp/pagead/conversion/1000085419/?value=0&label=RMKICL-8wwgQ-Zbu1AM&guid=ON&script=0&disvt=true"/></div>
+</noscript>
+<?php else: ?>
+<?php endif; ?>
 </body>
 </html>
