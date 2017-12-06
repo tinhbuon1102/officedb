@@ -191,6 +191,37 @@ function realty_wp_head() {
 			unset($_SESSION['mirrormx_customer_chat']['guest']);
 	}
 }
+
+add_action( 'wp_loaded', 'realty_wp_loaded' );
+function realty_wp_loaded(){
+	// Update verification account
+	if (isset($_GET['r']) && $_GET['r'] == 'verify_account' && isset($_GET['key'])  && isset($_GET['user']) && $_GET['user'])
+	{
+		global $wpdb;
+		if (is_user_logged_in())
+		{
+			wp_redirect( site_url() );
+			exit();
+		}
+	
+		$key = $_GET['key'];
+		$user_login = $_GET['user'];
+	
+		$user = check_password_reset_key( $key, $user_login );
+	
+		if ( ! $user || is_wp_error( $user ) )
+		{
+			if ( $user && $user->get_error_code() === 'expired_key' )
+				wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=expiredkey' ) );
+			else
+				wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=invalidkey' ) );
+		}
+		else {
+			$wpdb->update($wpdb->users, array('user_activation_key' => ''), array('user_login' => $user_login) );
+			wp_cache_delete($user->ID, 'users');
+		}
+	}
+}
 register_nav_menus( array(
     'sp_second_menu' => 'sp用下に表示させるメニュー'
 ) );
@@ -270,7 +301,8 @@ function hide_plugin_order_by_product ()
 		'wp-fastest-cache-premium/wpFastestCachePremium.php',
 // 		'wp-fastest-cache/wpFastestCache.php',
 		'regenerate-thumbnails/regenerate-thumbnails.php',
-		'disable-users/init.php'
+		'disable-users/init.php',
+		'theme-my-login/theme-my-login.php'
 	);
 	$active_plugins = get_option('active_plugins');
 	
@@ -332,13 +364,18 @@ add_action( 'register_new_user', 'autoLoginUser', 10, 1 );
 function autoLoginUser($user_id){
 	$user = get_user_by( 'id', $user_id );
 	if( $user && isset($_POST['login-with-ajax']) ) {
-		wp_set_password($_POST['passw1'], $user_id);
-		wp_set_current_user( $user_id, $user->user_login );
-		wp_set_auth_cookie( $user_id );
+		
+		global $wpdb;
+		
+		$hash = wp_hash_password( $_POST['passw1'] );
+		$wpdb->update($wpdb->users, array('user_pass' => $hash), array('ID' => $user_id) );
+		wp_cache_delete($user_id, 'users');
 		
 		realty_save_account_details ($user_id);
 		
-		do_action( 'wp_login', $user->user_login, $user);
+// 		wp_set_current_user( $user_id, $user->user_login );
+// 		wp_set_auth_cookie( $user_id );
+// 		do_action( 'wp_login', $user->user_login, $user);
 	}
 }
 

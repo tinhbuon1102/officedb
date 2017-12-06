@@ -495,7 +495,10 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
     		}
         	
         	if (i.result) {
-        		location.reload();
+        		if (i.redirect)
+        			location.href = i.redirect;
+        		else 
+        			location.reload();
         	}
         }
         

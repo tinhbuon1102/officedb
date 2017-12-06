@@ -165,7 +165,7 @@ class LoginWithAjax {
 			}
 			
 			$user_role = 'null';
-			if ( strtolower(get_class($loginResult)) == 'wp_user' ) {
+			if ( strtolower(get_class($loginResult)) == 'wp_user' && !$loginResult->data->user_activation_key) {
 				//User login successful
 				self::$current_user = $loginResult;
 				/* @var $loginResult WP_User */
@@ -192,9 +192,18 @@ class LoginWithAjax {
 				$return['result'] = false;
 				$return['error'] = $loginResult->get_error_message();
 			} else {
-				//Undefined Error
-				$return['result'] = false;
-				$return['error'] = __('An undefined error has ocurred', 'login-with-ajax');
+				if ($loginResult->data->user_activation_key)
+				{
+					wp_logout();
+					
+					$return['result'] = false;
+					$return['error'] = __('Account have not verified yet, please check your email to verify or resend by click lost password link below !', 'login-with-ajax');
+				}
+				else {
+					//Undefined Error
+					$return['result'] = false;
+					$return['error'] = __('An undefined error has ocurred', 'login-with-ajax');
+				}
 			}
 		}else{
 			$return['result'] = false;
@@ -260,6 +269,14 @@ class LoginWithAjax {
 				$return['result'] = true;
 				$return['user'] = get_user_by( 'id', $errors );
 				$return['user']->set_role('customer');
+				
+				if ($_REQUEST['lang'] == 'ja')
+				{
+					$return['redirect'] = site_url('register-thankyou');
+				}
+				else {
+					$return['redirect'] = site_url('register-thankyou-en');
+				}
 				
 				$return['message'] = __('Registration complete. Please check your e-mail.','login-with-ajax');
 				//add user to blog if multisite
