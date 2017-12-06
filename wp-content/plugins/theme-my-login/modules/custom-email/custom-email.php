@@ -906,7 +906,7 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 			$title = sprintf( __( '[%s] Your username and password info', 'theme-my-login' ), $blogname );
 			$title   = apply_filters( 'new_user_notification_title',   $title,   $user_id       );
 			
-			$title__('email_resgistration_subject_custom', 'realty');
+			$title = __('email_resgistration_subject_custom', 'realty');
 			$message = apply_filters( 'new_user_notification_message', $message, $key, $user_id );
 			wp_mail( $user->user_email, $title, $message );
 		}
