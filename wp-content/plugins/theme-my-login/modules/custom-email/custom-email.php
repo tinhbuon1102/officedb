@@ -419,8 +419,16 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 		if ( ! empty( $_message ) ) {
 			$user = get_userdata( $user_id );
 
+			if (isEnglish())
+			{
+				$redirectPage = 'account-verification-en';
+			}
+			else {
+				$redirectPage = 'account-verification';
+			}
+			
 			$message = Theme_My_Login_Common::replace_vars( $_message, $user_id, array(
-				'%reseturl%' => network_site_url( "/account-verification?r=verify_account&key=$key&user=" . rawurlencode( $user->user_login ), 'login' ),
+				'%reseturl%' => network_site_url( "/$redirectPage?r=verify_account&key=$key&user=" . rawurlencode( $user->user_login ), 'login' ),
 				'%loginurl%' => site_url( 'wp-login.php', 'login' ),
 				'%first_name%' => $_POST['first_name'],
 				'%last_name%' => $_POST['last_name'],
@@ -882,7 +890,16 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 		if ( apply_filters( 'send_new_user_notification', true ) ) {
 			$message  = sprintf( __( 'Username: %s', 'theme-my-login' ), $user->user_login     ) . "\r\n\r\n";
 			$message .= __( 'To set your password, visit the following address:', 'theme-my-login' ) . "\r\n\r\n";
-			$message .= '<' . network_site_url( "index.php?action=verify_account&key=$key&login=" . rawurlencode( $user->user_login ), 'relative' ) . ">\r\n\r\n";
+			
+			if (isEnglish())
+			{
+				$redirectPage = 'account-verification-en';
+			}
+			else {
+				$redirectPage = 'account-verification';
+			}
+			
+			$message .= '<' . network_site_url( "/$redirectPage?r=verify_account&key=$key&user=" . rawurlencode( $user->user_login ), 'relative' ) . ">\r\n\r\n";
 
 			$message .= wp_login_url() . "\r\n";
 
