@@ -887,7 +887,7 @@ To set your password, visit the following address: %PASSWORD%
 			
 We look forward to your next visit!
 			
-The team at %BLOGNAME%", 'login-with-ajax');
+The team at %BLOGNAME%", 'realty');
 			
 			$user_name = @$_REQUEST['user_name'];
 			$user_name_kana = @$_REQUEST['user_name_kana'];
