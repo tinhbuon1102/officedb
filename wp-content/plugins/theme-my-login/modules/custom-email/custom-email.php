@@ -857,20 +857,20 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 		// we want to reverse this for the plain text arena of emails.
 		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 
-		if ( apply_filters( 'send_new_user_admin_notification', true ) ) {
-			$message  = sprintf( __( 'New user registration on your site %s:', 'theme-my-login' ), $blogname   ) . "\r\n\r\n";
-			$message .= sprintf( __( 'Username: %s'                          , 'theme-my-login' ), $user->user_login ) . "\r\n\r\n";
-			$message .= sprintf( __( 'E-mail: %s'                            , 'theme-my-login' ), $user->user_email ) . "\r\n";
+// 		if ( apply_filters( 'send_new_user_admin_notification', true ) ) {
+// 			$message  = sprintf( __( 'New user registration on your site %s:', 'theme-my-login' ), $blogname   ) . "\r\n\r\n";
+// 			$message .= sprintf( __( 'Username: %s'                          , 'theme-my-login' ), $user->user_login ) . "\r\n\r\n";
+// 			$message .= sprintf( __( 'E-mail: %s'                            , 'theme-my-login' ), $user->user_email ) . "\r\n";
 
-			$title    = sprintf( __( '[%s] New User Registration'            , 'theme-my-login' ), $blogname   );
+// 			$title    = sprintf( __( '[%s] New User Registration'            , 'theme-my-login' ), $blogname   );
 
-			$title    = apply_filters( 'new_user_admin_notification_title',   $title,   $user_id );
-			$message  = apply_filters( 'new_user_admin_notification_message', $message, $user_id );
+// 			$title    = apply_filters( 'new_user_admin_notification_title',   $title,   $user_id );
+// 			$message  = apply_filters( 'new_user_admin_notification_message', $message, $user_id );
 
-			$to       = apply_filters( 'new_user_admin_notification_mail_to', get_option( 'admin_email' ) );
+// 			$to       = apply_filters( 'new_user_admin_notification_mail_to', get_option( 'admin_email' ) );
 
-			@wp_mail( $to, $title, $message );
-		}
+// 			@wp_mail( $to, $title, $message );
+// 		}
 
 		if ( 'admin' == $notify || empty( $notify ) )
 			return;
