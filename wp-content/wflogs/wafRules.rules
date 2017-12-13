@@ -344,6 +344,9 @@ if (match('#/wp\-admin/admin\-ajax\.php$#i', server.script_filename) and (md5Equ
 if (match('#/wp\-admin/admin\-ajax\.php$#i', server.script_filename) and (md5Equals('da6c71b8bb99069bd8e2fde83d95cf0d', request.body.action, request.queryString.action) or md5Equals('144e471fa0e0005b146b3f10ed5f8192', request.body.action, request.queryString.action)) and (match('/(?:^|&)(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:d|%64)(?:a|%61)(?:t|%74)(?:a|%61)(?:\[|%5b)(.+?)(?:\]|%5d)(?:\[|%5b)(?:n|%6e)(?:a|%61)(?:m|%6d)(?:e|%65)(?:\]|%5d)=(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:i|%69)(?:d|%64)&.*?(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:d|%64)(?:a|%61)(?:t|%74)(?:a|%61)(?:\[|%5b)\1(?:\]|%5d)(?:\[|%5b)(?:v|%76)(?:a|%61)(?:l|%6c)(?:u|%75)(?:e|%65)(?:\]|%5d)=\d*[^\d&]+/i', request.rawBody) or match('/(?:^|&)(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:d|%64)(?:a|%61)(?:t|%74)(?:a|%61)(?:\[|%5b)(.+?)(?:\]|%5d)(?:\[|%5b)(?:v|%76)(?:a|%61)(?:l|%6c)(?:u|%75)(?:e|%65)(?:\]|%5d)=\d*[^\d&]+[^&]*&.*?(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:d|%64)(?:a|%61)(?:t|%74)(?:a|%61)(?:\[|%5b)\1(?:\]|%5d)(?:\[|%5b)(?:n|%6e)(?:a|%61)(?:m|%6d)(?:e|%65)(?:\]|%5d)=(?:f|%66)(?:o|%6f)(?:r|%72)(?:m|%6d)(?:_|%5f)(?:i|%69)(?:d|%64)(?:$|&)/i', request.rawBody))):
 	block(id=105, category='sqli', description='FB6146')
 
+if (equals('true', request.queryString.up_auto_log)):
+	block(id=106, category='auth-bypass', description='UserPro - User Profiles with Social Login <= 4.9.17 - Authentication Bypass')
+
 if (matchCount('/(^|;|{|})O:+?\+*[0-9]+:"WP_Theme"/i', request.headers, request.cookies, request.body, request.queryString)):
 	block(id=103, category='obji', score=100, description='PHP Object Injection')
 
