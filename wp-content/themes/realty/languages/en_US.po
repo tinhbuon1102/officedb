@@ -5004,17 +5004,7 @@ msgstr ""
 
 #: login-with-ajax-admin.php:368
 #, php-format
-msgid ""
-"Thanks for signing up to our blog. \n"
-"\n"
-"You can login with the following credentials by visiting %BLOGURL%\n"
-"\n"
-"Username : %USERNAME%\n"
-"Password : %PASSWORD%\n"
-"\n"
-"We look forward to your next visit!\n"
-"\n"
-"The team at %BLOGNAME%"
+msgid "email_user_registration_to_admin"
 msgstr ""
 "Thanks for signing up to our site. \n"
 "Your siginung up was succeeded.\n"

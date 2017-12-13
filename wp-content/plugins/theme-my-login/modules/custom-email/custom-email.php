@@ -878,16 +878,7 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 			// we want to reverse this for the plain text arena of emails.
 			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 			
-			$message = __("Thanks for signing up to our blog.
-			
-You can login with the following credentials by visiting %BLOGURL%
-			
-Username: %USERNAME%
-To set your password, visit the following address: %PASSWORD%
-			
-We look forward to your next visit!
-			
-The team at %BLOGNAME%", 'realty');
+			$message = __("email_user_registration_to_admin", 'realty');
 			
 			$user_name = @$_REQUEST['user_name'];
 			$user_name_kana = @$_REQUEST['user_name_kana'];
