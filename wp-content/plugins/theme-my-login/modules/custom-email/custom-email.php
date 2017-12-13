@@ -857,7 +857,7 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 		// we want to reverse this for the plain text arena of emails.
 		$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 
-// 		if ( apply_filters( 'send_new_user_admin_notification', true ) ) {
+		if ( apply_filters( 'send_new_user_admin_notification', true ) ) {
 // 			$message  = sprintf( __( 'New user registration on your site %s:', 'theme-my-login' ), $blogname   ) . "\r\n\r\n";
 // 			$message .= sprintf( __( 'Username: %s'                          , 'theme-my-login' ), $user->user_login ) . "\r\n\r\n";
 // 			$message .= sprintf( __( 'E-mail: %s'                            , 'theme-my-login' ), $user->user_email ) . "\r\n";
@@ -870,7 +870,46 @@ class Theme_My_Login_Custom_Email extends Theme_My_Login_Abstract {
 // 			$to       = apply_filters( 'new_user_admin_notification_mail_to', get_option( 'admin_email' ) );
 
 // 			@wp_mail( $to, $title, $message );
-// 		}
+
+			
+			$user = get_userdata( $user_id );
+			
+			// The blogname option is escaped with esc_html on the way into the database in sanitize_option
+			// we want to reverse this for the plain text arena of emails.
+			$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
+			
+			$message = __("Thanks for signing up to our blog.
+			
+You can login with the following credentials by visiting %BLOGURL%
+			
+Username: %USERNAME%
+To set your password, visit the following address: %PASSWORD%
+			
+We look forward to your next visit!
+			
+The team at %BLOGNAME%", 'login-with-ajax');
+			
+			$user_name = @$_REQUEST['user_name'];
+			$user_name_kana = @$_REQUEST['user_name_kana'];
+			$user_company = @$_REQUEST['user_company'];
+			$user_address = @$_REQUEST['user_address'];
+			$user_phone = @$_REQUEST['user_phone'];
+			
+			$message = str_replace('%USERNAME%', $user->user_login, $message);
+			$message = str_replace('%EMAIL%', $user->user_email, $message);
+			
+			$message = str_replace('%NAME%', $user_name, $message);
+			$message = str_replace('%NAME KANA%', $user_name_kana, $message);
+			$message = str_replace('%COMPANY%', $user_company, $message);
+			$message = str_replace('%ADDRESS%', $user_address, $message);
+			$message = str_replace('%PHONE%', $user_phone, $message);
+			
+			$message = str_replace('%PASSWORD%', $login_link, $message);
+			$message = str_replace('%BLOGNAME%', $blogname, $message);
+			$message = str_replace('%BLOGURL%', get_bloginfo('wpurl'), $message);
+			
+			@wp_mail(get_option('admin_email'), sprintf(__('[%s] New User Registration'), $blogname), $message);
+		}
 
 		if ( 'admin' == $notify || empty( $notify ) )
 			return;
