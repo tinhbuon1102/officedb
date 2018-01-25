@@ -168,14 +168,7 @@ setTimeout(function(){
 
 <script type="text/javascript" src="<?php echo get_site_url()?>/livechat/php/app.php?widget-init.js&lang=<?php echo pll_current_language()?>"></script>
 
-<!-- Google Code for &#12467;&#12540;&#12523;&#12479;&#12483;&#12503; Conversion Page
-
-In your html page, add the snippet and call
-
-goog_report_conversion when someone clicks on the
-
-phone number link or button. -->
-
+<!--Start of Google_コールタップ-->
 <script type="text/javascript">
 
   /* <![CDATA[ */
@@ -225,13 +218,10 @@ phone number link or button. -->
 /* ]]> */
 
 </script>
-
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js"></script>
+<!--end of Google_コールタップ-->
 
-<!-- Yahoo Code for your Conversion Page In your html page, add the snippet and call
-
-yahoo_report_conversion when someone clicks on the phone number link or button. -->
-
+<!--Start of Yahooコールタップタグ-->
 <script type="text/javascript">
 
     /* <![CDATA[ */
@@ -285,11 +275,10 @@ yahoo_report_conversion when someone clicks on the phone number link or button. 
     /* ]]> */
 
 </script>
-
 <script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion_async.js"></script>
+<!--end of Yahooコールタップタグ-->
 
-<!-- Yahoo Code for your Target List -->
-
+<!--Start of Yahoo Common Retargeting tags リターゲティングタグ-->
 <script type="text/javascript">
 
 /* <![CDATA[ */
@@ -303,15 +292,21 @@ var yahoo_ss_retargeting = true;
 /* ]]> */
 
 </script>
-
 <script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion.js"></script>
-
 <noscript>
-<div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="https://b97.yahoo.co.jp/pagead/conversion/1000085419/?guid=ON&script=0&disvt=false"/></div>
-</noscript>
-<?php if ( is_page('5751') ) : ?>
-<!-- Yahoo Code for your Conversion Page -->
 
+<div style="display:inline;">
+
+<img height="1" width="1" style="border-style:none;" alt="" src="https://b97.yahoo.co.jp/pagead/conversion/1000085419/?guid=ON&script=0&disvt=false"/>
+
+</div>
+
+</noscript>
+<!--End of Yahoo Common Retargeting tags リターゲティングタグ-->
+
+<!--if contact page お問い合わせ完了-->
+<?php if(is_page( array( 5751 ) ) ): ?>
+<!-- Start contact page tags Yahoo_問合せ完了タグ -->
 <script type="text/javascript">
 
     /* <![CDATA[ */
@@ -325,12 +320,39 @@ var yahoo_ss_retargeting = true;
     /* ]]> */
 
 </script>
-
 <script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion.js"></script>
-
 <noscript>
-	<div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="https://b91.yahoo.co.jp/pagead/conversion/1000085419/?value=0&label=RMKICL-8wwgQ-Zbu1AM&guid=ON&script=0&disvt=true"/></div>
+<div style="display:inline;"><img height="1" width="1" style="border-style:none;" alt="" src="https://b91.yahoo.co.jp/pagead/conversion/1000085419/?value=0&label=RMKICL-8wwgQ-Zbu1AM&guid=ON&script=0&disvt=true"/></div>
 </noscript>
+<!-- End contact page tags Yahoo_問合せ完了タグ -->
+
+<!--if thankyou page 会員登録手続き完了-->
+<?php elseif(is_page( array( 22713 ) ) ): ?>
+<!-- Start thankyou page tags 会員登録手続き完了タグ -->
+<script type="text/javascript">
+
+    /* <![CDATA[ */
+
+    var yahoo_conversion_id = 1000085419;
+
+    var yahoo_conversion_label = "Cv93CKrE9VkQ-Zbu1AM";
+
+    var yahoo_conversion_value = 0;
+
+    /* ]]> */
+
+</script>
+<script type="text/javascript" src="https://s.yimg.jp/images/listing/tool/cv/conversion.js"></script>
+<noscript>
+
+    <div style="display:inline;">
+
+        <img height="1" width="1" style="border-style:none;" alt="" src="https://b91.yahoo.co.jp/pagead/conversion/1000085419/?value=0&label=Cv93CKrE9VkQ-Zbu1AM&guid=ON&script=0&disvt=true"/>
+
+    </div>
+
+</noscript>
+<!-- End thankyou page tags 会員登録手続き完了タグ -->
 <?php else: ?>
 <?php endif; ?>
 </body>

@@ -67,11 +67,28 @@
   gtag('config', 'AW-988279235');
 
 </script>
-<?php if ( is_page('5751') ) : ?>
+<!--if お問い合わせ完了-->
+<?php if(is_page( array( 5751 ) ) ): ?>	
 <!-- Event snippet for 問い合わせ(GTM) conversion page -->
 <script>
 
   gtag('event', 'conversion', {'send_to': 'AW-988279235/fbObCI2hxQsQw-Of1wM'});
+
+</script>
+<?php elseif(is_page( array( 22713 ) ) ): ?>
+<!-- Event snippet for 会員登録 conversion page -->
+
+<script>
+
+  gtag('event', 'conversion', {
+
+      'send_to': 'AW-988279235/ZPIlCNWx2AgQw-Of1wM',
+
+      'value': 1.0,
+
+      'currency': 'JPY'
+
+  });
 
 </script>
 <?php else: ?>
