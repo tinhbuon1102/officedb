@@ -26,6 +26,8 @@ if ( ! function_exists( 'tt_realty_property_featured_home' ) ) {
 			'meta_query' => array(
 				array(
 					'key' => 'estate_property_featured',
+					'value' => 1,
+					'compare' => '>=',
 					'orderby' => 'meta_value_num',
 					'order' => 'DESC',
 				),
