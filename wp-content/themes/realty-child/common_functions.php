@@ -408,43 +408,47 @@ function realty_theme_init()
 
 	if (isset($_GET['api_add_image']))
 	{
-		$image_url = $_GET['api_add_image'];
-		$post_id = $_GET['post_id'];
-		$building_id = $_GET['building_id'];
-
-		$image = $building_id . basename($image_url);
-		$image = substr($image, 0, strlen($image) - 4) . '.jpg';
-
-		$upload_dir = wp_upload_dir();
-		$temp_folder = $upload_dir['basedir'] . '/temp/';
-		$filename = $temp_folder . $image;
-
-		$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
-		$aPostId[] = pll()->model->post->get( $post_id, 'en' );
-		
-		foreach ($aPostId as $post_id)
+		$image_base_url = $_GET['image_base_url'];
+		foreach ($_GET['post_id'] as $index_get => $post_id)
 		{
-			if (!$post_id) continue;
+			$image_url = $image_base_url . $_GET['api_add_image'][$index_get];
+			$building_id = $_GET['building_id'][$index_get];
 			
-			$attach = get_image_id($image, $post_id);
-			if ($attach)
+			$image = $building_id . basename($image_url);
+			$image = substr($image, 0, strlen($image) - 4) . '.jpg';
+			
+			$upload_dir = wp_upload_dir();
+			$temp_folder = $upload_dir['basedir'] . '/temp/';
+			$filename = $temp_folder . $image;
+			
+			$aPostId[] = pll()->model->post->get( $post_id, 'ja' );
+			$aPostId[] = pll()->model->post->get( $post_id, 'en' );
+			
+			foreach ($aPostId as $post_id)
 			{
-				// Generate the metadata for the attachment, and update the database record.
-				set_post_thumbnail( $post_id, $attach->ID );
-			}
-			else {
-				if (!isset($image_file))
+				if (!$post_id) continue;
+					
+				$attach = get_image_id($image, $post_id);
+				if ($attach)
 				{
-					$image_file = file_get_contents($image_url);
+					// Generate the metadata for the attachment, and update the database record.
+					set_post_thumbnail( $post_id, $attach->ID );
 				}
-				
-				if ($image_file)
-				{
-					realty_compress_image($image_url, $filename);
-					$attach_id = attachImageToProduct($filename, $post_id, true);
+				else {
+					if (!isset($image_file))
+					{
+						$image_file = file_get_contents($image_url);
+					}
+			
+					if ($image_file)
+					{
+						realty_compress_image($image_url, $filename);
+						$attach_id = attachImageToProduct($filename, $post_id, true);
+					}
 				}
 			}
 		}
+		
 		if (class_exists("WpFastestCache"))
 		{
 			$fastestCache = new WpFastestCache();
