@@ -460,6 +460,8 @@ $("#property-items-featured .container.vc_row.wpb_row.vc_inner.vc_row-fluid.feat
 	}
 	
 	function initLoginRegisterForm() {
+		$('.lwa-register-form #username').removeAttr('required');
+		
 		if ($("form#registerform").length)
 		{
 			$("form#registerform input").each(function(){

@@ -222,6 +222,11 @@ class LoginWithAjax {
 	    $return = array();
 	    $errors = new stdClass();
 	    
+	    if ($_POST['email'])
+	    {
+	    		$_REQUEST['username'] = $_POST['username'] = $_POST['email'];
+	    }
+	    
 	    if (!$_REQUEST['email']) {
 	    	$errors = new WP_Error();
 	    	$errors->add( 'user_email', __( '<strong>ERROR</strong>: Please type your email address', 'realty' ) );
@@ -246,10 +251,6 @@ class LoginWithAjax {
 	    	$return['result'] = false;
 	    	$return['error'] = $errors->get_error_message();
 	    	return $return;
-	    }
-	    if ($_POST['email'])
-	    {
-	    	//$_REQUEST['username'] = $_POST['username'] = $_POST['email'];
 	    }
 	    
 	    if( get_option('users_can_register') ){

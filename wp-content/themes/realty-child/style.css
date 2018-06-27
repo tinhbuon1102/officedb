@@ -482,6 +482,7 @@ tr.overlink_row:hover td.overlink{
 	background: #f3f3f3;
 }
 
+.lwa-register-form .wppb-default-username {display: none;}
 @media all and (-ms-high-contrast:none) {
 	body.en nav#navigation .primary-menu a {
     font-family: "adobe-caslon-pro",Times,serif;
