@@ -117,7 +117,10 @@
 		<?php
 $time = intval(date('H'));
 if (9 <= $time && $time <= 18) { // 9時～18時の時間帯のとき ?>
-<a href="tel:0354117500" onclick="goog_report_conversion('tel:03-5411-7500');yahoo_report_conversion(undefined)" class="button tel-btn"><i class="topicon-icon-topnav03"></i><span>03-5411-7500</span></a>
+<div class="btn-group">
+<span class="btn-item"><a href="tel:0354117500" onclick="goog_report_conversion('tel:03-5411-7500');yahoo_report_conversion(undefined)" class="button tel-btn"><i class="topicon-icon-topnav03"></i><span><?php esc_html_e( 'Call Now', 'realty' ); ?></span></a></span>
+<span class="btn-item"><a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="button contact-btn"><i class="fa fa-envelope"></i><span><?php esc_html_e( 'Email Now', 'realty' ); ?></span></a></span>
+</div>
 <?php } else { // それ以外の時間帯のとき ?>
 <a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="button contact-btn"><i class="howcons-mail-envelope-closed"></i><span><?php esc_html_e( 'Contact us', 'realty' ); ?></span></a>
 <?php } ?>

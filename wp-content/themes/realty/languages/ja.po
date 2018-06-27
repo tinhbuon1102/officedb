@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-10 18:30+0900\n"
 "POT-Revision-Date: Mon Jul 04 2016 08:00:44 GMT+0200 (CEST)\n"
-"PO-Revision-Date: 2017-12-13 13:45+0700\n"
+"PO-Revision-Date: 2018-06-27 13:33+0900\n"
 "Language-Team: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
 "esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x;esc_html_x;"
 "comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.8.12\n"
 "Last-Translator: \n"
 "Language: ja_JP\n"
 "X-Poedit-SearchPath-0: ..\n"
@@ -572,8 +572,7 @@ msgstr "パスワード"
 msgid "Login to view and edit your profile."
 msgstr "アカウントページを見るにはログインしてください。"
 
-#: lib/functions-add-to-favorites.php:63
-#: lib/functions-add-to-favorites.php:118
+#: lib/functions-add-to-favorites.php:63 lib/functions-add-to-favorites.php:118
 #: lib/functions-add-to-favorites.php:135
 msgid "Remove From Favorites"
 msgstr "お気に入りから削除"
@@ -624,8 +623,7 @@ msgid "Price"
 msgstr ""
 
 #: lib/functions-compare-properties.php:174
-#: realty-core/custom-post-types.php:218
-#: lib/redux/realty-theme-options.php:556
+#: realty-core/custom-post-types.php:218 lib/redux/realty-theme-options.php:556
 #: lib/redux/realty-theme-options.php:572
 #: realty-core/shortcodes/shortcode-button.php:37
 #: realty-core/shortcodes/shortcode-notification.php:64
@@ -638,8 +636,7 @@ msgid "Type"
 msgstr ""
 
 #: lib/functions-compare-properties.php:175
-#: realty-core/custom-post-types.php:217
-#: lib/redux/realty-theme-options.php:555
+#: realty-core/custom-post-types.php:217 lib/redux/realty-theme-options.php:555
 #: lib/redux/realty-theme-options.php:571
 #: realty-core/shortcodes/shortcode-property-carousel.php:315
 #: realty-core/shortcodes/shortcode-property-listing.php:383
@@ -650,8 +647,7 @@ msgid "Status"
 msgstr ""
 
 #: lib/functions-compare-properties.php:176
-#: realty-core/custom-post-types.php:216
-#: lib/redux/realty-theme-options.php:554
+#: realty-core/custom-post-types.php:216 lib/redux/realty-theme-options.php:554
 #: lib/redux/realty-theme-options.php:570
 #: lib/redux/realty-theme-options.php:843
 #: realty-core/shortcodes/shortcode-property-carousel.php:306
@@ -1633,8 +1629,7 @@ msgstr ""
 msgid "Owner"
 msgstr ""
 
-#: realty-core/custom-post-types.php:223
-#: lib/inc/template/property-item.php:252
+#: realty-core/custom-post-types.php:223 lib/inc/template/property-item.php:252
 msgid "Published"
 msgstr ""
 
@@ -4642,8 +4637,7 @@ msgstr "下書き"
 msgid "Pending"
 msgstr ""
 
-#: lib/inc/template/search-form-mini.php:11
-#: lib/inc/template/search-form.php:11
+#: lib/inc/template/search-form-mini.php:11 lib/inc/template/search-form.php:11
 msgid ""
 "Please go to \"Appearance > Theme Options > Pages\" and set the page you "
 "want to use as your property search results."
@@ -5234,6 +5228,12 @@ msgstr "物件お問い合わせを受け付けました | 高級オフィス検
 
 msgid "Building Name"
 msgstr "物件名"
+
+msgid "Call Now"
+msgstr "電話する"
+
+msgid "Email Now"
+msgstr "メールする"
 
 msgid "email_resgistration_subject_custom"
 msgstr "高級オフィス検索会員登録のご確認 | 高級オフィス検索"
