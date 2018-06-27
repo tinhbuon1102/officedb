@@ -524,7 +524,7 @@ The team at %BLOGNAME%', 'login-with-ajax');
 		$message = str_replace('%NAME%', $user_name, $message);
 		$message = str_replace('%NAME KANA%', $user_name_kana, $message);
 		$message = str_replace('%COMPANY%', $user_company, $message);
-		$message = str_replace('%ADDRESS%', $user_address, $message);
+// 		$message = str_replace('%ADDRESS%', $user_address, $message);
 		$message = str_replace('%PHONE%', $user_phone, $message);
 		
 		$message = str_replace('%PASSWORD%', $login_link, $message);
